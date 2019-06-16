@@ -276,12 +276,19 @@ public class WeatherOverview extends AppCompatActivity {
         @Override
         protected List<Weather> doInBackground(Activity ... strings) {
 
-            weatherData.clear();
+            // get all ids of current selected cities
+            List<Integer> cityIds = getCityIds(weatherData);
+
+            // load data for selected cities
             for (int cityId : userCityCodes) {
-                Weather weather = new Weather(cityId);
-                weather.getCurrentWeather();
-                weather.parseWeatherForecast();
-                weatherData.add(weather);
+
+                // add element, if it is not in the list
+                if (!cityIds.contains(cityId)) {
+                    Weather weather = new Weather(cityId);
+                    weather.getCurrentWeather();
+                    weather.parseWeatherForecast();
+                    weatherData.add(weather);
+                }
             }
             return weatherData;
         }
@@ -292,5 +299,19 @@ public class WeatherOverview extends AppCompatActivity {
             weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weather);
             listView.setAdapter(weatherOverviewListAdapter);
         }
+    }
+
+    /**
+     * get the ids of all cities in a list
+     * @param weatherList: List containing objects of class Weather
+     * @return cityIds: list containing the city ids
+     */
+    private List<Integer> getCityIds(List<Weather> weatherList) {
+
+        List<Integer> cityIds = new ArrayList<>(weatherList.size());
+        for (Weather weather : weatherList) {
+            cityIds.add(weather.getCityId());
+        }
+        return cityIds;
     }
 }
