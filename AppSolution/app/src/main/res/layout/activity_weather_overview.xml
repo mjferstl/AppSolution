@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".WeatherOverview">
 
     <ListView
         android:id="@+id/lv_wheater_overview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </ListView>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_float_weather_overview_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="@dimen/activity_double_space"
+        android:layout_marginEnd="@dimen/activity_double_space"
+        android:layout_marginRight="@dimen/activity_double_space"
+        android:src="@drawable/ic_add_black_24dp" />
+
+</RelativeLayout>
