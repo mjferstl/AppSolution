@@ -176,13 +176,16 @@ public class Weather {
                     JSONObject currentList = listJA.optJSONObject(i);
 
                     long timestamp = Integer.valueOf(currentList.get("dt").toString());
-                    String localTime = getDateCurrentTimeZone(timestamp);
+                    String localTime = getDateTimeShort(timestamp);
 
                     wf.setTime(localTime);
 
                     JSONObject mainJO = currentList.getJSONObject("main");
 
-                    wf.setTemp(mainJO.get("temp").toString());
+                    // get temperature and round to one decimal place
+                    wf.setTemp(formatTemperature(mainJO.get("temp").toString(),1));
+
+                    // get min and max temperature
                     wf.setTempMin(mainJO.get("temp_min").toString());
                     wf.setTempMax(mainJO.get("temp_max").toString());
 
@@ -205,18 +208,35 @@ public class Weather {
         return weatherForecast;
     }
 
-    private String getDateCurrentTimeZone(long timestamp) {
+    private String getDateCurrentTimeZone(long timestamp, String dateFormat) {
         try {
             Calendar calendar = Calendar.getInstance();
             TimeZone tz = TimeZone.getDefault();
             calendar.setTimeInMillis(timestamp * 1000);
             calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
             Date currenTimeZone = calendar.getTime();
             return sdf.format(currenTimeZone);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return "";
+    }
+
+    private String getDateTimeShort(long timestamp) {
+        String dateFormat = "dd.MM. HH:mm";
+        return getDateCurrentTimeZone(timestamp, dateFormat);
+    }
+
+    private String getDateTimeLong(long timestamp) {
+        String dateFormat = "yyyy-MM-dd HH:mm";
+        return getDateCurrentTimeZone(timestamp, dateFormat);
+    }
+
+    private String formatTemperature(String t, int decimalPlaces) {
+        double temp = Double.parseDouble(t);
+        double factor = Math.pow(10,decimalPlaces);
+        double tempFormatted = Math.round(temp*factor)/factor;
+        return String.valueOf(tempFormatted);
     }
 }

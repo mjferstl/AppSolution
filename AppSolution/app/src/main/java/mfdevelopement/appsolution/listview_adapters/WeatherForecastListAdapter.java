@@ -3,6 +3,7 @@ package mfdevelopement.appsolution.listview_adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,21 +32,23 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherForecast> {
 
         View view = convertView;
          if(view == null) {
-             view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_weather_forecast, parent, false);
+             view = LayoutInflater.from(getContext()).inflate(R.layout.adapter_wheater_forecast, parent, false);
          }
 
          TextView time = view.findViewById(R.id.tv_weather_forecast_time);
          TextView temperature = view.findViewById(R.id.tv_weather_forecast_temperature);
          ImageView icon = view.findViewById(R.id.img_weather_forecast_icon);
 
+        Log.i("wettervorhersage",currentForecast.getTime());
+
          if (currentForecast.getTime() != null) {
              time.setText(currentForecast.getTime());
 
-             if (currentForecast.getTemp() == null) {
-                 temperature.setText(currentForecast.getTemp());
+             if (currentForecast.getTemp() != null) {
+                 temperature.setText(currentForecast.getTempDegree());
              }
 
-             if (currentForecast.getIconId() == 0) {
+             if (currentForecast.getIconId() != 0) {
                  icon.setImageResource(currentForecast.getIconId());
              }
          } else {

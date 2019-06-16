@@ -31,6 +31,10 @@ public class WeatherForecast {
         return temp;
     }
 
+    public String getTempDegree(){
+        return getTemp() + "°C";
+    }
+
     public int getIconId() {
         return iconId;
     }

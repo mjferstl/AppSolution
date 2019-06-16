@@ -54,6 +54,7 @@ public class WeatherOverview extends AppCompatActivity {
                 List<WeatherForecast> wf = selectedWeather.getWeatherForecast();
 
                 // open a dialog
+                Log.i(LogTag,"open weather forecast dialog, city " + selectedWeather.getCityName());
                 final Dialog dialog = new Dialog(WeatherOverview.this);
                 dialog.setContentView(R.layout.dialog_weather_forecast);
                 dialog.setTitle("Wettervorhersage");
