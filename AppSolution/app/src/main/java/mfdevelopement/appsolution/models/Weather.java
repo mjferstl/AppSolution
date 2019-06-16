@@ -64,6 +64,10 @@ public class Weather {
         this.forecastLoaded = false;
     }
 
+    public int getCityId() {
+        return cityId;
+    }
+
     public String getCityName() {
         return cityName;
     }

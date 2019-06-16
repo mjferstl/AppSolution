@@ -489,5 +489,7 @@
 
     <!-- weather forecast -->
     <string name="forecast">Vorhersage</string>
+    <string name="hint_filter_cities">Orte filtern &#8230;</string>
+    <string name="title_add_city">Stadt hinzufügen &#8230;</string>
 </resources>
 

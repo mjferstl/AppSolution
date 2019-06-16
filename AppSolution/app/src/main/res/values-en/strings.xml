@@ -269,4 +269,6 @@
     <string name="title_activity_weather_overview">Weather - Overview</string>
     <string name="title_activity_rheo_models">Rheological Models</string>
     <string name="forecast">forecast</string>
+    <string name="hint_filter_cities">filter places ...</string>
+    <string name="title_add_city">Add city &#8230;</string>
 </resources>

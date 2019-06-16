@@ -7,11 +7,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,6 +46,8 @@ public class WeatherOverview extends AppCompatActivity {
     private String appname = "";
     private String sharedPrefsUserCityCodes = "userCityCodesString";
 
+    private WeatherOverviewListAdapter weatherOverviewListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +62,6 @@ public class WeatherOverview extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showCitiesList();
-                updateWeatherData();
             }
         });
 
@@ -109,7 +113,11 @@ public class WeatherOverview extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                // return the current item
+                // remove the selected item
+                Log.i(LogTag,"removeListItem: removing item " + position + " of weather overview list");
+                weatherData.remove(position);
+                weatherOverviewListAdapter.notifyDataSetChanged();
+                saveUserCities();
                 return true;
             }
         });
@@ -164,16 +172,37 @@ public class WeatherOverview extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_weather_add_city);
 
         ListView listView = dialog.findViewById(R.id.lv_weather_cities);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cityNames);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cityNames);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                userCityCodes.add(cityCodes.get(position));
+                String city = adapter.getItem(position);
+                Log.i(LogTag,"addCity: " + city);
+                int index = cityNames.indexOf(city);
+                userCityCodes.add(index);
                 dialog.dismiss();
-                saveUserCities();
                 updateWeatherData();
+                saveUserCities();
+            }
+        });
+
+        final EditText etFilter = dialog.findViewById(R.id.et_dia_weather_add_city);
+        etFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                adapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -184,19 +213,23 @@ public class WeatherOverview extends AppCompatActivity {
         new loadWeatherData(this).execute();
     }
 
+    /**
+     * save the user specific citites on the phone
+     */
     private void saveUserCities() {
 
         String prefsString;
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
         // if there are no user specific values, then save an empty string
-        if (userCityCodes.isEmpty()) {
+        if (weatherData.isEmpty()) {
             prefsString = "";
         }
         else {
             StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < userCityCodes.size(); i++) {
-                stringBuilder.append(userCityCodes.get(i)).append(',');
+            for (int i = 0; i < weatherData.size(); i++) {
+                Weather weather = weatherData.get(i);
+                stringBuilder.append(weather.getCityId()).append(',');
             }
             prefsString = stringBuilder.toString();
         }
@@ -204,6 +237,10 @@ public class WeatherOverview extends AppCompatActivity {
         prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
     }
 
+    /**
+     * load the saved user specific cities on the phone
+     * @return List<Integer> containing the cityIds
+     */
     private List<Integer> loadUserCities() {
 
         List<Integer> userCityCodes = new ArrayList<>();
@@ -221,6 +258,9 @@ public class WeatherOverview extends AppCompatActivity {
         return userCityCodes;
     }
 
+    /**
+     * load the weather data in the background
+     */
     private class loadWeatherData extends AsyncTask<Activity, Void, List<Weather>> {
 
         Activity activity;
@@ -236,19 +276,21 @@ public class WeatherOverview extends AppCompatActivity {
         @Override
         protected List<Weather> doInBackground(Activity ... strings) {
 
-                for (int cityId : userCityCodes) {
-                    Weather weather = new Weather(cityId);
-                    weather.getCurrentWeather();
-                    weather.parseWeatherForecast();
-                    weatherData.add(weather);
-                }
+            weatherData.clear();
+            for (int cityId : userCityCodes) {
+                Weather weather = new Weather(cityId);
+                weather.getCurrentWeather();
+                weather.parseWeatherForecast();
+                weatherData.add(weather);
+            }
             return weatherData;
         }
 
         @Override
         protected void onPostExecute(List<Weather> weather) {
             //
-            listView.setAdapter(new WeatherOverviewListAdapter(activity, weather));
+            weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weather);
+            listView.setAdapter(weatherOverviewListAdapter);
         }
     }
 }
