@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_language_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="5pt"
+    android:paddingLeft="10pt"
+    android:paddingStart="10pt"
+    android:paddingRight="10pt"
+    android:paddingEnd="10pt"
+    android:paddingBottom="5pt">
+    <ListView
+        android:id="@+id/lv_weather_forecast"
+        android:layout_width="match_parent"
+        android:layout_height="450dp">
+    </ListView>
+    <Button
+        android:id="@+id/btn_dia_weather_forecast_dismiss"
+        android:layout_width="30pt"
+        android:layout_height="wrap_content"
+        android:text="@string/btd_ok"
+        android:textSize="@dimen/material_text_button"
+        style="@style/AppTheme.FlatButton"
+        android:layout_gravity="end"/>
+</LinearLayout>

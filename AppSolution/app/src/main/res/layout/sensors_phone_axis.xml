@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_reyn_uv"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5pt"
+    android:paddingLeft="5pt"
+    android:paddingRight="5pt"
+    android:paddingBottom="5pt"
+    android:layout_gravity="center">
+    <TextView
+        android:id="@+id/txtv_axis_device"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="@string/txtv_axis_device"
+        android:textSize="@dimen/material_text_body1"
+        android:textColor="@color/colorTextPrimary"/>
+    <ImageView
+        android:id="@+id/img_axis_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/img_axis_device"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/sensors_btHelpDismiss"
+            android:layout_width="30pt"
+            android:layout_height="wrap_content"
+            android:text="@string/btd_ok"
+            android:textSize="@dimen/material_text_button"
+            style="@style/AppTheme.FlatButton"/>
+    </LinearLayout>
+
+</LinearLayout>

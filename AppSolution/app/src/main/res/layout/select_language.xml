@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_language_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="5pt"
+    android:paddingLeft="10pt"
+    android:paddingStart="10pt"
+    android:paddingRight="10pt"
+    android:paddingEnd="10pt"
+    android:paddingBottom="5pt">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/alert_choose_language"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:paddingBottom="5pt"/>
+    <RadioGroup
+        android:id="@+id/rdgr_select_language"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/lang_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rbtd_german"/>
+        <RadioButton
+            android:id="@+id/lang_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rbtd_english"/>
+    </RadioGroup>
+    <Button
+        android:id="@+id/btn_language_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.FlatButton"
+        android:text="@string/btd_ok"
+        android:textSize="@dimen/material_text_button"
+        android:layout_gravity="end"
+        android:layout_marginLeft="64dp"/>
+</LinearLayout>

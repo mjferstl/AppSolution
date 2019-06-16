@@ -1,0 +1,53 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_single_space">8dp</dimen>
+    <dimen name="activity_double_space">16dp</dimen>
+
+    <!--Main-->
+    <dimen name="main_imgBtd_left_padding_left">50dp</dimen>
+    <dimen name="main_imgBtd_left_padding_right">30dp</dimen>
+    <dimen name="main_imgBtd_right_padding_left">30dp</dimen>
+    <dimen name="main_imgBtd_right_padding_right">50dp</dimen>
+    <dimen name="main_imgBtd_height">100dp</dimen>
+
+    <dimen name="cocktail_verical_margin">2pt</dimen>
+    <dimen name="cocktail_overview_chapter_space_bottom">3pt</dimen>
+    <dimen name="cocktail_overview_chapter_space_top">5pt</dimen>
+    <dimen name="cocktailButtonsTextSize">7pt</dimen>
+    <dimen name="cocktailButtonHeight">30pt</dimen>
+
+    <dimen name="cocktail_data_text_size">7pt</dimen>
+    <dimen name="ingredients_column_width">60dp</dimen>
+
+    <!-- Reynoldszahl -->
+    <dimen name="reyn_unit_width">25pt</dimen>
+    <dimen name="reyn_variables_width">10pt</dimen>
+
+    <!-- Reynoldszahl - usual values -->
+    <dimen name="reyn_uv_var_colWidth">35pt</dimen>
+    <dimen name="reyn_uv_col1Width">20pt</dimen>
+    <dimen name="reyn_uv_col2Width">25pt</dimen>
+    <dimen name="reyn_uv_colSep">3sp</dimen>
+
+    <!--Sensors-->
+    <dimen name="sensors_first_column_width">150sp</dimen>
+
+    <!-- define the text Sizes -->
+    <dimen name="material_text_button">16sp</dimen>
+    <dimen name="material_text_menu">14sp</dimen>
+    <dimen name="material_text_caption">14sp</dimen>
+    <dimen name="material_text_body1">16sp</dimen>
+    <dimen name="material_text_body2">14sp</dimen>
+    <dimen name="material_text_hint">16sp</dimen>
+    <dimen name="material_text_subhead">16sp</dimen>
+    <dimen name="material_text_title">20sp</dimen>
+    <dimen name="material_text_headline">24sp</dimen>
+    <dimen name="material_text_display1">34sp</dimen>
+    <dimen name="material_text_display2">45sp</dimen>
+    <dimen name="material_text_display3">56sp</dimen>
+    <dimen name="material_text_display4">112sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+</resources>

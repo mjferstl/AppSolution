@@ -1,0 +1,490 @@
+<resources>
+    <string name="app_name" translatable="false">AppSolution</string>
+
+    <!-- Cocktails -->
+    <string name="btd_cocktail_overview_text" translatable="false">Cocktails</string>
+
+    <string name="cocktails_rum" translatable="false">Rum</string>
+    <string name="cubaLibre" translatable="false">Cuba Libre</string>
+    <string name="mojito" translatable="false">Mojito</string>
+    <string name="plantersPunch" translatable="false">Planter\'s Punch</string>
+    <string name="wastedTime" translatable="false">Wasted Time</string>
+    <string name="zombie" translatable="false">Zombie</string>
+
+    <string name="cocktails_tequila" translatable="false">Tequila</string>
+    <string name="tequilaSunrise">Tequila Sunrise</string>
+    <string name="margarita" translatable="false">Margarita</string>
+
+    <string name="cocktails_wodka">Wodka</string>
+    <string name="aphroditesKiss" translatable="false">Aphrodite\'s Kiss</string>
+    <string name="blackRussian" translatable="false">Black Russian</string>
+    <string name="bloodyMary" translatable="false">Bloody Mary</string>
+    <string name="harveyWallbanger" translatable="false">Harvey Wallbanger</string>
+    <string name="longIslandIceTea" translatable="false">Long Island Ice Tea</string>
+    <string name="sexOnTheBeach">Sex on the beach</string>
+    <string name="swimmingPool">Swimming Pool</string>
+    <string name="touchdown">Touchdown</string>
+    <string name="whiteRussian" translatable="false">White Russian</string>
+    <string name="wodkaSunrise" translatable="false">Wodka Sunrise</string>
+    <string name="maiTai" translatable="false">Mai Tai</string>
+    <string name="ginFizz" translatable="false">Gin Fizz</string>
+
+    <string name="cocktails_licor43" translatable="false">Licor 43</string>
+    <string name="blanco43" translatable="false">Blanco 43</string>
+    <string name="sour43">Sour 43</string>
+
+    <string name="txt_cachaca" translatable="false">Cacha&#231;a</string>
+    <string name="caipirinha" translatable="false">Caipirinha</string>
+
+    <string name="title_activity_cocktail_overview">Cocktails</string>
+    <string name="title_activity_cocktail_recipe">Cocktail Rezept</string>
+    <string name="title_ingredients">Zutaten</string>
+    <string name="title_preparation">Zubereitung</string>
+
+    <string name="txt_limette">Limette</string>
+    <string name="txt_cola">Cola</string>
+    <string name="txt_weisser_rum">weißer Rum</string>
+    <string name="txt_minzblaetter">Minzblätter</string>
+    <string name="txt_rohrzucker">Rohrzucker</string>
+    <string name="txt_weisser_rohrzucker">weißer Rohrzucker</string>
+    <string name="txt_brauner_Rohrzucker">brauner Rohrzucker</string>
+    <string name="txt_zuckersirup">Zuckersirup</string>
+    <string name="txt_sodawasser">Sodawasser</string>
+    <string name="txt_orangensaft">Orangensaft</string>
+    <string name="txt_ananassaft">Ananassaft</string>
+    <string name="txt_zitronensaft">Zitronensaft</string>
+    <string name="txt_brauner_Rum">brauner Rum</string>
+    <string name="txt_grenadinesirup">Grenadinesirup</string>
+    <string name="txt_maracujsaft">Maracujasaft</string>
+    <string name="txt_limettensaft">Limettensaft</string>
+    <string name="txt_johannisbeersaft_schwarz">Johannisbeersaft (schwarz)</string>
+    <string name="txt_pfirsichsaft">Pfirsichsaft</string>
+    <string name="txt_tomatensaft">Tomatensaft</string>
+    <string name="txt_prise_salz">Prise Salz</string>
+    <string name="txt_prise_pfeffer">Prise Pfeffer</string>
+    <string name="txt_spritzer_tabasco">Spritzer Tabasco</string>
+    <string name="txt_worcestersauce" translatable="false">Worcestersauce</string>
+    <string name="txt_pfirsichlikoer">Pfirsichlikör</string>
+    <string name="txt_cranberrysirup">Cranberrysirup</string>
+    <string name="txt_kokosnusscreme">Kokosnusscreme</string>
+    <string name="txt_sahne">Sahne</string>
+    <string name="txt_blue_curacao" translatable="false">Blue Curacao</string>
+    <string name="txt_milch">Milch</string>
+    <string name="txt_limettensirup">Limettensirup</string>
+    <string name="txt_mandelsirup">Mandelsirup</string>
+    <string name="txt_ginger_ale" translatable="false">Ginger Ale</string>
+    <string name="txt_spritzer_worcestershire">Spritzer Worcestershire</string>
+
+    <string name="txt_cocktail_cuba_libre_prep">Limette achteln, in ein Glas geben und ausdrücken. Rum dazu geben und umrühren. Anschließend Eiswürfel ins Glas geben und mit Cola auffüllen.</string>
+    <string name="txt_cocktail_mojito_prep">Die Limette vierteln und mit den Minzblättern sowie dem Rohrzucker in ein Glas geben und mit dem Barlöffel leicht andrücken. Rum und Limettensaft dazugeben und mit reichlich Crushed Ice verrühren. Anschließend mit Sodawasser aufgießen.</string>
+    <string name="txt_cocktail_planterspunch_prep">Limetten- und Orangensaft in den Shaker geben, einmal kurz umrühren und dann mit Zuckersirup nach Belieben Süßen. Rum und Eiswürfel hinzufügen und alles kräftig schütteln, bis der Shaker außen beschlägt. Durch ein Sieb in ein Longdrinkglas abseihen und mit dem Soda- oder Mineralwasser verlängern.</string>
+    <string name="txt_cocktail_wasted_time_prep">Zutaten mit 3 Eiswürfeln im Shaker durchschütteln und in ein Longdrinkglas abseihen.</string>
+    <string name="txt_cocktail_tequila_sunrise_prep">Tequila, Orangen- und Zitronensaft mit Eiswürfeln im Shaker gut schütteln und in ein mit Eis gefülltes Longdrinkglas abseihen. Grenadinesirup langsam darüber laufen lassen.</string>
+    <string name="txt_cocktail_margarita_prep">Cocktailglas mit Salzrand versehen und vorkühlen. Zutaten in einen Shaker geben und gut schütteln. Inhalt ins Glas seihen.</string>
+    <string name="txt_cocktail_aphrodites_kiss_prep">Alle Zutaten mit 3-4 Eiswürfeln shaken. Grenadinesirup darüber gießen.</string>
+    <string name="txt_cocktail_black_russian_prep">In einen kleinen Tumbler mit Eiswürfeln erst Kahlúa und dann Wodka geben.</string>
+    <string name="txt_cocktail_bloody_mary_prep">Alle Zutaten mit einigen Eiswürfeln im Shaker kräftig mixen. In ein Longdrinkglas oder Tumbler mit einigen Eiswürfeln abseihen.</string>
+    <string name="txt_cocktail_harvey_wallbanger_prep">Wodka und Orangensaft in ein Longdrinkglas mit viel Eis geben. Galliano vorsichtig aufschwimmen lassen.</string>
+    <string name="txt_cocktail_long_island_ice_tea_prep">Alle Zutaten, außer Cola und Ginger Ale, mit Eiswürfeln im Shaker schütteln. In ein Longdrinkglas mit reichlich Eiswürfeln abseihen.</string>
+    <string name="txt_cocktail_sex_on_the_beach_prep">Alle Zutaten shaken und in ein Glas mit Eiswürfeln geben.</string>
+    <string name="txt_cocktail_swimming_pool_prep">Alle Zutaten bis auf Blue Curacao mit etwas crushed Ice aufmixen und in ein Glas mit crushed Ice abseihen. Blue Curacao vorsichtig ins Glas laufen lassen.</string>
+    <string name="txt_cocktail_touch_down_prep">Alle Zutaten shaken und auf 3 Eiswürfel abseihen. Grenadinesirup darüber gießen.</string>
+    <string name="txt_cocktail_white_russian_prep">Wodka, Kaffeelikör und einige Eiswürfel in ein Glas geben und gut vermischen. Sahne leicht anschlagen und vorsichtig über den Drink geben.</string>
+    <string name="txt_cocktail_wodka_sunrise_prep">Eiswürfel ins Glas geben. Mit Wodka und Orangensaft auffüllen und anschließend Grenadinesirup darüber laufen lassen.</string>
+    <string name="txt_cocktail_sour_43_prep">Alle Zutaten auf Eis shaken und mit Eis servieren.</string>
+    <string name="txt_cocktail_caipirinha_prep">Limette schneiden und ins Glas geben. Zucker zugeben und mit einem Stößel den Saft aus der Limette drücken. Das Glas mit Eis auffüllen und Cachaca darüber geben. Alles sehr gut verrühren.</string>
+    <string name="txt_cocktail_mai_tai_prep">Alle Zutaten im Shaker mit einigen Eiswürfeln kurz durchschütteln und in ein zu einem Drittel mit crushed Ice gefülltes Glas abseihen. Garnieren und mit Trinkhalm servieren.</string>
+    <string name="txt_cocktail_gin_fizz_prep">Gin, Zitronensaft und Zuckersirup im Shaker mit einigen Eiswürfeln gut schütteln. In ein Glas mit Eiswürfeln abseihen und anschließend mit Sodawasser aufgießen.</string>
+
+    <string name="txt_cocktail_alert_msg_not_found">Kein Cocktail gefunden. Kontaktien Sie den Entwickler!</string>
+
+    <string name="txt_malibu" translatable="false">Malibu</string>
+    <string name="txt_weisser_tequila">weißer Tequila</string>
+    <string name="txt_cointreau" translatable="false">Cointreau</string>
+    <string name="txt_wodka" translatable="false">Wodka</string>
+    <string name="txt_kahlua" translatable="false">Kahlúa</string>
+    <string name="txt_galliano" translatable="false">Galliano</string>
+    <string name="txt_tequila" translatable="false">Tequila</string>
+    <string name="txt_triple_sec" translatable="false">Triple Sec</string>
+    <string name="txt_gin" translatable="false">Gin</string>
+    <string name="txt_apricot_brandy" translatable="false">Apricot Brandy</string>
+    <string name="txt_licor_43" translatable="false">Licor 43</string>
+
+    <!-- Mensa Speiseplan -->
+    <string name="title_activity_mensa_speiseplan">Mensa Regensburg</string>
+    <string name="btd_mensa_text" translatable="false">Mensa</string>
+
+    <!-- About -->
+    <string name="title_activity_about_screen">Über AppSolution</string>
+    <string name="about_text_app_name" translatable="false">AppSolution</string>
+    <string name="about_text_version" translatable="false">Version 1.80.1</string>
+    <string name="about_developer">Entwickelt von Mathias Ferstl</string>
+    <string name="about_thanks" translatable="false">Icons made by Freepik from www.flaticon.com</string>
+
+    <!-- Maths -->
+    <string name="btd_calculator_text">Rechner</string>
+    <string name="title_activity_maths">Rechner</string>
+    <string name="maths_hint_diameter">Durchmesser</string>
+    <string name="maths_calculate">Berechnen</string>
+    <string name="maths_circle_def">Kreisfläche</string>
+    <string name="maths_rectangle_def">Rechteckfläche</string>
+    <string name="maths_hint_width">Länge</string>
+    <string name="maths_hint_height">Breite</string>
+    <string name="maths_multi_operator" translatable="false">X</string>
+    <string name="maths_solution_name">Ergebnis:</string>
+    <string name="maths_enter_diameter">Bitte Durchmesser eingeben</string>
+    <string name="maths_enter_length">Bitte Länge eingeben</string>
+    <string name="maths_enter_width">Bitte Breite eingeben</string>
+    <string name="maths_approx">ca. </string>
+
+    <!-- Mechanical Engineering-->
+    <string name="btd_mechanical_engineering_text">Maschinenbau</string>
+    <string name="title_activity_mechanical_engineering">Maschinenbau</string>
+    <string name="meng_txt_waerme">Wärmebehandlung</string>
+
+    <!-- Reynoldszahl -->
+    <string name="title_activity_reynoldszahl">Reynoldszahl</string>
+    <string name="reyn_tube_text">Rohrströmung</string>
+    <string name="reyn_tube_avg_velocity_hint">mittlere Geschwindigkeit</string>
+    <string name="reyn_tube_params_diameter_hint">Rohrdurchmesser</string>
+    <string name="reyn_tube_viscosity_known">kinem. Viskosität verwenden?</string>
+    <string name="reyn_tube_params_kin_viscosity_hint">kinematische Viskosität</string>
+    <string name="reyn_tube_params_dyn_viscosity_hint">dynamische Viskosität</string>
+    <string name="reyn_tube_params_density_hint">Dichte</string>
+    <string name="reyn_tube_params_values">Werte</string>
+    <string name="reyn_result_text" translatable="false">Re =</string>
+
+    <!-- Reynoldszahl - usual values -->
+    <string name="reyn_values_title">Wählen Sie hier die Temperatur des Fluids</string>
+    <string name="reyn_txtv_water">Wasser (bei 1 bar)</string>
+    <string name="reyn_txtv_air">Luft</string>
+    <string name="reyn_0deg" translatable="false">0°C</string>
+    <string name="reyn_10deg" translatable="false">10°C</string>
+    <string name="reyn_20deg" translatable="false">20°C</string>
+    <string name="reyn_30deg" translatable="false">30°C</string>
+    <string name="reyn_50deg" translatable="false">50°C</string>
+    <string name="reyn_70deg" translatable="false">70°C</string>
+    <string name="reyn_90deg" translatable="false">90°C</string>
+
+    <string name="reyn_txtv_laminar_flow">laminare Str\u00F6mung</string>
+    <string name="reyn_txtv_turbulant_flow">turbulente Str\u00F6mung</string>
+    <string name="reyn_txtv_laminar_flow_krit">Re &#60; 2300: laminare Strömung</string>
+    <string name="reyn_txtv_turbulent_flow_krit">Re &#62; 2300: turbulente Strömung</string>
+    <string name="reyn_toast_enter_kinVisc">Bitte einen Werte für die kinematische Viskosität eingeben</string>
+    <string name="reyn_toast_enter_dynVisc">Bitte einen Wert für diedynamische Viskosität eingeben</string>
+    <string name="reyn_toast_enter_density">Bitte einen Wert für die Dichte eingeben</string>
+    <string name="reyn_toast_enter_avgVelo">Bitte einen Wert für die mittlere Geschwindigkeit eingeben</string>
+
+    <!--Water - dynamic viscosity-->
+    <string name="reyn_uv_water_dynVis_var">&#951; in Pa s</string>
+    <string name="reyn_uv_water_title">Wasser</string>
+
+    <!--Water - density-->
+    <string name="reyn_uv_water_density_var">&#961; in kg/m³</string>
+
+    <!--Air - dynamic viscosity-->
+    <string name="reyn_uv_air_dynVis_var" translatable="false">&#951; in Pa s</string>
+
+    <!--Air - density-->
+    <string name="reyn_uv_air_density_var" translatable="false">&#961; in kg/m³</string>
+
+    <!-- Sensors -->
+    <string name="btd_sensors_text">Sensoren</string>
+    <string name="txtv_sensors_acceleration">Beschleunigung</string>
+    <string name="txtv_axis">Achsen</string>
+    <string name="txtv_no_value">Kein Wert verfügbar.</string>
+    <string name="txtv_ambient_temp">Umgebungstemperatur: </string>
+    <string name="title_activity_sensors">Sensoren</string>
+    <string name="title_alertDialog_Phone_Axis">Koordinatensystem</string>
+    <string name="txtv_axis_device">Definition der Achsen:</string>
+    <string name="txtv_acceleration_unit" translatable="false">m/s²</string>
+    <string name="txtv_acceleration_start_values">0,000</string>
+    <string name="sensors_acc_plot_title">Beschleunigungen</string>
+    <string name="sensors_acc_plot_ylabel">Beschleunigung in m/s²</string>
+    <string name="sensors_acc_plot_xlabel">Messung</string>
+
+    <string name="reyn_tube_usual_values_air">Luft</string>
+    <string name="reyn_tube_usual_values_water_dynVis">Wasser</string>
+
+    <!-- Greek Symbols -->
+    <string name="greek_eta" translatable="false">&#951;</string>
+    <string name="greek_nu" translatable="false">&#957;</string>
+    <string name="greek_rho" translatable="false">&#961;</string>
+
+    <string name="title_activity_currency_calculator">Währungsrechner</string>
+
+    <string name="txte_currency_value_hint">Betrag</string>
+    <string name="btd_currency_converter_text">Umrechner</string>
+    <string name="btd_currency_calc">Umrechnen</string>
+    <string name="txtv_currency_intro">Eine Internetverbindung ist erforderlich!</string>
+    <string name="txtv_currency_internet_status">Keine Internetverbindung!</string>
+    <string name="txtv_currency_from">Ausgangswährung</string>
+    <string name="txtv_currency_to">Zielwährung</string>
+    <string name="btd_help">Hilfe</string>
+
+    <!-- Unisport-->
+    <string name="title_activity_unisport">Unisport</string>
+    <string name="btd_unisport_txt">Unisport</string>
+
+    <string name="btd_bib_txt">Bibliothek</string>
+    <string name="title_activity_regensburger_katalog" translatable="false">Regensburger Katalog</string>
+    <string name="txt_regensburger_katalog">Sie sehen die mobile Internetseite des Regensburger Katalogs.</string>
+
+
+    <string name="txt_no_internet_connection">Keine Internetverbindung!</string>
+    <string name="txt_enter_value">Bitte Betrag eingeben</string>
+    <string name="txt_connected_wifi">Mit dem Internet über WLAN verbunden.</string>
+    <string name="txt_connected_mobile">Mit dem Internet (mobil) verbunden.</string>
+
+    <string name="desc_kangaroo_button" translatable="false">Kangaroo Button</string>
+
+    <string name="btd_news">Nachrichten</string>
+    <string name="title_activity_news">Nachrichten</string>
+    <string name="txt_news">Sie sehen die mobile ARD-Text-Internetseite.</string>
+
+
+    <string name="txt_currency_aed">VAE-Dirham</string>
+    <string name="txt_currency_afn">Afghanischer Afghani</string>
+    <string name="txt_currency_all">Albanischer Lek</string>
+    <string name="txt_currency_amd">Armenischer Dram</string>
+    <string name="txt_currency_ang">Antillen-Gulden</string>
+    <string name="txt_currency_aoa">Angolanischer Kwanza</string>
+    <string name="txt_currency_ars">Argentinischer Peso</string>
+    <string name="txt_currency_aud">Australische Dollar</string>
+    <string name="txt_currency_awg">Aruba-Florin</string>
+    <string name="txt_currency_azn">Aserbaidschan-Manat</string>
+    <string name="txt_currency_bam">Bosnische Konvertible Mark</string>
+    <string name="txt_currency_bbd">Barbados-Dollar</string>
+    <string name="txt_currency_bdt">Taka (Bangladesh)</string>
+    <string name="txt_currency_bgn">Bulgarische Lev</string>
+    <string name="txt_currency_bhd">Bahrain-Dinar</string>
+    <string name="txt_currency_bif">Burundi-Franc</string>
+    <string name="txt_currency_bmd">Bermuda-Dollar</string>
+    <string name="txt_currency_bnd">Brunei-Dollar</string>
+    <string name="txt_currency_bob">Boliviano</string>
+    <string name="txt_currency_brl">Brasilianische Real</string>
+    <string name="txt_currency_bsd">Bahama-Dollar</string>
+    <string name="txt_currency_btc" translatable="false">Bitcoin</string>
+    <string name="txt_currency_btn">Ngultrum (Bhutan)</string>
+    <string name="txt_currency_bwp">Botswanische Pula</string>
+    <string name="txt_currency_byn">Weißrussischer Rubel</string>
+    <string name="txt_currency_bzd">Belize-Dollar</string>
+    <string name="txt_currency_cad">Kanadische Dollar</string>
+    <string name="txt_currency_cdf">Kongo-Franc</string>
+    <string name="txt_currency_chf">Schweizer Franken</string>
+    <string name="txt_currency_clp">Chilenischer Peso</string>
+    <string name="txt_currency_cny">Chinesischer Yuan</string>
+    <string name="txt_currency_cop">Kolumbianischer Peso</string>
+    <string name="txt_currency_crc">Costa-Rica-Colón</string>
+    <string name="txt_currency_cuc">Kubanischer Peso convertible</string>
+    <string name="txt_currency_cup">Kubanischer Peso</string>
+    <string name="txt_currency_cve">Kap-Verde-Escudo</string>
+    <string name="txt_currency_czk">Tschechische Kronen</string>
+    <string name="txt_currency_djf">Dschibuti-Franc</string>
+    <string name="txt_currency_dkk">Dänische Kronen</string>
+    <string name="txt_currency_dop">Dominikanischer Peso</string>
+    <string name="txt_currency_dzd">Algerischer Dinar</string>
+    <string name="txt_currency_egp">Ägyptisches Pfund</string>
+    <string name="txt_currency_ern">Eritreischer Nakfa</string>
+    <string name="txt_currency_etb">Äthiopischer Birr</string>
+    <string name="txt_currency_eur" translatable="false">Euro</string>
+    <string name="txt_currency_fjd">Fidschi-Dollar</string>
+    <string name="txt_currency_fkp">Falkland-Pfund</string>
+    <string name="txt_currency_gbp">Britische Pfund</string>
+    <string name="txt_currency_gel">Georgischer Lari</string>
+    <string name="txt_currency_ggp">Guernsey-Pfund</string>
+    <string name="txt_currency_ghs">Ghana-Cedi</string>
+    <string name="txt_currency_gip">Gibraltar-Pfund</string>
+    <string name="txt_currency_gmd">Gambischer Dalasi</string>
+    <string name="txt_currency_gnf">Franc Guniéen</string>
+    <string name="txt_currency_gtq">Guatemaltekischer Quetzal</string>
+    <string name="txt_currency_gyd">Guyana-Dollar</string>
+    <string name="txt_currency_hkd">Hongkong-Dollar</string>
+    <string name="txt_currency_hnl">Hondurischer Lempira</string>
+    <string name="txt_currency_hrk">Kroatische Kuna</string>
+    <string name="txt_currency_htg">Haitianische Gourde</string>
+    <string name="txt_currency_huf">Ungarischer Forint</string>
+    <string name="txt_currency_idr">Indonesische Rupiah</string>
+    <string name="txt_currency_ils">Israelischer Schekel</string>
+    <string name="txt_currency_imp">Isle-of-Man-Pfund</string>
+    <string name="txt_currency_inr">Indische Rupie</string>
+    <string name="txt_currency_iqd">Irakischer Dinar</string>
+    <string name="txt_currency_irr">Iranischer Rial</string>
+    <string name="txt_currency_isk">Isländische Krone</string>
+    <string name="txt_currency_jep">Jersey-Pfund</string>
+    <string name="txt_currency_jmd">Jamaika-Dollar</string>
+    <string name="txt_currency_jod">Jordanischer Dinar</string>
+    <string name="txt_currency_jpy">Japanische Yen</string>
+    <string name="txt_currency_kes">Kenia-Schilling</string>
+    <string name="txt_currency_kgs">Kirgisischer Som</string>
+    <string name="txt_currency_khr">Kambodschanischer Riel</string>
+    <string name="txt_currency_kmf">Komoren-Franc</string>
+    <string name="txt_currency_kpw">Nordkoreanischer Won</string>
+    <string name="txt_currency_krw">Südkoreanischer Won</string>
+    <string name="txt_currency_kwd">Kuwait-Dinar</string>
+    <string name="txt_currency_kyd">Kaiman-Dollar</string>
+    <string name="txt_currency_kzt">Kasachischer Tenge</string>
+    <string name="txt_currency_lak">Laotischer Kip</string>
+    <string name="txt_currency_lbp">Libanesisches Pfund</string>
+    <string name="txt_currency_lkr">Sri-Lanka-Rupie</string>
+    <string name="txt_currency_lrd">Liberianischer Dollar</string>
+    <string name="txt_currency_lsl">Lesothischer Loti</string>
+    <string name="txt_currency_lyd">Libyscher Dinar</string>
+
+    <string name="txt_currency_usd" translatable="false">US Dollar</string>
+    <string name="txt_currency_nok">Norwegische Kronen</string>
+    <string name="txt_currency_pln">Polnische Zloty</string>
+    <string name="txt_currency_rub">Russische Rubel</string>
+    <string name="txt_currency_sek">Schwedische Kronen</string>
+    <string name="txt_currency_try">Türkische Lira</string>
+
+    <string name="txt_currency_key_aed" translatable="false">AED</string>
+    <string name="txt_currency_key_afn" translatable="false">AFN</string>
+    <string name="txt_currency_key_all" translatable="false">ALL</string>
+    <string name="txt_currency_key_amd" translatable="false">AMD</string>
+    <string name="txt_currency_key_ang" translatable="false">ANG</string>
+    <string name="txt_currency_key_aoa" translatable="false">AOA</string>
+    <string name="txt_currency_key_ars" translatable="false">ARS</string>
+    <string name="txt_currency_key_aud" translatable="false">AUD</string>
+    <string name="txt_currency_key_awg" translatable="false">AWG</string>
+    <string name="txt_currency_key_azn" translatable="false">AZN</string>
+    <string name="txt_currency_key_bam" translatable="false">BAM</string>
+    <string name="txt_currency_key_bbd" translatable="false">BBD</string>
+    <string name="txt_currency_key_bdt" translatable="false">BDT</string>
+    <string name="txt_currency_key_bgn" translatable="false">BGN</string>
+    <string name="txt_currency_key_bhd" translatable="false">BHD</string>
+    <string name="txt_currency_key_bif" translatable="false">BIF</string>
+    <string name="txt_currency_key_bmd" translatable="false">BMD</string>
+    <string name="txt_currency_key_bnd" translatable="false">BND</string>
+    <string name="txt_currency_key_bob" translatable="false">BOB</string>
+    <string name="txt_currency_key_brl" translatable="false">BRL</string>
+    <string name="txt_currency_key_bsd" translatable="false">BSD</string>
+    <string name="txt_currency_key_btc" translatable="false">BTC</string>
+    <string name="txt_currency_key_btn" translatable="false">BTN</string>
+    <string name="txt_currency_key_bwp" translatable="false">BWP</string>
+    <string name="txt_currency_key_byn" translatable="false">BYN</string>
+    <string name="txt_currency_key_bzd" translatable="false">BZD</string>
+    <string name="txt_currency_key_cad" translatable="false">CAD</string>
+    <string name="txt_currency_key_cdf" translatable="false">CDF</string>
+    <string name="txt_currency_key_chf" translatable="false">CHF</string>
+    <string name="txt_currency_key_clp" translatable="false">CLP</string>
+    <string name="txt_currency_key_cny" translatable="false">CNY</string>
+    <string name="txt_currency_key_cop" translatable="false">COP</string>
+    <string name="txt_currency_key_crc" translatable="false">CRC</string>
+    <string name="txt_currency_key_cuc" translatable="false">CUC</string>
+    <string name="txt_currency_key_cup" translatable="false">CUP</string>
+    <string name="txt_currency_key_cve" translatable="false">CVE</string>
+    <string name="txt_currency_key_czk" translatable="false">CZK</string>
+    <string name="txt_currency_key_djf" translatable="false">DJF</string>
+    <string name="txt_currency_key_dkk" translatable="false">DKK</string>
+    <string name="txt_currency_key_dop" translatable="false">DOP</string>
+    <string name="txt_currency_key_dzd" translatable="false">DZD</string>
+    <string name="txt_currency_key_egp" translatable="false">EGP</string>
+    <string name="txt_currency_key_ern" translatable="false">ERN</string>
+    <string name="txt_currency_key_etb" translatable="false">ETB</string>
+    <string name="txt_currency_key_eur" translatable="false">EUR</string>
+    <string name="txt_currency_key_fjd" translatable="false">FJD</string>
+    <string name="txt_currency_key_fkp" translatable="false">FKP</string>
+    <string name="txt_currency_key_gbp" translatable="false">GBP</string>
+    <string name="txt_currency_key_gel" translatable="false">GEL</string>
+    <string name="txt_currency_key_ggp" translatable="false">GGP</string>
+    <string name="txt_currency_key_ghs" translatable="false">GHS</string>
+    <string name="txt_currency_key_gip" translatable="false">GIP</string>
+    <string name="txt_currency_key_gmd" translatable="false">GMD</string>
+    <string name="txt_currency_key_gnf" translatable="false">GNF</string>
+    <string name="txt_currency_key_gtq" translatable="false">GTQ</string>
+    <string name="txt_currency_key_gyd" translatable="false">GYD</string>
+    <string name="txt_currency_key_hkd" translatable="false">HKD</string>
+    <string name="txt_currency_key_hnl" translatable="false">HNL</string>
+    <string name="txt_currency_key_hrk" translatable="false">HRK</string>
+    <string name="txt_currency_key_htg" translatable="false">HTG</string>
+    <string name="txt_currency_key_huf" translatable="false">HUF</string>
+    <string name="txt_currency_key_idr" translatable="false">IDR</string>
+    <string name="txt_currency_key_ils" translatable="false">ILS</string>
+    <string name="txt_currency_key_imp" translatable="false">IMP</string>
+    <string name="txt_currency_key_inr" translatable="false">INR</string>
+    <string name="txt_currency_key_iqd" translatable="false">IQD</string>
+    <string name="txt_currency_key_irr" translatable="false">IRR</string>
+    <string name="txt_currency_key_isk" translatable="false">ISK</string>
+    <string name="txt_currency_key_jep" translatable="false">JEP</string>
+    <string name="txt_currency_key_jmd" translatable="false">JMD</string>
+    <string name="txt_currency_key_jod" translatable="false">JOD</string>
+    <string name="txt_currency_key_jpy" translatable="false">JPY</string>
+    <string name="txt_currency_key_kes" translatable="false">KES</string>
+    <string name="txt_currency_key_kgs" translatable="false">KGS</string>
+    <string name="txt_currency_key_khr" translatable="false">KHR</string>
+    <string name="txt_currency_key_kmf" translatable="false">KMF</string>
+    <string name="txt_currency_key_kpw" translatable="false">KPW</string>
+    <string name="txt_currency_key_krw" translatable="false">KRW</string>
+    <string name="txt_currency_key_kwd" translatable="false">KWD</string>
+    <string name="txt_currency_key_kyd" translatable="false">KYD</string>
+    <string name="txt_currency_key_kzt" translatable="false">KZT</string>
+    <string name="txt_currency_key_lak" translatable="false">LAK</string>
+    <string name="txt_currency_key_lbp" translatable="false">LBP</string>
+    <string name="txt_currency_key_lkr" translatable="false">LKR</string>
+    <string name="txt_currency_key_lrd" translatable="false">LRD</string>
+    <string name="txt_currency_key_lsl" translatable="false">LSL</string>
+    <string name="txt_currency_key_lyd" translatable="false">LYD</string>
+
+
+    <string name="txt_currency_key_usd" translatable="false">USD</string>
+    <string name="txt_currency_key_nok" translatable="false">NOK</string>
+    <string name="txt_currency_key_pln" translatable="false">PLN</string>
+    <string name="txt_currency_key_rub" translatable="false">RUB</string>
+    <string name="txt_currency_key_sek" translatable="false">SEK</string>
+    <string name="txt_currency_key_try" translatable="false">TRY</string>
+
+    <string name="txt_kangaroo_1">Das Kanguru hat berechnet:</string>
+    <string name="txt_kangaroo_2">das sind fast</string>
+    <string name="txt_kangaroo_3" translatable="false">Mark,</string>
+    <string name="txt_kangaroo_4">das sind</string>
+    <string name="txt_kangaroo_5" translatable="false">Ostmark,</string>
+    <string name="txt_kangaroo_6">Ostmark auf dem Schwarzmarkt.</string>
+    <string name="txt_currency_convert_exchange_rate_error">Fehler bei der Berechnung des Wechselkurses.</string>
+
+    <string name="action_language">Sprache</string>
+    <string name="alert_choose_language">Sprache wählen</string>
+    <string name="btd_ok" translatable="false">OK</string>
+    <string name="rbtd_german">Deutsch</string>
+    <string name="rbtd_english">Englisch</string>
+
+    <string name="alert_exit">Wollen Sie die App wirklich beenden?</string>
+    <string name="alert_exit_title">App beenden?</string>
+    <string name="alert_yes">Ja</string>
+    <string name="alert_no">Nein</string>
+    <string name="rbtd_auto">automatisch</string>
+
+    <string name="title_activity_phone_sensors">Telefonsensoren</string>
+    <string name="tab_text_acceleration">Beschleunigung</string>
+    <string name="tab_text_orientation">Orientierung</string>
+    <string name="tab_text_free">Leer</string>
+    <string name="action_settings">Einstellungen</string>
+
+    <string name="section_format" translatable="false">Section text. Taken from strings.xml</string>
+
+    <string name="title_activity_dress_size">Konfektionsgrößen</string>
+    <string name="btn_text_shoes">Schuhe</string>
+    <string name="btn_text_tops">Oberteile</string>
+    <string name="text_men">Herren</string>
+    <string name="text_women">Damen</string>
+    <string name="error_gender">Interner Fehler bei Auswahl des Geschlechts</string>
+
+    <string name="error_not_included_yet">Funktion noch nicht fertig eingebunden</string>
+    <string name="title_activity_internet_radio">Internetradio</string>
+    <string name="title_activity_clothes_size">Konfektionsgrößen</string>
+    <string name="txt_cocktail_blanco_43_prep">Den Licor 43 in ein Longdrinkglas mit Eiswürfeln geben. Danach mit Milch aufgießen und umrühren.</string>
+
+    <string name="title_activity_rheological_models">Rheologische Modelle</string>
+    <string name="toast_rheological_models_input_error">Geben Sie Werte für Steifigkeit und Dämpfung ein</string>
+    <string name="toast_rheological_models_adjust_range">Die maximale Frequenz wurde angepasst</string>
+    <string name="txt_stiffness">Steifigkeit</string>
+    <string name="txt_damping">Dämpfung</string>
+    <string name="txt_values">Werte</string>
+    <string name="txt_plot_dyn_stiffness_with_unit">dyn. Steifigkeit [N/mm]</string>
+    <string name="txt_plot_frequency_with_units">Frequenz [Hz]</string>
+
+    <string name="title_activity_about_icons">Credits</string>
+    <string name="title_activity_weather_overview">Wetter - Übersicht</string>
+    <string name="title_activity_rheo_models">Rheologische Modelle</string>
+</resources>
+

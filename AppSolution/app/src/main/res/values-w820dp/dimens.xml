@@ -1,0 +1,48 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="cocktail_verical_margin">2pt</dimen>
+    <dimen name="cocktail_overview_chapter_space_bottom">3pt</dimen>
+    <dimen name="cocktail_overview_chapter_space_top">5pt</dimen>
+    <dimen name="cocktailButtonsTextSize">7pt</dimen>
+    <dimen name="cocktailButtonHeight">30pt</dimen>
+
+    <dimen name="cocktail_recipe_title_size">12pt</dimen>
+    <dimen name="cocktail_recipe_ingredients_size">10pt</dimen>
+    <dimen name="cocktail_data_text_size">7pt</dimen>
+    <dimen name="ingredients_column_width">20pt</dimen>
+
+    <dimen name="btd_main_activity_textSize">7pt</dimen>
+
+    <!-- Maths -->
+    <dimen name="maths_def_size">9pt</dimen>
+
+    <!-- Mechanical Engineering -->
+    <dimen name="meng_caption_size">10pt</dimen>
+
+    <!-- Wärmebehandlung -->
+    <dimen name="meng_waerme_caption_size">10pt</dimen>
+    <dimen name="meng_waerme_description_textSize">7pt</dimen>
+    <dimen name="meng_waerme_description_paddingLeft">5pt</dimen>
+    <dimen name="meng_waerme_description_paddingBottom">3pt</dimen>
+
+    <!-- Reynoldszahl -->
+    <dimen name="reyn_unit_width">25pt</dimen>
+    <dimen name="reyn_variables_width">10pt</dimen>
+
+    <!-- Reynoldszahl - usual values -->
+    <dimen name="reyn_tube_usual_values_caption_size">9pt</dimen>
+    <dimen name="reyn_tube_usual_values_variable_width">15pt</dimen>
+    <dimen name="reyn_tube_usual_values_variable_textSize">8pt</dimen>
+    <dimen name="reyn_uv_col1Width">25pt</dimen>
+    <dimen name="reyn_uv_col2Width">3pt</dimen>
+
+    <dimen name="text_size_small">8pt</dimen>
+    <dimen name="text_size_normal">9pt</dimen>
+    <dimen name="text_size_large">10pt</dimen>
+</resources>

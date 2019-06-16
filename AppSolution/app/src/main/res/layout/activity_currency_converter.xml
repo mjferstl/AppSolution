@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="mfdevelopement.appsolution.CurrencyConverter">
+    <TextView
+        android:id="@+id/txtv_currency_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtv_currency_intro"
+        android:textColor="@color/colorTextPrimaryLight"
+        android:textSize="@dimen/material_text_body1"
+        android:paddingBottom="3pt"/>
+    <TextView
+        android:id="@+id/txtv_currency_internet_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txtv_currency_internet_status"
+        android:textColor="@color/DarkRed"
+        android:textSize="@dimen/material_text_body1"
+        android:paddingBottom="3pt"/>
+    <EditText
+        android:id="@+id/txte_currency_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/material_text_hint"
+        android:hint="@string/txte_currency_value_hint"
+        android:inputType="numberDecimal"
+        android:paddingBottom="5pt"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="2pt">
+                <TextView
+                    android:id="@+id/txtv_currency_from"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtv_currency_from"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/material_text_title" />
+                <Spinner
+                    android:id="@+id/currency_spinner_from"
+                    android:paddingTop="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="2pt">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txtv_currency_to"
+                    android:textColor="@color/colorTextPrimary"
+                    android:textSize="@dimen/material_text_title"/>
+                <Spinner
+                    android:id="@+id/currency_spinner_to"
+                    android:paddingTop="10sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingRight="0dp"
+            android:paddingEnd="0dp">
+
+            <ImageButton
+                android:id="@+id/btn_swap_currencies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_import_export_black_24dp"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:onClick="swapCurrencies"
+                android:scaleY="1.5"
+                android:scaleX="1.5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btd_currency_convert"
+            android:text="@string/btd_currency_calc"
+            android:textSize="@dimen/material_text_button"
+            style="@style/AppTheme.Button" />
+        <TextView
+            android:layout_width="0pt"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <ImageButton
+            android:id="@+id/btd_currency_calc_kangaroo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_img_kangaroo_orange"
+            android:scaleType="fitXY"
+            style="@style/AppTheme.FlatButton"
+            android:contentDescription="@string/desc_kangaroo_button" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txtv_currency_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/material_text_body1"
+        android:textColor="@color/colorTextPrimary"
+        android:lines="5"
+        android:paddingTop="2pt"/>
+</LinearLayout>

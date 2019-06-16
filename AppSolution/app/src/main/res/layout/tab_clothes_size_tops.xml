@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp">
+
+    <RadioGroup
+        android:id="@+id/rg_clothesSize_tops"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:weightSum="2">
+
+        <RadioButton
+            android:id="@+id/rb_clothesSize_tops_men"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_men"
+            android:layout_marginRight="80dp"
+            android:textSize="@dimen/material_text_body1" />
+
+        <RadioButton
+            android:id="@+id/rb_clothesSize_tops_women"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_women"
+            android:textSize="@dimen/material_text_body1" />
+
+    </RadioGroup>
+
+    <ViewFlipper
+        android:id="@+id/clothesSize_tops_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/rg_clothesSize_tops">
+
+        <include android:id="@+id/dressSize_tops_men" layout="@layout/dresssize_tops_men" />
+        <include android:id="@+id/dressSize_tops_women" layout="@layout/dresssize_tops_women" />
+
+    </ViewFlipper>
+
+</android.support.constraint.ConstraintLayout>

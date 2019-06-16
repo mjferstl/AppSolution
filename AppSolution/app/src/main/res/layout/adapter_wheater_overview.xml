@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/activity_single_space"
+    android:paddingBottom="@dimen/activity_single_space"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/linLay_weather_overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_double_space"
+        android:layout_marginRight="@dimen/activity_single_space"
+        android:layout_marginEnd="@dimen/activity_single_space"
+        android:layout_marginStart="@dimen/activity_double_space"
+        android:layout_toLeftOf="@+id/img_weather_overview_icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_weather_overview_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:paddingLeft="0dp"
+            android:paddingRight="@dimen/activity_single_space"
+            android:paddingStart="0dp"
+            android:text="cityName"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/material_text_body1" />
+
+        <TextView
+            android:id="@+id/tv_weather_overview_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:paddingLeft="0dp"
+            android:paddingRight="@dimen/activity_single_space"
+            android:paddingStart="0dp"
+            android:text="description"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/material_text_body1" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_weather_overview_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_double_space"
+        android:layout_marginEnd="@dimen/activity_double_space"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="Icon"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

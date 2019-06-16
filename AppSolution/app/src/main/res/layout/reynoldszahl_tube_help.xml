@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_reyn_tube_help"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5pt"
+    android:paddingTop="5pt"
+    android:paddingRight="5pt"
+    android:paddingBottom="5pt"
+    android:layout_gravity="center">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reyn_txtv_laminar_flow_krit"
+        android:textSize="9pt"
+        android:textColor="@color/colorTextPrimary"
+        android:gravity="center_horizontal"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_laminar_flow"
+        android:paddingBottom="8pt"/>
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reyn_txtv_turbulent_flow_krit"
+        android:textSize="9pt"
+        android:textColor="@color/colorTextPrimary"
+        android:gravity="center_horizontal"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_turbulent_flow"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0pt"
+            android:layout_weight="1"
+            android:layout_height="10pt" />
+        <Button
+            android:id="@+id/reyn_btHelpDismiss"
+            android:layout_width="30pt"
+            android:layout_height="wrap_content"
+            android:text="@string/btd_ok"
+            android:textSize="@dimen/material_text_button"
+            style="@style/AppTheme.FlatButton"/>
+    </LinearLayout>
+
+</LinearLayout>

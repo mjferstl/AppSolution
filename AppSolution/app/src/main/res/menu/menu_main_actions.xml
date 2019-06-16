@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appsolution="http://schemas.android.com/apk/res-auto" >
+    <!-- Serach -->
+<!--    <item android:id="@+id/search"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_action_search_white"
+        android:showAsAction="collapseActionView|ifRoom"
+        android:actionViewClass="android.widget.SearchView" /> -->
+    <!-- Settings -->
+        <item android:id="@+id/action_about"
+        android:title="@string/title_activity_about_screen"
+        appsolution:showAsAction="collapseActionView" />
+    <item android:id="@+id/action_change_language"
+        android:title="@string/action_language"
+        appsolution:showAsAction="collapseActionView"/>
+</menu>

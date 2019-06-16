@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mfdevelopement.appsolution">
+
+    <!-- PW: ...android -->
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_appsolution_logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Main"
+            android:configChanges="locale|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CurrencyConverter"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_currency_calculator"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".CocktailOverview"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_cocktail_overview"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".CocktailRecipe"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_cocktail_recipe"
+            android:parentActivityName=".CocktailOverview" />
+        <activity
+            android:name=".MensaSpeiseplan"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_mensa_speiseplan"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".GeometryCalculator"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_maths"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".MechanicalEngineering"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_mechanical_engineering"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".Reynoldszahl"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_reynoldszahl"
+            android:parentActivityName=".MechanicalEngineering" />
+        <activity
+            android:name=".About"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_about_screen"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".Sensors"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_sensors"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".RegensburgerKatalog"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_regensburger_katalog"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".News"
+            android:configChanges="locale|orientation"
+            android:label="@string/title_activity_news"
+            android:parentActivityName=".Main" />
+        <activity
+            android:name=".PhoneSensors"
+            android:label="@string/title_activity_phone_sensors"
+            android:parentActivityName=".Main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.Main" />
+        </activity>
+        <activity
+            android:name=".InternetRadio"
+            android:label="@string/title_activity_internet_radio"
+            android:parentActivityName=".Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.Main" />
+        </activity>
+        <activity
+            android:name=".ClothesSize"
+            android:label="@string/title_activity_clothes_size"
+            android:parentActivityName=".Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.Main" />
+        </activity>
+        <activity
+            android:name=".AboutIcons"
+            android:label="@string/title_activity_about_icons"
+            android:parentActivityName=".About">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.About" />
+        </activity>
+        <activity
+            android:name=".WeatherOverview"
+            android:label="@string/title_activity_weather_overview"
+            android:parentActivityName=".Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.Main" />
+        </activity>
+        <activity
+            android:name=".RheoModels"
+            android:label="@string/title_activity_rheo_models"
+            android:parentActivityName=".Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mfdevelopement.appsolution.Main" />
+        </activity>
+    </application>
+
+</manifest>
