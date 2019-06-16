@@ -4,3 +4,4 @@
 *.png
 *.ser
 AppSolution/app/proguard-rules.pro
+AppSolution/.idea/assetWizardSettings.xml
