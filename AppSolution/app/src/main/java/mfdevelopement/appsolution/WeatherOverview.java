@@ -2,6 +2,7 @@ package mfdevelopement.appsolution;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,16 +26,13 @@ public class WeatherOverview extends AppCompatActivity {
     private ListView listView = null;
     private List<Weather> weatherData = new ArrayList<>();
 
-    private final int[] cities = {
-            2849483, // Regensburg
-            //2906625, // Hemau
-            //2895992, // Ingolstadt
-            //2867714, // Muenchen
-            //2950159  // Berlin
-    };
+    private List<Integer> cityCodes = new ArrayList<>();
+    private List<String> cityNames = new ArrayList<>();
+    private List<Integer> userCityCodes = new ArrayList<>();
 
     private String LogTag = "";
     private String appname = "";
+    private String sharedPrefsUserCityCodes = "userCityCodesString";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,19 @@ public class WeatherOverview extends AppCompatActivity {
 
         appname = getString(R.string.app_name);
         LogTag = appname + "/WeatherOverview";
+
+        String[] owmCityCodes = getResources().getStringArray(R.array.owmCityCodex);
+        for(String value : owmCityCodes) {
+            String[] cityCodePair = value.split(":");
+
+            String cityName = cityCodePair[0].trim();
+            int cityCode = Integer.valueOf(cityCodePair[1].trim());
+            cityNames.add(cityName);
+            cityCodes.add(cityCode);
+        }
+
+        saveUserCities();
+        userCityCodes = loadUserCities();
 
         final String FORECAST = getString(R.string.forecast);
 
@@ -90,10 +101,42 @@ public class WeatherOverview extends AppCompatActivity {
         new loadWeatherData(this).execute();
     }
 
-    private void showInfoDialog() {
+    private void saveUserCities() {
 
+        String prefsString;
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+
+        // if there are no user specific values, then save an empty string
+        if (userCityCodes.isEmpty()) {
+            prefsString = "";
+        }
+        else {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < userCityCodes.size(); i++) {
+                stringBuilder.append(userCityCodes.get(i)).append(',');
+            }
+            prefsString = stringBuilder.toString();
+        }
+
+        prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
     }
 
+    private List<Integer> loadUserCities() {
+
+        List<Integer> userCityCodes = new ArrayList<>();
+
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        String str = prefs.getString(sharedPrefsUserCityCodes,"");
+
+        if (!str.equals("")) {
+            String[] values = str.split(",");
+            for (String v : values) {
+                userCityCodes.add(Integer.valueOf(v.trim()));
+            }
+        }
+
+        return userCityCodes;
+    }
 
     private class loadWeatherData extends AsyncTask<Activity, Void, List<Weather>> {
 
@@ -110,7 +153,7 @@ public class WeatherOverview extends AppCompatActivity {
         @Override
         protected List<Weather> doInBackground(Activity ... strings) {
 
-                for (int cityId: cities) {
+                for (int cityId : userCityCodes) {
                     Weather weather = new Weather(cityId);
                     weather.getCurrentWeather();
                     weather.parseWeatherForecast();
