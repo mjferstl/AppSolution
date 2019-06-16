@@ -81,7 +81,7 @@
     <string name="txt_cocktail_wasted_time_prep">Zutaten mit 3 Eiswürfeln im Shaker durchschütteln und in ein Longdrinkglas abseihen.</string>
     <string name="txt_cocktail_tequila_sunrise_prep">Tequila, Orangen- und Zitronensaft mit Eiswürfeln im Shaker gut schütteln und in ein mit Eis gefülltes Longdrinkglas abseihen. Grenadinesirup langsam darüber laufen lassen.</string>
     <string name="txt_cocktail_margarita_prep">Cocktailglas mit Salzrand versehen und vorkühlen. Zutaten in einen Shaker geben und gut schütteln. Inhalt ins Glas seihen.</string>
-    <string name="txt_cocktail_aphrodites_kiss_prep">Alle Zutaten mit 3-4 Eiswürfeln shaken. Grenadinesirup darüber gießen.</string>
+    <string name="txt_cocktail_aphrodites_kiss_prep">Alle Zutaten mit 3&#8211;4 Eiswürfeln shaken. Grenadinesirup darüber gießen.</string>
     <string name="txt_cocktail_black_russian_prep">In einen kleinen Tumbler mit Eiswürfeln erst Kahlúa und dann Wodka geben.</string>
     <string name="txt_cocktail_bloody_mary_prep">Alle Zutaten mit einigen Eiswürfeln im Shaker kräftig mixen. In ein Longdrinkglas oder Tumbler mit einigen Eiswürfeln abseihen.</string>
     <string name="txt_cocktail_harvey_wallbanger_prep">Wodka und Orangensaft in ein Longdrinkglas mit viel Eis geben. Galliano vorsichtig aufschwimmen lassen.</string>
@@ -117,7 +117,7 @@
     <!-- About -->
     <string name="title_activity_about_screen">Über AppSolution</string>
     <string name="about_text_app_name" translatable="false">AppSolution</string>
-    <string name="about_text_version" translatable="false">Version 1.80.1</string>
+    <string name="about_text_version" translatable="false">Version 2.0.0_alpha</string>
     <string name="about_developer">Entwickelt von Mathias Ferstl</string>
     <string name="about_thanks" translatable="false">Icons made by Freepik from www.flaticon.com</string>
 
