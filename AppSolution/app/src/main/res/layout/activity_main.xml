@@ -70,7 +70,7 @@
         </TableRow>
         <TableRow>
             <ImageButton
-                android:id="@+id/btn_main_currency_calculator"
+                android:id="@+id/btn_main_currency_converter"
                 android:layout_width="0pt"
                 android:layout_weight="1"
                 android:layout_height="@dimen/main_imgBtd_height"
