@@ -3,3 +3,4 @@
 *.jar
 *.png
 *.ser
+AppSolution/app/proguard-rules.pro

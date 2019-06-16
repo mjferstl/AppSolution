@@ -50,8 +50,8 @@
 
     <ImageView
         android:id="@+id/img_weather_forecast_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/activity_double_space"
