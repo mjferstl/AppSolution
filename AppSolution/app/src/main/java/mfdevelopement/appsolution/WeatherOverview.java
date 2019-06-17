@@ -286,7 +286,7 @@ public class WeatherOverview extends AppCompatActivity {
                 if (!cityIds.contains(cityId)) {
                     Weather weather = new Weather(cityId);
                     weather.getCurrentWeather();
-                    weather.parseWeatherForecast();
+                    weather.getWeatherForecast();
                     weatherData.add(weather);
                 }
             }
