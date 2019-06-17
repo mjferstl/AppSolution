@@ -34,13 +34,18 @@ public class OpenWeatherMapParser {
             String response = null;
             if (Id != 0) {
                 try {
-                    JsonParser jsonParser = new JsonParser();
+                    // create url containing the cityId
                     String url = owmUrlWeatherPart1 + Id + owmUrlWeatherPart2;
+
+                    // get the response in json format
+                    JsonParser jsonParser = new JsonParser();
                     response = jsonParser.parseJsonFromUrl(url);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
+                // create JSONObject from the response
                 JSONObject jsonObject = new JSONObject(response);
 
                 // get the "main" informations
