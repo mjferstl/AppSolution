@@ -73,7 +73,7 @@ public class Weather {
         this.imageID = imageID;
     }
 
-    public void getCurrentWeather() {
+    public void getWeatherData() {
         Weather w = OpenWeatherMapParser.parseWeather(this.cityId);
 
         this.cityName = w.getCityName();
@@ -81,7 +81,11 @@ public class Weather {
         this.imageID = w.getImageID();
     }
 
-    public void getWeatherForecast() {
+    public void getWeatherForecastData() {
         weatherForecast = OpenWeatherMapParser.parseWeatherForecast(this.cityId);
+    }
+
+    public List<WeatherForecast> getWeatherForecast() {
+        return weatherForecast;
     }
 }

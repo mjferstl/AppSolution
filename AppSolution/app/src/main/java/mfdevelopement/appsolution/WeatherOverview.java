@@ -57,75 +57,27 @@ public class WeatherOverview extends AppCompatActivity {
         LogTag = appname + "/WeatherOverview";
         FORECAST = getString(R.string.forecast);
 
-        FloatingActionButton fab = findViewById(R.id.btn_float_weather_overview_add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showCitiesList();
-            }
-        });
+        // init button
+        initFloatingActionButton();
 
-        String[] owmCityCodes = getResources().getStringArray(R.array.owmCityCodex);
-        List<String> owmCityCodesList = new ArrayList<>(Arrays.asList(owmCityCodes));
-        Collections.sort(owmCityCodesList, new Comparator<String>()
-        {
-            @Override
-            public int compare(String text1, String text2)
-            {
-                return text1.compareToIgnoreCase(text2);
-            }
-        });
-
-        // separate city name and city code and save it to different lists
-        String lastCity = "";
-        for(int i=0; i<owmCityCodesList.size(); i++) {
-            String[] cityCodePair = owmCityCodesList.get(i).split(":");
-
-            String cityName = cityCodePair[0].trim();
-            int cityCode = Integer.valueOf(cityCodePair[1].trim());
-
-            // remove if duplicate
-            if (cityName.equals(lastCity)) {
-                owmCityCodesList.remove(i);
-                i--;
-                continue;
-            }
-
-            cityNames.add(cityName);
-            cityCodes.add(cityCode);
-
-            lastCity = cityName;
-        }
+        // load all cities from the resource file in alphabetical order
+        initCities();
 
         // load the cities for the current user
         userCityCodes = loadUserCities();
 
-        listView = findViewById(R.id.lv_wheater_overview);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Weather selectedWeather = weatherData.get(position);
-                showForecastDialog(selectedWeather);
-            }
-        });
-
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                // remove the selected item
-                Log.i(LogTag,"removeListItem: removing item " + position + " of weather overview list");
-                weatherData.remove(position);
-                weatherOverviewListAdapter.notifyDataSetChanged();
-                saveUserCities();
-                return true;
-            }
-        });
+        initListView();
 
         updateWeatherData();
     }
 
+    /**
+     * show a dialog containing the weather forecast data in a listview
+     * @param weather: Object of class weather containing weather data
+     */
     private void showForecastDialog(Weather weather) {
+
+        //TODO only show dialog, if weather forecast data is loaded
 
         // get weather forecast of the selected city
         String selectedCity = weather.getCityName();
@@ -166,6 +118,59 @@ public class WeatherOverview extends AppCompatActivity {
         dialog.show();
     }
 
+    /**
+     * initialize the floating action button for adding new cities to the list view
+     */
+    private void initFloatingActionButton() {
+        FloatingActionButton fab = findViewById(R.id.btn_float_weather_overview_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCitiesList();
+            }
+        });
+    }
+
+    /**
+     * load citites from the resource file and put them in alphabetical order in the list
+     */
+    private void initCities() {
+        String[] owmCityCodes = getResources().getStringArray(R.array.owmCityCodex);
+        List<String> owmCityCodesList = new ArrayList<>(Arrays.asList(owmCityCodes));
+        Collections.sort(owmCityCodesList, new Comparator<String>()
+        {
+            @Override
+            public int compare(String text1, String text2)
+            {
+                return text1.compareToIgnoreCase(text2);
+            }
+        });
+
+        // separate city name and city code and save it to different lists
+        String lastCity = "";
+        for(int i=0; i<owmCityCodesList.size(); i++) {
+            String[] cityCodePair = owmCityCodesList.get(i).split(":");
+
+            String cityName = cityCodePair[0].trim();
+            int cityCode = Integer.valueOf(cityCodePair[1].trim());
+
+            // remove if duplicate
+            if (cityName.equals(lastCity)) {
+                owmCityCodesList.remove(i);
+                i--;
+                continue;
+            }
+
+            cityNames.add(cityName);
+            cityCodes.add(cityCode);
+
+            lastCity = cityName;
+        }
+    }
+
+    /**
+     * create a dialog containing all available citites
+     */
     private void showCitiesList() {
 
         final Dialog dialog = new Dialog(WeatherOverview.this);
@@ -181,7 +186,7 @@ public class WeatherOverview extends AppCompatActivity {
                 String city = adapter.getItem(position);
                 Log.i(LogTag,"addCity: " + city);
                 int index = cityNames.indexOf(city);
-                userCityCodes.add(index);
+                userCityCodes.add(cityCodes.get(index));
                 dialog.dismiss();
                 updateWeatherData();
                 saveUserCities();
@@ -206,7 +211,36 @@ public class WeatherOverview extends AppCompatActivity {
             }
         });
 
+        // show the dialog
         dialog.show();
+    }
+
+    /**
+     * inititalize the list view and set listeners
+     */
+    private void initListView() {
+
+        listView = findViewById(R.id.lv_wheater_overview);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Weather selectedWeather = weatherData.get(position);
+                showForecastDialog(selectedWeather);
+            }
+        });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // remove the selected item
+                Log.i(LogTag,"removeListItem: removing item " + position + " of weather overview list");
+                weatherData.remove(position);
+                weatherOverviewListAdapter.notifyDataSetChanged();
+                saveUserCities();
+                return true;
+            }
+        });
     }
 
     private void updateWeatherData() {
@@ -217,6 +251,8 @@ public class WeatherOverview extends AppCompatActivity {
      * save the user specific citites on the phone
      */
     private void saveUserCities() {
+
+        //TODO save the data to SharedPreferences as String and parse it back on start
 
         String prefsString;
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
@@ -231,9 +267,14 @@ public class WeatherOverview extends AppCompatActivity {
                 Weather weather = weatherData.get(i);
                 stringBuilder.append(weather.getCityId()).append(',');
             }
+
+            // create a string and remove last comma
             prefsString = stringBuilder.toString();
+            prefsString = prefsString.substring(0,prefsString.length()-1);
+            Log.i(LogTag,"saveUserCitites:" + prefsString);
         }
 
+        // save string using SharedPreferences
         prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
     }
 
@@ -247,16 +288,19 @@ public class WeatherOverview extends AppCompatActivity {
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
         String str = prefs.getString(sharedPrefsUserCityCodes,"");
+        Log.i(LogTag,"loadUserCities:" + str);
 
         if (!str.equals("")) {
             String[] values = str.split(",");
             for (String v : values) {
-                userCityCodes.add(Integer.valueOf(v.trim()));
+                if (!v.isEmpty()) {
+                    userCityCodes.add(Integer.valueOf(v.trim()));
+                }
             }
         }
-
         return userCityCodes;
     }
+
 
     /**
      * load the weather data in the background
@@ -285,8 +329,8 @@ public class WeatherOverview extends AppCompatActivity {
                 // add element, if it is not in the list
                 if (!cityIds.contains(cityId)) {
                     Weather weather = new Weather(cityId);
-                    weather.getCurrentWeather();
-                    weather.getWeatherForecast();
+                    weather.getWeatherData();
+                    weather.getWeatherForecastData();
                     weatherData.add(weather);
                 }
             }
@@ -296,6 +340,7 @@ public class WeatherOverview extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Weather> weather) {
             //
+            saveUserCities();
             weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weather);
             listView.setAdapter(weatherOverviewListAdapter);
         }
