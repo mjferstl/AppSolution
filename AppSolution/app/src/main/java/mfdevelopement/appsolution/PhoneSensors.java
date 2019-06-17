@@ -229,7 +229,7 @@ public class PhoneSensors extends AppCompatActivity implements SensorEventListen
 
         final Dialog dialog = new Dialog(this);
 
-        dialog.setContentView(R.layout.sensors_phone_axis);
+        dialog.setContentView(R.layout.dialog_sensors_phone_axis);
         //dialog.setTitle("phone axes");
         Button btHelpDismiss = dialog.findViewById(R.id.sensors_btHelpDismiss);
         btHelpDismiss.setOnClickListener(new View.OnClickListener() {

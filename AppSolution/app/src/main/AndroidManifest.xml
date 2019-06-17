@@ -71,28 +71,10 @@
             android:label="@string/title_activity_sensors"
             android:parentActivityName=".Main" />
         <activity
-            android:name=".RegensburgerKatalog"
-            android:configChanges="locale|orientation"
-            android:label="@string/title_activity_regensburger_katalog"
-            android:parentActivityName=".Main" />
-        <activity
-            android:name=".News"
-            android:configChanges="locale|orientation"
-            android:label="@string/title_activity_news"
-            android:parentActivityName=".Main" />
-        <activity
             android:name=".PhoneSensors"
             android:label="@string/title_activity_phone_sensors"
             android:parentActivityName=".Main"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.Main" />
-        </activity>
-        <activity
-            android:name=".InternetRadio"
-            android:label="@string/title_activity_internet_radio"
-            android:parentActivityName=".Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mfdevelopement.appsolution.Main" />

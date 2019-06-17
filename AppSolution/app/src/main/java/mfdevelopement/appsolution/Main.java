@@ -79,8 +79,6 @@ public class Main extends AppCompatActivity {
         btnMechEng = findViewById(R.id.btn_main_mechanical_engineering);
         btnCurrencyConverter = findViewById(R.id.btn_main_currency_converter);
         btnSensors = findViewById(R.id.btn_main_sensors);
-        btnLibrary = findViewById(R.id.btn_main_regensburger_katalog);
-        btnNews = findViewById(R.id.btn_main_news);
         btnDressSize = findViewById(R.id.btn_main_clothes_size);
         btnWeather = findViewById(R.id.btn_main_weather);
 
@@ -103,12 +101,6 @@ public class Main extends AppCompatActivity {
 
         imageButtonList.add(btnSensors);
         targetActivities.add(Sensors.class);
-
-        imageButtonList.add(btnLibrary);
-        targetActivities.add(RegensburgerKatalog.class);
-
-        imageButtonList.add(btnNews);
-        targetActivities.add(null); // News.class
 
         imageButtonList.add(btnDressSize);
         targetActivities.add(ClothesSize.class);
@@ -214,14 +206,6 @@ public class Main extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void openInternetRadio(View view) {
-        Intent intent = new Intent(Main.this, InternetRadio.class);
-        Log.i(LogTag,"start activity Internetradio");
-        startActivity(intent);
-        //Toast.makeText(this, NotIncludedYet, Toast.LENGTH_SHORT).show();
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -256,7 +240,7 @@ public class Main extends AppCompatActivity {
         // custom dialog
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.select_language);
+        dialog.setContentView(R.layout.dialog_select_language);
 
         final RadioGroup rg = dialog.findViewById(R.id.rdgr_select_language);
         final RadioButton rbLangDE = rg.findViewById(R.id.lang_de);

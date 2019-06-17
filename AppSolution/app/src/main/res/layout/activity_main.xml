@@ -25,7 +25,6 @@
                 android:layout_marginEnd="@dimen/main_imgBtd_left_padding_right"
                 android:src="@drawable/ic_cocktail_with_fruit_slice">
             </ImageButton>
-
             <ImageButton
                 android:id="@+id/btn_main_mensa"
                 style="?android:attr/buttonBarButtonStyle"
@@ -94,33 +93,6 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_speedometer"
                 style="@style/Widget.AppCompat.Button.Borderless"/>
-        </TableRow>
-        <TableRow>
-            <ImageButton
-                android:id="@+id/btn_main_regensburger_katalog"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0pt"
-                android:layout_height="@dimen/main_imgBtd_height"
-                android:layout_weight="1"
-                android:src="@drawable/ic_books"
-                android:scaleType="fitXY"
-                android:layout_marginLeft="@dimen/main_imgBtd_left_padding_left"
-                android:layout_marginRight="@dimen/main_imgBtd_left_padding_right"
-                android:layout_marginStart="@dimen/main_imgBtd_left_padding_left"
-                android:layout_marginEnd="@dimen/main_imgBtd_left_padding_right"/>
-            <ImageButton
-                android:id="@+id/btn_main_news"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/main_imgBtd_height"
-                android:layout_marginLeft="@dimen/main_imgBtd_right_padding_left"
-                android:layout_marginRight="@dimen/main_imgBtd_right_padding_right"
-                android:layout_marginStart="@dimen/main_imgBtd_right_padding_left"
-                android:layout_marginEnd="@dimen/main_imgBtd_right_padding_right"
-                android:layout_weight="1"
-                android:src="@drawable/ic_news"
-                android:fitsSystemWindows="false"
-                android:scaleType="fitXY"/>
         </TableRow>
         <TableRow>
             <ImageButton
