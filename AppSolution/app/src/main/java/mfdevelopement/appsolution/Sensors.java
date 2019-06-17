@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.androidplot.util.Redrawer;
@@ -76,9 +77,10 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
         txtv_y_result = findViewById(R.id.txtv_sensors_acceleration_y_value);
         txtv_z_result = findViewById(R.id.txtv_sensors_acceleration_z_value);
 
-        plot = findViewById(R.id.sensors_acc_plot);
+        // init the image button for showing the coordinate system of the phone
+        initButton();
 
-        Log.i("Sensors","Textfelder und Plot gefunden");
+        plot = findViewById(R.id.sensors_acc_plot);
 
         acc_x = new SimpleXYSeries("X");
         acc_x.useImplicitXVals();
@@ -210,10 +212,27 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
         }
     }
 
+    /**
+     * initialize the image button
+     */
+    private void initButton() {
+        ImageButton btnCoordinateSystem = findViewById(R.id.btd_sensors_phone_coordinate_system);
+        btnCoordinateSystem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPhoneAxis(v);
+            }
+        });
+    }
+
+    /**
+     * show a dialog containing the phone's coordinate system
+     * @param view
+     */
     public void showPhoneAxis(View view) {
 
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.sensors_phone_axis);
+        dialog.setContentView(R.layout.dialog_sensors_phone_axis);
         dialog.setTitle(R.string.title_alertDialog_Phone_Axis);
         Button btHelpDismiss = dialog.findViewById(R.id.sensors_btHelpDismiss);
         btHelpDismiss.setOnClickListener(new View.OnClickListener() {
