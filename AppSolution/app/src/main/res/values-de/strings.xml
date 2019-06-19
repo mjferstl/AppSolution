@@ -271,4 +271,5 @@
     <string name="forecast">Vorhersage</string>
     <string name="hint_filter_cities">Orte filtern ...</string>
     <string name="title_add_city">Stadt hinzufügen &#8230;</string>
+    <string name="btn_dismiss">Schließen</string>
 </resources>
