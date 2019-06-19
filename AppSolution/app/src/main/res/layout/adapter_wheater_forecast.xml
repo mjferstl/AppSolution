@@ -3,62 +3,82 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/activity_single_space"
-    android:paddingBottom="@dimen/activity_single_space"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tv_weather_forecast_separator"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/activity_double_space"
+        android:layout_gravity="center_vertical"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        android:paddingStart="@dimen/activity_single_space"
+        android:layout_marginLeft="@dimen/activity_single_space"
+        android:layout_marginStart="@dimen/activity_single_space"
         android:layout_marginRight="@dimen/activity_single_space"
         android:layout_marginEnd="@dimen/activity_single_space"
-        android:layout_marginStart="@dimen/activity_double_space"
-        android:layout_toLeftOf="@+id/img_weather_forecast_icon"
-        android:orientation="horizontal">
+        android:text="sep"
+        android:background="@color/LightGrey"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_weather_forecast_separator"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="@dimen/activity_single_space"
+        android:layout_marginLeft="@dimen/activity_single_space"
+
+        android:layout_marginEnd="@dimen/activity_single_space"
+        android:layout_marginRight="@dimen/activity_single_space"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        android:paddingStart="@dimen/activity_single_space">
 
         <TextView
             android:id="@+id/tv_weather_forecast_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingEnd="@dimen/activity_single_space"
-            android:paddingLeft="0dp"
-            android:paddingRight="@dimen/activity_single_space"
             android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:paddingRight="@dimen/activity_single_space"
             android:text="time"
             android:textColor="@color/colorTextPrimary"
             android:textSize="@dimen/material_text_body1" />
 
         <TextView
             android:id="@+id/tv_weather_forecast_temperature"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:paddingEnd="@dimen/activity_single_space"
-            android:paddingLeft="0dp"
-            android:paddingRight="@dimen/activity_single_space"
             android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:paddingRight="@dimen/activity_single_space"
             android:text="temperature"
             android:textColor="@color/gray"
             android:textSize="@dimen/material_text_body1" />
 
+        <ImageView
+            android:id="@+id/img_weather_forecast_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="@dimen/activity_double_space"
+            android:layout_marginEnd="@dimen/activity_double_space"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="Icon"
+            android:scaleType="fitXY" />
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/img_weather_forecast_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/activity_double_space"
-        android:layout_marginEnd="@dimen/activity_double_space"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="Icon"
-        android:scaleType="fitXY" />
+
 
 </RelativeLayout>

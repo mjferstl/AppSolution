@@ -28,7 +28,7 @@ import mfdevelopement.appsolution.models.Weather;
 
 public class WeatherOverview extends AppCompatActivity {
 
-    public static String FORECAST;
+    public static String FORECAST = "";
     private ListView listView = null;
     private List<Weather> weatherData = new ArrayList<>();
 
@@ -199,16 +199,11 @@ public class WeatherOverview extends AppCompatActivity {
      */
     private void saveUserCities() {
 
-        //TODO save the data to SharedPreferences as String and parse it back on start
-
-        String prefsString;
+        String prefsString = "";
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
-        // if there are no user specific values, then save an empty string
-        if (weatherData.isEmpty()) {
-            prefsString = "";
-        }
-        else {
+        // create a string
+        if (!weatherData.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder();
             for (int i = 0; i < weatherData.size(); i++) {
                 Weather weather = weatherData.get(i);
@@ -216,8 +211,8 @@ public class WeatherOverview extends AppCompatActivity {
             }
 
             // create a string and remove last comma
-            prefsString = stringBuilder.toString();
-            prefsString = prefsString.substring(0,prefsString.length()-1);
+            String str = stringBuilder.toString();
+            prefsString = str.substring(0,str.length()-1);
             Log.i(LogTag,"saveUserCitites:" + prefsString);
         }
 

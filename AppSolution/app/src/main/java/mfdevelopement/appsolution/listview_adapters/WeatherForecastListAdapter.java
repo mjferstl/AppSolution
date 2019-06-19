@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.models.WeatherForecast;
@@ -37,6 +38,7 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherForecast> {
          }
 
          // get fields of each list item
+         TextView separator = view.findViewById(R.id.tv_weather_forecast_separator);
          TextView time = view.findViewById(R.id.tv_weather_forecast_time);
          TextView temperature = view.findViewById(R.id.tv_weather_forecast_temperature);
          ImageView icon = view.findViewById(R.id.img_weather_forecast_icon);
@@ -45,14 +47,35 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherForecast> {
          if (currentForecast.getTime() != null) {
              time.setText(currentForecast.getTime());
 
-             if (currentForecast.getTemp() != null) {
-                 temperature.setText(currentForecast.getTempDegree());
+             // show separator, if it's the first time of this day
+             // intervall of the data is 3h
+             separator.setText(currentForecast.getDate());
+             String t = currentForecast.getTime();
+             if (t.equals("00:00") || t.equals("01:00") || t.equals("02:00")) {
+                separator.setVisibility(View.VISIBLE);
              }
+             else {
+                 separator.setVisibility(View.GONE);
+             }
+
+             // informations about temperature and rain in mm
+             String tempAndRain = "";
+             if (currentForecast.getTemp() != null) {
+                 tempAndRain = currentForecast.getTempDegree();
+             }
+             if (currentForecast.getRain() != null) {
+                 double rain = Double.valueOf(currentForecast.getRain());
+                 String rain_mm = String.format(Locale.getDefault(),"%.1f",rain) + " mm";
+                 tempAndRain = tempAndRain.equals("") ? rain_mm : tempAndRain + " | " + rain_mm;
+             }
+             temperature.setText(tempAndRain);
+
 
              if (currentForecast.getIconId() != 0) {
                  icon.setImageResource(currentForecast.getIconId());
              }
          } else {
+             separator.setVisibility(View.GONE);
              time.setText(" - - - ");
              temperature.setText(errorMsgLoading);
              icon.setVisibility(View.INVISIBLE);

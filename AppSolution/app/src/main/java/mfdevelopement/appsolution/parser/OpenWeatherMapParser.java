@@ -1,5 +1,7 @@
 package mfdevelopement.appsolution.parser;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +26,8 @@ public class OpenWeatherMapParser {
 
     private static final String unitSpeed = "m/s";
     private static final String unitTemperature = "°C";
+
+    private static final String LogTag = "OpenWeatherMapParser";
 
 
     public static Weather parseWeather(int Id) {
@@ -127,9 +131,20 @@ public class OpenWeatherMapParser {
                     JSONObject currentList = listJA.optJSONObject(i);
 
                     long timestamp = Integer.valueOf(currentList.get("dt").toString());
-                    String localTime = getDateTimeShort(timestamp);
+                    String localTime = getHoursMinutes(timestamp);
+                    String localDate = getDate(timestamp);
 
                     wf.setTime(localTime);
+                    wf.setDate(localDate);
+
+
+                    // get field containing rain in mm, if it exists
+                    try {
+                        String rain_mm = currentList.getJSONObject("rain").get("3h").toString();
+                        wf.setRain(rain_mm);
+                    } catch (JSONException e) {
+                        Log.e(LogTag,"parseWeatherForecast:No entry for rain in json response");
+                    }
 
                     JSONObject mainJO = currentList.getJSONObject("main");
 
@@ -172,8 +187,13 @@ public class OpenWeatherMapParser {
         return "";
     }
 
-    private static String getDateTimeShort(long timestamp) {
-        String dateFormat = "dd.MM. HH:mm";
+    private static String getHoursMinutes(long timestamp) {
+        String dateFormat = "HH:mm";
+        return getDateCurrentTimeZone(timestamp, dateFormat);
+    }
+
+    private static String getDate(long timestamp) {
+        String dateFormat = "dd.MM.yyyy";
         return getDateCurrentTimeZone(timestamp, dateFormat);
     }
 

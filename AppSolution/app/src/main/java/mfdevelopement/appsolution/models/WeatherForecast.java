@@ -1,18 +1,21 @@
 package mfdevelopement.appsolution.models;
 
+import android.support.annotation.NonNull;
+
 import mfdevelopement.appsolution.parser.OpenWeatherMapIconId;
 
 public class WeatherForecast {
 
     private String city;
     private String time;
+    private String date;
     private String temp;
     private String tempMin;
     private String tempMax;
+    private String rain_mm;
     private int iconId;
 
     public WeatherForecast() {
-        this.city = null;
     }
 
     public WeatherForecast(String city) {
@@ -25,6 +28,9 @@ public class WeatherForecast {
 
     public String getTime() {
         return time;
+    }
+    public String getDate() {
+        return date;
     }
 
     public String getTemp() {
@@ -47,24 +53,40 @@ public class WeatherForecast {
         return tempMax;
     }
 
-    public void setCity(String city) {
+    public String getRain() {
+        return this.rain_mm;
+    }
+
+    public String getRain_mm() {
+        return this.rain_mm + "mm";
+    }
+
+    public void setCity(@NonNull String city) {
         this.city = city;
     }
 
-    public void setTime(String time) {
+    public void setTime(@NonNull String time) {
         this.time = time;
     }
 
-    public void setTemp(String temp) {
+    public void setDate(@NonNull String date) {
+        this.date = date;
+    }
+
+    public void setTemp(@NonNull String temp) {
         this.temp = temp;
     }
 
-    public void setTempMin(String tempMin) {
+    public void setTempMin(@NonNull String tempMin) {
         this.tempMin = tempMin;
     }
 
-    public void setTempMax(String tempMax) {
+    public void setTempMax(@NonNull String tempMax) {
         this.tempMax = tempMax;
+    }
+
+    public void setRain(String rain) {
+        this.rain_mm = rain;
     }
 
     public void setIconId(int iconId) {

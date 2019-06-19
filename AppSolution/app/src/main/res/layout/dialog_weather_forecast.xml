@@ -18,8 +18,14 @@
         android:layout_height="wrap_content"
         android:text="title"
         android:textSize="@dimen/material_text_title"
-        android:textColor="@color/colorAccent"
-        android:paddingBottom="@dimen/activity_single_space" />
+        android:layout_marginBottom="@dimen/activity_single_space"
+        android:textColor="@color/colorAccent" />
+    <TextView
+        android:id="@+id/tv_dia_weather_forecast_sep"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/LightGrey"
+        android:layout_marginBottom="@dimen/activity_single_space" />
     <ListView
         android:id="@+id/lv_weather_forecast"
         android:layout_width="match_parent"
