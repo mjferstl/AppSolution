@@ -13,12 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,15 +22,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import mfdevelopement.appsolution.device.general.DisplayData;
-import mfdevelopement.appsolution.listview_adapters.WeatherForecastListAdapter;
+import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.Weather;
-import mfdevelopement.appsolution.models.WeatherForecast;
 
 public class WeatherOverview extends AppCompatActivity {
 
-    private String FORECAST;
+    public static String FORECAST;
     private ListView listView = null;
     private List<Weather> weatherData = new ArrayList<>();
 
@@ -69,53 +63,6 @@ public class WeatherOverview extends AppCompatActivity {
         initListView();
 
         updateWeatherData();
-    }
-
-    /**
-     * show a dialog containing the weather forecast data in a listview
-     * @param weather: Object of class weather containing weather data
-     */
-    private void showForecastDialog(Weather weather) {
-
-        //TODO only show dialog, if weather forecast data is loaded
-
-        // get weather forecast of the selected city
-        String selectedCity = weather.getCityName();
-        List<WeatherForecast> wf = weather.getWeatherForecast();
-
-        // create a new dialog containing the weather forecast data
-        Log.i(LogTag,"open weather forecast dialog, city " + selectedCity);
-        final Dialog dialog = new Dialog(WeatherOverview.this);
-        dialog.setContentView(R.layout.dialog_weather_forecast);
-
-        // button to close the dialog
-        Button btnForecastDismiss = dialog.findViewById(R.id.btn_dia_weather_forecast_dismiss);
-        btnForecastDismiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-                Log.i(LogTag,"ButtonClick: Close weather forecast dialog");
-            }
-        });
-
-        // fill in items of the listview
-        ListView listViewForecast = dialog.findViewById(R.id.lv_weather_forecast);
-        listViewForecast.setAdapter(new WeatherForecastListAdapter(WeatherOverview.this, wf));
-
-        // set title of dialog
-        TextView tv_title = dialog.findViewById(R.id.tv_dia_weather_forecast_title);
-        String title = selectedCity + " - " + FORECAST;
-        tv_title.setText(title);
-
-        // change the dialog width to 80% of the screen width
-        LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_forecast);
-        DisplayData displayData = new DisplayData(WeatherOverview.this);
-        int width = displayData.getWidthPx()*8/10;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
-        layout.setLayoutParams(params);
-
-        // show dialog
-        dialog.show();
     }
 
     /**
@@ -224,9 +171,9 @@ public class WeatherOverview extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Weather selectedWeather = weatherData.get(position);
-                showForecastDialog(selectedWeather);
+                DialogWeatherForecast dia = new DialogWeatherForecast(WeatherOverview.this, selectedWeather);
+                dia.show();
             }
         });
 
