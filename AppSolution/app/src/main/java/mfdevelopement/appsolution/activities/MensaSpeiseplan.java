@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +11,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import mfdevelopement.appsolution.R;
 
 public class MensaSpeiseplan extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.widget.Toast;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+
+import mfdevelopement.appsolution.R;
 
 public class GeometryCalculator extends AppCompatActivity {
 

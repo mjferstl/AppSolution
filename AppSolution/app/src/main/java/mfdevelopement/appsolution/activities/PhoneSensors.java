@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.app.Dialog;
 import android.hardware.Sensor;
@@ -27,6 +27,8 @@ import com.androidplot.xy.XYPlot;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
+
+import mfdevelopement.appsolution.R;
 
 public class PhoneSensors extends AppCompatActivity implements SensorEventListener {
 

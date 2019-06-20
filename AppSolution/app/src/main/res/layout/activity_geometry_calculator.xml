@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="mfdevelopement.appsolution.GeometryCalculator">
+    tools:context="mfdevelopement.appsolution.activities.GeometryCalculator">
     <LinearLayout
         android:id="@+id/ll_maths_circle"
         android:layout_width="match_parent"

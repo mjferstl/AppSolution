@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 
 public class Main extends AppCompatActivity {

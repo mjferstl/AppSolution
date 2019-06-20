@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="mfdevelopement.appsolution.CurrencyConverter">
+    tools:context="mfdevelopement.appsolution.activities.CurrencyConverter">
     <TextView
         android:id="@+id/txtv_currency_info"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 
 // Verwendetes Tutorial:

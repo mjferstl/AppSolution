@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ViewFlipper;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.tabs.TabClothesSizeShoes;
 import mfdevelopement.appsolution.tabs.TabClothesSizeTops;
 

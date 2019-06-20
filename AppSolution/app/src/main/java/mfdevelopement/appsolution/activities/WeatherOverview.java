@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.Weather;

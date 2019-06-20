@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import mfdevelopement.appsolution.R;
 
 import static android.view.View.VISIBLE;
 

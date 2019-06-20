@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.WeatherOverview;
+import mfdevelopement.appsolution.activities.WeatherOverview;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.listview_adapters.WeatherForecastListAdapter;
 import mfdevelopement.appsolution.models.Weather;

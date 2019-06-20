@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 
 import android.app.ActionBar;
@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigt;
 import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigtMaxwell;
 

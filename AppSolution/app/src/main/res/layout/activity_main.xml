@@ -6,7 +6,7 @@
     android:paddingBottom="0dp"
     android:paddingTop="@dimen/activity_single_space"
     android:orientation="vertical"
-    tools:context="mfdevelopement.appsolution.Main">
+    tools:context="mfdevelopement.appsolution.activities.Main">
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

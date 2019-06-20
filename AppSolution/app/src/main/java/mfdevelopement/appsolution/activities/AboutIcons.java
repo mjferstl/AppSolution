@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution;
+package mfdevelopement.appsolution.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.listview_adapters.AboutIconsOverviewAdapter;
 import mfdevelopement.appsolution.models.Icon;
 

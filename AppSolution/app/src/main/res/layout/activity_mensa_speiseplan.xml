@@ -8,7 +8,7 @@
     android:paddingRight="5dp"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="mfdevelopement.appsolution.MensaSpeiseplan">
+    tools:context="mfdevelopement.appsolution.activities.MensaSpeiseplan">
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

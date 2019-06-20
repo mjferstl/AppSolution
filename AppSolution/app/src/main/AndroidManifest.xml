@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main"
+            android:name=".activities.Main"
             android:configChanges="locale|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,90 +26,90 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CurrencyConverter"
+            android:name=".activities.CurrencyConverter"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_currency_calculator"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".CocktailOverview"
+            android:name=".activities.CocktailOverview"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_cocktail_overview"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".CocktailRecipe"
+            android:name=".activities.CocktailRecipe"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_cocktail_recipe"
-            android:parentActivityName=".CocktailOverview" />
+            android:parentActivityName=".activities.CocktailOverview" />
         <activity
-            android:name=".MensaSpeiseplan"
+            android:name=".activities.MensaSpeiseplan"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_mensa_speiseplan"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".GeometryCalculator"
+            android:name=".activities.GeometryCalculator"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_maths"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".MechanicalEngineering"
+            android:name=".activities.MechanicalEngineering"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_mechanical_engineering"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".Reynoldszahl"
+            android:name=".activities.Reynoldszahl"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_reynoldszahl"
-            android:parentActivityName=".MechanicalEngineering" />
+            android:parentActivityName=".activities.MechanicalEngineering" />
         <activity
-            android:name=".About"
+            android:name=".activities.About"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_about_screen"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".Sensors"
+            android:name=".activities.Sensors"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_sensors"
-            android:parentActivityName=".Main" />
+            android:parentActivityName=".activities.Main" />
         <activity
-            android:name=".PhoneSensors"
+            android:name=".activities.PhoneSensors"
             android:label="@string/title_activity_phone_sensors"
-            android:parentActivityName=".Main"
+            android:parentActivityName=".activities.Main"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.Main" />
+                android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
         <activity
-            android:name=".ClothesSize"
+            android:name=".activities.ClothesSize"
             android:label="@string/title_activity_clothes_size"
-            android:parentActivityName=".Main">
+            android:parentActivityName=".activities.Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.Main" />
+                android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
         <activity
-            android:name=".AboutIcons"
+            android:name=".activities.AboutIcons"
             android:label="@string/title_activity_about_icons"
-            android:parentActivityName=".About">
+            android:parentActivityName=".activities.About">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.About" />
+                android:value="mfdevelopement.appsolution.activities.About" />
         </activity>
         <activity
-            android:name=".WeatherOverview"
+            android:name=".activities.WeatherOverview"
             android:label="@string/title_activity_weather_overview"
-            android:parentActivityName=".Main">
+            android:parentActivityName=".activities.Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.Main" />
+                android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
         <activity
-            android:name=".RheoModels"
+            android:name=".activities.RheoModels"
             android:label="@string/title_activity_rheo_models"
-            android:parentActivityName=".Main">
+            android:parentActivityName=".activities.Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.Main" />
+                android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
     </application>
 
