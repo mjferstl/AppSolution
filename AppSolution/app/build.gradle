@@ -9,14 +9,14 @@ android {
             storePassword 'Bettbezug70keystore'
         }
     }
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "mfdevelopement.appsolution"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
-        versionName "2.0.0_alpha4"
+        versionName "2.0.0_alpha5"
     }
     buildTypes {
         release {
@@ -33,16 +33,16 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/android-query-full.0.26.7.jar')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:appcompat-v7:28.1.1'
+    implementation 'com.android.support:support-v4:28.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-core-utils:27.1.1'
+    implementation 'com.android.support:design:28.1.1'
+    implementation 'com.android.support:support-core-utils:28.1.1'
     implementation 'com.androidplot:androidplot-core:1.5.1'
-    implementation 'com.android.support:support-v13:27.1.1'
+    implementation 'com.android.support:support-v13:28.1.1'
     testImplementation 'junit:junit:4.12'
     implementation 'com.pkmmte.pkrss:pkrss:1.2'
-    implementation 'com.squareup.okhttp:okhttp:1.6.0'
+    implementation 'com.squareup.okhttp:okhttp:2.5.0'
     implementation 'com.squareup.okhttp:okhttp-urlconnection:1.6.0'
 }
 
