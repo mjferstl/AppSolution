@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lin_lay_dia_weather_forecast"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
@@ -19,7 +19,7 @@
         android:text="title"
         android:textSize="@dimen/material_text_title"
         android:layout_marginBottom="@dimen/activity_single_space"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent"/>
     <TextView
         android:id="@+id/tv_dia_weather_forecast_sep"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
     <ListView
         android:id="@+id/lv_weather_forecast"
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="400dp">
     </ListView>
     <Button
         android:id="@+id/btn_dia_weather_forecast_dismiss"
@@ -38,6 +38,5 @@
         android:text="@string/btd_ok"
         android:textSize="@dimen/material_text_button"
         style="@style/AppTheme.FlatButton"
-        android:layout_marginTop="@dimen/activity_single_space"
         android:layout_gravity="end"/>
 </LinearLayout>

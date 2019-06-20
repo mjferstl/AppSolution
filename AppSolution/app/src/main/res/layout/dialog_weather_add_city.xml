@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lin_lay_dia_weather_add_city"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
@@ -29,11 +29,11 @@
     <ListView
         android:id="@+id/lv_weather_cities"
         android:layout_width="match_parent"
-        android:layout_height="450dp">
+        android:layout_height="400dp">
     </ListView>
     <Button
         android:id="@+id/btn_dia_weather_add_city_dismiss"
-        android:layout_width="30pt"
+        android:layout_width="50pt"
         android:layout_height="wrap_content"
         android:text="@string/btn_dismiss"
         android:textSize="@dimen/material_text_button"

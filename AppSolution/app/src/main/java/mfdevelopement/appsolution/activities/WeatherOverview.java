@@ -11,10 +11,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
+import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
 import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
@@ -132,13 +137,16 @@ public class WeatherOverview extends AppCompatActivity {
     private void showCitiesList() {
 
         final Dialog dialog = new Dialog(WeatherOverview.this);
+        // no dialog title
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // content
         dialog.setContentView(R.layout.dialog_weather_add_city);
 
-        ListView listView = dialog.findViewById(R.id.lv_weather_cities);
+        ListView listViewCities = dialog.findViewById(R.id.lv_weather_cities);
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cityNames);
-        listView.setAdapter(adapter);
+        listViewCities.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String city = adapter.getItem(position);
@@ -150,6 +158,12 @@ public class WeatherOverview extends AppCompatActivity {
                 saveUserCities();
             }
         });
+
+        // adjust height of the listview
+        DisplayData displayData = new DisplayData(WeatherOverview.this);
+        ViewGroup.LayoutParams listViewForecastLayoutParams = listViewCities.getLayoutParams();
+        listViewForecastLayoutParams.height = (int) (displayData.getHeightPx()*0.65);
+        listViewCities.setLayoutParams(listViewForecastLayoutParams);
 
         final EditText etFilter = dialog.findViewById(R.id.et_dia_weather_add_city);
         etFilter.addTextChangedListener(new TextWatcher() {
@@ -176,6 +190,12 @@ public class WeatherOverview extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        // change the dialog width to 80% of the screen width
+        LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_add_city);
+        int width = displayData.getWidthPx()*8/10;
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
+        layout.setLayoutParams(params);
 
         // show the dialog
         dialog.show();

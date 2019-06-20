@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -45,6 +47,9 @@ public class DialogWeatherForecast {
         // create a new dialog containing the weather forecast data
         Log.i(LogTag,"open weather forecast dialog, city " + selectedCity);
         dialog = new Dialog(this.context);
+        // no dialog title
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // content
         dialog.setContentView(R.layout.dialog_weather_forecast);
 
         // button to close the dialog
@@ -53,13 +58,19 @@ public class DialogWeatherForecast {
             @Override
             public void onClick(View v) {
                 cancel();
-                Log.i(LogTag,"ButtonClick: Close weather forecast dialog");
+                Log.i(LogTag,LogTag + ": Close weather forecast dialog");
             }
         });
 
         // fill in items of the listview
         ListView listViewForecast = dialog.findViewById(R.id.lv_weather_forecast);
         listViewForecast.setAdapter(new WeatherForecastListAdapter(this.context, wf));
+
+        // adjust height of the listview
+        DisplayData displayData = new DisplayData(this.context);
+        ViewGroup.LayoutParams listViewForecastLayoutParams = listViewForecast.getLayoutParams();
+        listViewForecastLayoutParams.height = (int) (displayData.getHeightPx()*0.65);
+        listViewForecast.setLayoutParams(listViewForecastLayoutParams);
 
         // set title of dialog
         TextView tv_title = dialog.findViewById(R.id.tv_dia_weather_forecast_title);
@@ -68,7 +79,6 @@ public class DialogWeatherForecast {
 
         // change the dialog width to 80% of the screen width
         LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_forecast);
-        DisplayData displayData = new DisplayData(this.context);
         int width = displayData.getWidthPx()*8/10;
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
         layout.setLayoutParams(params);
@@ -78,6 +88,6 @@ public class DialogWeatherForecast {
     }
 
     public void cancel() {
-        dialog.cancel();
+        if (dialog != null) {dialog.cancel();}
     }
 }
