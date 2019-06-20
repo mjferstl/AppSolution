@@ -33,17 +33,17 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/android-query-full.0.26.7.jar')
-    implementation 'com.android.support:appcompat-v7:28.1.1'
-    implementation 'com.android.support:support-v4:28.1.1'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.1.1'
-    implementation 'com.android.support:support-core-utils:28.1.1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:support-core-utils:28.0.0'
     implementation 'com.androidplot:androidplot-core:1.5.1'
-    implementation 'com.android.support:support-v13:28.1.1'
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:support-v13:28.0.0'
+    implementation 'junit:junit:4.12'
     implementation 'com.pkmmte.pkrss:pkrss:1.2'
-    implementation 'com.squareup.okhttp:okhttp:2.5.0'
-    implementation 'com.squareup.okhttp:okhttp-urlconnection:1.6.0'
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+    implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
 }
 
 allprojects {
