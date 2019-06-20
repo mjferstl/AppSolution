@@ -38,5 +38,6 @@
         android:text="@string/btd_ok"
         android:textSize="@dimen/material_text_button"
         style="@style/AppTheme.FlatButton"
+        android:layout_marginTop="@dimen/activity_single_space"
         android:layout_gravity="end"/>
 </LinearLayout>
