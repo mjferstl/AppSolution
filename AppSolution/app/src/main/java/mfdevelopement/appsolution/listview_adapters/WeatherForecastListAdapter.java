@@ -51,7 +51,7 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherForecast> {
              // intervall of the data is 3h
              separator.setText(currentForecast.getDate());
              String t = currentForecast.getTime();
-             if (t.equals("00:00") || t.equals("01:00") || t.equals("02:00")) {
+             if (t.equals("00:00") || t.equals("01:00") || t.equals("02:00") || position == 0) {
                 separator.setVisibility(View.VISIBLE);
              }
              else {
