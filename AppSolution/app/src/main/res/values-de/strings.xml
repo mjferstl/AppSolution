@@ -56,7 +56,7 @@
     <string name="btd_bib_txt">Bibliothek</string>
     <string name="btd_unisport_txt">Unisport</string>
     <string name="title_activity_unisport">Unisport</string>
-    <string name="txt_no_internet_connection">Keine Internetverbindung!</string>
+    <string name="txt_no_internet_connection">Bitte stellen Sie Verbindung zum Internet her.</string>
     <string name="txt_enter_value">Bitte Betrag eingeben</string>
     <string name="txt_connected_mobile">Mit dem Internet (mobil) verbunden.</string>
     <string name="txt_connected_wifi">Mit dem Internet über WLAN verbunden.</string>
@@ -272,4 +272,6 @@
     <string name="hint_filter_cities">Orte filtern ...</string>
     <string name="title_add_city">Stadt hinzufügen &#8230;</string>
     <string name="btn_dismiss">Schließen</string>
+    <string name="no_internet_connection">Keine Internetverbindung</string>
+    <string name="no_internet_connection_text">Bitte stellen Sie Verbindung zum Internet her.</string>
 </resources>

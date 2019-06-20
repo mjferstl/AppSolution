@@ -56,7 +56,7 @@
     <string name="btd_bib_txt">Library</string>
     <string name="btd_unisport_txt">University Sports</string>
     <string name="title_activity_unisport">University sports</string>
-    <string name="txt_no_internet_connection">No internet connection!</string>
+    <string name="txt_no_internet_connection">Please connect to the internet</string>
     <string name="txt_enter_value">Enter amount, please</string>
     <string name="txt_connected_mobile">Connected to the internet (mobile).</string>
     <string name="txt_connected_wifi">Connected to the internet via WIFI</string>
@@ -272,4 +272,6 @@
     <string name="hint_filter_cities">filter places ...</string>
     <string name="title_add_city">Add city &#8230;</string>
     <string name="btn_dismiss">Cancel</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="no_internet_connection_text">Please connect to the internet</string>
 </resources>

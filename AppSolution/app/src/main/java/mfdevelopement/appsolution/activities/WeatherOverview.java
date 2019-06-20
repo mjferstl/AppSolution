@@ -24,6 +24,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
+import mfdevelopement.appsolution.device.status.InternetStatus;
+import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
 import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.Weather;
@@ -64,7 +66,14 @@ public class WeatherOverview extends AppCompatActivity {
 
         initListView();
 
-        updateWeatherData();
+        InternetStatus internetStatus = new InternetStatus(this);
+        if (internetStatus.isConnected()) {
+            updateWeatherData();
+        }
+        else {
+            DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
+            dia.show();
+        }
     }
 
     /**
