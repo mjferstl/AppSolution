@@ -11,6 +11,7 @@ public class Weather {
     private String description;
     private int cityId;
     private int imageID;
+    private double longitude, latitude;
 
     public boolean forecastLoaded;
     private List<WeatherForecast> weatherForecast = new ArrayList<>();
@@ -67,6 +68,22 @@ public class Weather {
 
     public Integer getImageID() {
         return imageID;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public void setImageID(Integer imageID) {
