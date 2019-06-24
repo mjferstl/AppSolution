@@ -107,7 +107,7 @@ public class Main extends AppCompatActivity {
         targetActivities.add(ClothesSize.class);
 
         imageButtonList.add(btnWeather);
-        targetActivities.add(WeatherOverview.class);
+        targetActivities.add(WeatherOverviewActivity.class);
 
         // set all onClickListeners
         for (int i=0; i<imageButtonList.size(); i++) {

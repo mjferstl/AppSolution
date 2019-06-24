@@ -96,7 +96,7 @@
                 android:value="mfdevelopement.appsolution.activities.About" />
         </activity>
         <activity
-            android:name=".activities.WeatherOverview"
+            android:name=".activities.WeatherOverviewActivity"
             android:label="@string/title_activity_weather_overview"
             android:parentActivityName=".activities.Main">
             <meta-data
