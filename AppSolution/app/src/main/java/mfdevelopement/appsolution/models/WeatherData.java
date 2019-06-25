@@ -14,7 +14,7 @@ public class WeatherData {
     private String description;
     private int imageID;
     private WeatherItem weatherCurrently;
-    List<WeatherItem> weatherHourly, weatherDaily;
+    private List<WeatherItem> weatherHourly, weatherDaily;
 
 
     public boolean forecastLoaded;
@@ -95,7 +95,7 @@ public class WeatherData {
     public void loadWeatherData() {
         this.weatherCurrently = DarkSkyParser.getCurrentWeather(this.city);
         this.weatherHourly = DarkSkyParser.getHourlyWeather(this.city);
-        this.weatherDaily = DarkSkyParser.getDailyWeather(this.city);
+        //this.weatherDaily = DarkSkyParser.getDailyWeather(this.city);
 
         setDescription(createDescription());
         setImageID(weatherCurrently.getImageID());

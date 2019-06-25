@@ -11,15 +11,17 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.activities.WeatherOverview;
+import mfdevelopement.appsolution.activities.WeatherOverviewActivity;
 import mfdevelopement.appsolution.device.general.DisplayData;
-import mfdevelopement.appsolution.listview_adapters.WeatherForecastListAdapter;
+import mfdevelopement.appsolution.listview_adapters.WeatherForecastListAdapterNew;
 import mfdevelopement.appsolution.models.WeatherData;
-import mfdevelopement.appsolution.models.WeatherForecast;
+import mfdevelopement.appsolution.models.WeatherItem;
 
 public class DialogWeatherForecastNew {
 
@@ -42,10 +44,24 @@ public class DialogWeatherForecastNew {
 
         // get weather forecast of the selected city
         String selectedCity = this.weatherData.getCity().getCityName();
-        List<WeatherForecast> wf = this.weatherData.getWeatherForecast();
+
+        // join all weather data to one list
+        List<WeatherItem> weatherForecast = new ArrayList<>();
+        List<WeatherItem> wh = this.weatherData.getWeatherHourly();
+        List<WeatherItem> wd = this.weatherData.getWeatherDaily();
+        if (wh != null && !wh.isEmpty()) {weatherForecast.addAll(wh);}
+        if (wd != null && !wd.isEmpty()) {weatherForecast.addAll(wd);}
+
+        // if list is still empty, then no forecast data was loaded
+        // in this case do not show the dialog and inform the user
+        if (weatherForecast.isEmpty()) {
+            Log.wtf(LOG_TAG,"show:no forecast data available");
+            Toast.makeText(context,"Fatal error: No forecast data loaded!",Toast.LENGTH_LONG).show();
+            return;
+        }
 
         // create a new dialog containing the weather forecast data
-        Log.i(LOG_TAG,"show: open weather forecast dialog, city " + selectedCity);
+        Log.i(LOG_TAG,"show: open weather forecast dialog for city " + selectedCity);
         dialog = new Dialog(this.context);
         // no dialog title
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -64,7 +80,7 @@ public class DialogWeatherForecastNew {
 
         // fill in items of the listview
         ListView listViewForecast = dialog.findViewById(R.id.lv_weather_forecast);
-        listViewForecast.setAdapter(new WeatherForecastListAdapter(this.context, wf));
+        listViewForecast.setAdapter(new WeatherForecastListAdapterNew(this.context, weatherForecast));
 
         // adjust height of the listview
         DisplayData displayData = new DisplayData(this.context);
@@ -74,7 +90,7 @@ public class DialogWeatherForecastNew {
 
         // set title of dialog
         TextView tv_title = dialog.findViewById(R.id.tv_dia_weather_forecast_title);
-        String title = selectedCity + " - " + WeatherOverview.FORECAST;
+        String title = selectedCity + " - " + WeatherOverviewActivity.FORECAST;
         tv_title.setText(title);
 
         // change the dialog width to 80% of the screen width

@@ -2,6 +2,7 @@ package mfdevelopement.appsolution.parser;
 
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,14 +70,13 @@ public class DarkSkyParser {
             }
             if (city.getId() != 0) {
                 // create JSONObject from the response
-                Log.d(LOG_TAG,"getCurrentWeather:jsonResponse = " + jsonResponse);
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONObject jsonWeatherCurrently = jsonObject.getJSONObject("currently");
                 weatherCurrently = parseJsonWeather(jsonWeatherCurrently);
             }
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e(LOG_TAG,"parseWeather: a error occurred during execution of the method");
+            Log.e(LOG_TAG,"getCurrentWeather: a error occurred during execution of the method");
         }
 
         return weatherCurrently;
@@ -86,12 +86,50 @@ public class DarkSkyParser {
 
         List<WeatherItem> weatherItemList = new ArrayList<>();
 
+        try {
+            if (jsonResponse.equals("")) {
+                Log.d(LOG_TAG,"getHourlyWeather:JSON response gets loaded");
+                jsonResponse =  fetchJsonWeather(city);
+            }
+            if (city.getId() != 0) {
+                // create JSONObject from the response
+                JSONObject jsonObject = new JSONObject(jsonResponse);
+                JSONArray jsonWeatherHourly = jsonObject.getJSONObject("hourly").getJSONArray("data");
+                for (int i=0; i<jsonWeatherHourly.length(); i++) {
+                    WeatherItem weatherItem = parseJsonWeather(jsonWeatherHourly.getJSONObject(i));
+                    weatherItemList.add(weatherItem);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e(LOG_TAG,"getHourlyWeather: a error occurred during execution of the method");
+        }
+
         return weatherItemList;
     }
 
     public static List<WeatherItem> getDailyWeather(City city) {
 
         List<WeatherItem> weatherItemList = new ArrayList<>();
+
+        try {
+            if (jsonResponse.equals("")) {
+                Log.d(LOG_TAG,"getDailyWeather:JSON response gets loaded");
+                jsonResponse =  fetchJsonWeather(city);
+            }
+            if (city.getId() != 0) {
+                // create JSONObject from the response
+                JSONObject jsonObject = new JSONObject(jsonResponse);
+                JSONArray jsonWeatherHourly = jsonObject.getJSONObject("daily").getJSONArray("data");
+                for (int i=0; i<jsonWeatherHourly.length(); i++) {
+                    WeatherItem weatherItem = parseJsonWeather(jsonWeatherHourly.getJSONObject(i));
+                    weatherItemList.add(weatherItem);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Log.e(LOG_TAG,"getDailyWeather: a error occurred during execution of the method");
+        }
 
         return weatherItemList;
     }
@@ -109,10 +147,40 @@ public class DarkSkyParser {
         String iconName = getJsonValueAsString(weather,"icon");
         weatherItem.setIconByName(iconName);
 
-        int precipProbability = Integer.valueOf(getJsonValueAsString(weather,"precipProbability"));
-        weatherItem.setPrecipProbabilityPercent(precipProbability);
+        double precipProbability = Double.valueOf(getJsonValueAsString(weather,"precipProbability"));
+        int precipProbabilityPercent = (int) (precipProbability*100);
+        weatherItem.setPrecipProbabilityPercent(precipProbabilityPercent);
 
         double temperature = Double.valueOf(getJsonValueAsString(weather,"temperature"));
+        weatherItem.setTemperature(temperature);
+
+        double windSpeed = Double.valueOf(getJsonValueAsString(weather,"windSpeed"));
+        weatherItem.setWindSpeed(windSpeed);
+
+        double humidity = Double.valueOf(getJsonValueAsString(weather,"humidity"));
+        weatherItem.setHumidity(humidity);
+
+        return weatherItem;
+    }
+
+    private static WeatherItem parsseJsonForecastDaily(JSONObject weather) {
+
+        WeatherItem weatherItem = new WeatherItem();
+
+        long timestamp = Long.valueOf(getJsonValueAsString(weather,"time"));
+        weatherItem.setTimestamp(timestamp);
+
+        String summary = getJsonValueAsString(weather,"summary");
+        weatherItem.setSummary(summary);
+
+        String iconName = getJsonValueAsString(weather,"icon");
+        weatherItem.setIconByName(iconName);
+
+        double precipProbability = Double.valueOf(getJsonValueAsString(weather,"precipProbability"));
+        int precipProbabilityPercent = (int) (precipProbability*100);
+        weatherItem.setPrecipProbabilityPercent(precipProbabilityPercent);
+
+        double temperature = Double.valueOf(getJsonValueAsString(weather,"temperatureHigh"));
         weatherItem.setTemperature(temperature);
 
         double windSpeed = Double.valueOf(getJsonValueAsString(weather,"windSpeed"));

@@ -40,12 +40,10 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     public static String FORECAST = "";
     private ListView listView = null;
-    //private List<Weather> weatherData = new ArrayList<>();
 
     private List<Integer> cityCodes = new ArrayList<>();
     private List<String> cityNames = new ArrayList<>();
     private List<Integer> userCityCodes = new ArrayList<>();
-    private List<City> allCities = new ArrayList<>();
     private List<WeatherData> allCitiesWeatherData = new ArrayList<>();
 
     private String sharedPrefsUserCityCodes = "userCityCodesString";

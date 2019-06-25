@@ -1,5 +1,9 @@
 package mfdevelopement.appsolution.models;
 
+import java.util.Locale;
+
+import mfdevelopement.appsolution.helper.DateTimeParser;
+import mfdevelopement.appsolution.parser.DarkSkyParser;
 import mfdevelopement.appsolution.parser.DarkSkyWeatherIconParser;
 
 public class WeatherItem {
@@ -50,12 +54,24 @@ public class WeatherItem {
         return timestamp;
     }
 
+    public String getTime() {
+        return DateTimeParser.getHoursMinutes(this.timestamp);
+    }
+
+    public String getDate() {
+        return DateTimeParser.getDate(this.timestamp);
+    }
+
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
     public double getTemperature() {
         return temperature;
+    }
+
+    public String getTemperatureCelsius() {
+        return String.format(Locale.getDefault(),"%.1f",getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE;
     }
 
     public void setTemperature(double temperature) {
