@@ -33,6 +33,11 @@ public class DateTimeParser {
         return getDateCurrentTimeZone(timestamp, dateFormat);
     }
 
+    public static String getDateDayname(long timestamp) {
+        String dateFormat = "EEE. dd.MM.yyyy";
+        return getDateCurrentTimeZone(timestamp, dateFormat);
+    }
+
     public static String getDateTimeLong(long timestamp) {
         String dateFormat = "yyyy-MM-dd HH:mm";
         return getDateCurrentTimeZone(timestamp, dateFormat);

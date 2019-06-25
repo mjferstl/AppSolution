@@ -47,14 +47,13 @@ public class WeatherForecastListAdapterNew extends ArrayAdapter<WeatherItem> {
              time.setText(currentWeatherItem.getTime());
 
              // show separator, if it's the first time of this day
-             // intervall of the data is 3h
-             String currentDate = currentWeatherItem.getDate();
+             String currentDate = currentWeatherItem.getDateDayname();
              separator.setText(currentDate);
              WeatherItem itemBefore = new WeatherItem();
              if (position > 0) {
                  itemBefore = getItem(position-1);
              }
-             if (itemBefore.getDate() != null && !itemBefore.getDate().equals(currentDate)) {
+             if (itemBefore.getDate() != null && !itemBefore.getDateDayname().equals(currentDate)) {
                 separator.setVisibility(View.VISIBLE);
              }
              else {
@@ -69,7 +68,7 @@ public class WeatherForecastListAdapterNew extends ArrayAdapter<WeatherItem> {
                  time.setVisibility(View.VISIBLE);
              }
              else if (currentWeatherItem.getTemperatureHigh() != null && currentWeatherItem.getTemperatureLow() != null){
-                 String tempRange = currentWeatherItem.getTemperatureLowCelsius() + "-" + currentWeatherItem.getTemperatureHighCelsius();
+                 String tempRange = currentWeatherItem.getTemperatureLowCelsius() + " - " + currentWeatherItem.getTemperatureHighCelsius();
                  stringBuilder.append(tempRange);
                  // do not show the time, because there is only one data for the whole day
                  time.setVisibility(View.GONE);

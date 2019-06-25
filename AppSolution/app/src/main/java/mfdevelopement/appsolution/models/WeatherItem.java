@@ -64,6 +64,10 @@ public class WeatherItem {
         return DateTimeParser.getDate(this.timestamp);
     }
 
+    public String getDateDayname() {
+        return DateTimeParser.getDateDayname(this.timestamp);
+    }
+
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
