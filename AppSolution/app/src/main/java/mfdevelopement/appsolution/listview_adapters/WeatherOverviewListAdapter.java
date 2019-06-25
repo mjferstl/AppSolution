@@ -13,13 +13,13 @@ import android.widget.TextView;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.models.Weather;
+import mfdevelopement.appsolution.models.WeatherData;
 
-public class WeatherOverviewListAdapter extends ArrayAdapter<Weather> {
+public class WeatherOverviewListAdapter extends ArrayAdapter<WeatherData> {
 
     private final String errorMsgLoading = "Fehler beim Laden der Daten ...";
 
-    public WeatherOverviewListAdapter(@NonNull Context context, @NonNull List<Weather> objects) {
+    public WeatherOverviewListAdapter(@NonNull Context context, @NonNull List<WeatherData> objects) {
         super(context, 0, objects);
     }
 
@@ -27,7 +27,7 @@ public class WeatherOverviewListAdapter extends ArrayAdapter<Weather> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Weather currentWeather = getItem(position);
+        WeatherData currentWeatherData = getItem(position);
 
         View view = convertView;
          if(view == null) {
@@ -38,19 +38,19 @@ public class WeatherOverviewListAdapter extends ArrayAdapter<Weather> {
          TextView description = view.findViewById(R.id.tv_weather_overview_details);
          ImageView image = view.findViewById(R.id.img_weather_overview_icon);
 
-         if (currentWeather.getCityName() != null) {
-             city.setText(currentWeather.getCityName());
+         if (currentWeatherData.getCity() != null) {
+             city.setText(currentWeatherData.getCity().getCityName());
 
-             if (currentWeather.getDescription() == null) {
+             if (currentWeatherData.getDescription() == null) {
                  description.setVisibility(View.INVISIBLE);
              } else {
-                 description.setText(currentWeather.getDescription());
+                 description.setText(currentWeatherData.getDescription());
              }
 
-             if (currentWeather.getImageID() == null) {
+             if (currentWeatherData.getImageID() == null) {
                  image.setVisibility(View.INVISIBLE);
              } else {
-                 image.setImageResource(currentWeather.getImageID());
+                 image.setImageResource(currentWeatherData.getImageID());
              }
          } else {
              city.setText(" --- ");

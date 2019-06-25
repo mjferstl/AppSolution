@@ -31,8 +31,8 @@ import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
-import mfdevelopement.appsolution.dialogs.DialogWeatherForecastNew;
-import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapterNew;
+import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
+import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherData;
 
@@ -48,9 +48,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     private String sharedPrefsUserCityCodes = "userCityCodesString";
 
-    private WeatherOverviewListAdapterNew weatherOverviewListAdapter;
+    private WeatherOverviewListAdapter weatherOverviewListAdapter;
 
-    private final String LOG_TAG = "WeatherOverview";
+    private final String LOG_TAG = "WeatherOverviewActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,7 +197,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(LOG_TAG,"OnItemClickListener: selected item " + position + " of weather overview list");
                 WeatherData selectedWeatherData = allCitiesWeatherData.get(position);
-                DialogWeatherForecastNew dia = new DialogWeatherForecastNew(WeatherOverviewActivity.this, selectedWeatherData);
+                DialogWeatherForecast dia = new DialogWeatherForecast(WeatherOverviewActivity.this, selectedWeatherData);
                 dia.show();
             }
         });
@@ -312,7 +312,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         protected void onPostExecute(List<WeatherData> weatherData) {
             //
             saveUserCities();
-            weatherOverviewListAdapter =  new WeatherOverviewListAdapterNew(activity, weatherData);
+            weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weatherData);
             listView.setAdapter(weatherOverviewListAdapter);
         }
     }
