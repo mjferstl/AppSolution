@@ -21,19 +21,24 @@ public class DarkSkyParser {
 
     private static final String LOG_TAG = "DarkSkyParser";
 
-    private static String jsonResponse = "";
+    private String jsonResponse = "";
 
     public static final String UNIT_WIND_SPEED = "m/s";
     public static final String UNIT_TEMPERATURE = "°C";
 
+    private City city;
+
     public DarkSkyParser(City city){
-        jsonResponse = fetchJsonWeather(city);
+        this.city = city;
+        this.jsonResponse = fetchJsonWeather();
     }
 
-    private static String fetchJsonWeather(City city) {
+    public String fetchJsonWeather() {
+
+        if (this.city == null) {return "";}
 
         // create url containing the cityId
-        String url = URL_PART_1 + DARK_SKY_KEY + "/" + city.getLatitude() + "," + city.getLongitude() + DARK_SKY_RESPONSE_SETTINGS;
+        String url = URL_PART_1 + DARK_SKY_KEY + "/" + this.city.getLatitude() + "," + this.city.getLongitude() + DARK_SKY_RESPONSE_SETTINGS;
         Log.d(LOG_TAG,"fetchJsonWeather:url="+url);
 
         // get the response in json format
@@ -57,20 +62,20 @@ public class DarkSkyParser {
         return weatherItem;
     }
 
-    public static WeatherItem getCurrentWeather(City city) {
+    private WeatherItem loadCurrentWeather() {
 
         Log.d(LOG_TAG,"getCurrentWeather:started");
 
         WeatherItem weatherCurrently = new WeatherItem();
 
         try {
-            if (jsonResponse.equals("")) {
+            if (this.jsonResponse.equals("")) {
                 Log.d(LOG_TAG,"getCurrentWeather:JSON response gets loaded");
-                jsonResponse =  fetchJsonWeather(city);
+                this.jsonResponse =  fetchJsonWeather();
             }
             if (city.getId() != 0) {
                 // create JSONObject from the response
-                JSONObject jsonObject = new JSONObject(jsonResponse);
+                JSONObject jsonObject = new JSONObject(this.jsonResponse);
                 JSONObject jsonWeatherCurrently = jsonObject.getJSONObject("currently");
                 weatherCurrently = parseJsonWeather(jsonWeatherCurrently);
             }
@@ -82,14 +87,14 @@ public class DarkSkyParser {
         return weatherCurrently;
     }
 
-    public static List<WeatherItem> getHourlyWeather(City city) {
+    private List<WeatherItem> loadHourlyWeather() {
 
         List<WeatherItem> weatherItemList = new ArrayList<>();
 
         try {
-            if (jsonResponse.equals("")) {
+            if (this.jsonResponse.equals("")) {
                 Log.d(LOG_TAG,"getHourlyWeather:JSON response gets loaded");
-                jsonResponse =  fetchJsonWeather(city);
+                this.jsonResponse =  fetchJsonWeather();
             }
             if (city.getId() != 0) {
                 // create JSONObject from the response
@@ -108,18 +113,18 @@ public class DarkSkyParser {
         return weatherItemList;
     }
 
-    public static List<WeatherItem> getDailyWeather(City city) {
+    private List<WeatherItem> loadDailyWeather() {
 
         List<WeatherItem> weatherItemList = new ArrayList<>();
 
         try {
-            if (jsonResponse.equals("")) {
+            if (this.jsonResponse.equals("")) {
                 Log.d(LOG_TAG,"getDailyWeather:JSON response gets loaded");
-                jsonResponse =  fetchJsonWeather(city);
+                this.jsonResponse =  fetchJsonWeather();
             }
             if (city.getId() != 0) {
                 // create JSONObject from the response
-                JSONObject jsonObject = new JSONObject(jsonResponse);
+                JSONObject jsonObject = new JSONObject(this.jsonResponse);
                 JSONArray jsonWeatherHourly = jsonObject.getJSONObject("daily").getJSONArray("data");
                 for (int i=0; i<jsonWeatherHourly.length(); i++) {
                     WeatherItem weatherItem = parsseJsonForecastDaily(jsonWeatherHourly.getJSONObject(i));
@@ -203,7 +208,15 @@ public class DarkSkyParser {
         }
     }
 
-    public static void setJsonResponse(String jsonResponse) {
-        DarkSkyParser.jsonResponse = jsonResponse;
+    public WeatherItem getCurrentWeather() {
+        return loadCurrentWeather();
+    }
+
+    public List<WeatherItem> getHourlyForecast() {
+        return loadHourlyWeather();
+    }
+
+    public List<WeatherItem> getDailyForecast() {
+        return loadDailyWeather();
     }
 }

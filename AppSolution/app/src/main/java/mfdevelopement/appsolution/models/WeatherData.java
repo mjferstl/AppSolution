@@ -93,9 +93,11 @@ public class WeatherData {
     }
 
     public void loadWeatherData() {
-        this.weatherCurrently = DarkSkyParser.getCurrentWeather(this.city);
-        this.weatherHourly = DarkSkyParser.getHourlyWeather(this.city);
-        this.weatherDaily = DarkSkyParser.getDailyWeather(this.city);
+        DarkSkyParser darkSkyParser = new DarkSkyParser(this.city);
+        darkSkyParser.fetchJsonWeather();
+        this.weatherCurrently = darkSkyParser.getCurrentWeather();
+        this.weatherHourly = darkSkyParser.getHourlyForecast();
+        this.weatherDaily = darkSkyParser.getDailyForecast();
 
         setDescription(createDescription());
         setImageID(weatherCurrently.getImageID());
@@ -112,6 +114,7 @@ public class WeatherData {
 
         Locale loc = Locale.getDefault();
         String d = String.format(loc, "%.1f", weatherCurrently.getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE +
+                ", " + weatherCurrently.getPrecipProbabilityPercent() + "%" +
                 ", " + String.format(loc, "%.1f", weatherCurrently.getWindSpeed()) + DarkSkyParser.UNIT_WIND_SPEED;
         return d;
     }
