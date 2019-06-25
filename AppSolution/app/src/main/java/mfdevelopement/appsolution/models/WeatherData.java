@@ -94,7 +94,6 @@ public class WeatherData {
 
     public void loadWeatherData() {
         DarkSkyParser darkSkyParser = new DarkSkyParser(this.city);
-        darkSkyParser.fetchJsonWeather();
         this.weatherCurrently = darkSkyParser.getCurrentWeather();
         this.weatherHourly = darkSkyParser.getHourlyForecast();
         this.weatherDaily = darkSkyParser.getDailyForecast();
