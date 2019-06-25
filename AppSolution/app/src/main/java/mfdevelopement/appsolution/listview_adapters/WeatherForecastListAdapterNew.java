@@ -63,10 +63,27 @@ public class WeatherForecastListAdapterNew extends ArrayAdapter<WeatherItem> {
 
              // informations about temperature and rain in %
              StringBuilder stringBuilder = new StringBuilder();
-             stringBuilder.append(currentWeatherItem.getTemperatureCelsius());
+             if (currentWeatherItem.getTemperature() != null) {
+                 stringBuilder.append(currentWeatherItem.getTemperatureCelsius());
+                 // show the time
+                 time.setVisibility(View.VISIBLE);
+             }
+             else if (currentWeatherItem.getTemperatureHigh() != null && currentWeatherItem.getTemperatureLow() != null){
+                 String tempRange = currentWeatherItem.getTemperatureLowCelsius() + "-" + currentWeatherItem.getTemperatureHighCelsius();
+                 stringBuilder.append(tempRange);
+                 // do not show the time, because there is only one data for the whole day
+                 time.setVisibility(View.GONE);
+             }
+
              String rain_precip = currentWeatherItem.getPrecipProbabilityPercent() + "%";
-             stringBuilder.append(" | ");
-             stringBuilder.append(rain_precip);
+
+             // add separator, if necessary
+             if (!stringBuilder.toString().equals("") && !rain_precip.equals("%")) {
+                 stringBuilder.append(" | ");
+                 stringBuilder.append(rain_precip);
+             }
+
+             // set TextView text
              temperature.setText(stringBuilder.toString());
 
              int iconId = currentWeatherItem.getImageID();

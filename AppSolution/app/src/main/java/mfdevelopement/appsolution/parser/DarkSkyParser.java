@@ -122,7 +122,7 @@ public class DarkSkyParser {
                 JSONObject jsonObject = new JSONObject(jsonResponse);
                 JSONArray jsonWeatherHourly = jsonObject.getJSONObject("daily").getJSONArray("data");
                 for (int i=0; i<jsonWeatherHourly.length(); i++) {
-                    WeatherItem weatherItem = parseJsonWeather(jsonWeatherHourly.getJSONObject(i));
+                    WeatherItem weatherItem = parsseJsonForecastDaily(jsonWeatherHourly.getJSONObject(i));
                     weatherItemList.add(weatherItem);
                 }
             }
@@ -180,8 +180,10 @@ public class DarkSkyParser {
         int precipProbabilityPercent = (int) (precipProbability*100);
         weatherItem.setPrecipProbabilityPercent(precipProbabilityPercent);
 
-        double temperature = Double.valueOf(getJsonValueAsString(weather,"temperatureHigh"));
-        weatherItem.setTemperature(temperature);
+        double temperatureHigh = Double.valueOf(getJsonValueAsString(weather,"temperatureHigh"));
+        double temperatureLow = Double.valueOf(getJsonValueAsString(weather,"temperatureLow"));
+        weatherItem.setTemperatureHigh(temperatureHigh);
+        weatherItem.setTemperatureLow(temperatureLow);
 
         double windSpeed = Double.valueOf(getJsonValueAsString(weather,"windSpeed"));
         weatherItem.setWindSpeed(windSpeed);

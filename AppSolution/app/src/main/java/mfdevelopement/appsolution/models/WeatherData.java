@@ -95,7 +95,7 @@ public class WeatherData {
     public void loadWeatherData() {
         this.weatherCurrently = DarkSkyParser.getCurrentWeather(this.city);
         this.weatherHourly = DarkSkyParser.getHourlyWeather(this.city);
-        //this.weatherDaily = DarkSkyParser.getDailyWeather(this.city);
+        this.weatherDaily = DarkSkyParser.getDailyWeather(this.city);
 
         setDescription(createDescription());
         setImageID(weatherCurrently.getImageID());

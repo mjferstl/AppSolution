@@ -11,7 +11,9 @@ public class WeatherItem {
     private String summary;
     private int imageID, precipProbabilityPercent;
     private long timestamp;
-    private double temperature, windSpeed, humidity;
+    private Double temperature, temperatureHigh, temperatureLow;
+    private double windSpeed, humidity;
+
 
     public WeatherItem() {
     }
@@ -66,12 +68,12 @@ public class WeatherItem {
         this.timestamp = timestamp;
     }
 
-    public double getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
     public String getTemperatureCelsius() {
-        return String.format(Locale.getDefault(),"%.1f",getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE;
+        return formatTemperatureCelsius(getTemperature());
     }
 
     public void setTemperature(double temperature) {
@@ -92,5 +94,33 @@ public class WeatherItem {
 
     public void setHumidity(double humidity) {
         this.humidity = humidity;
+    }
+
+    public Double getTemperatureHigh() {
+        return temperatureHigh;
+    }
+
+    public void setTemperatureHigh(double temperatureHigh) {
+        this.temperatureHigh = temperatureHigh;
+    }
+
+    public Double getTemperatureLow() {
+        return temperatureLow;
+    }
+
+    public void setTemperatureLow(double temperatureLow) {
+        this.temperatureLow = temperatureLow;
+    }
+
+    public String getTemperatureHighCelsius() {
+        return formatTemperatureCelsius(getTemperatureHigh());
+    }
+
+    public String getTemperatureLowCelsius() {
+        return formatTemperatureCelsius(getTemperatureLow());
+    }
+
+    private String formatTemperatureCelsius(double temp) {
+        return String.format(Locale.getDefault(),"%.1f",temp) + DarkSkyParser.UNIT_TEMPERATURE;
     }
 }
