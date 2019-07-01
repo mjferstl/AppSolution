@@ -15,8 +15,8 @@ public class DateTimeParser {
             calendar.setTimeInMillis(timestamp * 1000);
             calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
-            Date currenTimeZone = calendar.getTime();
-            return sdf.format(currenTimeZone);
+            Date currentTimeZone = calendar.getTime();
+            return sdf.format(currentTimeZone);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,12 +34,27 @@ public class DateTimeParser {
     }
 
     public static String getDateDayname(long timestamp) {
-        String dateFormat = "EEE. dd.MM.yyyy";
+        String dateFormat = "EEE dd.MM.yyyy";
         return getDateCurrentTimeZone(timestamp, dateFormat);
     }
 
     public static String getDateTimeLong(long timestamp) {
         String dateFormat = "yyyy-MM-dd HH:mm";
         return getDateCurrentTimeZone(timestamp, dateFormat);
+    }
+
+    public static int getYear(long timestamp) {
+        String dateFormat = "yyyy";
+        return Integer.valueOf(getDateCurrentTimeZone(timestamp, dateFormat));
+    }
+
+    public static int getMoth(long timestamp) {
+        String dateFormat = "MM";
+        return Integer.valueOf(getDateCurrentTimeZone(timestamp, dateFormat));
+    }
+
+    public static int getDay(long timestamp) {
+        String dateFormat = "dd";
+        return Integer.valueOf(getDateCurrentTimeZone(timestamp, dateFormat));
     }
 }

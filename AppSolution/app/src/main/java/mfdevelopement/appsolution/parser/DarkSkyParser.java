@@ -7,9 +7,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import mfdevelopement.appsolution.helper.DateTimeParser;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherItem;
 
@@ -127,7 +130,7 @@ public class DarkSkyParser {
                 JSONObject jsonObject = new JSONObject(this.jsonResponse);
                 JSONArray jsonWeatherHourly = jsonObject.getJSONObject("daily").getJSONArray("data");
                 for (int i=0; i<jsonWeatherHourly.length(); i++) {
-                    WeatherItem weatherItem = parsseJsonForecastDaily(jsonWeatherHourly.getJSONObject(i));
+                    WeatherItem weatherItem = parseJsonForecastDaily(jsonWeatherHourly.getJSONObject(i));
                     weatherItemList.add(weatherItem);
                 }
             }
@@ -168,12 +171,19 @@ public class DarkSkyParser {
         return weatherItem;
     }
 
-    private static WeatherItem parsseJsonForecastDaily(JSONObject weather) {
+    private static WeatherItem parseJsonForecastDaily(JSONObject weather) {
 
         WeatherItem weatherItem = new WeatherItem();
 
         long timestamp = Long.valueOf(getJsonValueAsString(weather,"time"));
-        weatherItem.setTimestamp(timestamp);
+        DateTimeParser.getDate(timestamp);
+        Date date = new Date(timestamp);
+        int year = DateTimeParser.getYear(timestamp)-1900;
+        int month = DateTimeParser.getMoth(timestamp)-1;
+        int day = DateTimeParser.getDay(timestamp);
+        Timestamp ts = new Timestamp(year, month, day, 0, 0, 0, 0);
+        Log.d(LOG_TAG,"parseJsonForecastDaily:timestamp = " + ts.toString());
+        weatherItem.setTimestamp(ts.getTime()/1000);
 
         String summary = getJsonValueAsString(weather,"summary");
         weatherItem.setSummary(summary);

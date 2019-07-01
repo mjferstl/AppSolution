@@ -113,8 +113,8 @@ public class WeatherData {
 
         Locale loc = Locale.getDefault();
         String d = String.format(loc, "%.1f", weatherCurrently.getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE +
-                ", " + weatherCurrently.getPrecipProbabilityPercent() + "%" +
-                ", " + String.format(loc, "%.1f", weatherCurrently.getWindSpeed()) + DarkSkyParser.UNIT_WIND_SPEED;
+                " | " + weatherCurrently.getPrecipProbabilityPercent() + "%" +
+                " | " + String.format(loc, "%.1f", weatherCurrently.getWindSpeed()) + DarkSkyParser.UNIT_WIND_SPEED;
         return d;
     }
 }

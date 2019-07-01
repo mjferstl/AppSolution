@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
@@ -21,6 +22,7 @@ import mfdevelopement.appsolution.activities.WeatherOverviewActivity;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.listview_adapters.WeatherForecastListAdapter;
 import mfdevelopement.appsolution.models.WeatherData;
+import mfdevelopement.appsolution.models.WeatherForecastSort;
 import mfdevelopement.appsolution.models.WeatherItem;
 
 public class DialogWeatherForecast {
@@ -51,6 +53,9 @@ public class DialogWeatherForecast {
         List<WeatherItem> wd = this.weatherData.getWeatherDaily();
         if (wh != null && !wh.isEmpty()) {weatherForecast.addAll(wh);}
         if (wd != null && !wd.isEmpty()) {weatherForecast.addAll(wd);}
+
+        // sort by time
+        Collections.sort(weatherForecast, new WeatherForecastSort());
 
         // if list is still empty, then no forecast data was loaded
         // in this case do not show the dialog and inform the user
