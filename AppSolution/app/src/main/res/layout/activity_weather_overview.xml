@@ -7,10 +7,25 @@
     tools:context=".activities.WeatherOverviewActivity">
 
     <ListView
-        android:id="@+id/lv_wheater_overview"
+        android:id="@+id/lv_weather_overview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+
+    <TextView
+        android:id="@+id/tv_weather_overview_no_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lv_weather_overview"
+        android:textColor="@color/DarkGray"
+        android:textSize="@dimen/material_text_body1"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingStart="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingTop="@dimen/activity_single_space"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_float_weather_overview_add"

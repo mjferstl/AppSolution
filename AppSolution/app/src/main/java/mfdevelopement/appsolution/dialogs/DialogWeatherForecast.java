@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
@@ -56,6 +57,21 @@ public class DialogWeatherForecast {
 
         // sort by time
         Collections.sort(weatherForecast, new WeatherForecastSort());
+
+        // timestamp in seconds
+        Date date = new Date();
+        long currentTimestamp = date.getTime()/1000;
+
+        // remove items of past times
+        for (int i=0; i<weatherForecast.size(); i++) {
+
+            // remove item, if time is in the past
+            if (weatherForecast.get(i).getTimestamp() < currentTimestamp) {
+                weatherForecast.remove(i);
+                // decrease index as list became shorter
+                i--;
+            }
+        }
 
         // if list is still empty, then no forecast data was loaded
         // in this case do not show the dialog and inform the user

@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,7 @@ import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
 import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
+import mfdevelopement.appsolution.dialogs.DialogWeatherOverviewRemoveCity;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherData;
@@ -39,7 +41,9 @@ import mfdevelopement.appsolution.models.WeatherData;
 public class WeatherOverviewActivity extends AppCompatActivity {
 
     public static String FORECAST = "";
+
     private ListView listView = null;
+    private TextView textView = null;
 
     private List<Integer> cityCodes = new ArrayList<>();
     private List<String> cityNames = new ArrayList<>();
@@ -62,6 +66,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // init button
         initFloatingActionButton();
 
+        // text view
+        textView = findViewById(R.id.tv_weather_overview_no_city);
+
         // load all cities from the resource file in alphabetical order
         initCities();
 
@@ -69,6 +76,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         userCityCodes = loadUserCities();
 
         initListView();
+        updateTextViewEmptyList();
 
         InternetStatus internetStatus = new InternetStatus(this);
         if (internetStatus.isConnected()) {
@@ -77,6 +85,23 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         else {
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
+        }
+    }
+
+    private void updateTextViewEmptyList() {
+
+        Log.d(LOG_TAG,"updateTextViewEmptyList:List userCityCodes.isEmpty() = " + (userCityCodes.isEmpty()) + "; " + userCityCodes.toString());
+
+        if (userCityCodes.isEmpty()) {
+            Log.d(LOG_TAG,"updateTextViewEmptyList: show the text and undisplay the listView");
+            listView.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+            textView.setText(R.string.txt_no_city_selected);
+        }
+        else {
+            Log.d(LOG_TAG,"updateTextViewEmptyList: show the listView and undisplay the text");
+            listView.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
         }
     }
 
@@ -138,6 +163,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
                 Log.i(LOG_TAG,"addCity: " + city);
                 int index = cityNames.indexOf(city);
                 userCityCodes.add(cityCodes.get(index));
+                updateTextViewEmptyList();
                 dialog.dismiss();
                 updateWeatherData();
                 saveUserCities();
@@ -191,7 +217,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
      */
     private void initListView() {
 
-        listView = findViewById(R.id.lv_wheater_overview);
+        listView = findViewById(R.id.lv_weather_overview);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -207,12 +233,20 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 // remove the selected item
                 Log.d(LOG_TAG,"OnItemLongClickListener: selected item " + position + " of weather overview list");
-                allCitiesWeatherData.remove(position);
-                weatherOverviewListAdapter.notifyDataSetChanged();
-                saveUserCities();
+                DialogWeatherOverviewRemoveCity dia = new DialogWeatherOverviewRemoveCity(WeatherOverviewActivity.this, position);
+                dia.show();
                 return true;
             }
         });
+    }
+
+    public void removeCity(int position) {
+        Log.d(LOG_TAG,"removeCity: removing item at position " + position + " from the listView");
+        allCitiesWeatherData.remove(position);
+        userCityCodes.remove(position);
+        weatherOverviewListAdapter.notifyDataSetChanged();
+        saveUserCities();
+        updateTextViewEmptyList();
     }
 
     private void updateWeatherData() {
@@ -240,10 +274,12 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             prefsString = str.substring(0,str.length()-1);
             Log.i(LOG_TAG,"saveUserCitites:" + prefsString);
         }
+        else {Log.d(LOG_TAG,"saveUserCities:no citiy ids to save");}
 
         // save string using SharedPreferences
         prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
     }
+
 
     /**
      * load the saved user specific cities on the phone
@@ -268,6 +304,17 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         return userCityCodes;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveUserCities();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveUserCities();
+    }
 
     /**
      * load the weather data in the background
@@ -332,4 +379,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         return cityIds;
     }
+
+
 }
