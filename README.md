@@ -12,7 +12,7 @@ If you're using the app and you have some ideas for further developement, please
 - mechanical engineering tools
   - calculate reynolds number
   - calculate the dynamic stiffness of some rheological models
-- currency converter
-- plot mesured data of the phone's acceleration seonsors
+- currency converter for many currencies
+- plot measured data of the phone's acceleration seonsors
 - helper for using different scales of clothes sizes (DE,US,UK)
-- weather forecast for many many many german citites
+- weather forecast for many german citites. weather data is fetched from DarkSkyAPI (https://darksky.net/dev)
