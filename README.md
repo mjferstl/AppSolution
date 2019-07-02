@@ -14,5 +14,5 @@ If you're using the app and you have some ideas for further developement, please
   - calculate the dynamic stiffness of some rheological models
 - currency converter
 - plot mesured data of the phone's acceleration seonsors
-- helper for wokring with different scales of clothes sizes (DE,US,UK)
+- helper for using different scales of clothes sizes (DE,US,UK)
 - weather forecast for many many many german citites
