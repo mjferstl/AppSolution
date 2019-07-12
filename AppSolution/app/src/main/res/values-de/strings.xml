@@ -15,7 +15,6 @@
     <string name="maths_hint_width">Länge</string>
     <string name="maths_rectangle_def">Rechteckfläche</string>
     <string name="maths_solution_name">Ergebnis:</string>
-    <string name="meng_txt_waerme">Wärmebehandlung</string>
     <string name="reyn_tube_avg_velocity_hint">mittlere Geschwindigkeit</string>
     <string name="reyn_tube_params_density_hint">Dichte</string>
     <string name="reyn_tube_params_diameter_hint">Rohrdurchmesser</string>
@@ -53,17 +52,10 @@
     <string name="txtv_currency_intro">Eine Internetverbindung ist erforderlich!</string>
     <string name="txtv_currency_to">Zielwährung</string>
     <string name="txtv_sensors_acceleration">Beschleunigung</string>
-    <string name="btd_bib_txt">Bibliothek</string>
-    <string name="btd_unisport_txt">Unisport</string>
-    <string name="title_activity_unisport">Unisport</string>
     <string name="txt_no_internet_connection">Bitte stellen Sie Verbindung zum Internet her.</string>
     <string name="txt_enter_value">Bitte Betrag eingeben</string>
     <string name="txt_connected_mobile">Mit dem Internet (mobil) verbunden.</string>
     <string name="txt_connected_wifi">Mit dem Internet über WLAN verbunden.</string>
-    <string name="txt_regensburger_katalog">Sie sehen die mobile Internetseite des Regensburger Katalogs.</string>
-    <string name="btd_news">Nachrichten</string>
-    <string name="txt_news">Sie sehen die mobile ARD-Text-Internetseite.</string>
-    <string name="title_activity_news">Nachrichten</string>
     <string name="txt_currency_gbp">Britische Pfund</string>
     <string name="txt_currency_inr">Indische Rupien</string>
     <string name="txt_currency_aud">Australische Dollar</string>
@@ -152,7 +144,6 @@
     <string name="tab_text_acceleration">Beschleunigung</string>
     <string name="tab_text_orientation">Orientierung</string>
     <string name="tab_text_free">leer</string>
-    <string name="title_activity_dress_size">Kleidergröße</string>
     <string name="error_gender">Interner Fehler bei Auswahl des Geschlechts</string>
     <string name="error_not_included_yet">Funktion noch nicht fertig eingebunden</string>
     <string name="txt_currency_aed">VAE-Dirham</string>

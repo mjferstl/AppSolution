@@ -95,6 +95,7 @@
     <string name="txt_cocktail_caipirinha_prep">Limette schneiden und ins Glas geben. Zucker zugeben und mit einem Stößel den Saft aus der Limette drücken. Das Glas mit Eis auffüllen und Cachaca darüber geben. Alles sehr gut verrühren.</string>
     <string name="txt_cocktail_mai_tai_prep">Alle Zutaten im Shaker mit einigen Eiswürfeln kurz durchschütteln und in ein zu einem Drittel mit crushed Ice gefülltes Glas abseihen. Garnieren und mit Trinkhalm servieren.</string>
     <string name="txt_cocktail_gin_fizz_prep">Gin, Zitronensaft und Zuckersirup im Shaker mit einigen Eiswürfeln gut schütteln. In ein Glas mit Eiswürfeln abseihen und anschließend mit Sodawasser aufgießen.</string>
+    <string name="txt_cocktail_blanco_43_prep">Den Licor 43 in ein Longdrinkglas mit Eiswürfeln geben. Danach mit Milch aufgießen und umrühren.</string>
 
     <string name="txt_cocktail_alert_msg_not_found">Kein Cocktail gefunden. Kontaktien Sie den Entwickler!</string>
 
@@ -140,7 +141,6 @@
     <!-- Mechanical Engineering-->
     <string name="btd_mechanical_engineering_text">Maschinenbau</string>
     <string name="title_activity_mechanical_engineering">Maschinenbau</string>
-    <string name="meng_txt_waerme">Wärmebehandlung</string>
 
     <!-- Reynoldszahl -->
     <string name="title_activity_reynoldszahl">Reynoldszahl</string>
@@ -178,15 +178,15 @@
     <!--Water - dynamic viscosity-->
     <string name="reyn_uv_water_dynVis_var">&#951; in Pa s</string>
     <string name="reyn_uv_water_title">Wasser</string>
-
     <!--Water - density-->
     <string name="reyn_uv_water_density_var">&#961; in kg/m³</string>
-
     <!--Air - dynamic viscosity-->
     <string name="reyn_uv_air_dynVis_var" translatable="false">&#951; in Pa s</string>
-
     <!--Air - density-->
     <string name="reyn_uv_air_density_var" translatable="false">&#961; in kg/m³</string>
+    <!-- medien -->
+    <string name="reyn_tube_usual_values_air">Luft</string>
+    <string name="reyn_tube_usual_values_water_dynVis">Wasser</string>
 
     <!-- Sensors -->
     <string name="btd_sensors_text">Sensoren</string>
@@ -203,16 +203,13 @@
     <string name="sensors_acc_plot_ylabel">Beschleunigung in m/s²</string>
     <string name="sensors_acc_plot_xlabel">Messung</string>
 
-    <string name="reyn_tube_usual_values_air">Luft</string>
-    <string name="reyn_tube_usual_values_water_dynVis">Wasser</string>
-
     <!-- Greek Symbols -->
     <string name="greek_eta" translatable="false">&#951;</string>
     <string name="greek_nu" translatable="false">&#957;</string>
     <string name="greek_rho" translatable="false">&#961;</string>
 
+    <!-- currency calculator -->
     <string name="title_activity_currency_calculator">Währungsrechner</string>
-
     <string name="txte_currency_value_hint">Betrag</string>
     <string name="btd_currency_converter_text">Umrechner</string>
     <string name="btd_currency_calc">Umrechnen</string>
@@ -222,26 +219,12 @@
     <string name="txtv_currency_to">Zielwährung</string>
     <string name="btd_help">Hilfe</string>
 
-    <!-- Unisport-->
-    <string name="title_activity_unisport">Unisport</string>
-    <string name="btd_unisport_txt">Unisport</string>
-
-    <string name="btd_bib_txt">Bibliothek</string>
-    <string name="title_activity_regensburger_katalog" translatable="false">Regensburger Katalog</string>
-    <string name="txt_regensburger_katalog">Sie sehen die mobile Internetseite des Regensburger Katalogs.</string>
-
-
     <string name="txt_no_internet_connection">Keine Internetverbindung!</string>
     <string name="txt_enter_value">Bitte Betrag eingeben</string>
     <string name="txt_connected_wifi">Mit dem Internet über WLAN verbunden.</string>
     <string name="txt_connected_mobile">Mit dem Internet (mobil) verbunden.</string>
 
     <string name="desc_kangaroo_button" translatable="false">Kangaroo Button</string>
-
-    <string name="btd_news">Nachrichten</string>
-    <string name="title_activity_news">Nachrichten</string>
-    <string name="txt_news">Sie sehen die mobile ARD-Text-Internetseite.</string>
-
 
     <string name="txt_currency_aed">VAE-Dirham</string>
     <string name="txt_currency_afn">Afghanischer Afghani</string>
@@ -330,7 +313,6 @@
     <string name="txt_currency_lrd">Liberianischer Dollar</string>
     <string name="txt_currency_lsl">Lesothischer Loti</string>
     <string name="txt_currency_lyd">Libyscher Dinar</string>
-
     <string name="txt_currency_usd" translatable="false">US Dollar</string>
     <string name="txt_currency_nok">Norwegische Kronen</string>
     <string name="txt_currency_pln">Polnische Zloty</string>
@@ -425,8 +407,6 @@
     <string name="txt_currency_key_lrd" translatable="false">LRD</string>
     <string name="txt_currency_key_lsl" translatable="false">LSL</string>
     <string name="txt_currency_key_lyd" translatable="false">LYD</string>
-
-
     <string name="txt_currency_key_usd" translatable="false">USD</string>
     <string name="txt_currency_key_nok" translatable="false">NOK</string>
     <string name="txt_currency_key_pln" translatable="false">PLN</string>
@@ -460,9 +440,7 @@
     <string name="tab_text_free">Leer</string>
     <string name="action_settings">Einstellungen</string>
 
-    <string name="section_format" translatable="false">Section text. Taken from strings.xml</string>
-
-    <string name="title_activity_dress_size">Konfektionsgrößen</string>
+    <string name="title_activity_clothes_size">Konfektionsgrößen</string>
     <string name="btn_text_shoes">Schuhe</string>
     <string name="btn_text_tops">Oberteile</string>
     <string name="text_men">Herren</string>
@@ -471,9 +449,9 @@
 
     <string name="error_not_included_yet">Funktion noch nicht fertig eingebunden</string>
     <string name="title_activity_internet_radio">Internetradio</string>
-    <string name="title_activity_clothes_size">Konfektionsgrößen</string>
-    <string name="txt_cocktail_blanco_43_prep">Den Licor 43 in ein Longdrinkglas mit Eiswürfeln geben. Danach mit Milch aufgießen und umrühren.</string>
 
+
+    <!-- rheological models -->
     <string name="title_activity_rheological_models">Rheologische Modelle</string>
     <string name="toast_rheological_models_input_error">Geben Sie Werte für Steifigkeit und Dämpfung ein</string>
     <string name="toast_rheological_models_adjust_range">Die maximale Frequenz wurde angepasst</string>
@@ -488,7 +466,7 @@
 
     <!-- weather overview -->
     <string name="title_activity_weather_overview">Wetter - Übersicht</string>
-    <string name="txt_no_city_selected">"Noch keine Daten geladen.\nFügen Sie eine Stadt zur Liste hinzu. "</string>
+    <string name="txt_no_city_selected">"Noch keine Daten geladen.\nFügen Sie eine Stadt zur Liste hinzu."</string>
 
     <!-- weather forecast -->
     <string name="forecast">Vorhersage</string>

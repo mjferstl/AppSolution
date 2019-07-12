@@ -15,7 +15,6 @@
     <string name="maths_hint_width">length</string>
     <string name="maths_rectangle_def">rectangular area</string>
     <string name="maths_solution_name">result:</string>
-    <string name="meng_txt_waerme">Heat treatment</string>
     <string name="reyn_tube_avg_velocity_hint">mean velocity</string>
     <string name="reyn_tube_params_density_hint">density</string>
     <string name="reyn_tube_params_diameter_hint">tube diameter</string>
@@ -53,17 +52,10 @@
     <string name="txtv_currency_intro">A connection to the internet is required!</string>
     <string name="txtv_currency_to">target currency</string>
     <string name="txtv_sensors_acceleration">acceleration</string>
-    <string name="btd_bib_txt">Library</string>
-    <string name="btd_unisport_txt">University Sports</string>
-    <string name="title_activity_unisport">University sports</string>
     <string name="txt_no_internet_connection">Please connect to the internet</string>
     <string name="txt_enter_value">Enter amount, please</string>
     <string name="txt_connected_mobile">Connected to the internet (mobile).</string>
     <string name="txt_connected_wifi">Connected to the internet via WIFI</string>
-    <string name="txt_regensburger_katalog">Here the mobile site of the \"Regensburger Katalog\" is shown.</string>
-    <string name="btd_news">News</string>
-    <string name="txt_news">The mobile site of ARD-Text is shown below.</string>
-    <string name="title_activity_news">News</string>
     <string name="txt_currency_gbp">British Pound</string>
     <string name="txt_currency_inr">Indian Rupee</string>
     <string name="txt_currency_aud">Australian Dollar</string>
@@ -152,7 +144,6 @@
     <string name="tab_text_acceleration">acceleration</string>
     <string name="tab_text_orientation">orientation</string>
     <string name="tab_text_free">empty</string>
-    <string name="title_activity_dress_size">Dress size</string>
     <string name="error_gender">internal error during gender selection</string>
     <string name="error_not_included_yet">function not fully included yet</string>
     <string name="txt_currency_aed">Emirati Dirham</string>
