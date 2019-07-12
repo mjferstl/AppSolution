@@ -1,36 +1,23 @@
 package mfdevelopement.appsolution.activities;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
+import mfdevelopement.appsolution.dialogs.DialogChangeLanguage;
 import mfdevelopement.appsolution.dialogs.DialogExitApp;
 
 public class Main extends AppCompatActivity {
@@ -38,9 +25,6 @@ public class Main extends AppCompatActivity {
     private String appname = "";
     private final String LOG_TAG = "Main";
     private String NotIncludedYet = "";
-
-    private final String SharedPrefsName_Language = "SharedPrefs_userLanguage";
-    private final String USERLANGUAGE = "userLanguage";
 
     private Button btn_language_Ok = null;
 
@@ -50,8 +34,6 @@ public class Main extends AppCompatActivity {
     private List<ImageButton> imageButtonList = new ArrayList<>();
     private List<Class> targetActivities = new ArrayList<>();
 
-    SharedPreferences userLanguage;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +42,10 @@ public class Main extends AppCompatActivity {
         appname = getString(R.string.app_name);
         NotIncludedYet = getString(R.string.error_not_included_yet);
 
-        userLanguage = getSharedPreferences(SharedPrefsName_Language, Context.MODE_PRIVATE);
-        String userLang = userLanguage.getString(USERLANGUAGE,Locale.getDefault().getDisplayLanguage());
-        setLocale(userLang);
+        // set language
+        //ChangeLanguage.loadLanguage(this);
 
+        // initialize buttons
         initButtons();
 
         // Activity title will be updated after the locale has changed in Runtime
@@ -183,7 +165,6 @@ public class Main extends AppCompatActivity {
      * opens a dialog asking the user if he wants to exit the app
      */
     public void onBackPressed(){
-
         DialogExitApp dia = new DialogExitApp(this);
         dia.show();
     }
@@ -208,93 +189,14 @@ public class Main extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_change_language:
-                chooseLanguage();
+                changeLanguage();
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    /**
-     * opens a dialog to change the language of the app
-     */
-    private void chooseLanguage() {
-
-        // custom dialog
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_select_language);
-
-        final RadioGroup rg = dialog.findViewById(R.id.rdgr_select_language);
-        final RadioButton rbLangDE = rg.findViewById(R.id.lang_de);
-        final RadioButton rbLangEN = rg.findViewById(R.id.lang_en);
-
-        btn_language_Ok = dialog.findViewById(R.id.btn_language_ok);
-        btn_language_Ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (rbLangDE.isChecked()) {
-                    setLocale("de");
-                }
-                else if (rbLangEN.isChecked()) {
-                    setLocale("en");
-                }
-
-                dialog.dismiss();
-            }
-        });
-
-        // set radio buttons depending on current language selection
-        String actLang = getResources().getConfiguration().locale.toString();
-        Log.i(LOG_TAG,"chooseLanguage:current language: " + actLang);
-        switch (actLang) {
-            case "de":
-                rbLangDE.setChecked(true);
-                break;
-            case "en":
-                rbLangEN.setChecked(true);
-                break;
-            case "en_US":
-                rbLangEN.setChecked(true);
-        }
-
-        // change the dialog width to 80% of the screen width
-        DisplayData displayData = new DisplayData(this);
-        LinearLayout layout = dialog.findViewById(R.id.select_language_layout);
-        int width = displayData.getWidthPx()*8/10;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
-        layout.setLayoutParams(params);
-
-        // show the dialog
-        dialog.show();
-        Log.d(LOG_TAG,"chooseLanguage:show the dialog");
-    }
-
-    /**
-     * method to change to language of the app
-     * @param lang: string containing the language code
-     */
-    private void setLocale(String lang) {
-        Locale myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1){
-            conf.setLocale(myLocale);
-        } else{
-            conf.locale=myLocale;
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-            getApplicationContext().createConfigurationContext(conf);
-        } else {
-            res.updateConfiguration(conf,dm);
-        }
-
-        SharedPreferences.Editor editor = userLanguage.edit();
-        editor.putString(USERLANGUAGE,lang);
-        editor.apply();
-
-        Log.i(LOG_TAG,"setLocale:Language changed to " + lang);
+    private void changeLanguage(){
+        DialogChangeLanguage dia = new DialogChangeLanguage(this);
+        dia.show();
     }
 }
