@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -35,18 +37,17 @@ import mfdevelopement.appsolution.device.general.DisplayData;
 public class Main extends AppCompatActivity {
 
     private String appname = "";
-    private String LogTag = "";
+    private final String LOG_TAG = "Main";
     private String NotIncludedYet = "";
-    private String languageChoosen = "";
-    private String languageDevice = "";
 
-    private String SharedPrefsName_Language = "SharedPrefs_userLanguage";
-    private String USERLANGUAGE = "userLanguage";
+    private final String SharedPrefsName_Language = "SharedPrefs_userLanguage";
+    private final String USERLANGUAGE = "userLanguage";
 
     private Button btn_language_Ok = null;
 
     private ImageButton btnCocktails, btnMensa, btnGeometry, btnMechEng,
             btnCurrencyConverter, btnSensors, btnLibrary, btnNews, btnDressSize, btnWeather;
+
     private List<ImageButton> imageButtonList = new ArrayList<>();
     private List<Class> targetActivities = new ArrayList<>();
 
@@ -58,7 +59,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         appname = getString(R.string.app_name);
-        LogTag = appname + "/Main";
         NotIncludedYet = getString(R.string.error_not_included_yet);
 
         userLanguage = getSharedPreferences(SharedPrefsName_Language, Context.MODE_PRIVATE);
@@ -66,6 +66,9 @@ public class Main extends AppCompatActivity {
         setLocale(userLang);
 
         initButtons();
+
+        // Activity title will be updated after the locale has changed in Runtime
+        setTitle(R.string.app_name);
     }
 
     /**
@@ -82,7 +85,6 @@ public class Main extends AppCompatActivity {
         btnSensors = findViewById(R.id.btn_main_sensors);
         btnDressSize = findViewById(R.id.btn_main_clothes_size);
         btnWeather = findViewById(R.id.btn_main_weather);
-
 
         // add image buttons and their target activities to lists
         imageButtonList.add(btnCocktails);
@@ -195,10 +197,8 @@ public class Main extends AppCompatActivity {
                         System.exit(1);
                     }
                 })
-
                 .setNegativeButton(R.string.alert_no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                         dialog.cancel();
                     }
                 });
@@ -264,7 +264,7 @@ public class Main extends AppCompatActivity {
 
         // set radio buttons depending on current language selection
         String actLang = getResources().getConfiguration().locale.toString();
-        Log.i(LogTag,"current language: " + actLang);
+        Log.i(LOG_TAG,"chooseLanguage:current language: " + actLang);
         switch (actLang) {
             case "de":
                 rbLangDE.setChecked(true);
@@ -276,7 +276,16 @@ public class Main extends AppCompatActivity {
                 rbLangEN.setChecked(true);
         }
 
+        // change the dialog width to 80% of the screen width
+        DisplayData displayData = new DisplayData(this);
+        LinearLayout layout = dialog.findViewById(R.id.select_language_layout);
+        int width = displayData.getWidthPx()*8/10;
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
+        layout.setLayoutParams(params);
+
+        // show the dialog
         dialog.show();
+        Log.d(LOG_TAG,"chooseLanguage:show the dialog");
     }
 
     /**
@@ -305,6 +314,6 @@ public class Main extends AppCompatActivity {
         editor.putString(USERLANGUAGE,lang);
         editor.apply();
 
-        Log.i(LogTag,"Language changed to " + lang);
+        Log.i(LOG_TAG,"setLocale:Language changed to " + lang);
     }
 }
