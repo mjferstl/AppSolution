@@ -2,7 +2,7 @@ package mfdevelopement.appsolution.models;
 
 import java.util.Locale;
 
-import mfdevelopement.appsolution.helper.DateTimeParser;
+import mfdevelopement.appsolution.parser.DateTimeParser;
 import mfdevelopement.appsolution.parser.DarkSkyParser;
 import mfdevelopement.appsolution.parser.DarkSkyWeatherIconParser;
 

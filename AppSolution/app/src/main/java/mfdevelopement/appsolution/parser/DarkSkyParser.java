@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import mfdevelopement.appsolution.helper.DateTimeParser;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherItem;
 

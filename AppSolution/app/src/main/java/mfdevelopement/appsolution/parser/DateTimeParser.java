@@ -1,4 +1,4 @@
-package mfdevelopement.appsolution.helper;
+package mfdevelopement.appsolution.parser;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
