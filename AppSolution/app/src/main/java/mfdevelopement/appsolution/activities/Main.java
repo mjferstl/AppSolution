@@ -47,9 +47,6 @@ public class Main extends AppCompatActivity {
 
         // initialize buttons
         initButtons();
-
-        // Activity title will be updated after the locale has changed in Runtime
-        setTitle(R.string.app_name);
     }
 
     /**
