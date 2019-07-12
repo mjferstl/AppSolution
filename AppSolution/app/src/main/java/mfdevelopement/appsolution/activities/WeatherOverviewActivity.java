@@ -86,6 +86,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
         }
+
+        // Activity title will be updated after the locale has changed in Runtime
+        setTitle(R.string.title_activity_weather_overview);
     }
 
     private void updateTextViewEmptyList() {
@@ -379,6 +382,4 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         return cityIds;
     }
-
-
 }
