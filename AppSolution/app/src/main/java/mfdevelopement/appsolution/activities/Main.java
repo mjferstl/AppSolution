@@ -1,9 +1,7 @@
 package mfdevelopement.appsolution.activities;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -33,6 +31,7 @@ import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
+import mfdevelopement.appsolution.dialogs.DialogExitApp;
 
 public class Main extends AppCompatActivity {
 
@@ -185,26 +184,8 @@ public class Main extends AppCompatActivity {
      */
     public void onBackPressed(){
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle(R.string.alert_exit_title);
-        alertDialogBuilder
-                .setMessage(R.string.alert_exit)
-                .setCancelable(true)
-                .setPositiveButton(R.string.alert_yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        moveTaskToBack(true);
-                        android.os.Process.killProcess(android.os.Process.myPid());
-                        System.exit(1);
-                    }
-                })
-                .setNegativeButton(R.string.alert_no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        DialogExitApp dia = new DialogExitApp(this);
+        dia.show();
     }
 
     @Override
