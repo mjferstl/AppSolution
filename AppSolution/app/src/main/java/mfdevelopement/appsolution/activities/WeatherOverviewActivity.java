@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -322,16 +323,17 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     /**
      * load the weather data in the background
      */
-    private class loadWeatherData extends AsyncTask<Activity, Void, List<WeatherData>> {
+    private class loadWeatherData extends AsyncTask<Activity, Integer, List<WeatherData>> {
 
         Activity activity;
+        ProgressBar progressBar = findViewById(R.id.pb_weather_overview);
 
         private loadWeatherData(Activity activity) {
             this.activity = activity;
         }
 
         protected void onPreExecute() {
-            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -341,21 +343,29 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             List<Integer> cityIds = getCityIds(allCitiesWeatherData);
             Log.d(LOG_TAG,allCitiesWeatherData.toString());
 
+            int num_cities = userCityCodes.size();
+            int index = 0;
+
             // load data for selected cities
             for (int cityId : userCityCodes) {
 
                 // add element, if it is not in the list
-                Log.d(LOG_TAG,"cityId: " + cityId);
-                Log.d(LOG_TAG,"booelean: " + cityIds.contains(cityId));
                 if (!cityIds.contains(cityId)) {
                     WeatherData wd = new WeatherData();
                     City c = new City(cityId, WeatherOverviewActivity.this);
                     wd.setCity(c);
                     wd.loadWeatherData();
                     allCitiesWeatherData.add(wd);
+
+                    index++;
+                    publishProgress(index/num_cities *100);
                 }
             }
             return allCitiesWeatherData;
+        }
+
+        protected void onProgressUpdate(Integer... values) {
+            progressBar.setProgress(values[0]);
         }
 
         @Override
@@ -364,6 +374,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             saveUserCities();
             weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weatherData);
             listView.setAdapter(weatherOverviewListAdapter);
+            progressBar.setVisibility(View.GONE);
         }
     }
 
