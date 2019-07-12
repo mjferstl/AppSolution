@@ -40,7 +40,7 @@ public class DialogExitApp {
                 })
                 .setNegativeButton(R.string.alert_no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
+                        dialog.dismiss();
                     }
                 });
 

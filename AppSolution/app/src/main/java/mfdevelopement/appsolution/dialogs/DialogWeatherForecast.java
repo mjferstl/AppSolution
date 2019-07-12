@@ -112,13 +112,13 @@ public class DialogWeatherForecast {
         // set title of dialog
         TextView tv_title = dialog.findViewById(R.id.tv_dia_weather_forecast_title);
         String title = selectedCity + " - " + WeatherOverviewActivity.FORECAST;
-        tv_title.setText(title);
-
-        // change the dialog width to 80% of the screen width
+        tv_title.setText(title);// change the dialog width to 80% of the screen width
         LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_forecast);
         int width = displayData.getWidthPx()*8/10;
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
         layout.setLayoutParams(params);
+
+
 
         // show dialog
         dialog.show();
