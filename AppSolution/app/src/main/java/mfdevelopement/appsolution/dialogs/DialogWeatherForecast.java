@@ -118,13 +118,11 @@ public class DialogWeatherForecast {
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
         layout.setLayoutParams(params);
 
-
-
         // show dialog
         dialog.show();
     }
 
-    public void cancel() {
+    private void cancel() {
         if (dialog != null) {dialog.cancel();}
     }
 }
