@@ -8,7 +8,7 @@
         android:showAsAction="collapseActionView|ifRoom"
         android:actionViewClass="android.widget.SearchView" /> -->
     <!-- Settings -->
-        <item android:id="@+id/action_about"
+    <item android:id="@+id/action_about"
         android:title="@string/title_activity_about_screen"
         appsolution:showAsAction="collapseActionView" />
     <item android:id="@+id/action_change_language"

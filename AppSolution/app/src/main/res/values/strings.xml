@@ -118,7 +118,7 @@
     <!-- About -->
     <string name="title_activity_about_screen">Über AppSolution</string>
     <string name="about_text_app_name" translatable="false">AppSolution</string>
-    <string name="about_text_version" translatable="false">Version 2.0.0_alpha</string>
+    <string name="about_text_version" translatable="false">Version 2.0.0_beta</string>
     <string name="about_developer">Entwickelt von Mathias Ferstl</string>
     <string name="about_thanks" translatable="false">Icons made by Freepik from www.flaticon.com</string>
 

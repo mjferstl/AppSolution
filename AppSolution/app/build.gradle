@@ -16,21 +16,25 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "2.0.0_alpha6"
+        versionName "2.0.0_beta"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            shrinkResources false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.AppSolutionSigning
+        }
+        debug {
+            minifyEnabled true
+            shrinkResources true
         }
     }
     useLibrary 'org.apache.http.legacy'
     productFlavors {
     }
     lintOptions {
-        checkReleaseBuilds false
+        checkReleaseBuilds true
         // Or, if you prefer, you can continue to check for errors in release builds,
         // but continue the build even when errors are found:
         abortOnError false
