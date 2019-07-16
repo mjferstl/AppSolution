@@ -9,8 +9,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherItem;
@@ -175,14 +176,23 @@ public class DarkSkyParser {
         WeatherItem weatherItem = new WeatherItem();
 
         long timestamp = Long.valueOf(getJsonValueAsString(weather,"time"));
-        DateTimeParser.getDate(timestamp);
-        Date date = new Date(timestamp);
+
+        // create time zone object
+        TimeZone timezone = TimeZone.getDefault();
+        // checking offset value for date
+        int dt = timezone.getOffset(Calendar.ZONE_OFFSET);
+
         int year = DateTimeParser.getYear(timestamp)-1900;
         int month = DateTimeParser.getMoth(timestamp)-1;
         int day = DateTimeParser.getDay(timestamp);
-        Timestamp ts = new Timestamp(year, month, day, 0, 0, 0, 0);
-        Log.d(LOG_TAG,"parseJsonForecastDaily:timestamp = " + ts.toString());
+        if (dt < 0) {day = day-1; dt = 24-dt;}
+        if (day < 0) {month = month-1;}
+        Timestamp ts = new Timestamp(year, month, day, dt, 0, 0, 0);
+
+        Log.d(LOG_TAG,"parseJsonForecastDaily:timeOffset = " + dt);
+        //long ts = timestamp + dt/1000;
         weatherItem.setTimestamp(ts.getTime()/1000);
+        Log.d(LOG_TAG,"parseJsonForecastDaily:set timestamp: " + ts);
 
         String summary = getJsonValueAsString(weather,"summary");
         weatherItem.setSummary(summary);
