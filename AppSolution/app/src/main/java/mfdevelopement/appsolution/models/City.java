@@ -8,7 +8,7 @@ import java.util.List;
 
 import mfdevelopement.appsolution.R;
 
-public class City {
+public class City extends Object {
 
     private double longitude, latitude;
     private String cityName;

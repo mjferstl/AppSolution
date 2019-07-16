@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -70,9 +73,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // text view
         textView = findViewById(R.id.tv_weather_overview_no_city);
 
-        // load all cities from the resource file in alphabetical order
-        initCities();
-
         // load the cities for the current user
         userCityCodes = loadUserCities();
 
@@ -90,11 +90,12 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         // Activity title will be updated after the locale has changed in Runtime
         setTitle(R.string.title_activity_weather_overview);
+
+        // load all cities from the resource file in alphabetical order
+        new initCities().execute();
     }
 
     private void updateTextViewEmptyList() {
-
-        Log.d(LOG_TAG,"updateTextViewEmptyList:List userCityCodes.isEmpty() = " + (userCityCodes.isEmpty()) + "; " + userCityCodes.toString());
 
         if (userCityCodes.isEmpty()) {
             Log.d(LOG_TAG,"updateTextViewEmptyList: show the text and undisplay the listView");
@@ -123,29 +124,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     /**
-     * load all citites from the resource file and add them alphabetically sorted to a list
-     */
-    private void initCities() {
-        String[] cityItems = getResources().getStringArray(R.array.weatherMapCities);
-        List<String> citiesString = new ArrayList<>(Arrays.asList(cityItems));
-        Collections.sort(citiesString, new Comparator<String>()
-        {
-            @Override
-            public int compare(String text1, String text2)
-            {
-                return text1.compareToIgnoreCase(text2);
-            }
-        });
-
-        for (String item : citiesString) {
-            City c = City.getCityByItem(item);
-            //allCities.add(c);
-            cityNames.add(c.getCityName());
-            cityCodes.add(c.getId());
-        }
-    }
-
-    /**
      * create a dialog containing all available citites
      */
     private void showCitiesList() {
@@ -163,13 +141,13 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String city = adapter.getItem(position);
-                Log.i(LOG_TAG,"addCity: " + city);
-                int index = cityNames.indexOf(city);
+                String strCity = adapter.getItem(position);
+                Log.i(LOG_TAG,"OnCLickListener:add city " + strCity);
+                int index = cityNames.indexOf(strCity);
                 userCityCodes.add(cityCodes.get(index));
                 updateTextViewEmptyList();
                 dialog.dismiss();
-                updateWeatherData();
+                updateWeatherData(new City(userCityCodes.get(userCityCodes.size()-1),WeatherOverviewActivity.this));
                 saveUserCities();
             }
         });
@@ -254,7 +232,49 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     private void updateWeatherData() {
-        new loadWeatherData(this).execute();
+        if (userCityCodes.size() != 0) {
+            List<City> cities = new ArrayList<>(userCityCodes.size());
+            for (int i = 0; i < userCityCodes.size(); i++) {
+                cities.add(new City(userCityCodes.get(i), WeatherOverviewActivity.this));
+            }
+            updateWeatherData(cities);
+        }
+    }
+
+    private void updateWeatherData(City city) {
+        List<City> cities = new ArrayList<>(1);
+        cities.add(city);
+        updateWeatherData(cities);
+    }
+
+    private void updateWeatherData(List<City> cities) {
+        int progress;
+        for (int i=0; i<cities.size(); i++) {
+            progress = i/cities.size()*100;
+            new updateWeatherForCity().execute(cities.get(i), progress);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_weather_overview_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.action_update:
+                updateWeatherData();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
@@ -283,7 +303,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // save string using SharedPreferences
         prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
     }
-
 
     /**
      * load the saved user specific cities on the phone
@@ -323,45 +342,27 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     /**
      * load the weather data in the background
      */
-    private class loadWeatherData extends AsyncTask<Activity, Integer, List<WeatherData>> {
+    private class updateWeatherForCity extends AsyncTask<Object, Integer, WeatherData> {
 
-        Activity activity;
-        ProgressBar progressBar = findViewById(R.id.pb_weather_overview);
-
-        private loadWeatherData(Activity activity) {
-            this.activity = activity;
-        }
+        final ProgressBar progressBar = findViewById(R.id.pb_weather_overview);
 
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected List<WeatherData> doInBackground(Activity ... strings) {
+        protected WeatherData doInBackground(Object ... objects) {
 
-            // get all ids of current selected cities
-            List<Integer> cityIds = getCityIds(allCitiesWeatherData);
-            Log.d(LOG_TAG,allCitiesWeatherData.toString());
+            City c = (City) objects[0];
+            int progress = (int) objects[1];
 
-            int num_cities = userCityCodes.size();
-            int index = 0;
+            Log.d(LOG_TAG,"updateWeatherData: load weather data for city " + c.getCityName());
 
-            // load data for selected cities
-            for (int cityId : userCityCodes) {
+            WeatherData wd = new WeatherData(c);
+            wd.loadWeatherData();
+            publishProgress(progress);
 
-                // add element, if it is not in the list
-                if (!cityIds.contains(cityId)) {
-                    WeatherData wd = new WeatherData();
-                    City c = new City(cityId, WeatherOverviewActivity.this);
-                    wd.setCity(c);
-                    wd.loadWeatherData();
-                    allCitiesWeatherData.add(wd);
-
-                    index++;
-                    publishProgress(index/num_cities *100);
-                }
-            }
-            return allCitiesWeatherData;
+            return wd;
         }
 
         protected void onProgressUpdate(Integer... values) {
@@ -369,10 +370,26 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(List<WeatherData> weatherData) {
+        protected void onPostExecute(WeatherData weatherData) {
             //
-            saveUserCities();
-            weatherOverviewListAdapter =  new WeatherOverviewListAdapter(activity, weatherData);
+            boolean isInList = false;
+            int index = 0;
+            for (int i=0; i<allCitiesWeatherData.size(); i++) {
+                if (allCitiesWeatherData.get(i).getCity().getId() == weatherData.getCity().getId()) {
+                    isInList = true;
+                    index = i;
+                    break;
+                }
+            }
+
+            if (isInList) {
+                allCitiesWeatherData.set(index, weatherData);
+            } else {
+                allCitiesWeatherData.add(weatherData);
+                saveUserCities();
+            }
+
+            weatherOverviewListAdapter =  new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
             listView.setAdapter(weatherOverviewListAdapter);
             progressBar.setVisibility(View.GONE);
         }
@@ -380,8 +397,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     /**
      * get the ids of all cities in a list
-     * @param weatherDataList: List containing objects of class Weather
-     * @return cityIds: list containing the city ids
+     * @param weatherDataList: List containing objects of class WeatherData
+     * @return cityIds: list containing the city ids as Integer values
      */
     private List<Integer> getCityIds(List<WeatherData> weatherDataList) {
 
@@ -392,5 +409,49 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         }
 
         return cityIds;
+    }
+
+    /**
+     * load all citites from the resource file and add them alphabetically sorted to a list
+     */
+    private class initCities extends AsyncTask<Activity, Void, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            Log.d(LOG_TAG,"initCities:start to load all cities from the res-file");
+        }
+
+        @Override
+        protected Boolean doInBackground(Activity... activities) {
+
+            String[] cityItems = getResources().getStringArray(R.array.weatherMapCities);
+            List<String> citiesString = new ArrayList<>(Arrays.asList(cityItems));
+            Collections.sort(citiesString, new Comparator<String>()
+            {
+                @Override
+                public int compare(String text1, String text2)
+                {
+                    return text1.compareToIgnoreCase(text2);
+                }
+            });
+
+            for (String item : citiesString) {
+                City c = City.getCityByItem(item);
+                //allCities.add(c);
+                cityNames.add(c.getCityName());
+                cityCodes.add(c.getId());
+            }
+
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                Log.d(LOG_TAG, "initCities:finished loading citites");
+            } else {
+                Log.e(LOG_TAG,"initCities:failed");
+            }
+        }
     }
 }
