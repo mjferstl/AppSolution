@@ -19,6 +19,7 @@ import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.dialogs.DialogChangeLanguage;
 import mfdevelopement.appsolution.dialogs.DialogExitApp;
+import mfdevelopement.appsolution.helper.ChangeLanguage;
 
 public class Main extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class Main extends AppCompatActivity {
         NotIncludedYet = getString(R.string.error_not_included_yet);
 
         // set language
-        //ChangeLanguage.loadLanguage(this);
+        ChangeLanguage.loadLanguage(this);
 
         // initialize buttons
         initButtons();

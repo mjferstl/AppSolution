@@ -20,14 +20,22 @@ public class ChangeLanguage {
 
     private static SharedPreferences sharedPrefs;
 
+    /**
+     * load language from the SharedPreferences and set it
+     * @param context: Context of the calling class
+     */
     public static void loadLanguage(Context context) {
         sharedPrefs = context.getSharedPreferences(SharedPrefsName, Context.MODE_PRIVATE);
         String userLang = sharedPrefs.getString(KEY_USER_LANGUAGE, Locale.getDefault().getDisplayLanguage());
-        setLanguage(context,userLang);
+        changeLanguage(context,new Locale(userLang));
     }
 
-    private static void setLanguage(Context context,Locale locale) {
-
+    /**
+     * change the app's language
+     * @param context: context of the calling class
+     * @param locale: the desired locale to be set
+     */
+    private static void changeLanguage(Context context, Locale locale) {
         Resources res = context.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
@@ -43,26 +51,45 @@ public class ChangeLanguage {
         } else {
             res.updateConfiguration(conf,dm);
         }
-
-        // recreate the activity to make the changes take effect
-        recreateActivity(context);
     }
 
+    /**
+     * save the user's language selection to a SharedPreferences
+     * @param context: context of the calling class
+     * @param locale: selected locale
+     */
+    private static void saveUserLanguage(Context context, Locale locale) {
+        sharedPrefs = context.getSharedPreferences(SharedPrefsName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString(KEY_USER_LANGUAGE,locale.toString());
+        editor.apply();
+        Log.d(LOG_TAG,"saveUserLangguage:Language changed to " + locale.toString());
+    }
+
+    /**
+     * recreate app to make the cahnges take effect on all sub-activities immideately
+     * @param context: context of the calling class
+     */
     private static void recreateActivity(Context context) {
         Intent intent = new Intent(context,context.getClass());
         ((Activity) context).finish();
         context.startActivity(intent);
+        Log.i(LOG_TAG,"recreateActivity:recreating activity due to language change");
     }
 
+    /**
+     * method to be called from outside this class
+     * @param context: context of the calling class
+     * @param language: language as string as a result of Locale.toString()
+     */
     public static void setLanguage(Context context,String language){
         Locale myLocale = new Locale(language);
-        setLanguage(context,myLocale);
+        Locale loc = Locale.getDefault();
 
-        sharedPrefs = context.getSharedPreferences(SharedPrefsName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.putString(KEY_USER_LANGUAGE,language);
-        editor.apply();
+        if (myLocale.toString().equals(loc.toString())) {return;}
 
-        Log.i(LOG_TAG,"setLocale:Language changed to " + language);
+        changeLanguage(context,myLocale);
+        saveUserLanguage(context,myLocale);
+        recreateActivity(context);
     }
 }
