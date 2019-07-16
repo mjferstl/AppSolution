@@ -1,7 +1,5 @@
 package mfdevelopement.appsolution.models;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -107,9 +105,6 @@ public class WeatherData {
     }
 
     private String createDescription() {
-
-        Log.d("test","createDescription:element " + this.getCity().getCityName());
-        Log.d("test","createDescription:temperature = " +weatherCurrently.getTemperature());
 
         Locale loc = Locale.getDefault();
         String d = String.format(loc, "%.1f", weatherCurrently.getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE +
