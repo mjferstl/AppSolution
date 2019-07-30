@@ -7,9 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -22,12 +21,12 @@ public class DarkSkyParser {
     private static final String DARK_SKY_KEY = "ee9e68f241a728afe8a9747fe657042e";
     private static final String DARK_SKY_RESPONSE_SETTINGS = "?units=si&lang=de";
 
-    private static final String LOG_TAG = "DarkSkyParser";
-
-    private String jsonResponse = "";
-
     public static final String UNIT_WIND_SPEED = "m/s";
     public static final String UNIT_TEMPERATURE = "°C";
+
+    private static final String LOG_TAG = "DarkSkyParser";
+
+    private String jsonResponse;
 
     private City city;
 
@@ -36,13 +35,13 @@ public class DarkSkyParser {
         this.jsonResponse = fetchJsonWeather();
     }
 
-    public String fetchJsonWeather() {
+    private String fetchJsonWeather() {
 
         if (this.city == null) {return "";}
 
         // create url containing the cityId
         String url = URL_PART_1 + DARK_SKY_KEY + "/" + this.city.getLatitude() + "," + this.city.getLongitude() + DARK_SKY_RESPONSE_SETTINGS;
-        Log.d(LOG_TAG,"fetchJsonWeather:url="+url);
+        //Log.d(LOG_TAG,"fetchJsonWeather:url="+url);
 
         // get the response in json format
         JsonParser jsonParser = new JsonParser();
@@ -56,13 +55,6 @@ public class DarkSkyParser {
         }
 
         return response;
-    }
-
-    public static WeatherItem parseWeather(City city) {
-
-        WeatherItem weatherItem = new WeatherItem();
-
-        return weatherItem;
     }
 
     private WeatherItem loadCurrentWeather() {
@@ -146,8 +138,8 @@ public class DarkSkyParser {
 
         WeatherItem weatherItem = new WeatherItem();
 
-        long timestamp = Long.valueOf(getJsonValueAsString(weather,"time"));
-        weatherItem.setTimestamp(timestamp);
+        long timestampUtc = Long.valueOf(getJsonValueAsString(weather,"time"));
+        weatherItem.setTimestamp_utc(timestampUtc);
 
         String summary = getJsonValueAsString(weather,"summary");
         weatherItem.setSummary(summary);
@@ -171,28 +163,21 @@ public class DarkSkyParser {
         return weatherItem;
     }
 
+    /**
+     * parse the daily forecast data using the response of DarkSkyAPI converted to JSON format
+     * @param weather: JSONObject of daily forecase containing the following strings/fields:
+     *              'time', 'summary', 'icon', ''precipProbability', 'temperatureHigh',
+     *              'temperatureLow', 'windSpeed', ''humidity
+     * @return object of class WeatherItem
+     */
     private static WeatherItem parseJsonForecastDaily(JSONObject weather) {
 
         WeatherItem weatherItem = new WeatherItem();
 
-        long timestamp = Long.valueOf(getJsonValueAsString(weather,"time"));
+        long timestamp_utc = Long.valueOf(getJsonValueAsString(weather,"time"));
 
-        // create time zone object
-        TimeZone timezone = TimeZone.getDefault();
-        // checking offset value for date
-        int dt = timezone.getOffset(Calendar.ZONE_OFFSET);
-
-        int year = DateTimeParser.getYear(timestamp)-1900;
-        int month = DateTimeParser.getMoth(timestamp)-1;
-        int day = DateTimeParser.getDay(timestamp);
-        if (dt < 0) {day = day-1; dt = 24-dt;}
-        if (day < 0) {month = month-1;}
-        Timestamp ts = new Timestamp(year, month, day, dt, 0, 0, 0);
-
-        Log.d(LOG_TAG,"parseJsonForecastDaily:timeOffset = " + dt);
         //long ts = timestamp + dt/1000;
-        weatherItem.setTimestamp(ts.getTime()/1000);
-        Log.d(LOG_TAG,"parseJsonForecastDaily:set timestamp: " + ts);
+        weatherItem.setTimestamp_utc(timestamp_utc);
 
         String summary = getJsonValueAsString(weather,"summary");
         weatherItem.setSummary(summary);
@@ -218,9 +203,15 @@ public class DarkSkyParser {
         return weatherItem;
     }
 
-    private static String getJsonValueAsString(JSONObject jsonObject, String string) {
+    /**
+     * get the content of an element in a JSONOBject defined by the elementName as string
+     * @param jsonObject: JSONObject containing an element with the name defined in elementName
+     * @param elementName: string contining the JSONObjects element name to be fetched
+     * @return string contaning the JSONObject elements content
+     */
+    private static String getJsonValueAsString(JSONObject jsonObject, String elementName) {
         try {
-            return jsonObject.get(string).toString();
+            return jsonObject.get(elementName).toString();
         } catch (JSONException e) {
             Log.e(LOG_TAG,jsonObject.toString() + "could not be converted to string");
             return "";
@@ -237,5 +228,13 @@ public class DarkSkyParser {
 
     public List<WeatherItem> getDailyForecast() {
         return loadDailyWeather();
+    }
+
+    private static long convertTimestampToTimezone(long timestamp) {
+        // create time zone object
+        TimeZone timezone = TimeZone.getDefault();
+        // checking offset value for date in seconds
+        long dt = timezone.getOffset(new Date().getTime()) / 1000;
+        return timestamp + dt;
     }
 }

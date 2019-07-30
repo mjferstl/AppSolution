@@ -60,13 +60,13 @@ public class DialogWeatherForecast {
 
         // timestamp in seconds
         Date date = new Date();
-        long currentTimestamp = date.getTime()/1000;
+        long currentTimestampUtc = date.getTime()/1000;
 
         // remove items of past times
         for (int i=0; i<weatherForecast.size(); i++) {
 
-            // remove item, if time is in the past
-            if (weatherForecast.get(i).getTimestamp() < currentTimestamp) {
+            // remove items containing data which is over 30 minutes outdated
+            if (weatherForecast.get(i).getTimestampUtc() < currentTimestampUtc + 30*60) {
                 weatherForecast.remove(i);
                 // decrease index as list became shorter
                 i--;

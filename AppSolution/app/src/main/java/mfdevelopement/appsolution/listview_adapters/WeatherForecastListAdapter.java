@@ -43,8 +43,8 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherItem> {
          ImageView icon = view.findViewById(R.id.img_weather_forecast_icon);
 
          // if forecast contains no time, then show error message
-         if (currentWeatherItem.getTime() != null) {
-             time.setText(currentWeatherItem.getTime());
+         if (currentWeatherItem.getLocalTime() != null) {
+             time.setText(currentWeatherItem.getLocalTime());
 
              // show separator, if it's the first time of this day
              String currentDate = currentWeatherItem.getDateDayname();
@@ -53,7 +53,7 @@ public class WeatherForecastListAdapter extends ArrayAdapter<WeatherItem> {
              if (position > 0) {
                  itemBefore = getItem(position-1);
              }
-             if (itemBefore.getDate() != null && !itemBefore.getDateDayname().equals(currentDate)) {
+             if (itemBefore.getLocalDate() != null && !itemBefore.getDateDayname().equals(currentDate)) {
                 separator.setVisibility(View.VISIBLE);
              }
              else {

@@ -10,7 +10,7 @@ public class WeatherItem {
 
     private String summary;
     private int imageID, precipProbabilityPercent;
-    private long timestamp;
+    private long timestamp_utc;
     private Double temperature, temperatureHigh, temperatureLow;
     private double windSpeed, humidity;
 
@@ -52,24 +52,24 @@ public class WeatherItem {
         else {this.precipProbabilityPercent = precipProbabilityPercent;}
     }
 
-    public long getTimestamp() {
-        return timestamp;
+    public long getTimestampUtc() {
+        return timestamp_utc;
     }
 
-    public String getTime() {
-        return DateTimeParser.getHoursMinutes(this.timestamp);
+    public String getLocalTime() {
+        return DateTimeParser.getHoursMinutes(this.timestamp_utc);
     }
 
-    public String getDate() {
-        return DateTimeParser.getDate(this.timestamp);
+    public String getLocalDate() {
+        return DateTimeParser.getDate(this.timestamp_utc);
     }
 
     public String getDateDayname() {
-        return DateTimeParser.getDateDayname(this.timestamp);
+        return DateTimeParser.getDateDayname(this.timestamp_utc);
     }
 
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
+    public void setTimestamp_utc(long timestamp_utc) {
+        this.timestamp_utc = timestamp_utc;
     }
 
     public Double getTemperature() {

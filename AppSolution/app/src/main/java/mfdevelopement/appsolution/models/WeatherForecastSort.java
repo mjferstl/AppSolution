@@ -15,7 +15,7 @@ public class WeatherForecastSort implements Comparator<WeatherItem> {
      */
     @Override
     public int compare(WeatherItem w1, WeatherItem w2) {
-        int res = String.valueOf(w1.getTimestamp()).compareTo(String.valueOf(w2.getTimestamp()));
+        int res = String.valueOf(w1.getTimestampUtc()).compareTo(String.valueOf(w2.getTimestampUtc()));
         if (res == 0) {
             if (w1.getTemperature() == null) {res = -1;}
             else if (w2.getTemperature() == null) {res = 1;}

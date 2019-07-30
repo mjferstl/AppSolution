@@ -4,23 +4,21 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class DateTimeParser {
 
-    private static String getDateCurrentTimeZone(long timestamp, String dateFormat) {
+    private final String LOG_TAG = "DateTimeParser";
+
+    private static String getDateCurrentTimeZone(long timestampUtc, String dateFormat) {
         try {
             Calendar calendar = Calendar.getInstance();
-            TimeZone tz = TimeZone.getDefault();
-            calendar.setTimeInMillis(timestamp * 1000);
-            calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.getTimeInMillis()));
+            calendar.setTimeInMillis(timestampUtc * 1000);
             SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.getDefault());
-            Date currentTimeZone = calendar.getTime();
-            return sdf.format(currentTimeZone);
+            return sdf.format(new Date(timestampUtc*1000));
         } catch (Exception e) {
             e.printStackTrace();
+            return "";
         }
-        return "";
     }
 
     public static String getHoursMinutes(long timestamp) {
