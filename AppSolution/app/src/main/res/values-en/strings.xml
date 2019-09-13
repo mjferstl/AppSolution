@@ -267,4 +267,5 @@
     <string name="no_internet_connection_text">Please connect to the internet</string>
     <string name="txt_no_city_selected">There\'s nothing to display.\nAdd a city to the list.</string>
     <string name="btn_remove_city">remove city</string>
+    <string name="txt_title_bundesliga_table">Bundesliga - table</string>
 </resources>

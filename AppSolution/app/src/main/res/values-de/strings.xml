@@ -267,4 +267,5 @@
     <string name="no_internet_connection_text">Bitte stellen Sie Verbindung zum Internet her.</string>
     <string name="txt_no_city_selected">"Noch keine Daten geladen.\nFügen Sie eine Stadt zur Liste hinzu. "</string>
     <string name="btn_remove_city">Stadt entfernen</string>
+    <string name="txt_title_bundesliga_table">Bundesliga - Tabelle</string>
 </resources>

@@ -38,6 +38,7 @@ public class AboutIcons extends AppCompatActivity {
         icons.add(new Icon("Icon made by Anton Saputro from www.flaticon.com is licensed by CC 3.0 BY",R.drawable.ic_shirt));
         icons.add(new Icon("Icon made by Freepik from www.flaticon.com is licensed by CC 3.0 BY",R.drawable.ic_img_kangaroo_orange));
         icons.add(new Icon("Icon made by Smashicons from www.flaticon.com is licensed by CC 3.0 BY",R.drawable.ic_coordinates));
+        icons.add(new Icon("Icon made by Freepik from www.flaticon.com is licensed by CC 3.0 BY",R.drawable.ic_football));
 
         /*
         Die ListView befuellen

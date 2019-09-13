@@ -15,7 +15,7 @@
             <ImageButton
                 android:id="@+id/btn_main_cocktails"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
@@ -28,7 +28,7 @@
             <ImageButton
                 android:id="@+id/btn_main_mensa"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/main_imgBtd_right_padding_left"
@@ -42,7 +42,7 @@
         <TableRow>
             <ImageButton
                 android:id="@+id/btn_main_geometry_calculator"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:scaleType="fitXY"
@@ -56,7 +56,7 @@
 
             <ImageButton
                 android:id="@+id/btn_main_mechanical_engineering"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:layout_weight="1"
                 android:layout_marginLeft="@dimen/main_imgBtd_right_padding_left"
@@ -70,7 +70,7 @@
         <TableRow>
             <ImageButton
                 android:id="@+id/btn_main_currency_converter"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:scaleType="fitXY"
@@ -83,7 +83,7 @@
 
             <ImageButton
                 android:id="@+id/btn_main_sensors"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:layout_marginLeft="@dimen/main_imgBtd_right_padding_left"
@@ -97,7 +97,7 @@
         <TableRow>
             <ImageButton
                 android:id="@+id/btn_main_clothes_size"
-                android:layout_width="0pt"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/main_imgBtd_height"
                 android:layout_marginLeft="@dimen/main_imgBtd_left_padding_left"
@@ -121,6 +121,35 @@
                 android:fitsSystemWindows="false"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_wi_day_sunny" />
+
+        </TableRow>
+
+        <TableRow>
+            <ImageButton
+                android:id="@+id/btn_bundesliga"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/main_imgBtd_height"
+                android:layout_marginLeft="@dimen/main_imgBtd_left_padding_left"
+                android:layout_marginRight="@dimen/main_imgBtd_left_padding_right"
+                android:layout_marginEnd="@dimen/main_imgBtd_left_padding_right"
+                android:layout_marginStart="@dimen/main_imgBtd_left_padding_left"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_football"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            <ImageButton
+                android:id="@+id/btn_placeholder"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/main_imgBtd_height"
+                android:layout_marginLeft="@dimen/main_imgBtd_right_padding_left"
+                android:layout_marginRight="@dimen/main_imgBtd_right_padding_right"
+                android:layout_marginStart="@dimen/main_imgBtd_right_padding_left"
+                android:layout_marginEnd="@dimen/main_imgBtd_right_padding_right"
+                android:layout_weight="1"
+                android:fitsSystemWindows="false"
+                android:scaleType="fitXY" />
 
         </TableRow>
 

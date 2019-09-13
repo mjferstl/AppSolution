@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import mfdevelopement.appsolution.BundesligaActivity;
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.dialogs.DialogChangeLanguage;
@@ -30,7 +31,7 @@ public class Main extends AppCompatActivity {
     private Button btn_language_Ok = null;
 
     private ImageButton btnCocktails, btnMensa, btnGeometry, btnMechEng,
-            btnCurrencyConverter, btnSensors, btnLibrary, btnNews, btnDressSize, btnWeather;
+            btnCurrencyConverter, btnSensors, btnDressSize, btnWeather, btnBundesliga;
 
     private List<ImageButton> imageButtonList = new ArrayList<>();
     private List<Class> targetActivities = new ArrayList<>();
@@ -64,6 +65,7 @@ public class Main extends AppCompatActivity {
         btnSensors = findViewById(R.id.btn_main_sensors);
         btnDressSize = findViewById(R.id.btn_main_clothes_size);
         btnWeather = findViewById(R.id.btn_main_weather);
+        btnBundesliga = findViewById(R.id.btn_bundesliga);
 
         // add image buttons and their target activities to lists
         imageButtonList.add(btnCocktails);
@@ -90,6 +92,9 @@ public class Main extends AppCompatActivity {
         imageButtonList.add(btnWeather);
         targetActivities.add(WeatherOverviewActivity.class);
 
+        imageButtonList.add(btnBundesliga);
+        targetActivities.add(BundesligaActivity.class);
+
         // set all onClickListeners
         for (int i=0; i<imageButtonList.size(); i++) {
 
@@ -113,7 +118,9 @@ public class Main extends AppCompatActivity {
             }
         }
 
-        changeButtonsSize();
+        // TODO: the method changeButtonSize() produced unexpected behaviour when a 5th row is added to the table
+        // therefore it is currently not used
+        //changeButtonsSize();
     }
 
     private void changeButtonsSize() {
