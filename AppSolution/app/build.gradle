@@ -16,7 +16,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "2.0.0_beta"
+        versionName "2.0.1"
     }
     buildTypes {
         release {
@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.pkmmte.pkrss:pkrss:1.2'
     implementation 'com.squareup.okhttp:okhttp:2.7.5'
     implementation 'com.squareup.okhttp:okhttp-urlconnection:2.7.5'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }
 
 allprojects {
