@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import mfdevelopement.appsolution.BundesligaActivity;
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.dialogs.DialogChangeLanguage;

@@ -11,10 +11,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".BundesligaActivity"
+            android:name=".activities.BundesligaActivity"
             android:label="@string/title_activity_bundesliga"
-            android:parentActivityName=".activities.Main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.Main">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="mfdevelopement.appsolution.activities.Main" />

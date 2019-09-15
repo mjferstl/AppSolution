@@ -1,29 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BundesligaActivity">
+    android:orientation="vertical"
+    android:paddingRight="@dimen/activity_single_space"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingLeft="@dimen/activity_single_space"
+    android:paddingStart="@dimen/activity_single_space"
+    android:paddingTop="@dimen/activity_single_space"
+    tools:context=".activities.AboutIcons">
 
-    <android.support.design.widget.AppBarLayout
+    <TextView
+        android:id="@+id/txtv_bundesliga_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:paddingTop="@dimen/activity_single_space"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:paddingBottom="@dimen/activity_double_space"
+        android:text="@string/txt_title_bundesliga_table"
+        android:textColor="@color/colorTextPrimaryLight"
+        android:textSize="@dimen/material_text_title"
+        app:layout_constraintBottom_toTopOf="@+id/lin_lay_bundesliga_table_headers"
+        app:layout_constraintEnd_toEndOf="@+id/lin_lay_bundesliga_table_headers">
+    </TextView>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_bundesliga"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <ProgressBar
+        android:id="@+id/progBar_bundesliga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_title">
+    </ProgressBar>
 
-    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_table_headers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/activity_single_space"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <include layout="@layout/content_bundesliga"
-        app:layout_anchor="@id/toolbar_bundesliga"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="P"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight">
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="14"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight"
+            android:text="Team"
+            android:paddingLeft="@dimen/activity_single_space"
+            android:paddingStart="@dimen/activity_single_space"
+            android:paddingRight="@dimen/activity_single_space"
+            android:paddingEnd="@dimen/activity_single_space">
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight"
+            android:layout_gravity="center_horizontal"
+            android:text="S">
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight"
+            android:layout_gravity="center_horizontal"
+            android:text="Tore">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight"
+            android:layout_gravity="center_horizontal"
+            android:text="Pkt">
+        </TextView>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_bundesliga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_table_headers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:paddingBottom="80dp">
+    </ListView>
+
+    <!--<include layout="@layout/content_bundesliga"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>
