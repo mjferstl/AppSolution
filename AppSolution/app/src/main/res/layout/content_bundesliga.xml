@@ -8,10 +8,10 @@
     android:layout_height="match_parent"
     android:paddingStart="@dimen/activity_single_space"
     android:paddingLeft="@dimen/activity_single_space"
-    android:paddingEnd="0dp"
-    android:paddingRight="0dp"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingRight="@dimen/activity_single_space"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".BundesligaActivity"
+    tools:context=".activities.BundesligaActivity"
     tools:showIn="@layout/activity_bundesliga">
 
     <TextView
@@ -19,15 +19,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_single_space"
+        android:layout_marginTop="?attr/actionBarSize"
         android:paddingStart="@dimen/activity_single_space"
         android:paddingLeft="@dimen/activity_single_space"
         android:paddingEnd="0dp"
         android:paddingRight="0dp"
+        android:paddingBottom="@dimen/activity_double_space"
         android:text="@string/txt_title_bundesliga_table"
         android:textColor="@color/black"
         android:textSize="@dimen/material_text_title"
-        app:layout_constraintBottom_toTopOf="@+id/lstv_bundesliga"
-        app:layout_constraintEnd_toEndOf="@+id/lstv_bundesliga"
+        app:layout_constraintBottom_toTopOf="@+id/lv_bundesliga"
+        app:layout_constraintEnd_toEndOf="@+id/lv_bundesliga"
         app:layout_constraintStart_toStartOf="@id/layConst_Bundesliga"
         app:layout_constraintTop_toTopOf="@id/layConst_Bundesliga">
     </TextView>
@@ -44,7 +46,7 @@
     </ProgressBar>
 
     <ListView
-        android:id="@+id/lstv_bundesliga"
+        android:id="@+id/lv_bundesliga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/layConst_Bundesliga"

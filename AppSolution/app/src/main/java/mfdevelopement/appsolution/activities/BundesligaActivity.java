@@ -8,13 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.status.InternetStatus;
+import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
 import mfdevelopement.appsolution.listview_adapters.BundesligaTableListAdapter;
 import mfdevelopement.bundesliga.Bundesliga;
 import mfdevelopement.bundesliga.FootballTeam;
@@ -50,27 +50,36 @@ public class BundesligaActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG,LOG_TAG + " startet successfully");
 
-        // start asny task to load bundesliga data
-        new LoadBundesligaData(this).execute();
+        // check, if device is connected to the internet
+        // if true, then load Bundesliga data
+        // else show a diaog
+        InternetStatus internetStatus = new InternetStatus(this);
+        if (internetStatus.isConnected()) {
+            // start async task to load bundesliga data
+            new LoadBundesligaData(this).execute();
+        }
+        else {
+            DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
+            dia.show();
+        }
     }
 
 
+    /**
+     * Asnyc task for loading Bundesliga data from https://www.openligadb.de
+     */
     private static class LoadBundesligaData extends AsyncTask<Void, Integer, Bundesliga> {
 
         private WeakReference<BundesligaActivity> activityReference;
-        private TextView txtv_bundesliga_table_title;
 
         // only retain a weak reference to the activity
         LoadBundesligaData(BundesligaActivity context) {
             activityReference = new WeakReference<>(context);
-            txtv_bundesliga_table_title = activityReference.get().findViewById(R.id.txtv_bundesliga_title);
         }
 
         protected void onPreExecute() {
             Log.d(LOG_TAG,"Async Task LoadBundesligaData startet");
             progressBar.setVisibility(View.VISIBLE);
-
-            InternetStatus internetStatus = new InternetStatus(activityReference.get());
         }
 
         @Override
@@ -96,16 +105,16 @@ public class BundesligaActivity extends AppCompatActivity {
 
             Log.i(LOG_TAG,"Bundesliga data loaded successfully");
 
-            List<FootballTeam> footballTeamsList = bundesliga.getTable();
-
+            // return, if parent activity is not running anymore
             BundesligaActivity activity = activityReference.get();
             if (activity == null || activity.isFinishing()) return;
 
             // change margin of bundesliga table title
             ConstraintLayout.LayoutParams llp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
             llp.setMargins(0, 40, 0, 0); // (left, top, right, bottom)
-            //txtv_bundesliga_table_title.setLayoutParams(llp);
 
+            // update listview and hide progress bar
+            List<FootballTeam> footballTeamsList = bundesliga.getTable();
             BundesligaTableListAdapter bundesligaTableListAdapter = new BundesligaTableListAdapter(activity, footballTeamsList);
             lv_bundesliga.setAdapter(bundesligaTableListAdapter);
             progressBar.setVisibility(View.GONE);

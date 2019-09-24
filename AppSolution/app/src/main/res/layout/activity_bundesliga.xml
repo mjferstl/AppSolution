@@ -86,7 +86,6 @@
             android:textColor="@color/colorTextPrimaryLight"
             android:layout_gravity="center_horizontal"
             android:text="Tore">
-
         </TextView>
 
         <TextView

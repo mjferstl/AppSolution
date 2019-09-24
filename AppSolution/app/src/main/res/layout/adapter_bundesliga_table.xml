@@ -21,7 +21,7 @@
         android:id="@+id/img_bundesliga_table_teamicon"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
         android:layout_marginLeft="@dimen/activity_single_space"
         android:layout_marginStart="@dimen/activity_single_space"
         android:layout_marginEnd="@dimen/activity_single_space"
