@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ViewFlipper;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.tabs.TabClothesSizeShoes;
@@ -28,14 +27,6 @@ public class ClothesSize extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-    private ViewFlipper vf1;
-    private ViewFlipper vf2;
-    private TabLayout tabLayout;
 
     private String LogTag;
     private String appname;
@@ -62,16 +53,14 @@ public class ClothesSize extends AppCompatActivity {
         }
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = findViewById(R.id.container);
+        // The {@link ViewPager} that will host the section contents.
+        ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-        vf1 = findViewById(R.id.clothesSize_shoes_flipper);
-        vf2 = findViewById(R.id.clothesSize_tops_flipper);
 
         appname = getString(R.string.app_name);
         LogTag = appname + "/ClothesSize";
@@ -79,7 +68,6 @@ public class ClothesSize extends AppCompatActivity {
         this.getSupportActionBar().setElevation(0);
 
         Log.i(LogTag,"activity startet successfully");
-
     }
 
     @Override
@@ -103,8 +91,6 @@ public class ClothesSize extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    // deleted PlaceholderFragment
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
