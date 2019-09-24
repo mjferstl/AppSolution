@@ -31,7 +31,7 @@ public class BundesligaTableListAdapter extends ArrayAdapter<FootballTeam> {
 
         FootballTeam currentTeam = getItem(position);
 
-        Log.d(LOG_TAG,"adding team " + position+1 + " to bundesliga table");
+        Log.d(LOG_TAG,"adding team " + (position+1) + " to bundesliga table");
 
         View view = convertView;
 

@@ -1,115 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_bundesliga_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingRight="@dimen/activity_single_space"
-    android:paddingEnd="@dimen/activity_single_space"
-    android:paddingLeft="@dimen/activity_single_space"
-    android:paddingStart="@dimen/activity_single_space"
-    android:paddingTop="@dimen/activity_single_space"
-    tools:context=".activities.AboutIcons">
+    android:fitsSystemWindows="true"
+    tools:context=".activities.ClothesSize">
 
-    <TextView
-        android:id="@+id/txtv_bundesliga_title"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/bundesliga_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/activity_single_space"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:paddingBottom="@dimen/activity_double_space"
-        android:text="@string/txt_title_bundesliga_table"
-        android:textColor="@color/colorTextPrimaryLight"
-        android:textSize="@dimen/material_text_title"
-        app:layout_constraintBottom_toTopOf="@+id/lin_lay_bundesliga_table_headers"
-        app:layout_constraintEnd_toEndOf="@+id/lin_lay_bundesliga_table_headers">
-    </TextView>
+        android:theme="@style/AppTheme.AppBarOverlay" >
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/bundesliga_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/bundesliga_tab_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tabelle" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/bundesliga_tab_matches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spiele" />
+
+        </android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <ProgressBar
         android:id="@+id/progBar_bundesliga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_title">
+        app:layout_constraintTop_toBottomOf="@+id/bundesliga_appbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
     </ProgressBar>
 
-    <LinearLayout
-        android:id="@+id/lin_lay_bundesliga_table_headers"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/bundesliga_viewpager_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/activity_single_space"
-        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="P"
-            android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight">
-        </TextView>
+    </android.support.v4.view.ViewPager>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="14"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:text="Team"
-            android:paddingLeft="@dimen/activity_single_space"
-            android:paddingStart="@dimen/activity_single_space"
-            android:paddingRight="@dimen/activity_single_space"
-            android:paddingEnd="@dimen/activity_single_space">
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:layout_gravity="center_horizontal"
-            android:text="S">
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:layout_gravity="center_horizontal"
-            android:text="Tore">
-        </TextView>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:layout_gravity="center_horizontal"
-            android:text="Pkt">
-        </TextView>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/lv_bundesliga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_table_headers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:paddingBottom="80dp">
-    </ListView>
-
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
