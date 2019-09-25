@@ -10,6 +10,63 @@
     android:paddingRight="@dimen/activity_single_space"
     android:paddingEnd="@dimen/activity_single_space">
 
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_matches_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:id="@+id/txtv_bundesliga_matches_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_date"
+            android:text="Anpfiff"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_matches_match"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_match"
+            android:text="Spiel"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_matches_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_result"
+            android:text="Ergebnis"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimaryLight">
+        </TextView>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_bundesliga_matches"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_matches_header"
+        app:layout_constraintVertical_bias="0.0">
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

@@ -276,4 +276,7 @@
     <string name="txt_bundesliga_table_games_short">G</string>
     <string name="txt_bundesliga_tab_table">table</string>
     <string name="txt_bundesliga_tab_games">matches</string>
+    <string name="txt_bundesliga_matches_date">Kick-off</string>
+    <string name="txt_bundesliga_matches_match">Match</string>
+    <string name="txt_bundesliga_matches_result">Result</string>
 </resources>

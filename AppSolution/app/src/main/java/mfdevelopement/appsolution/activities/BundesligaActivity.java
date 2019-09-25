@@ -1,6 +1,7 @@
 package mfdevelopement.appsolution.activities;
 
 import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -22,18 +23,21 @@ import java.util.List;
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
+import mfdevelopement.appsolution.listview_adapters.BundesligaMatchesListAdapter;
 import mfdevelopement.appsolution.listview_adapters.BundesligaTableListAdapter;
 import mfdevelopement.appsolution.tabs.TabBundesligaMatches;
 import mfdevelopement.appsolution.tabs.TabBundesligaTable;
 import mfdevelopement.bundesliga.Bundesliga;
 import mfdevelopement.bundesliga.FootballTeam;
+import mfdevelopement.bundesliga.Match;
 
 public class BundesligaActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "BundesligaActivity";
     private Bundesliga bundesliga;
-    private ListView lv_bundesliga;
+    private ListView lv_bundesliga_table, lv_bundesliga_matches;
     private ProgressBar progressBar;
+    private SharedPreferences sharedPrefsBundesliga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +80,9 @@ public class BundesligaActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        // get reference to listView and progress bar
-        lv_bundesliga = findViewById(R.id.lv_bundesliga_table);
+        // get reference to listViews and progress bar
+        lv_bundesliga_table = findViewById(R.id.lv_bundesliga_table);
+        lv_bundesliga_matches = findViewById(R.id.lv_bundesliga_matches);
         progressBar = findViewById(R.id.progBar_bundesliga);
 
         // Log start of current Activity
@@ -97,7 +102,7 @@ public class BundesligaActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "start to load bundesliga data");
             new LoadBundesligaData(this).execute();
         } else {
-            Log.i(LOG_TAG, "Device has no internet connection! bundesliga data cannot be loaded.");
+            Log.i(LOG_TAG, "Device has no internet connection! Bundesliga data cannot be loaded.");
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
         }
@@ -127,6 +132,9 @@ public class BundesligaActivity extends AppCompatActivity {
         // update bundesliga table listView with current data
         updateBundesligaTableList(bundesliga.getTable());
 
+        // update bundesliga matches list
+        updateBundesligaMatchesList(bundesliga.getMatches());
+
         // save the json Response string
         saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseTable());
     }
@@ -149,8 +157,36 @@ public class BundesligaActivity extends AppCompatActivity {
         BundesligaTableListAdapter bundesligaTableListAdapter = new BundesligaTableListAdapter(this, bundesligaTable);
 
         // update reference to bundesliga table listView and update its content
-        if (lv_bundesliga == null) lv_bundesliga = findViewById(R.id.lv_bundesliga_table);
-        lv_bundesliga.setAdapter(bundesligaTableListAdapter);
+        if (lv_bundesliga_table == null)
+            lv_bundesliga_table = findViewById(R.id.lv_bundesliga_table);
+        lv_bundesliga_table.setAdapter(bundesligaTableListAdapter);
+
+        // set progress to 100% and hide progress bar
+        progressBar.setProgress(100);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    /**
+     * update Bundesliga matches listView
+     *
+     * @param matches: List<Match>
+     */
+    private void updateBundesligaMatchesList(List<Match> matches) {
+
+        // log function call
+        Log.d(LOG_TAG, "updateBundesligaMatchesList");
+
+        // show progress bar and set progress to 0%
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgress(0);
+
+        // create ListAdapter object
+        BundesligaMatchesListAdapter bundesligaMatchesListAdapter = new BundesligaMatchesListAdapter(this, matches);
+
+        // update reference to bundesliga table listView and update its content
+        if (lv_bundesliga_matches == null)
+            lv_bundesliga_matches = findViewById(R.id.lv_bundesliga_matches);
+        lv_bundesliga_matches.setAdapter(bundesligaMatchesListAdapter);
 
         // set progress to 100% and hide progress bar
         progressBar.setProgress(100);

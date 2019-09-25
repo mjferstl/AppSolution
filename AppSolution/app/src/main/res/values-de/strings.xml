@@ -276,4 +276,7 @@
     <string name="txt_bundesliga_table_games_short">S</string>
     <string name="txt_bundesliga_tab_table">Tabelle</string>
     <string name="txt_bundesliga_tab_games">Spiele</string>
+    <string name="txt_bundesliga_matches_date">Anpfiff</string>
+    <string name="txt_bundesliga_matches_match">Spiel</string>
+    <string name="txt_bundesliga_matches_result">Ergebnis</string>
 </resources>
