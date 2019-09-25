@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -57,6 +58,15 @@ public class BundesligaActivity extends AppCompatActivity {
             Log.i(LOG_TAG,"error when setting up options for action bar");
         }
 
+        // remove shadow on top of the tabs
+        try {
+            this.getSupportActionBar().setElevation(0);
+        } catch (NullPointerException e) {
+            Log.e(LOG_TAG,"getSupportActionBar().setElevation(0) produced a NullPointerException");
+            Toast.makeText(this, getString(R.string.txt_toast_setElevation_error), Toast.LENGTH_SHORT).show();
+        }
+
+
         // Set up the ViewPager with the sections adapter.
         // The {@link ViewPager} that will host the section contents.
         ViewPager mViewPager = findViewById(R.id.bundesliga_viewpager_container);
@@ -66,11 +76,14 @@ public class BundesligaActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-
+        // get reference to listView and progress bar
         lv_bundesliga = findViewById(R.id.lv_bundesliga_table);
+        progressBar = findViewById(R.id.progBar_bundesliga);
 
-        Log.d(LOG_TAG,LOG_TAG + " startet successfully");
+        // Log start of current Activity
+        Log.i(LOG_TAG,LOG_TAG + " startet successfully");
 
+        // update Bundesliga data
         updateBundesligaData();
     }
 
@@ -81,12 +94,23 @@ public class BundesligaActivity extends AppCompatActivity {
         InternetStatus internetStatus = new InternetStatus(this);
         if (internetStatus.isConnected()) {
             // start async task to load bundesliga data
+            Log.d(LOG_TAG,"start to load bundesliga data");
             new LoadBundesligaData(this).execute();
         }
         else {
+            Log.i(LOG_TAG,"Device has no internet connection! bundesliga data cannot be loaded.");
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
         }
+    }
+
+    private void saveBundesligaJsonResponse() {
+        //TODO: implement functions to save the json response from openligadb.de to a SharedPreference
+    }
+
+    private String getBundesligaJsonResponse() {
+        //TODO: implement functions to get the saved jsonReponse from a SharedPreference
+        return "";
     }
 
     /**
@@ -197,6 +221,8 @@ public class BundesligaActivity extends AppCompatActivity {
             // get reference to ProgressBar and hide it
             ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
             progressBar.setVisibility(View.GONE);
+
+            // TODO: save jsonResponse in SharedPreferences to restore it, if no updates are available on https://www.openligadb.de
         }
     }
 
