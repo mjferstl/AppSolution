@@ -82,7 +82,7 @@
                 android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
         <activity
-            android:name=".activities.ClothesSize"
+            android:name=".activities.ClothesSizeActivity"
             android:label="@string/title_activity_clothes_size"
             android:parentActivityName=".activities.Main">
             <meta-data
@@ -106,7 +106,7 @@
                 android:value="mfdevelopement.appsolution.activities.Main" />
         </activity>
         <activity
-            android:name=".activities.RheoModels"
+            android:name=".activities.RheologicalModelsActivity"
             android:label="@string/title_activity_rheo_models"
             android:parentActivityName=".activities.Main">
             <meta-data

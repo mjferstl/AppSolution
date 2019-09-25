@@ -86,7 +86,7 @@ public class Main extends AppCompatActivity {
         targetActivities.add(Sensors.class);
 
         imageButtonList.add(btnDressSize);
-        targetActivities.add(ClothesSize.class);
+        targetActivities.add(ClothesSizeActivity.class);
 
         imageButtonList.add(btnWeather);
         targetActivities.add(WeatherOverviewActivity.class);

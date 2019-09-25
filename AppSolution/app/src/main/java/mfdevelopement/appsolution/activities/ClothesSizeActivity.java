@@ -1,21 +1,23 @@
 package mfdevelopement.appsolution.activities;
 
-
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigt;
-import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigtMaxwell;
+import mfdevelopement.appsolution.tabs.TabClothesSizeShoes;
+import mfdevelopement.appsolution.tabs.TabClothesSizeTops;
 
-public class RheoModels extends AppCompatActivity {
+public class ClothesSizeActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -25,27 +27,20 @@ public class RheoModels extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private RheoModels.SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
-
-    private String LogTag;
-    private String appname;
+    private final String LOG_TAG = "ClothesSizeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rheo_models);
+        setContentView(R.layout.activity_clothes_size);
 
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
+
+        // Create the adapter that will return a fragment for each of the
         // primary sections of the activity.
-        mSectionsPagerAdapter = new RheoModels.SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // set up the action bar
         final ActionBar actionBar = getActionBar();
@@ -54,25 +49,28 @@ public class RheoModels extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            Log.e(LogTag,"error when setting up options for acion bar");
+            Log.i(LOG_TAG,"error when setting up options for action bar");
         }
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = findViewById(R.id.container_rheo_models);
+        // The {@link ViewPager} that will host the section contents.
+        ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        tabLayout = findViewById(R.id.tabs_rheo_models);
+        TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        
+        // remove shadow on top of the tabs
+        try {
+            this.getSupportActionBar().setElevation(0);
+        } catch (NullPointerException e) {
+            Log.e(LOG_TAG,"getSupportActionBar().setElevation(0) produced a NullPointerException");
+            Toast.makeText(this, getString(R.string.txt_toast_setElevation_error), Toast.LENGTH_SHORT).show();
+        }
 
-        appname = getString(R.string.app_name);
-        LogTag = appname + "/ClothesSize";
-
-        this.getSupportActionBar().setElevation(0);
-
-        Log.i(LogTag,"activity startet successfully");
-
+        Log.i(LOG_TAG,"activity startet successfully");
     }
 
     @Override
@@ -97,29 +95,25 @@ public class RheoModels extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // deleted PlaceholderFragment
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(android.support.v4.app.FragmentManager fm) {
+        private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public android.support.v4.app.Fragment getItem(int position) {
+        public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    TabRheoModelsKelvinVoigt tab1 = new TabRheoModelsKelvinVoigt();
-                    return tab1;
+                    return new TabClothesSizeShoes();
                 case 1:
-                    TabRheoModelsKelvinVoigtMaxwell tab2 = new TabRheoModelsKelvinVoigtMaxwell();
-                    return tab2;
+                    return new TabClothesSizeTops();
                 default:
                     return null;
             }
@@ -131,6 +125,4 @@ public class RheoModels extends AppCompatActivity {
             return 2;
         }
     }
-
 }
-

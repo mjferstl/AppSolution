@@ -44,7 +44,7 @@ public class MechanicalEngineering extends AppCompatActivity {
 
     private void showRheolocialModels()
     {
-        Intent intent = new Intent(this, RheoModels.class);
+        Intent intent = new Intent(this, RheologicalModelsActivity.class);
         startActivity(intent);
     }
 

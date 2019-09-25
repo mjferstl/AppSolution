@@ -1,10 +1,9 @@
 package mfdevelopement.appsolution.activities;
 
+
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.tabs.TabClothesSizeShoes;
-import mfdevelopement.appsolution.tabs.TabClothesSizeTops;
+import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigt;
+import mfdevelopement.appsolution.tabs.TabRheoModelsKelvinVoigtMaxwell;
 
-public class ClothesSize extends AppCompatActivity {
+public class RheologicalModelsActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -26,22 +25,20 @@ public class ClothesSize extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private String LogTag;
-    private String appname;
+
+    private final String LOG_TAG = "RheologicalModelsActivi";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clothes_size);
+        setContentView(R.layout.activity_rheo_models);
 
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
-        // Create the adapter that will return a fragment for each of the
+        // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // set up the action bar
         final ActionBar actionBar = getActionBar();
@@ -50,25 +47,22 @@ public class ClothesSize extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            Log.i(LogTag,"error when setting up options for acion bar");
+            Log.e(LOG_TAG,"error when setting up options for acion bar");
         }
 
         // Set up the ViewPager with the sections adapter.
-        // The {@link ViewPager} that will host the section contents.
-        ViewPager mViewPager = findViewById(R.id.container);
+        ViewPager mViewPager = findViewById(R.id.container_rheo_models);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs_rheo_models);
 
+        // The {@link ViewPager} that will host the section contents.
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        appname = getString(R.string.app_name);
-        LogTag = appname + "/ClothesSize";
-
         this.getSupportActionBar().setElevation(0);
 
-        Log.i(LogTag,"activity startet successfully");
+        Log.i(LOG_TAG,"activity startet successfully");
     }
 
     @Override
@@ -93,26 +87,28 @@ public class ClothesSize extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // deleted PlaceholderFragment
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public android.support.v4.app.Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position) {
                 case 0:
-                    TabClothesSizeShoes tab1 = new TabClothesSizeShoes();
+                    TabRheoModelsKelvinVoigt tab1 = new TabRheoModelsKelvinVoigt();
                     return tab1;
                 case 1:
-                    TabClothesSizeTops tab2 = new TabClothesSizeTops();
+                    TabRheoModelsKelvinVoigtMaxwell tab2 = new TabRheoModelsKelvinVoigtMaxwell();
                     return tab2;
                 default:
                     return null;
@@ -127,3 +123,4 @@ public class ClothesSize extends AppCompatActivity {
     }
 
 }
+
