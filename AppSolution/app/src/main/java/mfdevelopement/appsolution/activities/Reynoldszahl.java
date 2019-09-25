@@ -136,7 +136,7 @@ public class Reynoldszahl extends AppCompatActivity {
 
         txtvResultText.setVisibility(View.GONE);
 
-        Log.i(LogTag,"activity reynolds-number startet");
+        Log.i(LogTag, "activity reynolds-number startet");
     }
 
     public void loadElements() {
@@ -181,21 +181,19 @@ public class Reynoldszahl extends AppCompatActivity {
 
     }
 
-    public void onCheckboxClicked(View view)
-    {
+    public void onCheckboxClicked(View view) {
         booChecked = ((CheckBox) view).isChecked();
 
-        if(booChecked) {
+        if (booChecked) {
             showKinViscosity();
-        }
-        else {
+        } else {
             showDynViscosity();
-           }
+        }
     }
 
     public void showKinViscosity() {
 
-        Log.i(LogTag,"showKinViscosity");
+        Log.i(LogTag, "showKinViscosity");
         layKinViscosity.setVisibility(View.VISIBLE);
         layDynViscosity.setVisibility(View.GONE);
         layDensity.setVisibility(View.GONE);
@@ -204,7 +202,7 @@ public class Reynoldszahl extends AppCompatActivity {
 
     public void showDynViscosity() {
 
-        Log.i(LogTag,"showDynViscosity");
+        Log.i(LogTag, "showDynViscosity");
         layKinViscosity.setVisibility(View.GONE);
         layDynViscosity.setVisibility(View.VISIBLE);
         layDensity.setVisibility(View.VISIBLE);
@@ -215,33 +213,26 @@ public class Reynoldszahl extends AppCompatActivity {
         calcReynolds();
     }
 
-    public void calcReynolds()
-    {
+    public void calcReynolds() {
         strVelocityM = txteVelocityText.getText().toString();
         strDiameter = txteDiameterText.getText().toString();
 
-        if (strVelocityM.equals(""))
-        {
+        if (strVelocityM.equals("")) {
             Toast.makeText(this, ENTER_AVG_VEL, Toast.LENGTH_SHORT).show();
-        }
-        else if (strDiameter.equals(""))
-        {
+        } else if (strDiameter.equals("")) {
             Toast.makeText(this, ENTER_DIAMETER, Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
 
             bdVelocitym = new BigDecimal(strVelocityM);
             bdDiameter = new BigDecimal(strDiameter);
 
             // wenn der schneller Weg gewählt ist
-            if(booChecked) {
+            if (booChecked) {
                 strKinViscosity = txteKinViscosity.getText().toString();
 
-                if(strKinViscosity.equals("")){
+                if (strKinViscosity.equals("")) {
                     Toast.makeText(this, ENTER_KIN_VIS, Toast.LENGTH_SHORT).show();
-                }
-
-                else {
+                } else {
                     bdKinViscosity = new BigDecimal(strKinViscosity);
                     bdReynolds = (bdVelocitym.multiply(bdDiameter)).divide(bdKinViscosity, 4, RoundingMode.HALF_UP);
                 }
@@ -251,13 +242,11 @@ public class Reynoldszahl extends AppCompatActivity {
                 strDynViscosity = txteDynViscosity.getText().toString();
                 strDensity = txteDensity.getText().toString();
 
-                if(strDynViscosity.equals("")){
+                if (strDynViscosity.equals("")) {
                     Toast.makeText(this, ENTER_DYN_VIS, Toast.LENGTH_SHORT).show();
-                }
-                else if (strDensity.equals("")){
+                } else if (strDensity.equals("")) {
                     Toast.makeText(this, ENTER_DENSITY, Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     bdDynViscosity = new BigDecimal(strDynViscosity);
                     bdDensity = new BigDecimal(strDensity);
                     bdKinViscosity = bdDynViscosity.divide(bdDensity, intRoundingScale, RoundingMode.HALF_UP);
@@ -267,8 +256,7 @@ public class Reynoldszahl extends AppCompatActivity {
 
             if (bdReynolds.compareTo(bdReynKrit) < 1) {
                 txtvCurrentType.setText("\u2192 " + LAM_STR);
-            }
-            else if (bdReynolds.compareTo(bdReynKrit) >= 1) {
+            } else if (bdReynolds.compareTo(bdReynKrit) >= 1) {
                 txtvCurrentType.setText("\u2192" + TUR_STR);
             }
 
@@ -279,8 +267,7 @@ public class Reynoldszahl extends AppCompatActivity {
         }
     }
 
-    public void showHelp ()
-    {
+    public void showHelp() {
         final Dialog dialog = new Dialog(this);
 
         switch (intKindOfHelp) {
@@ -292,7 +279,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.cancel();
-                        Log.i(LogTag,"Close the help dialog");
+                        Log.i(LogTag, "Close the help dialog");
                     }
                 });
                 break;
@@ -305,7 +292,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 10;
-                        Log.i(LogTag,"use water at 10 degree");
+                        Log.i(LogTag, "use water at 10 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -317,7 +304,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 20;
-                        Log.i(LogTag,"use water at 20 degree");
+                        Log.i(LogTag, "use water at 20 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -329,7 +316,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 30;
-                        Log.i(LogTag,"use water at 30 degree");
+                        Log.i(LogTag, "use water at 30 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -341,7 +328,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 50;
-                        Log.i(LogTag,"use water at 50 degree");
+                        Log.i(LogTag, "use water at 50 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -353,7 +340,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 70;
-                        Log.i(LogTag,"use water at 70 degree");
+                        Log.i(LogTag, "use water at 70 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -365,7 +352,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "water";
                         temp = 90;
-                        Log.i(LogTag,"use water at 90 degree");
+                        Log.i(LogTag, "use water at 90 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -377,7 +364,7 @@ public class Reynoldszahl extends AppCompatActivity {
                     public void onClick(View v) {
                         medium = "air";
                         temp = 0;
-                        Log.i(LogTag,"use air at 0 degree");
+                        Log.i(LogTag, "use air at 0 degree");
                         dialog.cancel();
                         setValues();
                     }
@@ -387,17 +374,15 @@ public class Reynoldszahl extends AppCompatActivity {
         dialog.show();
     }
 
-    public void tubeHelp()
-    {
+    public void tubeHelp() {
         this.intKindOfHelp = 1;
         showHelp();
     }
 
-    public void showUsualValues()
-    {
+    public void showUsualValues() {
         intKindOfHelp = 2;
 
-        Log.i(LogTag,"Display dialog for usual values");
+        Log.i(LogTag, "Display dialog for usual values");
 
         showHelp();
     }
@@ -411,37 +396,37 @@ public class Reynoldszahl extends AppCompatActivity {
                         txteKinViscosity.setText("0.000001304", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.001307");
                         txteDensity.setText("999.7");
-                        Log.i(LogTag,"Usual values for water at 10 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 10 degree are loaded");
                         break;
                     case 20:
                         txteKinViscosity.setText("0.000001004", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.001002");
                         txteDensity.setText("998.21");
-                        Log.i(LogTag,"Usual values for water at 20 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 20 degree are loaded");
                         break;
                     case 30:
                         txteKinViscosity.setText("0.000000801", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.0007977");
                         txteDensity.setText("995.65");
-                        Log.i(LogTag,"Usual values for water at 30 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 30 degree are loaded");
                         break;
                     case 50:
                         txteKinViscosity.setText("0.000000554", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.0005471");
                         txteDensity.setText("988.04");
-                        Log.i(LogTag,"Usual values for water at 50 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 50 degree are loaded");
                         break;
                     case 70:
                         txteKinViscosity.setText("0.000000413", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.0004041");
                         txteDensity.setText("977.77");
-                        Log.i(LogTag,"Usual values for water at 70 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 70 degree are loaded");
                         break;
                     case 90:
                         txteKinViscosity.setText("0.000000326", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.0003145");
                         txteDensity.setText("965.31");
-                        Log.i(LogTag,"Usual values for water at 90 degree are loaded");
+                        Log.i(LogTag, "Usual values for water at 90 degree are loaded");
                         break;
                 }
                 break;
@@ -451,7 +436,7 @@ public class Reynoldszahl extends AppCompatActivity {
                         txteKinViscosity.setText("", TextView.BufferType.EDITABLE);
                         txteDynViscosity.setText("0.0000171");
                         txteDensity.setText("1.293");
-                        Log.i(LogTag,"Usual values for air at 0 degree are loaded");
+                        Log.i(LogTag, "Usual values for air at 0 degree are loaded");
                         break;
                 }
                 break;
@@ -459,7 +444,7 @@ public class Reynoldszahl extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, MechanicalEngineering.class);
+        Intent intent = new Intent(this, MechanicalEngineeringActivity.class);
         finish();
         startActivity(intent);
     }

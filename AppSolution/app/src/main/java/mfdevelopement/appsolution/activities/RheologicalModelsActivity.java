@@ -47,7 +47,7 @@ public class RheologicalModelsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            Log.e(LOG_TAG,"error when setting up options for acion bar");
+            Log.e(LOG_TAG, "error when setting up options for acion bar");
         }
 
         // Set up the ViewPager with the sections adapter.
@@ -62,7 +62,7 @@ public class RheologicalModelsActivity extends AppCompatActivity {
 
         this.getSupportActionBar().setElevation(0);
 
-        Log.i(LOG_TAG,"activity startet successfully");
+        Log.i(LOG_TAG, "activity startet successfully");
     }
 
     @Override

@@ -27,7 +27,7 @@ import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
 
-public class Sensors extends AppCompatActivity implements SensorEventListener {
+public class SensorsActivity extends AppCompatActivity implements SensorEventListener {
 
     private TextView txtv_x_result;
     private TextView txtv_y_result;
@@ -43,8 +43,10 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
     private float gravityz = 0;
     private float alpha = 1.0f;
 
-    float[] m_lastMagFields = new float[3];;
-    float[] m_lastAccels = new float[3];;
+    float[] m_lastMagFields = new float[3];
+
+    float[] m_lastAccels = new float[3];
+
     private float[] m_rotationMatrix = new float[16];
     private float[] m_orientation = new float[4];
 
@@ -53,7 +55,7 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
     public float Roll = 0.f;
     public float Declination = 0;
 
-    private long time_old = System.currentTimeMillis()/1000;
+    private long time_old = System.currentTimeMillis() / 1000;
     private double timeStep = 0.0;
 
     private SimpleXYSeries acc_x = null;
@@ -73,7 +75,7 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensors);
 
-        Log.e("Sensors","Activity gestartet");
+        Log.e("SensorsActivity", "Activity gestartet");
 
         txtv_x_result = findViewById(R.id.txtv_sensors_acceleration_x_value);
         txtv_y_result = findViewById(R.id.txtv_sensors_acceleration_y_value);
@@ -91,7 +93,7 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
         acc_z = new SimpleXYSeries("Z");
         acc_z.useImplicitXVals();
 
-        Log.i("Sensors","XYSeries für Beschleunigungen erstellt");
+        Log.i("SensorsActivity", "XYSeries für Beschleunigungen erstellt");
 
         //plot.setRangeBoundaries(-5, 5, BoundaryMode.FIXED);
         plot.setDomainBoundaries(0, HISTORY_SIZE, BoundaryMode.AUTO);
@@ -100,16 +102,16 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
         LineAndPointFormatter acc_y_format = new LineAndPointFormatter(this, R.xml.line_point_formatter_with_labels_2);
         LineAndPointFormatter acc_z_format = new LineAndPointFormatter(this, R.xml.line_point_formatter_with_labels_3);
 
-        Log.i("Sensors","Formate der Graphen im Plot festgelegt");
+        Log.i("SensorsActivity", "Formate der Graphen im Plot festgelegt");
 
         plot.addSeries(acc_x, acc_x_format);
         plot.addSeries(acc_y, acc_y_format);
         plot.addSeries(acc_z, acc_z_format);
 
-        Log.i("Sensors","XYSeries der Beschleunigungen zum Plot hinzugefügt");
+        Log.i("SensorsActivity", "XYSeries der Beschleunigungen zum Plot hinzugefügt");
 
         plot.setDomainStepMode(StepMode.INCREMENT_BY_VAL);
-        plot.setDomainStepValue(HISTORY_SIZE/5);
+        plot.setDomainStepValue(HISTORY_SIZE / 5);
         //plot.setRangeStepValue(2);
         plot.setLinesPerRangeLabel(2);
         plot.setTitle("");
@@ -119,70 +121,70 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
 
         plot.getLayoutManager().remove(plot.getLegend());
 
-        Log.i("Sensors","Formatierung des Plots abgeschlossen");
+        Log.i("SensorsActivity", "Formatierung des Plots abgeschlossen");
 
         // get values from the sensors
-        Log.i("Sensors","Sensoren für Beschleunigung und Schwerkraft laden");
+        Log.i("SensorsActivity", "Sensoren für Beschleunigung und Schwerkraft laden");
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mAcceleration = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
     }
 
     @Override
     public synchronized void onSensorChanged(SensorEvent event) {
-            switch (event.sensor.getType()){
-                case Sensor.TYPE_ACCELEROMETER:
+        switch (event.sensor.getType()) {
+            case Sensor.TYPE_ACCELEROMETER:
 
-                    // alpha is calculated as t / (t + dT)
-                    // with t, the low-pass filter's time-constant
-                    // and dT, the event delivery rate
+                // alpha is calculated as t / (t + dT)
+                // with t, the low-pass filter's time-constant
+                // and dT, the event delivery rate
 
-                    long time_new = System.currentTimeMillis()/1000;
-                    long dT = time_new - time_old;
+                long time_new = System.currentTimeMillis() / 1000;
+                long dT = time_new - time_old;
 
-                    alpha = 0.05f/(0.05f + dT);
+                alpha = 0.05f / (0.05f + dT);
 
-                    Log.i("Sensors","alpha = " + alpha + ", dT = " + dT);
+                Log.i("SensorsActivity", "alpha = " + alpha + ", dT = " + dT);
 
-                    time_old = time_new;
+                time_old = time_new;
 
-                    Log.i("Sensors","neue Beschleunigungswerte vom Sensor auslesen");
+                Log.i("SensorsActivity", "neue Beschleunigungswerte vom Sensor auslesen");
 
-                    gravityx = alpha * gravityx + (1 - alpha) * event.values[0];
-                    gravityy = alpha * gravityy + (1 - alpha) * event.values[1];
-                    gravityz = alpha * gravityz + (1 - alpha) * event.values[2];
+                gravityx = alpha * gravityx + (1 - alpha) * event.values[0];
+                gravityy = alpha * gravityy + (1 - alpha) * event.values[1];
+                gravityz = alpha * gravityz + (1 - alpha) * event.values[2];
 
-                    Log.i("Sensors","Beschleunigungen (ohne Schwerkraft) werden neu berechnet");
+                Log.i("SensorsActivity", "Beschleunigungen (ohne Schwerkraft) werden neu berechnet");
 
-                    accelerationx = event.values[0] - gravityx;
-                    accelerationy = event.values[1] - gravityy;
-                    accelerationz = event.values[2] - gravityz;
+                accelerationx = event.values[0] - gravityx;
+                accelerationy = event.values[1] - gravityy;
+                accelerationz = event.values[2] - gravityz;
 
-                    Log.e("Sensors","aktuelle Werte: ax = " + accelerationx + ", ay = " + accelerationy + ", az = " + accelerationz);
-                    Log.i("Sensors","aktuelle Beschleunigungen in Tabelle anzeigen");
+                Log.e("SensorsActivity", "aktuelle Werte: ax = " + accelerationx + ", ay = " + accelerationy + ", az = " + accelerationz);
+                Log.i("SensorsActivity", "aktuelle Beschleunigungen in Tabelle anzeigen");
 
-                    txtv_x_result.setText(String.format(Locale.GERMAN,"%.3f",accelerationx));
-                    txtv_y_result.setText(String.format(Locale.GERMAN,"%.3f",accelerationy));
-                    txtv_z_result.setText(String.format(Locale.GERMAN,"%.3f",accelerationz));
+                txtv_x_result.setText(String.format(Locale.GERMAN, "%.3f", accelerationx));
+                txtv_y_result.setText(String.format(Locale.GERMAN, "%.3f", accelerationy));
+                txtv_z_result.setText(String.format(Locale.GERMAN, "%.3f", accelerationz));
 
-                    updatePlot();
+                updatePlot();
 
-                    computeOrientation();
+                computeOrientation();
 
-                    break;
-            }
+                break;
+        }
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
-    public void updatePlot(){
-        Log.i("Sensors","aktuelle Beschleunigungen für den Live-Plot abspeichern");
+    public void updatePlot() {
+        Log.i("SensorsActivity", "aktuelle Beschleunigungen für den Live-Plot abspeichern");
 
         acc_x.addLast(null, accelerationx);
         acc_y.addLast(null, accelerationy);
         acc_z.addLast(null, accelerationz);
 
-        Log.i("Sensors","alte Werte löschen, damit max. " + HISTORY_SIZE + " Werte angezeigt werden");
+        Log.i("SensorsActivity", "alte Werte löschen, damit max. " + HISTORY_SIZE + " Werte angezeigt werden");
 
         // get rid the oldest sample in history:
         if (acc_x.size() > HISTORY_SIZE) {
@@ -190,16 +192,15 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
             acc_y.removeFirst();
             acc_z.removeFirst();
         }
-        Log.i("Sensors","XYseries enthält " + acc_x.size() + " Werte");
+        Log.i("SensorsActivity", "XYseries enthält " + acc_x.size() + " Werte");
 
-        if (acc_x.size()/5 == 0) {
+        if (acc_x.size() / 5 == 0) {
             plot.setDomainStepValue(1);
-        }
-        else {
-            plot.setDomainStepValue((acc_x.size()/5));
+        } else {
+            plot.setDomainStepValue((acc_x.size() / 5));
         }
 
-        Log.i("Sensors","Plot aktualisieren");
+        Log.i("SensorsActivity", "Plot aktualisieren");
 
         plot.redraw();
     }
@@ -229,6 +230,7 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
 
     /**
      * show a dialog containing the phone's coordinate system
+     *
      * @param view
      */
     public void showPhoneAxis(View view) {
@@ -241,7 +243,7 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
             @Override
             public void onClick(View v) {
                 dialog.cancel();
-                Log.e("Sensors","Close the Phone-Axis Dialog");
+                Log.e("SensorsActivity", "Close the Phone-Axis Dialog");
             }
         });
         dialog.show();
@@ -257,23 +259,23 @@ public class Sensors extends AppCompatActivity implements SensorEventListener {
 
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this,mAcceleration);
+        sensorManager.unregisterListener(this, mAcceleration);
         //sensorManager = null;
         //redrawer.pause();
     }
 
     public void onBackPressed() {
-        sensorManager.unregisterListener(this,mAcceleration);
+        sensorManager.unregisterListener(this, mAcceleration);
         //sensorManager = null;
         //redrawer.finish();
-        Intent intent = new Intent(this, Main.class);
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }
 
     @Override
     public void onDestroy() {
-        sensorManager.unregisterListener(this,mAcceleration);
+        sensorManager.unregisterListener(this, mAcceleration);
         //redrawer.finish();
         super.onDestroy();
     }

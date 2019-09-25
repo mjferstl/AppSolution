@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.activities.Main;
+import mfdevelopement.appsolution.activities.MainActivity;
 
 public class DialogNoInternetConnection implements DialogInterface{
 
@@ -43,7 +43,7 @@ public class DialogNoInternetConnection implements DialogInterface{
     }
 
     private void returnToMainActivity() {
-        Intent intent = new Intent(this.context, Main.class);
+        Intent intent = new Intent(this.context, MainActivity.class);
         cancel();
         ((Activity) context).finish();
         context.startActivity(intent);

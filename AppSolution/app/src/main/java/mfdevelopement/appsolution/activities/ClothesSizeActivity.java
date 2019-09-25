@@ -49,7 +49,7 @@ public class ClothesSizeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         } catch (NullPointerException e) {
             e.printStackTrace();
-            Log.i(LOG_TAG,"error when setting up options for action bar");
+            Log.i(LOG_TAG, "error when setting up options for action bar");
         }
 
         // Set up the ViewPager with the sections adapter.
@@ -61,16 +61,16 @@ public class ClothesSizeActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-        
+
         // remove shadow on top of the tabs
         try {
             this.getSupportActionBar().setElevation(0);
         } catch (NullPointerException e) {
-            Log.e(LOG_TAG,"getSupportActionBar().setElevation(0) produced a NullPointerException");
+            Log.e(LOG_TAG, "getSupportActionBar().setElevation(0) produced a NullPointerException");
             Toast.makeText(this, getString(R.string.txt_toast_setElevation_error), Toast.LENGTH_SHORT).show();
         }
 
-        Log.i(LOG_TAG,"activity startet successfully");
+        Log.i(LOG_TAG, "activity startet successfully");
     }
 
     @Override

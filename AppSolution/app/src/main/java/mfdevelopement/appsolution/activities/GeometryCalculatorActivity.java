@@ -16,7 +16,7 @@ import java.math.RoundingMode;
 
 import mfdevelopement.appsolution.R;
 
-public class GeometryCalculator extends AppCompatActivity {
+public class GeometryCalculatorActivity extends AppCompatActivity {
 
     /**
      * Konstanten
@@ -61,10 +61,10 @@ public class GeometryCalculator extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("Activity","started geometry calculator");
+        Log.e("Activity", "started geometry calculator");
         setContentView(R.layout.activity_geometry_calculator);
 
-        Log.e("Activity","started Geometrie-Rechner");
+        Log.e("Activity", "started Geometrie-Rechner");
 
         REC_AREA = getString(R.string.maths_rectangle_def);
         CIRCLE_AREA = getString(R.string.maths_circle_def);
@@ -78,7 +78,7 @@ public class GeometryCalculator extends AppCompatActivity {
         btdRecCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Button","calculate rectangular area");
+                Log.i("Button", "calculate rectangular area");
                 calcRectangle();
             }
         });
@@ -86,27 +86,24 @@ public class GeometryCalculator extends AppCompatActivity {
         btdCircCalc = findViewById(R.id.btd_maths_circle_calc);
         btdCircCalc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i("Button","calculate circular area");
+                Log.i("Button", "calculate circular area");
                 calcCircle();
             }
         });
     }
 
-    public void calcCircle()
-    {
+    public void calcCircle() {
         txtvResult = findViewById(R.id.txtv_maths_circle_result_value);
         txtvResult.setText("");
         txteDiameter = findViewById(R.id.txte_maths_circle_diameter);
         if (txteDiameter.getText().toString().equals("")) {
-            Toast.makeText(GeometryCalculator.this, SET_DIAMETER, Toast.LENGTH_SHORT).show();
-        }
-        else {
-            bdDiameter = new BigDecimal(txteDiameter.getText().toString() );
+            Toast.makeText(GeometryCalculatorActivity.this, SET_DIAMETER, Toast.LENGTH_SHORT).show();
+        } else {
+            bdDiameter = new BigDecimal(txteDiameter.getText().toString());
 
             BigDecimal area = (pi.divide(four, 9, RoundingMode.HALF_UP)).multiply(bdDiameter.multiply(bdDiameter));
 
-            while (area.compareTo(thousand) > 0)
-            {
+            while (area.compareTo(thousand) > 0) {
                 // To get the right exponent for displaying later
                 exponent = exponent + 3;
 
@@ -115,11 +112,9 @@ public class GeometryCalculator extends AppCompatActivity {
             }
             area = area.setScale(6, BigDecimal.ROUND_HALF_UP);
 
-            if (exponent == 0)
-            {
+            if (exponent == 0) {
                 txtvResult.setText(APPROX + area.toString());
-            }
-            else {
+            } else {
                 txtvResult.setText(APPROX + area.toString() + E + exponent);
             }
         }
@@ -135,7 +130,7 @@ public class GeometryCalculator extends AppCompatActivity {
 
         // Display Toast if EditText of length is empty
         if (txteLength.getText().toString().equals("")) {
-            Toast.makeText(GeometryCalculator.this, SET_LENGTH, Toast.LENGTH_SHORT).show();
+            Toast.makeText(GeometryCalculatorActivity.this, SET_LENGTH, Toast.LENGTH_SHORT).show();
         }
 
         // go ahead if length is not empty
@@ -144,7 +139,7 @@ public class GeometryCalculator extends AppCompatActivity {
 
             // Display Toast when EditText of width is empty
             if (txteWidth.getText().toString().equals("")) {
-                Toast.makeText(GeometryCalculator.this, SET_WIDTH, Toast.LENGTH_SHORT).show();
+                Toast.makeText(GeometryCalculatorActivity.this, SET_WIDTH, Toast.LENGTH_SHORT).show();
             }
 
             // else calculate area of rectangle
@@ -166,16 +161,13 @@ public class GeometryCalculator extends AppCompatActivity {
                 BigDecimal areaNew = new BigDecimal(area.doubleValue(), mc);
                 String areaString = areaNew.toString();
 
-                if (area.toString().equals(areaString))
-                {
+                if (area.toString().equals(areaString)) {
                     if (exponent == 0) {
                         txtvResult.setText(areaString);
                     } else {
                         txtvResult.setText(areaString + E + exponent);
                     }
-                }
-                else
-                {
+                } else {
                     if (exponent == 0) {
                         txtvResult.setText(APPROX + areaString);
                     } else {
@@ -186,8 +178,8 @@ public class GeometryCalculator extends AppCompatActivity {
         }
     }
 
-    public void onBackPressed(){
-        Intent intent = new Intent(this, Main.class);
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }

@@ -173,7 +173,7 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
 
-    <!-- Sensors -->
+    <!-- SensorsActivity -->
     <color name="Sensor_acc_x">#007700</color>
     <color name="Sensor_acc_y">#000099</color>
     <color name="Sensor_acc_z">#880000</color>

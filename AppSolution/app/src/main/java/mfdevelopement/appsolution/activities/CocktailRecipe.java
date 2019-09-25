@@ -139,8 +139,8 @@ public class CocktailRecipe extends AppCompatActivity {
         LogTag = appname + "/CocktailRecipe";
 
         Intent intent = getIntent();
-        String cocktailName = intent.getStringExtra(CocktailOverview.COCKTAIL_NAME);
-        Log.i(LogTag,cocktailName);
+        String cocktailName = intent.getStringExtra(CocktailOverviewActivity.COCKTAIL_NAME);
+        Log.i(LogTag, cocktailName);
         setContentView(R.layout.activity_cocktail_recipe);
 
         initTextViews();
@@ -148,60 +148,60 @@ public class CocktailRecipe extends AppCompatActivity {
 
         if (cocktailName.equals(CUBALIBRE)) {
             // checked
-            Log.i(LogTag,"load "+ CUBALIBRE);
+            Log.i(LogTag, "load " + CUBALIBRE);
             setTitle(CUBALIBRE);
-            setIngredientOne("1/2",LIMETTE);
-            setIngredientTwo("6 cl",WEISSERRUM);
-            setIngredientThree("100 ml",COLA);
+            setIngredientOne("1/2", LIMETTE);
+            setIngredientTwo("6 cl", WEISSERRUM);
+            setIngredientThree("100 ml", COLA);
             setPreparation(CUBALIBRE_PREP);
-            Log.i(LogTag,CUBALIBRE + " loaded");
+            Log.i(LogTag, CUBALIBRE + " loaded");
         } else if (cocktailName.equals(MAITAI)) {
             // checked
-            Log.i(LogTag,"load "+ MAITAI);
+            Log.i(LogTag, "load " + MAITAI);
             setTitle(MAITAI);
-            setIngredientOne("3 cl",WEISSERRUM);
-            setIngredientTwo("3 cl",BRAUNERRUM);
-            setIngredientThree("2 cl",TRIPLESEC);
-            setIngredientFour("2 cl",LIMETTENSIRUP);
-            setIngredientFive("1 cl",MANDELSIRUP);
-            setIngredientSix("1 cl",LIMETTENSAFT);
-            setIngredientSeven("3 cl",ORANGENSAFT);
-            setIngredientEight("3 cl",ANANASSAFT);
+            setIngredientOne("3 cl", WEISSERRUM);
+            setIngredientTwo("3 cl", BRAUNERRUM);
+            setIngredientThree("2 cl", TRIPLESEC);
+            setIngredientFour("2 cl", LIMETTENSIRUP);
+            setIngredientFive("1 cl", MANDELSIRUP);
+            setIngredientSix("1 cl", LIMETTENSAFT);
+            setIngredientSeven("3 cl", ORANGENSAFT);
+            setIngredientEight("3 cl", ANANASSAFT);
             setPreparation(MAITAI_PREP);
-            Log.i(LogTag,MAITAI + " loaded");
+            Log.i(LogTag, MAITAI + " loaded");
         } else if (cocktailName.equals(MOJITO)) {
             // checked
-            Log.i(LogTag,"load "+ MOJITO);
+            Log.i(LogTag, "load " + MOJITO);
             setTitle(MOJITO);
-            setIngredientOne("1/2",LIMETTE);
-            setIngredientTwo("2 TL",ROHRZUCKER);
-            setIngredientThree("6",MINZBLAETTER);
-            setIngredientFour("6 cl",SODAWASSER);
-            setIngredientFive("6 cl",WEISSERRUM);
-            setIngredientSix("3 cl",LIMETTENSAFT);
+            setIngredientOne("1/2", LIMETTE);
+            setIngredientTwo("2 TL", ROHRZUCKER);
+            setIngredientThree("6", MINZBLAETTER);
+            setIngredientFour("6 cl", SODAWASSER);
+            setIngredientFive("6 cl", WEISSERRUM);
+            setIngredientSix("3 cl", LIMETTENSAFT);
             setPreparation(MOJITO_PREP);
-            Log.i(LogTag,MOJITO + " loaded");
+            Log.i(LogTag, MOJITO + " loaded");
         } else if (cocktailName.equals(PLANTERSPUNCH)) {
             // checked
-            Log.i(LogTag,"load "+ PLANTERSPUNCH);
+            Log.i(LogTag, "load " + PLANTERSPUNCH);
             setTitle(PLANTERSPUNCH);
-            setIngredientOne("1 cl",LIMETTENSAFT);
-            setIngredientTwo("10 cl",ORANGENSAFT);
-            setIngredientThree("0.5 cl",ZUCKERSIRUP);
-            setIngredientFour("4 cl",BRAUNERRUM);
-            setIngredientFive("2 cl",SODAWASSER);
+            setIngredientOne("1 cl", LIMETTENSAFT);
+            setIngredientTwo("10 cl", ORANGENSAFT);
+            setIngredientThree("0.5 cl", ZUCKERSIRUP);
+            setIngredientFour("4 cl", BRAUNERRUM);
+            setIngredientFive("2 cl", SODAWASSER);
             setPreparation(PLANTERSPUNCH_PREP);
-            Log.i(LogTag,PLANTERSPUNCH + " loaded");
+            Log.i(LogTag, PLANTERSPUNCH + " loaded");
         } else if (cocktailName.equals(WASTEDTIME)) {
             // checked
-            Log.i(LogTag,"load "+ WASTEDTIME);
+            Log.i(LogTag, "load " + WASTEDTIME);
             setTitle(WASTEDTIME);
-            setIngredientOne("8 cl",MARACUJASAFT);
-            setIngredientTwo("1 cl",LIMETTENSAFT);
-            setIngredientThree("3 cl",MALIBU);
-            setIngredientFour("2 cl",WEISSERRUM);
+            setIngredientOne("8 cl", MARACUJASAFT);
+            setIngredientTwo("1 cl", LIMETTENSAFT);
+            setIngredientThree("3 cl", MALIBU);
+            setIngredientFour("2 cl", WEISSERRUM);
             setPreparation(WASTEDTIME_PREP);
-            Log.i(LogTag,WASTEDTIME + " loaded");
+            Log.i(LogTag, WASTEDTIME + " loaded");
         } else if (cocktailName.equals(TEQUILASUNRISE)) {
             // checked
             Log.i(LogTag, "load " + TEQUILASUNRISE);
@@ -209,7 +209,7 @@ public class CocktailRecipe extends AppCompatActivity {
             setIngredientOne("10 cl", ORANGENSAFT);
             setIngredientTwo("6 cl", WEISSERTEQUILA);
             setIngredientThree("1 cl", ZITRONENSAFT);
-            setIngredientFour("2 cl",GRENADINESIRUP);
+            setIngredientFour("2 cl", GRENADINESIRUP);
             setPreparation(TEQUILASUNRISE_PREP);
             Log.i(LogTag, TEQUILASUNRISE + " loaded");
         } else if (cocktailName.equals(MARGARITA)) {
@@ -221,138 +221,138 @@ public class CocktailRecipe extends AppCompatActivity {
             setPreparation(MARGARITA_PREP);
             Log.i(LogTag, MARGARITA + " loaded");
         } else if (cocktailName.equals(APHRODITESKISS)) {
-            Log.i(LogTag,"load "+ APHRODITESKISS);
+            Log.i(LogTag, "load " + APHRODITESKISS);
             setTitle(APHRODITESKISS);
-            setIngredientOne("5 cl",SCHWARZERJOHANNISBEERSAFT);
-            setIngredientTwo("5 cl",PFIRSICHSAFT);
-            setIngredientThree("6 cl",MARACUJASAFT);
-            setIngredientFour("6 cl",ANANASSAFT);
-            setIngredientFive("2 cl",WEISSERRUM);
-            setIngredientSix("2 cl",WODKA);
-            setIngredientSeven("1 cl",GRENADINESIRUP);
+            setIngredientOne("5 cl", SCHWARZERJOHANNISBEERSAFT);
+            setIngredientTwo("5 cl", PFIRSICHSAFT);
+            setIngredientThree("6 cl", MARACUJASAFT);
+            setIngredientFour("6 cl", ANANASSAFT);
+            setIngredientFive("2 cl", WEISSERRUM);
+            setIngredientSix("2 cl", WODKA);
+            setIngredientSeven("1 cl", GRENADINESIRUP);
             setPreparation(APHRODITESKISS_PREP);
-            Log.i(LogTag,APHRODITESKISS + " loaded");
+            Log.i(LogTag, APHRODITESKISS + " loaded");
         } else if (cocktailName.equals(BLACKRUSSIAN)) {
-            Log.i(LogTag,"load "+ BLACKRUSSIAN);
+            Log.i(LogTag, "load " + BLACKRUSSIAN);
             setTitle(BLACKRUSSIAN);
-            setIngredientOne("3 cl",KAHLUA);
-            setIngredientTwo("6 cl",WODKA);
+            setIngredientOne("3 cl", KAHLUA);
+            setIngredientTwo("6 cl", WODKA);
             setPreparation(BLACKRUSSIAN_PREP);
-            Log.i(LogTag,BLACKRUSSIAN + " loaded");
+            Log.i(LogTag, BLACKRUSSIAN + " loaded");
         } else if (cocktailName.equals(BLOODYMARY)) {
             // checked
-            Log.i(LogTag,"load "+ BLOODYMARY);
+            Log.i(LogTag, "load " + BLOODYMARY);
             setTitle(BLOODYMARY);
-            setIngredientOne("5 cl",WODKA);
-            setIngredientTwo("10 cl",TOMATENSAFT);
-            setIngredientThree("1 ",SPRITZERWORCESTERSHIRE);
-            setIngredientFour("1",SPRITZERTABASCO);
-            setIngredientFive("1",PRISESALZ);
-            setIngredientSix("1",PRISEPFEFFER);
+            setIngredientOne("5 cl", WODKA);
+            setIngredientTwo("10 cl", TOMATENSAFT);
+            setIngredientThree("1 ", SPRITZERWORCESTERSHIRE);
+            setIngredientFour("1", SPRITZERTABASCO);
+            setIngredientFive("1", PRISESALZ);
+            setIngredientSix("1", PRISEPFEFFER);
             setPreparation(BLOODYMARY_PREP);
-            Log.i(LogTag,BLOODYMARY + " loaded");
+            Log.i(LogTag, BLOODYMARY + " loaded");
         } else if (cocktailName.equals(HARVEYWALLBANGER)) {
-            Log.i(LogTag,"load "+ HARVEYWALLBANGER);
+            Log.i(LogTag, "load " + HARVEYWALLBANGER);
             setTitle(HARVEYWALLBANGER);
-            setIngredientOne("12 cl",ORANGENSAFT);
-            setIngredientTwo("2 cl",GALLIANO);
-            setIngredientThree("4 cl",WODKA);
+            setIngredientOne("12 cl", ORANGENSAFT);
+            setIngredientTwo("2 cl", GALLIANO);
+            setIngredientThree("4 cl", WODKA);
             setPreparation(HARVEYWALLBANGER_PREP);
-            Log.i(LogTag,HARVEYWALLBANGER + " loaded");
+            Log.i(LogTag, HARVEYWALLBANGER + " loaded");
         } else if (cocktailName.equals(LONGISLANDICETEA)) {
             // checked
-            Log.i(LogTag,"load "+ LONGISLANDICETEA);
+            Log.i(LogTag, "load " + LONGISLANDICETEA);
             setTitle(LONGISLANDICETEA);
-            setIngredientOne("2 cl",WEISSERRUM);
-            setIngredientTwo("2 cl",WODKA);
-            setIngredientThree("2 cl",GIN);
-            setIngredientFour("2 cl",COINTREAU);
-            setIngredientFive("2 cl",ZITRONENSAFT);
-            setIngredientSix("2 cl",ZUCKERSIRUP);
-            setIngredientSeven("4 cl",GINGERALE);
-            setIngredientEight("2 cl",COLA);
+            setIngredientOne("2 cl", WEISSERRUM);
+            setIngredientTwo("2 cl", WODKA);
+            setIngredientThree("2 cl", GIN);
+            setIngredientFour("2 cl", COINTREAU);
+            setIngredientFive("2 cl", ZITRONENSAFT);
+            setIngredientSix("2 cl", ZUCKERSIRUP);
+            setIngredientSeven("4 cl", GINGERALE);
+            setIngredientEight("2 cl", COLA);
             setPreparation(LONGISLANDICETEA_PREP);
-            Log.i(LogTag,LONGISLANDICETEA + " loaded");
+            Log.i(LogTag, LONGISLANDICETEA + " loaded");
         } else if (cocktailName.equals(SEXONTHEBEACH)) {
-            Log.i(LogTag,"load "+ SEXONTHEBEACH);
+            Log.i(LogTag, "load " + SEXONTHEBEACH);
             setTitle(SEXONTHEBEACH);
-            setIngredientOne("12 cl",ORANGENSAFT);
-            setIngredientTwo("2 cl",PFIRSICHLIKOER);
-            setIngredientThree("1 cl",CRANBERRYSIRUP);
-            setIngredientFour("4 cl",WODKA);
+            setIngredientOne("12 cl", ORANGENSAFT);
+            setIngredientTwo("2 cl", PFIRSICHLIKOER);
+            setIngredientThree("1 cl", CRANBERRYSIRUP);
+            setIngredientFour("4 cl", WODKA);
             setPreparation(SEXONTHEBEACH_PREP);
-            Log.i(LogTag,SEXONTHEBEACH + " loaded");
+            Log.i(LogTag, SEXONTHEBEACH + " loaded");
         } else if (cocktailName.equals(SWIMMINGPOOL)) {
             // checked
-            Log.i(LogTag,"load "+ SWIMMINGPOOL);
+            Log.i(LogTag, "load " + SWIMMINGPOOL);
             setTitle(SWIMMINGPOOL);
-            setIngredientOne("4 cl",WEISSERRUM);
-            setIngredientTwo("2 cl",WODKA);
-            setIngredientThree("1 cl",BLUECURACAO);
-            setIngredientFour("6 cl",ANANASSAFT);
-            setIngredientFive("2 cl",KOKOSNUSSCREME);
-            setIngredientSix("1 cl",SAHNE);
+            setIngredientOne("4 cl", WEISSERRUM);
+            setIngredientTwo("2 cl", WODKA);
+            setIngredientThree("1 cl", BLUECURACAO);
+            setIngredientFour("6 cl", ANANASSAFT);
+            setIngredientFive("2 cl", KOKOSNUSSCREME);
+            setIngredientSix("1 cl", SAHNE);
             setPreparation(SWIMMINGPOOL_PREP);
-            Log.i(LogTag,SWIMMINGPOOL + " loaded");
+            Log.i(LogTag, SWIMMINGPOOL + " loaded");
         } else if (cocktailName.equals(TOUCHDOWN)) {
-            Log.i(LogTag,"load "+ TOUCHDOWN);
+            Log.i(LogTag, "load " + TOUCHDOWN);
             setTitle(TOUCHDOWN);
-            setIngredientOne("15 cl",MARACUJASAFT);
-            setIngredientTwo("2 cl",ZITRONENSAFT);
-            setIngredientThree("2 cl",APRICOTBRANDY);
-            setIngredientFour("4 cl",WODKA);
-            setIngredientFive("2 cl",GRENADINESIRUP);
+            setIngredientOne("15 cl", MARACUJASAFT);
+            setIngredientTwo("2 cl", ZITRONENSAFT);
+            setIngredientThree("2 cl", APRICOTBRANDY);
+            setIngredientFour("4 cl", WODKA);
+            setIngredientFive("2 cl", GRENADINESIRUP);
             setPreparation(TOUCHDOWN_PREP);
-            Log.i(LogTag,TOUCHDOWN + " loaded");
+            Log.i(LogTag, TOUCHDOWN + " loaded");
         } else if (cocktailName.equals(WHITERUSSIAN)) {
             // checked
-            Log.i(LogTag,"load "+ WHITERUSSIAN);
+            Log.i(LogTag, "load " + WHITERUSSIAN);
             setTitle(WHITERUSSIAN);
-            setIngredientOne("3 cl",KAHLUA);
-            setIngredientTwo("3 cl",WODKA);
-            setIngredientThree("5 cl",SAHNE);
+            setIngredientOne("3 cl", KAHLUA);
+            setIngredientTwo("3 cl", WODKA);
+            setIngredientThree("5 cl", SAHNE);
             setPreparation(WHITERUSSIAN_PREP);
-            Log.i(LogTag,WHITERUSSIAN + " loaded");
+            Log.i(LogTag, WHITERUSSIAN + " loaded");
         } else if (cocktailName.equals(WODKASUNRISE)) {
-            Log.i(LogTag,"load "+ WODKASUNRISE);
+            Log.i(LogTag, "load " + WODKASUNRISE);
             setTitle(WODKASUNRISE);
-            setIngredientOne("10 cl",ORANGENSAFT);
-            setIngredientTwo("4 cl",WODKA);
-            setIngredientThree("1 cl",GRENADINESIRUP);
+            setIngredientOne("10 cl", ORANGENSAFT);
+            setIngredientTwo("4 cl", WODKA);
+            setIngredientThree("1 cl", GRENADINESIRUP);
             setPreparation(WODKASUNRISE_PREP);
-            Log.i(LogTag,WODKASUNRISE + " loaded");
+            Log.i(LogTag, WODKASUNRISE + " loaded");
         } else if (cocktailName.equals(BLANCO43)) {
-            Log.i(LogTag,"load "+ BLANCO43);
+            Log.i(LogTag, "load " + BLANCO43);
             setTitle(BLANCO43);
-            setIngredientOne("8 cl",MILCH);
-            setIngredientTwo("2 cl",LICOR43);
+            setIngredientOne("8 cl", MILCH);
+            setIngredientTwo("2 cl", LICOR43);
             setPreparation(BLANCO43_PREP);
-            Log.i(LogTag,BLANCO43 + " loaded");
+            Log.i(LogTag, BLANCO43 + " loaded");
         } else if (cocktailName.equals(SOUR43)) {
-            Log.i(LogTag,"load "+ SOUR43);
+            Log.i(LogTag, "load " + SOUR43);
             setTitle(SOUR43);
-            setIngredientOne("3 cl",ORANGENSAFT);
-            setIngredientTwo("3 cl",ZITRONENSAFT);
-            setIngredientThree("6 cl",LICOR43);
+            setIngredientOne("3 cl", ORANGENSAFT);
+            setIngredientTwo("3 cl", ZITRONENSAFT);
+            setIngredientThree("6 cl", LICOR43);
             setPreparation(SOUR43_PREP);
-            Log.i(LogTag,SOUR43 + " loaded");
+            Log.i(LogTag, SOUR43 + " loaded");
         } else if (cocktailName.equals(CAIPIRINHA)) {
-            Log.i(LogTag,"load "+ CAIPIRINHA);
+            Log.i(LogTag, "load " + CAIPIRINHA);
             setTitle(CAIPIRINHA);
-            setIngredientOne("1",LIMETTE);
-            setIngredientTwo("3 EL",BRAUNERROHRZUCKER);
-            setIngredientThree("5 cl",CACHACA);
+            setIngredientOne("1", LIMETTE);
+            setIngredientTwo("3 EL", BRAUNERROHRZUCKER);
+            setIngredientThree("5 cl", CACHACA);
             setPreparation(CAIPIRINHA_PREP);
-            Log.i(LogTag,CAIPIRINHA + " loaded");
+            Log.i(LogTag, CAIPIRINHA + " loaded");
         } else if (cocktailName.equals(GINFIZZ)) {
-            Log.i(LogTag,"load "+ GINFIZZ);
+            Log.i(LogTag, "load " + GINFIZZ);
             setTitle(GINFIZZ);
-            setIngredientOne("5 cl",GIN);
-            setIngredientTwo("3 cl",ZITRONENSAFT);
-            setIngredientThree("2 cl",ZUCKERSIRUP);
-            setIngredientFour("10cl",SODAWASSER);
+            setIngredientOne("5 cl", GIN);
+            setIngredientTwo("3 cl", ZITRONENSAFT);
+            setIngredientThree("2 cl", ZUCKERSIRUP);
+            setIngredientFour("10cl", SODAWASSER);
             setPreparation(GINFIZZ_PREP);
-            Log.i(LogTag,GINFIZZ + " loaded");
+            Log.i(LogTag, GINFIZZ + " loaded");
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(COCKTAILERROR);
@@ -415,7 +415,7 @@ public class CocktailRecipe extends AppCompatActivity {
     public void initStrings() {
 
         appname = getString(R.string.app_name);
-        LogTag = appname + "/CocktailOverview";
+        LogTag = appname + "/CocktailOverviewActivity";
 
         CUBALIBRE = getString(R.string.cubaLibre);
         MAITAI = getString(R.string.maiTai);
@@ -512,40 +512,40 @@ public class CocktailRecipe extends AppCompatActivity {
     }
 
     public void setTitle(String string) {
-        Log.i(LogTag,txtvTitle.toString());
+        Log.i(LogTag, txtvTitle.toString());
         txtvTitle.setText(string);
     }
 
     public void setIngredientOne(String amount, String ingredient) {
-        setIngredient(txtvAmountOne,txtvIngredientOne,amount,ingredient);
+        setIngredient(txtvAmountOne, txtvIngredientOne, amount, ingredient);
     }
 
     public void setIngredientTwo(String amount, String ingredient) {
-        setIngredient(txtvAmountTwo,txtvIngredientTwo,amount,ingredient);
+        setIngredient(txtvAmountTwo, txtvIngredientTwo, amount, ingredient);
     }
 
     public void setIngredientThree(String amount, String ingredient) {
-        setIngredient(txtvAmountThree,txtvIngredientThree,amount,ingredient);
+        setIngredient(txtvAmountThree, txtvIngredientThree, amount, ingredient);
     }
 
     public void setIngredientFour(String amount, String ingredient) {
-        setIngredient(txtvAmountFour,txtvIngredientFour,amount,ingredient);
+        setIngredient(txtvAmountFour, txtvIngredientFour, amount, ingredient);
     }
 
     public void setIngredientFive(String amount, String ingredient) {
-        setIngredient(txtvAmountFive,txtvIngredientFive,amount,ingredient);
+        setIngredient(txtvAmountFive, txtvIngredientFive, amount, ingredient);
     }
 
     public void setIngredientSix(String amount, String ingredient) {
-        setIngredient(txtvAmountSix,txtvIngredientSix,amount,ingredient);
+        setIngredient(txtvAmountSix, txtvIngredientSix, amount, ingredient);
     }
 
     public void setIngredientSeven(String amount, String ingredient) {
-        setIngredient(txtvAmountSeven,txtvIngredientSeven,amount,ingredient);
+        setIngredient(txtvAmountSeven, txtvIngredientSeven, amount, ingredient);
     }
 
     public void setIngredientEight(String amount, String ingredient) {
-        setIngredient(txtvAmountEight,txtvIngredientEight,amount,ingredient);
+        setIngredient(txtvAmountEight, txtvIngredientEight, amount, ingredient);
     }
 
     public void setPreparation(String string) {
@@ -563,8 +563,8 @@ public class CocktailRecipe extends AppCompatActivity {
         }
     }
 
-    public void onBackPressed(){
-        Intent intent = new Intent(this, CocktailOverview.class);
+    public void onBackPressed() {
+        Intent intent = new Intent(this, CocktailOverviewActivity.class);
         finish();
         startActivity(intent);
     }

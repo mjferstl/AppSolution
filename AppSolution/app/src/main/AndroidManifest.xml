@@ -13,13 +13,13 @@
         <activity
             android:name=".activities.BundesligaActivity"
             android:label="@string/title_activity_bundesliga"
-            android:parentActivityName=".activities.Main">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.Main" />
+                android:value="mfdevelopement.appsolution.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.Main"
+            android:name=".activities.MainActivity"
             android:configChanges="locale|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,90 +28,90 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.CurrencyConverter"
+            android:name=".activities.CurrencyConverterActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_currency_calculator"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.CocktailOverview"
+            android:name=".activities.CocktailOverviewActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_cocktail_overview"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.CocktailRecipe"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_cocktail_recipe"
-            android:parentActivityName=".activities.CocktailOverview" />
+            android:parentActivityName=".activities.CocktailOverviewActivity" />
         <activity
-            android:name=".activities.MensaSpeiseplan"
+            android:name=".activities.MensaSpeiseplanActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_mensa_speiseplan"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.GeometryCalculator"
+            android:name=".activities.GeometryCalculatorActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_maths"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.MechanicalEngineering"
+            android:name=".activities.MechanicalEngineeringActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_mechanical_engineering"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.Reynoldszahl"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_reynoldszahl"
-            android:parentActivityName=".activities.MechanicalEngineering" />
+            android:parentActivityName=".activities.MechanicalEngineeringActivity" />
         <activity
-            android:name=".activities.About"
+            android:name=".activities.AboutActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_about_screen"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.Sensors"
+            android:name=".activities.SensorsActivity"
             android:configChanges="locale|orientation"
             android:label="@string/title_activity_sensors"
-            android:parentActivityName=".activities.Main" />
+            android:parentActivityName=".activities.MainActivity" />
         <activity
             android:name=".activities.PhoneSensors"
             android:label="@string/title_activity_phone_sensors"
-            android:parentActivityName=".activities.Main"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.Main" />
+                android:value="mfdevelopement.appsolution.activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.ClothesSizeActivity"
             android:label="@string/title_activity_clothes_size"
-            android:parentActivityName=".activities.Main">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.Main" />
+                android:value="mfdevelopement.appsolution.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.AboutIcons"
+            android:name=".activities.AboutIconsActivity"
             android:label="@string/title_activity_about_icons"
-            android:parentActivityName=".activities.About">
+            android:parentActivityName=".activities.AboutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.About" />
+                android:value="mfdevelopement.appsolution.activities.AboutActivity" />
         </activity>
         <activity
             android:name=".activities.WeatherOverviewActivity"
             android:label="@string/title_activity_weather_overview"
-            android:parentActivityName=".activities.Main">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.Main" />
+                android:value="mfdevelopement.appsolution.activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.RheologicalModelsActivity"
             android:label="@string/title_activity_rheo_models"
-            android:parentActivityName=".activities.Main">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.Main" />
+                android:value="mfdevelopement.appsolution.activities.MainActivity" />
         </activity>
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

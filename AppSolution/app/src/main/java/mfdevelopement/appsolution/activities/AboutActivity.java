@@ -10,30 +10,26 @@ import android.widget.TextView;
 
 import mfdevelopement.appsolution.R;
 
-public class About extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
-    private String version;
     private final String UNKONWN = "Unknown";
-    TextView tv_version;
-
-    private Button btnIcons = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        tv_version = findViewById(R.id.tv_about_versionName);
-        btnIcons = findViewById(R.id.btn_about_icons);
+        TextView tv_version = findViewById(R.id.tv_about_versionName);
+        Button btnIcons = findViewById(R.id.btn_about_icons);
         btnIcons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(About.this, AboutIcons.class);
+                Intent intent = new Intent(AboutActivity.this, AboutIconsActivity.class);
                 startActivity(intent);
             }
         });
 
-        version = getVersionName();
+        String version = getVersionName();
         if (version.equals(UNKONWN)) {
             tv_version.setText("Version [error]");
         } else {
@@ -51,7 +47,7 @@ public class About extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, Main.class);
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }

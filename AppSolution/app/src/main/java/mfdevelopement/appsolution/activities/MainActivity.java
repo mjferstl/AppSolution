@@ -21,10 +21,10 @@ import mfdevelopement.appsolution.dialogs.DialogChangeLanguage;
 import mfdevelopement.appsolution.dialogs.DialogExitApp;
 import mfdevelopement.appsolution.helper.ChangeLanguage;
 
-public class Main extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private String appname = "";
-    private final String LOG_TAG = "Main";
+    private final String LOG_TAG = "MainActivity";
     private String NotIncludedYet = "";
 
     private Button btn_language_Ok = null;
@@ -68,22 +68,22 @@ public class Main extends AppCompatActivity {
 
         // add image buttons and their target activities to lists
         imageButtonList.add(btnCocktails);
-        targetActivities.add(CocktailOverview.class);
+        targetActivities.add(CocktailOverviewActivity.class);
 
         imageButtonList.add(btnMensa);
-        targetActivities.add(MensaSpeiseplan.class);
+        targetActivities.add(MensaSpeiseplanActivity.class);
 
         imageButtonList.add(btnGeometry);
-        targetActivities.add(GeometryCalculator.class);
+        targetActivities.add(GeometryCalculatorActivity.class);
 
         imageButtonList.add(btnMechEng);
-        targetActivities.add(MechanicalEngineering.class);
+        targetActivities.add(MechanicalEngineeringActivity.class);
 
         imageButtonList.add(btnCurrencyConverter);
-        targetActivities.add(CurrencyConverter.class);
+        targetActivities.add(CurrencyConverterActivity.class);
 
         imageButtonList.add(btnSensors);
-        targetActivities.add(Sensors.class);
+        targetActivities.add(SensorsActivity.class);
 
         imageButtonList.add(btnDressSize);
         targetActivities.add(ClothesSizeActivity.class);
@@ -95,18 +95,17 @@ public class Main extends AppCompatActivity {
         targetActivities.add(BundesligaActivity.class);
 
         // set all onClickListeners
-        for (int i=0; i<imageButtonList.size(); i++) {
+        for (int i = 0; i < imageButtonList.size(); i++) {
 
             // if no class is specified, no onClickListener is initialized
             if (targetActivities.get(i) == null) {
                 imageButtonList.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Main.this,"Noch keine Funktion hinterlegt ... ",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Noch keine Funktion hinterlegt ... ", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
-            else {
+            } else {
                 final Class activity = targetActivities.get(i);
                 imageButtonList.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -129,10 +128,10 @@ public class Main extends AppCompatActivity {
         int width = displayData.getWidthPx();
         int height = displayData.getHeightPx();
 
-        int btnWidth = width/4;
+        int btnWidth = width / 4;
 
-        for (int i=0; i<imageButtonList.size(); i++) {
-            setImageButtonSize(imageButtonList.get(i),btnWidth);
+        for (int i = 0; i < imageButtonList.size(); i++) {
+            setImageButtonSize(imageButtonList.get(i), btnWidth);
         }
     }
 
@@ -158,17 +157,18 @@ public class Main extends AppCompatActivity {
 
     /**
      * opens a new activity
+     *
      * @param cl: Class to be opened
      */
     private void openActivity(Class cl) {
-        Intent intent = new Intent(Main.this, cl);
+        Intent intent = new Intent(MainActivity.this, cl);
         startActivity(intent);
     }
 
     /**
      * opens a dialog asking the user if he wants to exit the app
      */
-    public void onBackPressed(){
+    public void onBackPressed() {
         DialogExitApp dia = new DialogExitApp(this);
         dia.show();
     }
@@ -188,7 +188,7 @@ public class Main extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_about:
-                Intent intent = new Intent(this, About.class);
+                Intent intent = new Intent(this, AboutActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 return true;
@@ -199,7 +199,7 @@ public class Main extends AppCompatActivity {
         }
     }
 
-    private void changeLanguage(){
+    private void changeLanguage() {
         DialogChangeLanguage dia = new DialogChangeLanguage(this);
         dia.show();
     }

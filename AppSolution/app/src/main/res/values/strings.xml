@@ -115,7 +115,7 @@
     <string name="title_activity_mensa_speiseplan">Mensa Regensburg</string>
     <string name="btd_mensa_text" translatable="false">Mensa</string>
 
-    <!-- About -->
+    <!-- AboutActivity -->
     <string name="title_activity_about_screen">Über AppSolution</string>
     <string name="about_text_app_name" translatable="false">AppSolution</string>
     <string name="about_text_version" translatable="false">Version 2.0.1</string>
@@ -188,7 +188,7 @@
     <string name="reyn_tube_usual_values_air">Luft</string>
     <string name="reyn_tube_usual_values_water_dynVis">Wasser</string>
 
-    <!-- Sensors -->
+    <!-- SensorsActivity -->
     <string name="btd_sensors_text">Sensoren</string>
     <string name="txtv_sensors_acceleration">Beschleunigung</string>
     <string name="txtv_axis">Achsen</string>

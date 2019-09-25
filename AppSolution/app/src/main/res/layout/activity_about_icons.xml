@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_single_space"
-    tools:context=".activities.AboutIcons">
+    tools:context=".activities.AboutIconsActivity">
 
     <TextView
         android:id="@+id/tv_about_icons"

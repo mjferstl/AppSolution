@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 import mfdevelopement.appsolution.R;
 
-public class MechanicalEngineering extends AppCompatActivity {
+public class MechanicalEngineeringActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class MechanicalEngineering extends AppCompatActivity {
         btdReynolds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Start","Reynolds");
+                Log.i("Start", "Reynolds");
                 showReynolds();
             }
         });
@@ -36,20 +36,18 @@ public class MechanicalEngineering extends AppCompatActivity {
 
     }
 
-    private void showReynolds()
-    {
+    private void showReynolds() {
         Intent intent = new Intent(this, Reynoldszahl.class);
         startActivity(intent);
     }
 
-    private void showRheolocialModels()
-    {
+    private void showRheolocialModels() {
         Intent intent = new Intent(this, RheologicalModelsActivity.class);
         startActivity(intent);
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, Main.class);
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }

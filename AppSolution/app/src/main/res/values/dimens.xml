@@ -5,7 +5,7 @@
     <dimen name="activity_single_space">8dp</dimen>
     <dimen name="activity_double_space">16dp</dimen>
 
-    <!--Main-->
+    <!--MainActivity-->
     <dimen name="main_imgBtd_left_padding_left">50dp</dimen>
     <dimen name="main_imgBtd_left_padding_right">30dp</dimen>
     <dimen name="main_imgBtd_right_padding_left">30dp</dimen>
@@ -31,7 +31,7 @@
     <dimen name="reyn_uv_col2Width">25pt</dimen>
     <dimen name="reyn_uv_colSep">3sp</dimen>
 
-    <!--Sensors-->
+    <!--SensorsActivity-->
     <dimen name="sensors_first_column_width">150sp</dimen>
 
     <!-- define the text Sizes -->

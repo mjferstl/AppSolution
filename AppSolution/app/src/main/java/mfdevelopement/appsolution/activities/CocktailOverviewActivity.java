@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import mfdevelopement.appsolution.R;
 
-public class CocktailOverview extends AppCompatActivity implements View.OnClickListener {
+public class CocktailOverviewActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String CUBALIBRE = "";
     private String MAITAI = "";
@@ -73,7 +73,7 @@ public class CocktailOverview extends AppCompatActivity implements View.OnClickL
     public void setStrings() {
 
         appname = getString(R.string.app_name);
-        LogTag = appname + "/CocktailOverview";
+        LogTag = appname + "/CocktailOverviewActivity";
 
         CUBALIBRE = getString(R.string.cubaLibre);
         MAITAI = getString(R.string.maiTai);
@@ -96,7 +96,6 @@ public class CocktailOverview extends AppCompatActivity implements View.OnClickL
         SOUR43 = getString(R.string.sour43);
         CAIPIRINHA = getString(R.string.caipirinha);
         GINFIZZ = getString(R.string.ginFizz);
-
     }
 
     /*
@@ -227,7 +226,7 @@ public class CocktailOverview extends AppCompatActivity implements View.OnClickL
     }
 
     public void onBackPressed() {
-        Intent intent = new Intent(this, Main.class);
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }

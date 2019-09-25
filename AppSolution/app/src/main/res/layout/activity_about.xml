@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="30dp"
     android:orientation="vertical"
-    tools:context="mfdevelopement.appsolution.activities.About">
+    tools:context="mfdevelopement.appsolution.activities.AboutActivity">
     <ImageView
         android:layout_width="40pt"
         android:layout_height="40pt"

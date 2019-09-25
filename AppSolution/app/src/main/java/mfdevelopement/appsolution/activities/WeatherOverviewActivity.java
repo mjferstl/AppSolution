@@ -82,8 +82,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         InternetStatus internetStatus = new InternetStatus(this);
         if (internetStatus.isConnected()) {
             updateWeatherData();
-        }
-        else {
+        } else {
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
         }
@@ -98,13 +97,12 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     private void updateTextViewEmptyList() {
 
         if (userCityCodes.isEmpty()) {
-            Log.d(LOG_TAG,"updateTextViewEmptyList: show the text and undisplay the listView");
+            Log.d(LOG_TAG, "updateTextViewEmptyList: show the text and undisplay the listView");
             listView.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
             textView.setText(R.string.txt_no_city_selected);
-        }
-        else {
-            Log.d(LOG_TAG,"updateTextViewEmptyList: show the listView and undisplay the text");
+        } else {
+            Log.d(LOG_TAG, "updateTextViewEmptyList: show the listView and undisplay the text");
             listView.setVisibility(View.VISIBLE);
             textView.setVisibility(View.GONE);
         }
@@ -142,12 +140,12 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String strCity = adapter.getItem(position);
-                Log.i(LOG_TAG,"OnCLickListener:add city " + strCity);
+                Log.i(LOG_TAG, "OnCLickListener:add city " + strCity);
                 int index = cityNames.indexOf(strCity);
                 userCityCodes.add(cityCodes.get(index));
                 updateTextViewEmptyList();
                 dialog.dismiss();
-                updateWeatherData(new City(userCityCodes.get(userCityCodes.size()-1),WeatherOverviewActivity.this));
+                updateWeatherData(new City(userCityCodes.get(userCityCodes.size() - 1), WeatherOverviewActivity.this));
                 saveUserCities();
             }
         });
@@ -155,7 +153,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // adjust height of the listview
         DisplayData displayData = new DisplayData(WeatherOverviewActivity.this);
         ViewGroup.LayoutParams listViewForecastLayoutParams = listViewCities.getLayoutParams();
-        listViewForecastLayoutParams.height = (int) (displayData.getHeightPx()*0.65);
+        listViewForecastLayoutParams.height = (int) (displayData.getHeightPx() * 0.65);
         listViewCities.setLayoutParams(listViewForecastLayoutParams);
 
         final EditText etFilter = dialog.findViewById(R.id.et_dia_weather_add_city);
@@ -186,8 +184,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         // change the dialog width to 80% of the screen width
         LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_add_city);
-        int width = displayData.getWidthPx()*8/10;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width,LinearLayout.LayoutParams.WRAP_CONTENT,1);
+        int width = displayData.getWidthPx() * 8 / 10;
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         layout.setLayoutParams(params);
 
         // show the dialog
@@ -203,7 +201,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(LOG_TAG,"OnItemClickListener: selected item " + position + " of weather overview list");
+                Log.d(LOG_TAG, "OnItemClickListener: selected item " + position + " of weather overview list");
                 WeatherData selectedWeatherData = allCitiesWeatherData.get(position);
                 DialogWeatherForecast dia = new DialogWeatherForecast(WeatherOverviewActivity.this, selectedWeatherData);
                 dia.show();
@@ -214,7 +212,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 // remove the selected item
-                Log.d(LOG_TAG,"OnItemLongClickListener: selected item " + position + " of weather overview list");
+                Log.d(LOG_TAG, "OnItemLongClickListener: selected item " + position + " of weather overview list");
                 DialogWeatherOverviewRemoveCity dia = new DialogWeatherOverviewRemoveCity(WeatherOverviewActivity.this, position);
                 dia.show();
                 return true;
@@ -223,7 +221,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     public void removeCity(int position) {
-        Log.d(LOG_TAG,"removeCity: removing item at position " + position + " from the listView");
+        Log.d(LOG_TAG, "removeCity: removing item at position " + position + " from the listView");
         allCitiesWeatherData.remove(position);
         userCityCodes.remove(position);
         weatherOverviewListAdapter.notifyDataSetChanged();
@@ -249,8 +247,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     private void updateWeatherData(List<City> cities) {
         int progress;
-        for (int i=0; i<cities.size(); i++) {
-            progress = i/cities.size()*100;
+        for (int i = 0; i < cities.size(); i++) {
+            progress = i / cities.size() * 100;
             new updateWeatherForCity().execute(cities.get(i), progress);
         }
     }
@@ -295,10 +293,11 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
             // create a string and remove last comma
             String str = stringBuilder.toString();
-            prefsString = str.substring(0,str.length()-1);
-            Log.i(LOG_TAG,"saveUserCitites:" + prefsString);
+            prefsString = str.substring(0, str.length() - 1);
+            Log.i(LOG_TAG, "saveUserCitites:" + prefsString);
+        } else {
+            Log.d(LOG_TAG, "saveUserCities:no citiy ids to save");
         }
-        else {Log.d(LOG_TAG,"saveUserCities:no citiy ids to save");}
 
         // save string using SharedPreferences
         prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
@@ -306,6 +305,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     /**
      * load the saved user specific cities on the phone
+     *
      * @return List<Integer> containing the cityIds
      */
     private List<Integer> loadUserCities() {
@@ -313,8 +313,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         List<Integer> userCityCodes = new ArrayList<>();
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-        String str = prefs.getString(sharedPrefsUserCityCodes,"");
-        Log.i(LOG_TAG,"loadUserCities:" + str);
+        String str = prefs.getString(sharedPrefsUserCityCodes, "");
+        Log.i(LOG_TAG, "loadUserCities:" + str);
 
         if (!str.equals("")) {
             String[] values = str.split(",");
@@ -351,12 +351,12 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         }
 
         @Override
-        protected WeatherData doInBackground(Object ... objects) {
+        protected WeatherData doInBackground(Object... objects) {
 
             City c = (City) objects[0];
             int progress = (int) objects[1];
 
-            Log.d(LOG_TAG,"updateWeatherData: load weather data for city " + c.getCityName());
+            Log.d(LOG_TAG, "updateWeatherData: load weather data for city " + c.getCityName());
 
             WeatherData wd = new WeatherData(c);
             wd.loadWeatherData();
@@ -374,7 +374,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             //
             boolean isInList = false;
             int index = 0;
-            for (int i=0; i<allCitiesWeatherData.size(); i++) {
+            for (int i = 0; i < allCitiesWeatherData.size(); i++) {
                 if (allCitiesWeatherData.get(i).getCity().getId() == weatherData.getCity().getId()) {
                     isInList = true;
                     index = i;
@@ -389,7 +389,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
                 saveUserCities();
             }
 
-            weatherOverviewListAdapter =  new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
+            weatherOverviewListAdapter = new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
             listView.setAdapter(weatherOverviewListAdapter);
             progressBar.setVisibility(View.GONE);
         }
@@ -397,6 +397,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     /**
      * get the ids of all cities in a list
+     *
      * @param weatherDataList: List containing objects of class WeatherData
      * @return cityIds: list containing the city ids as Integer values
      */
@@ -418,7 +419,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            Log.d(LOG_TAG,"initCities:start to load all cities from the res-file");
+            Log.d(LOG_TAG, "initCities:start to load all cities from the res-file");
         }
 
         @Override
@@ -426,11 +427,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
             String[] cityItems = getResources().getStringArray(R.array.weatherMapCities);
             List<String> citiesString = new ArrayList<>(Arrays.asList(cityItems));
-            Collections.sort(citiesString, new Comparator<String>()
-            {
+            Collections.sort(citiesString, new Comparator<String>() {
                 @Override
-                public int compare(String text1, String text2)
-                {
+                public int compare(String text1, String text2) {
                     return text1.compareToIgnoreCase(text2);
                 }
             });
@@ -450,7 +449,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             if (success) {
                 Log.d(LOG_TAG, "initCities:finished loading citites");
             } else {
-                Log.e(LOG_TAG,"initCities:failed");
+                Log.e(LOG_TAG, "initCities:failed");
             }
         }
     }

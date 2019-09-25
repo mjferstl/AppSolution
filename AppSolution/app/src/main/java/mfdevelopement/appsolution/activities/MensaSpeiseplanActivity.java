@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import mfdevelopement.appsolution.R;
 
-public class MensaSpeiseplan extends AppCompatActivity {
+public class MensaSpeiseplanActivity extends AppCompatActivity {
 
     /**
      * Initialisierung Variablen
@@ -28,6 +28,10 @@ public class MensaSpeiseplan extends AppCompatActivity {
     // Radio Button
     private RadioButton buttonOTH = null;
     private RadioButton buttonUni = null;
+
+    // urls of websites
+    private final String URL_OTH_MENSA_DAILY = "http://www.stwno.my-mensa.de/index.php?v=4759748&hyp=1#m_hs_reg_tage";
+    private final String URL_UNI_MENSA_DAILY = "http://www.stwno.my-mensa.de/index.php?v=4760332&hyp=1#m_uni_reg_tage";
 
     SharedPreferences myUni;
     WebView webView;
@@ -44,7 +48,7 @@ public class MensaSpeiseplan extends AppCompatActivity {
 
         myUni = getSharedPreferences("myUni1", 0);
         String myUniReturned = myUni.getString("myUni", "error");
-        switch (myUniReturned){
+        switch (myUniReturned) {
             case "OTH":
                 this.buttonOTH = findViewById(R.id.mensa_button_OTH);
                 buttonOTH.setChecked(true);
@@ -58,9 +62,8 @@ public class MensaSpeiseplan extends AppCompatActivity {
         }
     }
 
-    public void checkInternetStatus()
-    {
-        ConnectivityManager cm = (ConnectivityManager) MensaSpeiseplan.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public void checkInternetStatus() {
+        ConnectivityManager cm = (ConnectivityManager) MensaSpeiseplanActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         if (activeNetwork != null) { // connected to the internet
             if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
@@ -76,7 +79,7 @@ public class MensaSpeiseplan extends AppCompatActivity {
             // not connected to the internet
             webView.setVisibility(View.INVISIBLE);
             webView.setMinimumHeight(0);
-            Toast.makeText(MensaSpeiseplan.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MensaSpeiseplanActivity.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -84,8 +87,7 @@ public class MensaSpeiseplan extends AppCompatActivity {
     public void onBackPressed() {
         if (webView.copyBackForwardList().getCurrentIndex() > 0) {
             webView.goBack();
-        }
-        else {
+        } else {
             // Your exit alert code, or alternatively line below to finish
             super.onBackPressed(); // finishes activity
         }
@@ -107,22 +109,21 @@ public class MensaSpeiseplan extends AppCompatActivity {
     }
 
     public void showMensaOth() {
-        String url = "http://www.stwno.my-mensa.de/index.php?v=4759748&hyp=1#m_hs_reg_tage";
         myUni = getSharedPreferences("myUni1", 0);
         SharedPreferences.Editor editor = myUni.edit();
         editor.clear();
         editor.putString("myUni", "OTH");
         editor.apply();
-        webView = (WebView)findViewById(R.id.mensa_webView);
+        webView = findViewById(R.id.mensa_webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(url);
+        webView.loadUrl(URL_OTH_MENSA_DAILY);
         webView.measure(100, 100);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url){
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }
@@ -130,22 +131,22 @@ public class MensaSpeiseplan extends AppCompatActivity {
     }
 
     public void showMensaUni() {
-        String url = "http://www.stwno.my-mensa.de/index.php?v=4760332&hyp=1#m_uni_reg_tage";
+
         myUni = getSharedPreferences("myUni1", 0);
         SharedPreferences.Editor editor = myUni.edit();
         editor.clear();
         editor.putString("myUni", "Uni");
         editor.apply();
-        webView = (WebView)findViewById(R.id.mensa_webView);
+        webView = findViewById(R.id.mensa_webView);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl(url);
+        webView.loadUrl(URL_UNI_MENSA_DAILY);
         webView.measure(100, 100);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
 
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url){
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
             }

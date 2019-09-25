@@ -48,7 +48,7 @@ import mfdevelopement.appsolution.device.status.InternetStatus;
 // https://www.youtube.com/watch?v=GpyWS2Jgag8
 // https://www.youtube.com/watch?v=X0n8TSI3QOU (neuer)
 
-public class CurrencyConverter extends AppCompatActivity implements View.OnClickListener {
+public class CurrencyConverterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String strCurrencyFrom = "";
     private String strCurrencyTo = "";
@@ -60,7 +60,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
     //private String base_url1 = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.xchange%20where%20pair%20in%20(%22";
     //private String base_url2 = "%22,%20%22EURUSD%22)&format=json&env=store://datatables.org/alltableswithkeys";
 
-    private String APIkey = "2c7cff2891f7cc11d05418d18bac05bb";
+    private final String APIkey = "2c7cff2891f7cc11d05418d18bac05bb";
     private String baseURL = "http://data.fixer.io/api/latest?access_key=" + APIkey;
     // angemeldet mit frk@existiert.net
 
@@ -124,11 +124,11 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         spinner_to.setSelection(adapter.getPosition(defaultCurrencies.getString("targetCurrency", USDOLLAR)));
 
         // Mapping the currency description with the Keys
-        String [] currencyNames = getResources().getStringArray(R.array.currencies_array);
+        String[] currencyNames = getResources().getStringArray(R.array.currencies_array);
         List<String> currList = Arrays.asList(currencyNames);
-        String [] currencyKeys = getResources().getStringArray(R.array.currencyKeys_array);
+        String[] currencyKeys = getResources().getStringArray(R.array.currencyKeys_array);
         List<String> currKeys = Arrays.asList(currencyKeys);
-        for (int i=0; i<currList.size(); i++) {
+        for (int i = 0; i < currList.size(); i++) {
             currenciesMap.put(currList.get(i), currKeys.get(i));
             //Log.i(LogTag,"Mapping: " + currList.get(i) + " --> " + currKeys.get(i));
         }
@@ -138,23 +138,21 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
 
         if (internetStatus.isConnected()) {
             new loadCurrencies(SharedPrefName).execute();
-        }
-        else {
-            SharedPreferences oldValues = getSharedPreferences(SharedPrefName,Context.MODE_PRIVATE);
-            long lastUpdate = (long) oldValues.getFloat(TIMESTAMP,0)*1000;
-            Log.i(LogTag,"last available update of currencies from timestamp:" + lastUpdate);
+        } else {
+            SharedPreferences oldValues = getSharedPreferences(SharedPrefName, Context.MODE_PRIVATE);
+            long lastUpdate = (long) oldValues.getFloat(TIMESTAMP, 0) * 1000;
+            Log.i(LogTag, "last available update of currencies from timestamp:" + lastUpdate);
             if (lastUpdate == 0) {
                 // parameter 1: message for alert dialog
                 // parameter 2: should there be a negative button
                 String msg = getString(R.string.txt_no_internet_connection);
                 showInternetAlert(msg, false);
-            }
-            else {
+            } else {
 
                 Date df = new java.util.Date(lastUpdate);
                 String date = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY).format(df);
 
-                String msg = getString(R.string.txt_no_internet_connection) + " Old values from " + date +" are used";
+                String msg = getString(R.string.txt_no_internet_connection) + " Old values from " + date + " are used";
                 showInternetAlert(msg, true);
             }
         }
@@ -188,7 +186,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         USDOLLAR = getString(R.string.txt_currency_usd);
 
         appname = getString(R.string.app_name);
-        LogTag = appname + "/CurrencyConverter";
+        LogTag = appname + "/CurrencyConverterActivity";
 
         ERRORCONVERT = getString(R.string.txt_currency_convert_exchange_rate_error);
     }
@@ -215,16 +213,16 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
             if (internetType.equals(InternetStatus.WIFI)) {
                 txtvInternetInfo.setVisibility(View.GONE);
                 txtvInternetStatus.setText(getText(R.string.txt_connected_wifi));
-                txtvInternetStatus.setTextColor(CurrencyConverter.this.getResources().getColor(R.color.DarkGreen));
+                txtvInternetStatus.setTextColor(CurrencyConverterActivity.this.getResources().getColor(R.color.DarkGreen));
             } else if (internetType.equals(InternetStatus.MOBILE)) {
                 txtvInternetInfo.setVisibility(View.GONE);
                 txtvInternetStatus.setText(getText(R.string.txt_connected_mobile));
-                txtvInternetStatus.setTextColor(CurrencyConverter.this.getResources().getColor(R.color.DarkGreen));
+                txtvInternetStatus.setTextColor(CurrencyConverterActivity.this.getResources().getColor(R.color.DarkGreen));
             }
         } else {
             txtvInternetInfo.setVisibility(View.VISIBLE);
             txtvInternetStatus.setText(getText(R.string.txt_no_internet_connection));
-            txtvInternetStatus.setTextColor(CurrencyConverter.this.getResources().getColor(R.color.DarkRed));
+            txtvInternetStatus.setTextColor(CurrencyConverterActivity.this.getResources().getColor(R.color.DarkRed));
         }
     }
 
@@ -240,11 +238,11 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         if (!connectedToInternet && !useOldValues) {
             strResult = "";
             txtvResult.setText(strResult);
-            Toast.makeText(CurrencyConverter.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CurrencyConverterActivity.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
         } else if (enteredValue.equals("") || enteredValue.equals(" ")) {
             strResult = "";
             txtvResult.setText(strResult);
-            Toast.makeText(CurrencyConverter.this, getText(R.string.txt_enter_value), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CurrencyConverterActivity.this, getText(R.string.txt_enter_value), Toast.LENGTH_SHORT).show();
         } else {
             strCurrencyFrom = spinner_from.getSelectedItem().toString();
             strCurrencyTo = spinner_to.getSelectedItem().toString();
@@ -256,7 +254,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
                 double amount = Double.parseDouble(enteredValue);
                 double result = amount * exchangeRate;
 
-                String strResult = String.format(getResources().getConfiguration().locale,"%.6f", result);
+                String strResult = String.format(getResources().getConfiguration().locale, "%.6f", result);
                 txtvResult.setText(strResult);
             }
             hideKeyboard();
@@ -275,11 +273,11 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         if (!connectedToInternet && !useOldValues) {
             strResult = "";
             txtvResult.setText(strResult);
-            Toast.makeText(CurrencyConverter.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CurrencyConverterActivity.this, getText(R.string.txt_no_internet_connection), Toast.LENGTH_SHORT).show();
         } else if (enteredValue.equals("") || enteredValue.equals(" ")) {
             strResult = "";
             txtvResult.setText(strResult);
-            Toast.makeText(CurrencyConverter.this, getText(R.string.txt_enter_value), Toast.LENGTH_SHORT).show();
+            Toast.makeText(CurrencyConverterActivity.this, getText(R.string.txt_enter_value), Toast.LENGTH_SHORT).show();
         } else {
             // get the currency
             strCurrencyFrom = spinner_from.getSelectedItem().toString();
@@ -297,10 +295,10 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
                 double resultOstmark = result * 4;
                 double resultOstmarkSchwarz = result * 20;
 
-                String strResult = String.format(getResources().getConfiguration().locale,"%.2f", result);
-                String strResultDMark = String.format(getResources().getConfiguration().locale,"%.2f", resultDMark);
-                String strResultOstmark = String.format(getResources().getConfiguration().locale,"%.2f", resultOstmark);
-                String strResultOstmarkSchwarz = String.format(getResources().getConfiguration().locale,"%.2f", resultOstmarkSchwarz);
+                String strResult = String.format(getResources().getConfiguration().locale, "%.2f", result);
+                String strResultDMark = String.format(getResources().getConfiguration().locale, "%.2f", resultDMark);
+                String strResultOstmark = String.format(getResources().getConfiguration().locale, "%.2f", resultOstmark);
+                String strResultOstmarkSchwarz = String.format(getResources().getConfiguration().locale, "%.2f", resultOstmarkSchwarz);
                 txtvResult.setText(strResult);
 
                 String strText = kangaroo1 + "\n" + enteredValue + " " + strCurrencyFrom + " " + kangaroo2 + " " + strResultDMark + " " + kangaroo3 + "\n" + kangaroo4 + " " + strResultOstmark + " " + kangaroo5 + "\n" + kangaroo4 + " " + strResultOstmarkSchwarz + " " + kangaroo6;
@@ -333,7 +331,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         // write log
         Log.i(LogTag, "trying to convert from " + strFrom + " to " + strTo);
 
-        Log.i(LogTag,sharedPrefs.toString());
+        Log.i(LogTag, sharedPrefs.toString());
         double resTo = sharedPrefs.getFloat(strTo, 0);
         double resFrom = sharedPrefs.getFloat(strFrom, 0);
 
@@ -342,7 +340,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         if (!(resTo == 0) && !(resFrom == 0)) {
             rate = (resTo / resFrom);
         } else {
-            Log.e(LogTag,"Error during calculation of exchange rate");
+            Log.e(LogTag, "Error during calculation of exchange rate");
         }
 
         // write log
@@ -375,7 +373,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
             builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(CurrencyConverter.this, Main.class);
+                    Intent intent = new Intent(CurrencyConverterActivity.this, MainActivity.class);
                     finish();
                     startActivity(intent);
                 }
@@ -387,8 +385,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
                             // close dialog
                         }
                     });
-        }
-        else {
+        } else {
             builder.setPositiveButton(getString(R.string.btd_ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -406,15 +403,14 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
 
         if (currenciesMap.get(string) == null) {
             return "error";
-        }
-        else {
+        } else {
             return currenciesMap.get(string);
         }
     }
 
     public void onBackPressed() {
 
-        Intent intent = new Intent(this, Main.class);
+        Intent intent = new Intent(this, MainActivity.class);
         finish();
         startActivity(intent);
     }
@@ -445,10 +441,10 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
     }
 
 
-    private class loadCurrencies extends AsyncTask<String, Void, Map<String,Double>> {
+    private class loadCurrencies extends AsyncTask<String, Void, Map<String, Double>> {
 
         SharedPreferences sharedPref;
-        private Map<String,Double> map =  new HashMap<>();
+        private Map<String, Double> map = new HashMap<>();
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -467,7 +463,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
                 boolean success = new JSONObject(URL).getBoolean("success");
                 if (!success) {
                     Log.i(LogTag, "Response for currencies from fixer.io not successful");
-                    Toast.makeText(CurrencyConverter.this, "Response not successful. Contact developer!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CurrencyConverterActivity.this, "Response not successful. Contact developer!", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.i(LogTag, "Response for currencies from fixer.io successful!");
                     // get values out of JSON response
@@ -475,17 +471,17 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
                     for (String country : currenciesList) {
                         String countyCode = getCountry(country);
                         Double val = Double.parseDouble(euroRates.get(countyCode).toString());
-                        Log.i(LogTag,"Loaded currencies: country: " + country + "; exchange rate = " + val);
-                        map.put(country,val);
+                        Log.i(LogTag, "Loaded currencies: country: " + country + "; exchange rate = " + val);
+                        map.put(country, val);
                     }
                     long timestamp = new JSONObject(URL).getInt("timestamp");
-                    Date df = new java.util.Date(timestamp*1000);
+                    Date df = new java.util.Date(timestamp * 1000);
                     String date = new SimpleDateFormat("dd-MM-yyyy hh:mma").format(df);
-                    Log.i(LogTag,"last update of currecies: " + date + "; " + timestamp);
-                    map.put(TIMESTAMP,(double)timestamp);
+                    Log.i(LogTag, "last update of currecies: " + date + "; " + timestamp);
+                    map.put(TIMESTAMP, (double) timestamp);
                 }
             } catch (JSONException e) {
-                    e.printStackTrace();
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -493,7 +489,7 @@ public class CurrencyConverter extends AppCompatActivity implements View.OnClick
         }
 
         @Override
-        protected void onPostExecute(Map<String,Double> maps) {
+        protected void onPostExecute(Map<String, Double> maps) {
             //
             SharedPreferences.Editor editor = this.sharedPref.edit();
             for (String country : currenciesList) {
