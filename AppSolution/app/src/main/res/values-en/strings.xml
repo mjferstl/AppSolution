@@ -268,4 +268,12 @@
     <string name="txt_no_city_selected">There\'s nothing to display.\nAdd a city to the list.</string>
     <string name="btn_remove_city">remove city</string>
     <string name="txt_title_bundesliga_table">Bundesliga - table</string>
+    <string name="txt_toast_setElevation_error">Activity is not displayed correctly</string>
+    <string name="txt_bundesliga_table_rank_short">R</string>
+    <string name="txt_bundesliga_table_points_short">P</string>
+    <string name="txt_bundesliga_table_goals">Goals</string>
+    <string name="txt_bundesliga_table_team">Team</string>
+    <string name="txt_bundesliga_table_games_short">G</string>
+    <string name="txt_bundesliga_tab_table">table</string>
+    <string name="txt_bundesliga_tab_games">matches</string>
 </resources>

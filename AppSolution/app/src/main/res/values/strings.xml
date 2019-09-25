@@ -484,5 +484,16 @@
     <!-- Bundesliga -->
     <string name="title_activity_bundesliga" translatable="false">Bundesliga</string>
     <string name="txt_title_bundesliga_table">Bundesliga - Tabelle</string>
+    <string name="txt_bundesliga_tab_table">Tabelle</string>
+    <string name="txt_bundesliga_tab_games">Spiele</string>
+    <string name="txt_bundesliga_table_rank_short">P</string>
+    <string name="txt_bundesliga_table_team">Mannschaft</string>
+    <string name="txt_bundesliga_table_games_short">S</string>
+    <string name="txt_bundesliga_table_goals">Tore</string>
+    <string name="txt_bundesliga_table_points_short">Pkt</string>
+
+    <!-- Allgemein -->
+    <string name="txt_toast_setElevation_error">Activity kann nicht richtig dargestellt werden</string>
+
 </resources>
 

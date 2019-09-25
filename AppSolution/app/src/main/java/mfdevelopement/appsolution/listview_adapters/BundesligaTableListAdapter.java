@@ -39,12 +39,12 @@ public class BundesligaTableListAdapter extends ArrayAdapter<FootballTeam> {
             view = LayoutInflater.from(getContext()).inflate(R.layout.adapter_bundesliga_table, parent, false);
         }
 
-        TextView txtvTablePosition = view.findViewById(R.id.txtv_bundesliga_table_pos);
-        TextView txtvTeamName = view.findViewById(R.id.txtv_bundesliga_table_teamname);
-        TextView txtvTeamMatches = view.findViewById(R.id.txtv_bundesliga_table_matches);
-        TextView txtvTeamGoals = view.findViewById(R.id.txtv_bundesliga_table_goals);
-        TextView txtvTeamPoints = view.findViewById(R.id.txtv_bundesliga_table_points);
-        ImageView imgTeamIcon = view.findViewById(R.id.img_bundesliga_table_teamicon);
+        TextView txtvTablePosition = view.findViewById(R.id.txtv_bundesliga_table_adapter_pos);
+        TextView txtvTeamName = view.findViewById(R.id.txtv_bundesliga_table_adapter_teamname);
+        TextView txtvTeamMatches = view.findViewById(R.id.txtv_bundesliga_table_adapter_num_matches);
+        TextView txtvTeamGoals = view.findViewById(R.id.txtv_bundesliga_table_adapter_goals);
+        TextView txtvTeamPoints = view.findViewById(R.id.txtv_bundesliga_table_adapter_points);
+        ImageView imgTeamIcon = view.findViewById(R.id.img_bundesliga_table_adapter_teamicon);
 
         txtvTablePosition.setText(String.format(Locale.getDefault(),"%2d",position+1));
 
