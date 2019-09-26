@@ -35,10 +35,14 @@ import mfdevelopement.bundesliga.Match;
 public class BundesligaActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "BundesligaActivity";
-    private Bundesliga bundesliga;
+
     private ListView lv_bundesliga_table, lv_bundesliga_matches;
+    private Bundesliga bundesliga;
     private ProgressBar progressBar;
     private SharedPreferences sharedPrefsBundesliga;
+    private final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
+    private final String SHARED_PREF_STRING_TABLE = "jsonResponseTable";
+    private final String SHARED_PREF_STRING_MATCHES = "jsonResponseMatches";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,6 @@ public class BundesligaActivity extends AppCompatActivity {
             Log.e(LOG_TAG, "getSupportActionBar().setElevation(0) produced a NullPointerException");
             Toast.makeText(this, getString(R.string.txt_toast_setElevation_error), Toast.LENGTH_SHORT).show();
         }
-
 
         // Set up the ViewPager with the sections adapter.
         // The {@link ViewPager} that will host the section contents.
@@ -109,13 +112,34 @@ public class BundesligaActivity extends AppCompatActivity {
         }
     }
 
-    private void saveBundesligaJsonResponse(String jsonResponseString) {
-        //TODO: implement functions to save the json response from openligadb.de to a SharedPreference
+    private void saveBundesligaJsonResponse(String jsonResponseString, String SharedPrefEntryName) {
+
+        // log function call
+        Log.d(LOG_TAG,"saveBundesligaJsonResponse()" +
+                "\nSharedPrefEntryName: " + SharedPrefEntryName +
+                "\njsonResponse: " + jsonResponseString);
+
+        // save jsonReponse using SharedPreferences
+        sharedPrefsBundesliga = getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, 0);
+        SharedPreferences.Editor editor = sharedPrefsBundesliga.edit();
+        editor.clear();
+        editor.putString(SharedPrefEntryName, jsonResponseString);
+        editor.apply();
     }
 
-    private String getBundesligaJsonResponse() {
-        //TODO: implement functions to get the saved jsonReponse from a SharedPreference
-        return "";
+    private String getBundesligaJsonResponse(String SharedPrefEntryName) {
+
+        // log function call
+        Log.d(LOG_TAG,"getBundesligaJsonResponse()" +
+                "\nSharedPrefEntryName: " + SharedPrefEntryName);
+
+        sharedPrefsBundesliga = getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, 0);
+        String jsonResponse = sharedPrefsBundesliga.getString(SharedPrefEntryName, "");
+
+        // log the returned string
+        Log.d(LOG_TAG,"loaded jsonResponse from SharedPreference: " + jsonResponse);
+
+        return jsonResponse;
     }
 
     /**
@@ -137,7 +161,8 @@ public class BundesligaActivity extends AppCompatActivity {
         updateBundesligaMatchesList(bundesliga.getMatches());
 
         // save the json Response string
-        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseTable());
+        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseTable(),SHARED_PREF_STRING_TABLE);
+        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseMatches(),SHARED_PREF_STRING_MATCHES);
     }
 
     /**
