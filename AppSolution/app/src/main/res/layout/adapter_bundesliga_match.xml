@@ -3,42 +3,81 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/activity_single_space"
-    android:paddingBottom="@dimen/activity_single_space"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:background="@color/White">
 
-    <TextView
-        android:id="@+id/txtv_bundesliga_match_adapter_date"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_matches_adapter_separator"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="@dimen/weight_bundesliga_matches_date"
-        android:text=""
-        android:textSize="@dimen/material_text_body1"
-        android:textColor="@color/black">
-    </TextView>
+        android:orientation="horizontal"
+        android:background="@color/WhiteSmoke"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space">
 
-    <TextView
-        android:id="@+id/txtv_bundesliga_match_adapter_match"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="@dimen/weight_bundesliga_matches_match"
-        android:text=""
-        android:textSize="@dimen/material_text_body1"
-        android:textColor="@color/black">
-    </TextView>
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_adapter_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="date"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/activity_single_space"
+            android:paddingStart="@dimen/activity_single_space"
+            android:paddingRight="0dp"
+            android:paddingEnd="0dp">
+        </TextView>
 
-    <TextView
-        android:id="@+id/txtv_bundesliga_match_adapter_result"
-        android:layout_width="0dp"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_matches_adapter_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="@dimen/weight_bundesliga_matches_result"
-        android:textSize="@dimen/material_text_body1"
-        android:textColor="@color/black"
-        android:text=""
-        android:paddingLeft="@dimen/activity_single_space"
-        android:paddingStart="@dimen/activity_single_space"
-        android:paddingRight="@dimen/activity_single_space"
-        android:paddingEnd="@dimen/activity_single_space">
-    </TextView>
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/activity_single_space"
+        android:layout_marginRight="@dimen/activity_single_space"
+        android:layout_marginStart="@dimen/activity_single_space"
+        android:layout_marginEnd="@dimen/activity_single_space"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space">
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_adapter_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_date"
+            android:text="time"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/black">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_adapter_match"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_match"
+            android:text="match"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/black">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_adapter_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="@dimen/weight_bundesliga_matches_result"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/black"
+            android:text="result"
+            android:paddingLeft="@dimen/activity_single_space"
+            android:paddingStart="@dimen/activity_single_space"
+            android:paddingRight="@dimen/activity_single_space"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:gravity="end">
+        </TextView>
+
+    </LinearLayout>
 
 </LinearLayout>

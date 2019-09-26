@@ -8,9 +8,10 @@
     android:paddingStart="@dimen/activity_single_space"
     android:paddingLeft="@dimen/activity_single_space"
     android:paddingRight="@dimen/activity_single_space"
-    android:paddingEnd="@dimen/activity_single_space">
+    android:paddingEnd="@dimen/activity_single_space"
+    android:background="@color/WhiteSmoke">
 
-    <LinearLayout
+<!--    <LinearLayout
         android:id="@+id/lin_lay_bundesliga_matches_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,18 +55,16 @@
             android:textColor="@color/colorTextPrimaryLight">
         </TextView>
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <ListView
         android:id="@+id/lv_bundesliga_matches"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_matches_header"
         app:layout_constraintVertical_bias="0.0">
     </ListView>
 

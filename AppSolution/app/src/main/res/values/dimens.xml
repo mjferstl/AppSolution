@@ -52,7 +52,7 @@
     <dimen name="appbar_padding_top">8dp</dimen>
 
     <!-- Bundesliga -->
-    <dimen name="weight_bundesliga_matches_date">3</dimen>
+    <dimen name="weight_bundesliga_matches_date">2</dimen>
     <dimen name="weight_bundesliga_matches_match">6</dimen>
     <dimen name="weight_bundesliga_matches_result">3</dimen>
 </resources>

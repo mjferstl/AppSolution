@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
@@ -180,8 +181,28 @@ public class BundesligaActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setProgress(0);
 
+        //
+        List<Match> matchesFormatted = new ArrayList<>();
+        for (int i=0; i<matches.size(); i++) {
+            // add the first item twice --> 1st separator, 2nd visible item
+            if (i==0) {
+                matchesFormatted.add(matches.get(i));
+                matchesFormatted.add(matches.get(i));
+                continue;
+            }
+
+            // if current item has another date, then it is added twice
+            String currentMatchDate = BundesligaMatchesListAdapter.getMatchDate(matches.get(i).getMatchTime());
+            String lastMatchDate = BundesligaMatchesListAdapter.getMatchDate(matches.get(i-1).getMatchTime());
+            if (!currentMatchDate.equals(lastMatchDate)) {
+                matchesFormatted.add(matches.get(i));
+            }
+
+            matchesFormatted.add(matches.get(i));
+        }
+
         // create ListAdapter object
-        BundesligaMatchesListAdapter bundesligaMatchesListAdapter = new BundesligaMatchesListAdapter(this, matches);
+        BundesligaMatchesListAdapter bundesligaMatchesListAdapter = new BundesligaMatchesListAdapter(this, matchesFormatted);
 
         // update reference to bundesliga table listView and update its content
         if (lv_bundesliga_matches == null)
@@ -192,6 +213,7 @@ public class BundesligaActivity extends AppCompatActivity {
         progressBar.setProgress(100);
         progressBar.setVisibility(View.GONE);
     }
+
 
     /**
      * Asnyc task for loading Bundesliga data from https://www.openligadb.de
