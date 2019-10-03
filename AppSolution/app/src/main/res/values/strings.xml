@@ -201,7 +201,9 @@
     <string name="txtv_acceleration_start_values">0,000</string>
     <string name="sensors_acc_plot_title">Beschleunigungen</string>
     <string name="sensors_acc_plot_ylabel">Beschleunigung in m/s²</string>
-    <string name="sensors_acc_plot_xlabel">Messung</string>
+    <string name="sensors_acc_plot_xlabel">Messwert</string>
+    <string name="txt_sensors_dialog_no_acc_sensor">Dein Gerät scheint keinen Beschleunigungssensor zu haben.</string>
+    <string name="txt_sensors_dialog_return_to_app">Zurück zum Menü</string>
 
     <!-- Greek Symbols -->
     <string name="greek_eta" translatable="false">&#951;</string>

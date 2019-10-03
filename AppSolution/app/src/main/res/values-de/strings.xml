@@ -109,7 +109,7 @@
     <string name="reyn_txtv_turbulent_flow_krit">Re &#62; 2300: turbulente Strömung</string>
     <string name="sensors_acc_plot_title">Beschleunigungen</string>
     <string name="sensors_acc_plot_ylabel">Beschleunigungen in m/s²</string>
-    <string name="sensors_acc_plot_xlabel">Messung</string>
+    <string name="sensors_acc_plot_xlabel">Messwert</string>
     <string name="title_alertDialog_Phone_Axis">Koordinatensystem</string>
     <string name="txt_limette">Limette</string>
     <string name="txt_cola">Cola</string>
@@ -279,4 +279,6 @@
     <string name="txt_bundesliga_matches_date">Anpfiff</string>
     <string name="txt_bundesliga_matches_match">Spiel</string>
     <string name="txt_bundesliga_matches_result">Ergebnis</string>
+    <string name="txt_sensors_dialog_no_acc_sensor">Dein Gerät scheint keinen Beschleunigungssensor zu haben.</string>
+    <string name="txt_sensors_dialog_return_to_app">Zurück zum Menü</string>
 </resources>

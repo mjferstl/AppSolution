@@ -238,7 +238,7 @@ public class TabRheoModelsKelvinVoigtMaxwell extends android.support.v4.app.Frag
         //XYSeries fSeries = new SimpleXYSeries(Arrays.asList(freq),SimpleXYSeries.ArrayFormat.XY_VALS_INTERLEAVED,"");
         XYSeries cSeries = new SimpleXYSeries(Arrays.asList(freq), Arrays.asList(dynStiff), "");
 
-        LineAndPointFormatter cFormat = new LineAndPointFormatter(getContext(), R.xml.line_point_formatter_with_labels);
+        LineAndPointFormatter cFormat = new LineAndPointFormatter(getContext(), R.xml.line_formatter_green);
 
         xyPlot.setDomainStepValue(6);
         xyPlot.setRangeStepValue(5);

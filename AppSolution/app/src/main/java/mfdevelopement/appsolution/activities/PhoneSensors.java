@@ -117,9 +117,9 @@ public class PhoneSensors extends AppCompatActivity implements SensorEventListen
 
         Log.i(LogTag,"PlotBoundaries are set");
 
-        LineAndPointFormatter acc_x_format = new LineAndPointFormatter(this, R.xml.line_point_formatter_with_labels);
-        LineAndPointFormatter acc_y_format = new LineAndPointFormatter(this, R.xml.line_point_formatter_with_labels_2);
-        LineAndPointFormatter acc_z_format = new LineAndPointFormatter(this, R.xml.line_point_formatter_with_labels_3);
+        LineAndPointFormatter acc_x_format = new LineAndPointFormatter(this, R.xml.line_formatter_green);
+        LineAndPointFormatter acc_y_format = new LineAndPointFormatter(this, R.xml.line_formatter_blue);
+        LineAndPointFormatter acc_z_format = new LineAndPointFormatter(this, R.xml.line_formatter_red);
 
         plot.addSeries(acc_x, acc_x_format);
         plot.addSeries(acc_y, acc_y_format);

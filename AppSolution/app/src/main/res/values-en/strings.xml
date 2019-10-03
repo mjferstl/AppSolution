@@ -109,7 +109,7 @@
     <string name="reyn_txtv_turbulent_flow_krit">Re &#62; 2300: turbulent flow</string>
     <string name="sensors_acc_plot_title">accelerations</string>
     <string name="sensors_acc_plot_ylabel">acceleration in m/s²</string>
-    <string name="sensors_acc_plot_xlabel">measure</string>
+    <string name="sensors_acc_plot_xlabel">measured value</string>
     <string name="title_alertDialog_Phone_Axis">Coordinate system</string>
     <string name="txt_limette">lime</string>
     <string name="txt_cola">cola</string>
@@ -279,4 +279,6 @@
     <string name="txt_bundesliga_matches_date">Kick-off</string>
     <string name="txt_bundesliga_matches_match">Match</string>
     <string name="txt_bundesliga_matches_result">Result</string>
+    <string name="txt_sensors_dialog_no_acc_sensor">Your device seems to have no acceleration sensor.</string>
+    <string name="txt_sensors_dialog_return_to_app">Go back to main menu</string>
 </resources>

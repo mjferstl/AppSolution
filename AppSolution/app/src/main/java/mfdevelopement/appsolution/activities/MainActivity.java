@@ -162,6 +162,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private void openActivity(Class cl) {
         Intent intent = new Intent(MainActivity.this, cl);
+
+        // bring activty to the front, if it is already running
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+        // start activity
         startActivity(intent);
     }
 
