@@ -22,7 +22,6 @@ import mfdevelopement.bundesliga.Match;
 public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
     private final String LOG_TAG = "BundesligaMatchesListAd";
-    private final String NO_RESULT = "-:-";
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("E dd.MM",Locale.getDefault());
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm",Locale.getDefault());
@@ -82,6 +81,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
         }
 
+        // set match date
         tv_match_date.setText(String.format(Locale.getDefault(), "%s", matchDateString));
 
         // set match time
@@ -95,14 +95,23 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
         // set result if game already startet
         String resultFinal, resultHalfTime;
         Calendar matchDate = currentMatch.getMatchTime();
-        if (matchDate != null && matchDate.before(Calendar.getInstance())) {
+
+        // format result depending on the state of the match
+        String resultString;
+        if (currentMatch.isFinished()) {
             resultFinal = String.valueOf(currentMatch.getGoalsHomeTeamFinal()) + ':' + String.valueOf(currentMatch.getGoalsAwayTeamFinal());
             resultHalfTime = String.valueOf(currentMatch.getGoalsHomeTeamHalf()) + ':' + String.valueOf(currentMatch.getGoalsAwayTeamHalf());
+            resultString = resultFinal + " (" + resultHalfTime + ")";
         } else {
-            resultFinal = NO_RESULT;
-            resultHalfTime = NO_RESULT;
+            if (matchDate != null && matchDate.before(Calendar.getInstance())) {
+                resultFinal = String.valueOf(currentMatch.getGoalsHomeTeamFinal()) + ':' + String.valueOf(currentMatch.getGoalsAwayTeamFinal());
+            } else {
+                resultFinal = "";
+            }
+            resultString = resultFinal;
         }
-        String resultString = resultFinal + " (" + resultHalfTime + ")";
+
+        // set 
         tv_match_result.setText(resultString);
 
         return view;
