@@ -28,6 +28,8 @@ import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+
 public class SensorsActivity extends AppCompatActivity implements SensorEventListener {
 
     private TextView txtv_x_result, txtv_y_result, txtv_z_result;
@@ -326,6 +328,7 @@ public class SensorsActivity extends AppCompatActivity implements SensorEventLis
     public void onBackPressed() {
         sensorManager.unregisterListener(this, mAcceleration);
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

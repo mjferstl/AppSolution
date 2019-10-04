@@ -26,7 +26,6 @@ public class RheologicalModelsActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
 
-
     private final String LOG_TAG = "RheologicalModelsActivi";
 
     @Override
@@ -95,7 +94,7 @@ public class RheologicalModelsActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(android.support.v4.app.FragmentManager fm) {
+        private SectionsPagerAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
         }
 

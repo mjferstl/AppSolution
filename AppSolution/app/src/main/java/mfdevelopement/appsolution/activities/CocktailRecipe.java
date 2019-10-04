@@ -565,8 +565,8 @@ public class CocktailRecipe extends AppCompatActivity {
 
     public void onBackPressed() {
         Intent intent = new Intent(this, CocktailOverviewActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }
-
 }

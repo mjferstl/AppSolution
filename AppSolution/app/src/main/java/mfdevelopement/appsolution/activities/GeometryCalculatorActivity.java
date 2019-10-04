@@ -22,9 +22,9 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
      * Konstanten
      */
     //Strings
-    private String REC_AREA = "";
-    private String CIRCLE_AREA = "";
-    private String OK_BUTTON = "";
+    private String REC_AREA;
+    private String CIRCLE_AREA;
+    private String OK_BUTTON;
     private String APPROX = "";
     private String SET_DIAMETER = "";
     private String SET_LENGTH = "";
@@ -40,23 +40,9 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
     private static final BigDecimal four = new BigDecimal(4);
     private BigDecimal bdDiameter = null;
 
-
-    /**
-     * Deklaration und Initialisierung der Widgets
-     */
-    //Buttons
-    private Button btdRecCalc = null;
-    private Button btdCircCalc = null;
-    private Button btdRecHelp = null;
-    private Button CircHelp = null;
-
     //TextViews
     private TextView txtvResult = null;
 
-    //EditText
-    private EditText txteDiameter = null;
-    private EditText txteLength = null;
-    private EditText txteWidth = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +60,7 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
         SET_LENGTH = getString(R.string.maths_enter_length);
         SET_WIDTH = getString(R.string.maths_enter_width);
 
-        btdRecCalc = findViewById(R.id.btd_maths_rectangle_calc);
+        Button btdRecCalc = findViewById(R.id.btd_maths_rectangle_calc);
         btdRecCalc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +69,7 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
             }
         });
 
-        btdCircCalc = findViewById(R.id.btd_maths_circle_calc);
+        Button btdCircCalc = findViewById(R.id.btd_maths_circle_calc);
         btdCircCalc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i("Button", "calculate circular area");
@@ -95,7 +81,7 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
     public void calcCircle() {
         txtvResult = findViewById(R.id.txtv_maths_circle_result_value);
         txtvResult.setText("");
-        txteDiameter = findViewById(R.id.txte_maths_circle_diameter);
+        EditText txteDiameter = findViewById(R.id.txte_maths_circle_diameter);
         if (txteDiameter.getText().toString().equals("")) {
             Toast.makeText(GeometryCalculatorActivity.this, SET_DIAMETER, Toast.LENGTH_SHORT).show();
         } else {
@@ -112,11 +98,13 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
             }
             area = area.setScale(6, BigDecimal.ROUND_HALF_UP);
 
+            String result;
             if (exponent == 0) {
-                txtvResult.setText(APPROX + area.toString());
+                result = APPROX + area.toString();
             } else {
-                txtvResult.setText(APPROX + area.toString() + E + exponent);
+                result = APPROX + area.toString() + E + exponent;
             }
+            txtvResult.setText(result);
         }
     }
 
@@ -125,8 +113,8 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
         txtvResult.setText("");
         BigDecimal length;
         BigDecimal width;
-        txteLength = findViewById(R.id.txte_maths_rectangle_width);
-        txteWidth = findViewById(R.id.txte_maths_rectangle_height);
+        EditText txteLength = findViewById(R.id.txte_maths_rectangle_width);
+        EditText txteWidth = findViewById(R.id.txte_maths_rectangle_height);
 
         // Display Toast if EditText of length is empty
         if (txteLength.getText().toString().equals("")) {
@@ -165,13 +153,16 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
                     if (exponent == 0) {
                         txtvResult.setText(areaString);
                     } else {
-                        txtvResult.setText(areaString + E + exponent);
+                        String result = areaString + E + exponent;
+                        txtvResult.setText(result);
                     }
                 } else {
                     if (exponent == 0) {
-                        txtvResult.setText(APPROX + areaString);
+                        String result = APPROX + areaString;
+                        txtvResult.setText(result);
                     } else {
-                        txtvResult.setText(APPROX + areaString + E + exponent);
+                        String result = APPROX + areaString + E + exponent;
+                        txtvResult.setText(result);
                     }
                 }
             }
@@ -180,6 +171,7 @@ public class GeometryCalculatorActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

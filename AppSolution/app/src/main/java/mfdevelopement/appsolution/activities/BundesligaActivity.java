@@ -1,6 +1,7 @@
 package mfdevelopement.appsolution.activities;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,6 +32,8 @@ import mfdevelopement.appsolution.tabs.TabBundesligaTable;
 import mfdevelopement.bundesliga.Bundesliga;
 import mfdevelopement.bundesliga.FootballTeam;
 import mfdevelopement.bundesliga.Match;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class BundesligaActivity extends AppCompatActivity {
 
@@ -240,6 +243,12 @@ public class BundesligaActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+        startActivity(intent);
+    }
 
     /**
      * Asnyc task for loading Bundesliga data from https://www.openligadb.de

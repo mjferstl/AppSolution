@@ -2,6 +2,7 @@ package mfdevelopement.appsolution.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ import mfdevelopement.appsolution.dialogs.DialogWeatherOverviewRemoveCity;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherData;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class WeatherOverviewActivity extends AppCompatActivity {
 
@@ -273,6 +276,13 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+        startActivity(intent);
     }
 
     /**

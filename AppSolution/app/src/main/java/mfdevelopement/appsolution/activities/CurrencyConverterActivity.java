@@ -411,6 +411,7 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
     public void onBackPressed() {
 
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

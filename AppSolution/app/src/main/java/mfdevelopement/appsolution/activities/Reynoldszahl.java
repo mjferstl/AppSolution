@@ -445,6 +445,7 @@ public class Reynoldszahl extends AppCompatActivity {
 
     public void onBackPressed() {
         Intent intent = new Intent(this, MechanicalEngineeringActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

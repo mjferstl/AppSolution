@@ -33,21 +33,23 @@ public class MechanicalEngineeringActivity extends AppCompatActivity {
                 showRheolocialModels();
             }
         });
-
     }
 
     private void showReynolds() {
         Intent intent = new Intent(this, Reynoldszahl.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     private void showRheolocialModels() {
         Intent intent = new Intent(this, RheologicalModelsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
 
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }

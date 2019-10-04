@@ -1,6 +1,7 @@
 package mfdevelopement.appsolution.activities;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.tabs.TabClothesSizeShoes;
 import mfdevelopement.appsolution.tabs.TabClothesSizeTops;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
 public class ClothesSizeActivity extends AppCompatActivity {
 
@@ -71,6 +74,13 @@ public class ClothesSizeActivity extends AppCompatActivity {
         }
 
         Log.i(LOG_TAG, "activity startet successfully");
+    }
+
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        finish();
+        startActivity(intent);
     }
 
     @Override

@@ -152,6 +152,7 @@ public class CocktailOverviewActivity extends AppCompatActivity implements View.
     public void onClick(View view) {
 
         Intent intent = new Intent(this, CocktailRecipe.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         String cocktailName = "";
 
         final int id = view.getId();
@@ -227,6 +228,7 @@ public class CocktailOverviewActivity extends AppCompatActivity implements View.
 
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }
