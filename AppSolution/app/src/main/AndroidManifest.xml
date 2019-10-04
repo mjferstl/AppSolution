@@ -73,15 +73,6 @@
             android:label="@string/title_activity_sensors"
             android:parentActivityName=".activities.MainActivity" />
         <activity
-            android:name=".activities.PhoneSensors"
-            android:label="@string/title_activity_phone_sensors"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="mfdevelopement.appsolution.activities.MainActivity" />
-        </activity>
-        <activity
             android:name=".activities.ClothesSizeActivity"
             android:label="@string/title_activity_clothes_size"
             android:parentActivityName=".activities.MainActivity">
