@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">AppSolution</string>
 
+    <string name="txt_cancel">Zurück</string>
+
     <!-- Cocktails -->
     <string name="btd_cocktail_overview_text" translatable="false">Cocktails</string>
 
@@ -217,7 +219,7 @@
     <string name="greek_nu" translatable="false">&#957;</string>
     <string name="greek_rho" translatable="false">&#961;</string>
 
-    <!-- currency calculator -->
+    <!-- currency converter -->
     <string name="title_activity_currency_calculator">Währungsrechner</string>
     <string name="txte_currency_value_hint">Betrag</string>
     <string name="btd_currency_converter_text">Umrechner</string>
@@ -229,6 +231,8 @@
     <string name="btd_help">Hilfe</string>
 
     <string name="txt_no_internet_connection">Keine Internetverbindung!</string>
+    <string name="txt_old_values_from">Wechselkurse vom</string>
+    <string name="txt_are_used">werden verwendet</string>
     <string name="txt_enter_value">Bitte Betrag eingeben</string>
     <string name="txt_connected_wifi">Mit dem Internet über WLAN verbunden.</string>
     <string name="txt_connected_mobile">Mit dem Internet (mobil) verbunden.</string>

@@ -286,4 +286,7 @@
     <string name="txt_about_icon_credits_dialog_author">Autor</string>
     <string name="txt_about_icon_credits_dialog_license">Lizenz</string>
     <string name="txt_about_icon_credits_dialog_source">Titel</string>
+    <string name="txt_are_used">werden verwendet</string>
+    <string name="txt_old_values_from">Wechselkurse vom</string>
+    <string name="txt_cancel">Beenden</string>
 </resources>

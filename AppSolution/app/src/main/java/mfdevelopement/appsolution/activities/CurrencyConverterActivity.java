@@ -141,7 +141,7 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
         } else {
             SharedPreferences oldValues = getSharedPreferences(SharedPrefName, Context.MODE_PRIVATE);
             long lastUpdate = (long) oldValues.getFloat(TIMESTAMP, 0) * 1000;
-            Log.i(LogTag, "last available update of currencies from timestamp:" + lastUpdate);
+            Log.d(LogTag, "last available update of currencies from timestamp:" + lastUpdate);
             if (lastUpdate == 0) {
                 // parameter 1: message for alert dialog
                 // parameter 2: should there be a negative button
@@ -152,7 +152,8 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
                 Date df = new java.util.Date(lastUpdate);
                 String date = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.GERMANY).format(df);
 
-                String msg = getString(R.string.txt_no_internet_connection) + " Old values from " + date + " are used";
+                String msg = getString(R.string.txt_no_internet_connection) +
+                        " " + getString(R.string.txt_old_values_from).trim() + " " + date.trim() + " " + getString(R.string.txt_are_used).trim() + ".";
                 showInternetAlert(msg, true);
             }
         }
@@ -362,7 +363,6 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     private void showInternetAlert(String message, boolean negativeButton) {
@@ -370,10 +370,11 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message);
         if (negativeButton) {
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(getString(R.string.txt_cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent intent = new Intent(CurrencyConverterActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                     startActivity(intent);
                 }
@@ -472,13 +473,13 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
                     for (String country : currenciesList) {
                         String countyCode = getCountry(country);
                         Double val = Double.parseDouble(euroRates.get(countyCode).toString());
-                        Log.i(LogTag, "Loaded currencies: country: " + country + "; exchange rate = " + val);
+                        Log.d(LogTag, "Loaded currencies: country: " + country + "; exchange rate = " + val);
                         map.put(country, val);
                     }
                     long timestamp = new JSONObject(URL).getInt("timestamp");
                     Date df = new java.util.Date(timestamp * 1000);
-                    String date = new SimpleDateFormat("dd-MM-yyyy hh:mma").format(df);
-                    Log.i(LogTag, "last update of currecies: " + date + "; " + timestamp);
+                    String date = new SimpleDateFormat("dd-MM-yyyy hh:mma",Locale.getDefault()).format(df);
+                    Log.d(LogTag, "last update of currecies: " + date + "; " + timestamp);
                     map.put(TIMESTAMP, (double) timestamp);
                 }
             } catch (JSONException e) {
@@ -503,7 +504,13 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
             editor.apply();
         }
 
-
+        /**
+         * get JSON Response from url
+         * @param url: String containing the URL to be called
+         * @return String containing the response in JSON format
+         * @throws ClientProtocolException
+         * @throws IOException
+         */
         private String getJson(String url) throws ClientProtocolException, IOException {
             StringBuilder build = new StringBuilder();
             HttpClient client = new DefaultHttpClient();
@@ -519,6 +526,4 @@ public class CurrencyConverterActivity extends AppCompatActivity implements View
             return build.toString();
         }
     }
-
-
 }
