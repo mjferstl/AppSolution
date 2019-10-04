@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_lay_dia_about_icon_credits_links"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:paddingLeft="@dimen/activity_double_space"
+    android:paddingStart="@dimen/activity_double_space"
+    android:paddingRight="@dimen/activity_single_space"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingTop="@dimen/activity_single_space"
+    android:paddingBottom="@dimen/activity_single_space">
+
+    <TextView
+        android:id="@+id/txtv_about_icon_credit_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_about_icon_credits_dialog_title"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space">
+    </TextView>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtv_about_icon_credit_dialog_title"
+        android:paddingTop="@dimen/activity_single_space">
+
+        <TableRow
+            android:id="@+id/table_row_about_icon_credit_dialog_author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtv_about_icon_credit_dialog_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_about_icon_credits_dialog_author"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/material_text_body1">
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_about_icon_credits_link_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ap_transparent"
+                android:gravity="start"
+                android:text="a"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/material_text_button"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:paddingLeft="@dimen/activity_double_space"
+                android:paddingStart="@dimen/activity_double_space"
+                android:paddingRight="@dimen/activity_single_space"
+                android:paddingEnd="@dimen/activity_single_space">
+            </Button>
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/table_row_about_icon_credit_dialog_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtv_about_icon_credit_dialog_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_about_icon_credits_dialog_source"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/material_text_body1">
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_about_icon_credits_link_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ap_transparent"
+                android:gravity="start"
+                android:text="b"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/material_text_button"
+                android:textStyle="normal"
+                android:typeface="normal"
+                android:paddingLeft="@dimen/activity_double_space"
+                android:paddingStart="@dimen/activity_double_space"
+                android:paddingRight="@dimen/activity_single_space"
+                android:paddingEnd="@dimen/activity_single_space">
+            </Button>
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/table_row_about_icon_credit_dialog_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtv_about_icon_credit_dialog_license"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_about_icon_credits_dialog_license"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/material_text_body1">
+            </TextView>
+
+            <Button
+                android:id="@+id/btn_about_icon_credits_link_license"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/ap_transparent"
+                android:gravity="start"
+                android:paddingStart="@dimen/activity_double_space"
+                android:paddingLeft="@dimen/activity_double_space"
+                android:paddingEnd="@dimen/activity_single_space"
+                android:paddingRight="@dimen/activity_single_space"
+                android:text="c"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/material_text_button"
+                android:textStyle="normal"
+                android:typeface="normal">
+            </Button>
+
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

@@ -281,4 +281,9 @@
     <string name="txt_bundesliga_matches_result">Result</string>
     <string name="txt_sensors_dialog_no_acc_sensor">Your device seems to have no acceleration sensor.</string>
     <string name="txt_sensors_dialog_return_to_app">Go back to main menu</string>
+    <string name="txt_about_darkSkyAPI_attribution">weather data: <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></string>
+    <string name="txt_about_icon_credits_dialog_title">Go to ...</string>
+    <string name="txt_about_icon_credits_dialog_author">Author</string>
+    <string name="txt_about_icon_credits_dialog_license">License</string>
+    <string name="txt_about_icon_credits_dialog_source">Title</string>
 </resources>

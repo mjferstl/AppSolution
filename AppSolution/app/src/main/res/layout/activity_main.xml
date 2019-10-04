@@ -23,7 +23,7 @@
                 android:layout_marginRight="@dimen/main_imgBtd_left_padding_right"
                 android:layout_marginStart="@dimen/main_imgBtd_left_padding_left"
                 android:layout_marginEnd="@dimen/main_imgBtd_left_padding_right"
-                android:src="@drawable/ic_cocktail_with_fruit_slice">
+                android:src="@drawable/ic_shaker">
             </ImageButton>
             <ImageButton
                 android:id="@+id/btn_main_mensa"
@@ -78,7 +78,7 @@
                 android:layout_marginRight="@dimen/main_imgBtd_left_padding_right"
                 android:layout_marginStart="@dimen/main_imgBtd_left_padding_left"
                 android:layout_marginEnd="@dimen/main_imgBtd_left_padding_right"
-                android:src="@drawable/ic_hand_with_currencies"
+                android:src="@drawable/ic_currency_change"
                 style="?android:attr/buttonBarButtonStyle"/>
 
             <ImageButton

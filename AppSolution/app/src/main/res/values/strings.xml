@@ -121,6 +121,13 @@
     <string name="about_text_version" translatable="false">Version 2.0.1</string>
     <string name="about_developer">Entwickelt von Mathias Ferstl</string>
     <string name="about_thanks" translatable="false">Icons made by Freepik from www.flaticon.com</string>
+    <string name="txt_about_darkSkyAPI_attribution">Wetterdaten: <a href="https://darksky.net/poweredby/">Powered by Dark Sky</a></string>
+    <string name="txt_about_icon_credits" translatable="false">Icon credits</string>
+    <string name="txt_about_icon_credits_dialog_title">Gehe zu &#8230;</string>
+    <string name="txt_about_icon_credits_dialog_author">Autor</string>
+    <string name="txt_about_icon_credits_dialog_source">Titel</string>
+    <string name="txt_about_icon_credits_dialog_license">Lizenz</string>
+    <string name="txt_about_icon_credits_title" translatable="false">Icon credits</string>
 
     <!-- Maths -->
     <string name="btd_calculator_text">Rechner</string>

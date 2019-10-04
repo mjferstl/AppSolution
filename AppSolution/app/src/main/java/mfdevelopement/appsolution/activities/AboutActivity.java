@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -35,6 +36,10 @@ public class AboutActivity extends AppCompatActivity {
         } else {
             tv_version.setText("Version " + version);
         }
+
+        // make TextView with attribution to DarkSkyAPI clickable
+        TextView txtv_darkSkyAPI_attribution = findViewById(R.id.txtv_about_darkSkyAPI_attribution);
+        txtv_darkSkyAPI_attribution.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public String getVersionName() {

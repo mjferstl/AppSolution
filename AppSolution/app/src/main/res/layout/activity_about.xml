@@ -9,13 +9,15 @@
     android:paddingTop="30dp"
     android:orientation="vertical"
     tools:context="mfdevelopement.appsolution.activities.AboutActivity">
+
     <ImageView
         android:layout_width="40pt"
         android:layout_height="40pt"
         android:id="@+id/app_icon"
         android:layout_gravity="center"
-        android:src="@drawable/ic_appsolution_logo"
-        />
+        android:src="@drawable/ic_appsolution_logo">
+    </ImageView>
+
     <TextView
         android:id="@+id/about_text"
         android:layout_width="match_parent"
@@ -26,8 +28,9 @@
         android:text="@string/about_text_app_name"
         android:textSize="@dimen/material_text_title"
         android:textStyle="bold"
-        android:textColor="@color/colorTextPrimary"
-        />
+        android:textColor="@color/colorTextPrimary">
+    </TextView>
+
     <TextView
         android:id="@+id/tv_about_versionName"
         android:layout_width="match_parent"
@@ -36,6 +39,7 @@
         android:textSize="@dimen/material_text_body1"
         android:text="@string/about_text_version"
         android:textColor="@color/colorTextPrimary"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,16 +47,8 @@
         android:gravity="center"
         android:textSize="@dimen/material_text_body1"
         android:text="@string/about_developer"
-        android:textColor="@color/colorTextPrimary"
-        />
-    <!--<TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5pt"
-        android:gravity="center"
-        android:textSize="@dimen/material_text_body1"
-        android:text="@string/about_thanks"
-        android:textColor="@color/colorTextPrimaryLight"/>-->
+        android:textColor="@color/colorTextPrimary">
+    </TextView>
 
     <Button
         android:id="@+id/btn_about_icons"
@@ -61,10 +57,23 @@
         style="@style/AppTheme.FlatButton"
         android:layout_gravity="end"
         android:layout_marginTop="@dimen/activity_single_space"
-        android:text="Icon credits"
+        android:text="@string/txt_about_icon_credits"
         android:paddingLeft="@dimen/activity_single_space"
         android:paddingRight="@dimen/activity_single_space"
         android:textSize="@dimen/material_text_body1"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false">
+    </Button>
+
+    <TextView
+        android:id="@+id/txtv_about_darkSkyAPI_attribution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:text="@string/txt_about_darkSkyAPI_attribution"
+        android:layout_marginTop="@dimen/activity_single_space"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space">
+    </TextView>
 
 </LinearLayout>
