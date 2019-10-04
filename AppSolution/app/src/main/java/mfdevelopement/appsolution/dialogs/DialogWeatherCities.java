@@ -56,9 +56,11 @@ public class DialogWeatherCities {
         listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(LOG_TAG,"user clicked item " + (position+1) + " of filtered listView");
                 String strCity = adapter.getItem(position);
                 Log.i(LOG_TAG, "OnCLickListener:add city " + strCity);
                 int index = cityNames.indexOf(strCity);
+                Log.d(LOG_TAG,"index of " + strCity + " in citiesList is " + index);
 
                 WeatherOverviewActivity weatherOverviewActivity = (WeatherOverviewActivity)context;
                 int cityCode = weatherOverviewActivity.getCityCode(index);

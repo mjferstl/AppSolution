@@ -149,7 +149,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     public int getCityCode(int index) {
-        if (!userCityCodes.isEmpty())
+        if (!cityCodes.isEmpty())
             return cityCodes.get(index);
         else
             return 0;
