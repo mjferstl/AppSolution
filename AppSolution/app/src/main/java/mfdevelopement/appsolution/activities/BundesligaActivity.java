@@ -119,7 +119,7 @@ public class BundesligaActivity extends AppCompatActivity {
     private void saveBundesligaJsonResponse(String jsonResponseString, String SharedPrefEntryName) {
 
         // log function call
-        Log.d(LOG_TAG,"saveBundesligaJsonResponse()" +
+        Log.d(LOG_TAG, "saveBundesligaJsonResponse()" +
                 "\nSharedPrefEntryName: " + SharedPrefEntryName +
                 "\njsonResponse: " + jsonResponseString);
 
@@ -134,14 +134,14 @@ public class BundesligaActivity extends AppCompatActivity {
     private String getBundesligaJsonResponse(String SharedPrefEntryName) {
 
         // log function call
-        Log.d(LOG_TAG,"getBundesligaJsonResponse()" +
+        Log.d(LOG_TAG, "getBundesligaJsonResponse()" +
                 "\nSharedPrefEntryName: " + SharedPrefEntryName);
 
         sharedPrefsBundesliga = getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, 0);
         String jsonResponse = sharedPrefsBundesliga.getString(SharedPrefEntryName, "");
 
         // log the returned string
-        Log.d(LOG_TAG,"loaded jsonResponse from SharedPreference: " + jsonResponse);
+        Log.d(LOG_TAG, "loaded jsonResponse from SharedPreference: " + jsonResponse);
 
         return jsonResponse;
     }
@@ -165,8 +165,8 @@ public class BundesligaActivity extends AppCompatActivity {
         updateBundesligaMatchesList(bundesliga.getMatches());
 
         // save the json Response string
-        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseTable(),SHARED_PREF_STRING_TABLE);
-        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseMatches(),SHARED_PREF_STRING_MATCHES);
+        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseTable(), SHARED_PREF_STRING_TABLE);
+        saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseMatches(), SHARED_PREF_STRING_MATCHES);
     }
 
     /**
@@ -212,9 +212,9 @@ public class BundesligaActivity extends AppCompatActivity {
 
         //
         List<Match> matchesFormatted = new ArrayList<>();
-        for (int i=0; i<matches.size(); i++) {
+        for (int i = 0; i < matches.size(); i++) {
             // add the first item twice --> 1st separator, 2nd visible item
-            if (i==0) {
+            if (i == 0) {
                 matchesFormatted.add(matches.get(i));
                 matchesFormatted.add(matches.get(i));
                 continue;
@@ -222,7 +222,7 @@ public class BundesligaActivity extends AppCompatActivity {
 
             // if current item has another date, then it is added twice
             String currentMatchDate = BundesligaMatchesListAdapter.getMatchDate(matches.get(i).getMatchTime());
-            String lastMatchDate = BundesligaMatchesListAdapter.getMatchDate(matches.get(i-1).getMatchTime());
+            String lastMatchDate = BundesligaMatchesListAdapter.getMatchDate(matches.get(i - 1).getMatchTime());
             if (!currentMatchDate.equals(lastMatchDate)) {
                 matchesFormatted.add(matches.get(i));
             }
@@ -302,16 +302,12 @@ public class BundesligaActivity extends AppCompatActivity {
             Log.i(LOG_TAG, "Bundesliga data loaded successfully");
 
             // return, if parent activity is not running anymore
-            BundesligaActivity activity = activityReference.get();
-            if (activity == null || activity.isFinishing()) return;
+            BundesligaActivity bundesligaActivity = activityReference.get();
+            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
 
             // change margin of bundesliga table title
             ConstraintLayout.LayoutParams llp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
             llp.setMargins(0, 40, 0, 0); // (left, top, right, bottom)
-
-            // check if BundesligaActivity is still active
-            BundesligaActivity bundesligaActivity = activityReference.get();
-            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
 
             bundesligaActivity.setBundesliga(bundesliga);
 
