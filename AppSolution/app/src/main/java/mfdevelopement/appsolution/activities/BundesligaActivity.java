@@ -43,6 +43,7 @@ public class BundesligaActivity extends AppCompatActivity {
     private final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
     private final String SHARED_PREF_STRING_TABLE = "jsonResponseTable";
     private final String SHARED_PREF_STRING_MATCHES = "jsonResponseMatches";
+    private final String SHARED_PREF_STRING_GOAL_GETTERS = "jsonResponseGoalGetters";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

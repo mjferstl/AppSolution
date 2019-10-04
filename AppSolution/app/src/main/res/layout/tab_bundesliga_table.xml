@@ -19,7 +19,8 @@
         android:paddingBottom="@dimen/activity_single_space"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lv_bundesliga_table">
 
         <TextView
             android:id="@+id/txtv_bundesliga_table_position"
@@ -84,14 +85,12 @@
     <ListView
         android:id="@+id/lv_bundesliga_table"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="40dp"
+        android:layout_height="0dp"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_table_headers"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/lin_lay_bundesliga_table_headers">
     </ListView>
 
 </android.support.constraint.ConstraintLayout>

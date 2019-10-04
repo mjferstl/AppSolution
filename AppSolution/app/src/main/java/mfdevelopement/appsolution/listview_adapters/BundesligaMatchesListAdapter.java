@@ -111,7 +111,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
             resultString = resultFinal;
         }
 
-        // set 
+        // set
         tv_match_result.setText(resultString);
 
         return view;
