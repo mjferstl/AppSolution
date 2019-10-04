@@ -13,20 +13,13 @@ import mfdevelopement.appsolution.activities.MainActivity;
 public class DialogNoInternetConnection implements DialogInterface{
 
     private Context context;
-    private String LogTag = "DialogNoInternetConnection";
+    private final String LOG_TAG = "DialogNoInternetConnect";
     private AlertDialog dialog;
 
     public DialogNoInternetConnection(Context c) {
         this.context = c;
-    }
 
-    public void show() {
-        showDialog();
-    }
-
-    private void showDialog() {
-
-        Log.i(LogTag,"showDialog:DialogNoInternetConnection");
+        Log.i(LOG_TAG,"DialogNoInternetConnection. Creating Dialog.");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.context);
         alertDialogBuilder.setTitle(R.string.no_internet_connection);
         alertDialogBuilder
@@ -39,11 +32,16 @@ public class DialogNoInternetConnection implements DialogInterface{
                 });
 
         dialog = alertDialogBuilder.create();
+        Log.i(LOG_TAG,"DialogNoInternetConnection ready to show.");
+    }
+
+    public void show() {
         dialog.show();
     }
 
     private void returnToMainActivity() {
         Intent intent = new Intent(this.context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         cancel();
         ((Activity) context).finish();
         context.startActivity(intent);

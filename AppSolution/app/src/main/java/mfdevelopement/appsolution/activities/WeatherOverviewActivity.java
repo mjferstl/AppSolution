@@ -1,32 +1,24 @@
 package mfdevelopement.appsolution.activities;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,23 +26,21 @@ import java.util.Comparator;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
+import mfdevelopement.appsolution.dialogs.DialogWeatherCities;
 import mfdevelopement.appsolution.dialogs.DialogWeatherForecast;
 import mfdevelopement.appsolution.dialogs.DialogWeatherOverviewRemoveCity;
 import mfdevelopement.appsolution.listview_adapters.WeatherOverviewListAdapter;
 import mfdevelopement.appsolution.models.City;
 import mfdevelopement.appsolution.models.WeatherData;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
-
 public class WeatherOverviewActivity extends AppCompatActivity {
 
     public static String FORECAST = "";
 
-    private ListView listView = null;
-    private TextView textView = null;
+    private ListView listView;
+    private TextView textView;
 
     private List<Integer> cityCodes = new ArrayList<>();
     private List<String> cityNames = new ArrayList<>();
@@ -63,6 +53,10 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     private final String LOG_TAG = "WeatherOverviewActivity";
 
+    private boolean isCityListLoaded = false;
+
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,14 +67,13 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // init button
         initFloatingActionButton();
 
-        // text view
+        // reference to TextView and ProgressBar
         textView = findViewById(R.id.tv_weather_overview_no_city);
+        progressBar = findViewById(R.id.pb_weather_overview);
+        initListView();
 
         // load the cities for the current user
         userCityCodes = loadUserCities();
-
-        initListView();
-        updateTextViewEmptyList();
 
         InternetStatus internetStatus = new InternetStatus(this);
         if (internetStatus.isConnected()) {
@@ -94,10 +87,10 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         setTitle(R.string.title_activity_weather_overview);
 
         // load all cities from the resource file in alphabetical order
-        new initCities().execute();
+        new initCityList(this).execute();
     }
 
-    private void updateTextViewEmptyList() {
+    public void updateTextViewEmptyList() {
 
         if (userCityCodes.isEmpty()) {
             Log.d(LOG_TAG, "updateTextViewEmptyList: show the text and undisplay the listView");
@@ -129,70 +122,37 @@ public class WeatherOverviewActivity extends AppCompatActivity {
      */
     private void showCitiesList() {
 
-        final Dialog dialog = new Dialog(WeatherOverviewActivity.this);
-        // no dialog title
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // content
-        dialog.setContentView(R.layout.dialog_weather_add_city);
+        final Handler handler = new Handler();
+        final int delay = 100; //milliseconds
 
-        ListView listViewCities = dialog.findViewById(R.id.lv_weather_cities);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cityNames);
-        listViewCities.setAdapter(adapter);
-
-        listViewCities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String strCity = adapter.getItem(position);
-                Log.i(LOG_TAG, "OnCLickListener:add city " + strCity);
-                int index = cityNames.indexOf(strCity);
-                userCityCodes.add(cityCodes.get(index));
-                updateTextViewEmptyList();
-                dialog.dismiss();
-                updateWeatherData(new City(userCityCodes.get(userCityCodes.size() - 1), WeatherOverviewActivity.this));
-                saveUserCities();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                if (isCityListLoaded && !cityNames.isEmpty()) {
+                    progressBar.setProgress(100);
+                    progressBar.setVisibility(View.GONE);
+                    DialogWeatherCities dialogWeatherCities = new DialogWeatherCities(WeatherOverviewActivity.this, cityNames);
+                    dialogWeatherCities.show();
+                } else {
+                    handler.postDelayed(this, delay);
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress(50);
+                }
             }
-        });
+        }, delay);
+    }
 
-        // adjust height of the listview
-        DisplayData displayData = new DisplayData(WeatherOverviewActivity.this);
-        ViewGroup.LayoutParams listViewForecastLayoutParams = listViewCities.getLayoutParams();
-        listViewForecastLayoutParams.height = (int) (displayData.getHeightPx() * 0.65);
-        listViewCities.setLayoutParams(listViewForecastLayoutParams);
+    public void addUserCityCode(int code) {
+        userCityCodes.add(code);
+        updateTextViewEmptyList();
+        updateWeatherData(new City(userCityCodes.get(userCityCodes.size() - 1), this));
+        saveUserCities();
+    }
 
-        final EditText etFilter = dialog.findViewById(R.id.et_dia_weather_add_city);
-        etFilter.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-                adapter.getFilter().filter(charSequence);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        final Button btnDismiss = dialog.findViewById(R.id.btn_dia_weather_add_city_dismiss);
-        btnDismiss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        // change the dialog width to 80% of the screen width
-        LinearLayout layout = dialog.findViewById(R.id.lin_lay_dia_weather_add_city);
-        int width = displayData.getWidthPx() * 8 / 10;
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
-        layout.setLayoutParams(params);
-
-        // show the dialog
-        dialog.show();
+    public int getCityCode(int index) {
+        if (!userCityCodes.isEmpty())
+            return cityCodes.get(index);
+        else
+            return 0;
     }
 
     /**
@@ -221,6 +181,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // check if TextView or ListView must to be displayed
+        updateTextViewEmptyList();
     }
 
     public void removeCity(int position) {
@@ -232,11 +195,11 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         updateTextViewEmptyList();
     }
 
-    private void updateWeatherData() {
+    public void updateWeatherData() {
         if (userCityCodes.size() != 0) {
             List<City> cities = new ArrayList<>(userCityCodes.size());
             for (int i = 0; i < userCityCodes.size(); i++) {
-                cities.add(new City(userCityCodes.get(i), WeatherOverviewActivity.this));
+                cities.add(new City(userCityCodes.get(i), this));
             }
             updateWeatherData(cities);
         }
@@ -252,7 +215,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         int progress;
         for (int i = 0; i < cities.size(); i++) {
             progress = i / cities.size() * 100;
-            new updateWeatherForCity().execute(cities.get(i), progress);
+            new updateWeatherForCity(this).execute(cities.get(i), progress);
         }
     }
 
@@ -280,7 +243,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         finish();
         startActivity(intent);
     }
@@ -337,6 +300,47 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         return userCityCodes;
     }
 
+    public void updateListView(WeatherData weatherData) {
+
+        // check if the city is already in the listView
+        int index = -1;
+        for (int i = 0; i < allCitiesWeatherData.size(); i++) {
+            if (allCitiesWeatherData.get(i).getCity().getId() == weatherData.getCity().getId()) {
+                index = i;
+                break;
+            }
+        }
+
+        // update data fro city, if it's in the listView. Otherwise add it to the listView
+        if (index >= 0) {
+            allCitiesWeatherData.set(index, weatherData);
+        } else {
+            allCitiesWeatherData.add(weatherData);
+            saveUserCities();
+        }
+
+        weatherOverviewListAdapter = new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
+        listView.setAdapter(weatherOverviewListAdapter);
+
+        progressBar.setVisibility(View.GONE);
+    }
+
+    public boolean isCityListLoaded() {
+        return isCityListLoaded;
+    }
+
+    public void setCityListLoaded(boolean cityListLoaded) {
+        this.isCityListLoaded = cityListLoaded;
+    }
+
+    public void setCityCodes(List<Integer> integerList) {
+        this.cityCodes = integerList;
+    }
+
+    public void setCityNames(List<String> stringList) {
+        this.cityNames = stringList;
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -352,11 +356,20 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     /**
      * load the weather data in the background
      */
-    private class updateWeatherForCity extends AsyncTask<Object, Integer, WeatherData> {
+    private static class updateWeatherForCity extends AsyncTask<Object, Integer, WeatherData> {
 
-        final ProgressBar progressBar = findViewById(R.id.pb_weather_overview);
+        private WeakReference<WeatherOverviewActivity> activityReference;
+        private final String LOG_TAG = "updateWeatherForCity";
+
+        updateWeatherForCity(WeatherOverviewActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
 
         protected void onPreExecute() {
+            WeatherOverviewActivity weatherOverviewActivity = activityReference.get();
+            if (weatherOverviewActivity == null || weatherOverviewActivity.isFinishing()) return;
+
+            ProgressBar progressBar = weatherOverviewActivity.findViewById(R.id.pb_weather_overview);
             progressBar.setVisibility(View.VISIBLE);
         }
 
@@ -376,66 +389,48 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         }
 
         protected void onProgressUpdate(Integer... values) {
+            WeatherOverviewActivity weatherOverviewActivity = activityReference.get();
+            if (weatherOverviewActivity == null || weatherOverviewActivity.isFinishing()) return;
+
+            ProgressBar progressBar = weatherOverviewActivity.findViewById(R.id.pb_weather_overview);
             progressBar.setProgress(values[0]);
         }
 
         @Override
         protected void onPostExecute(WeatherData weatherData) {
-            //
-            boolean isInList = false;
-            int index = 0;
-            for (int i = 0; i < allCitiesWeatherData.size(); i++) {
-                if (allCitiesWeatherData.get(i).getCity().getId() == weatherData.getCity().getId()) {
-                    isInList = true;
-                    index = i;
-                    break;
-                }
-            }
 
-            if (isInList) {
-                allCitiesWeatherData.set(index, weatherData);
-            } else {
-                allCitiesWeatherData.add(weatherData);
-                saveUserCities();
-            }
+            Log.i(LOG_TAG, "weather data loaded successfully");
 
-            weatherOverviewListAdapter = new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
-            listView.setAdapter(weatherOverviewListAdapter);
-            progressBar.setVisibility(View.GONE);
+            // return, if parent activity is not running anymore
+            WeatherOverviewActivity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            activity.updateListView(weatherData);
         }
-    }
-
-    /**
-     * get the ids of all cities in a list
-     *
-     * @param weatherDataList: List containing objects of class WeatherData
-     * @return cityIds: list containing the city ids as Integer values
-     */
-    private List<Integer> getCityIds(List<WeatherData> weatherDataList) {
-
-        List<Integer> cityIds = new ArrayList<>(weatherDataList.size());
-
-        for (WeatherData weatherData : weatherDataList) {
-            cityIds.add(weatherData.getCity().getId());
-        }
-
-        return cityIds;
     }
 
     /**
      * load all citites from the resource file and add them alphabetically sorted to a list
      */
-    private class initCities extends AsyncTask<Activity, Void, Boolean> {
+    private static class initCityList extends AsyncTask<Activity, Void, List<City>> {
 
-        @Override
-        protected void onPreExecute() {
-            Log.d(LOG_TAG, "initCities:start to load all cities from the res-file");
+        private final String LOG_TAG = "initCityList";
+
+        private WeakReference<WeatherOverviewActivity> activityReference;
+
+        initCityList(WeatherOverviewActivity context) {
+            activityReference = new WeakReference<>(context);
         }
 
         @Override
-        protected Boolean doInBackground(Activity... activities) {
+        protected void onPreExecute() {
+            Log.d(LOG_TAG, "initCityList:start to load all cities from the res-file");
+        }
 
-            String[] cityItems = getResources().getStringArray(R.array.weatherMapCities);
+        @Override
+        protected List<City> doInBackground(Activity... activities) {
+
+            String[] cityItems = activityReference.get().getResources().getStringArray(R.array.weatherMapCities);
             List<String> citiesString = new ArrayList<>(Arrays.asList(cityItems));
             Collections.sort(citiesString, new Comparator<String>() {
                 @Override
@@ -444,22 +439,38 @@ public class WeatherOverviewActivity extends AppCompatActivity {
                 }
             });
 
-            for (String item : citiesString) {
-                City c = City.getCityByItem(item);
-                //allCities.add(c);
-                cityNames.add(c.getCityName());
-                cityCodes.add(c.getId());
-            }
+            List<City> cities = new ArrayList<>();
+            for (String item : citiesString)
+                cities.add(City.getCityByItem(item));
 
-            return true;
+            return cities;
         }
 
         @Override
-        protected void onPostExecute(Boolean success) {
-            if (success) {
-                Log.d(LOG_TAG, "initCities:finished loading citites");
+        protected void onPostExecute(List<City> citiesList) {
+
+            if (!citiesList.isEmpty()) {
+
+                List<Integer> cityCodes = new ArrayList<>();
+                List<String> cityNames = new ArrayList<>();
+                for (City c : citiesList) {
+                    cityNames.add(c.getCityName());
+                    cityCodes.add(c.getId());
+                }
+
+                // get reference to activity
+                WeatherOverviewActivity weatherOverviewActivity = activityReference.get();
+                if (weatherOverviewActivity == null || weatherOverviewActivity.isFinishing())
+                    return;
+
+                // update lists in the WeatherOverviewActivty
+                weatherOverviewActivity.setCityCodes(cityCodes);
+                weatherOverviewActivity.setCityNames(cityNames);
+                weatherOverviewActivity.setCityListLoaded(true);
+
+                Log.d(LOG_TAG, "initCityList:finished loading citites");
             } else {
-                Log.e(LOG_TAG, "initCities:failed");
+                Log.e(LOG_TAG, "initCityList:failed");
             }
         }
     }
