@@ -264,9 +264,9 @@
     <string name="title_add_city">Add city &#8230;</string>
     <string name="btn_dismiss">Cancel</string>
     <string name="no_internet_connection">No internet connection</string>
-    <string name="no_internet_connection_text">Please connect to the internet</string>
+    <string name="txt_connect_to_internet_please">Please connect to the internet</string>
     <string name="txt_no_city_selected">There\'s nothing to display.\nAdd a city to the list.</string>
-    <string name="btn_remove_city">remove city</string>
+    <string name="txt_btn_remove_city">remove city</string>
     <string name="txt_title_bundesliga_table">Bundesliga - table</string>
     <string name="txt_toast_setElevation_error">Activity is not displayed correctly</string>
     <string name="txt_bundesliga_table_rank_short">R</string>
@@ -289,4 +289,6 @@
     <string name="txt_are_used">are used</string>
     <string name="txt_old_values_from">Currencies from</string>
     <string name="txt_cancel">Cancel</string>
+    <string name="txt_dia_remove_city_title">Choose action</string>
+    <string name="txt_toast_error_occurred">An error occurred in the background</string>
 </resources>

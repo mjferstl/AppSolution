@@ -23,7 +23,7 @@ public class DialogNoInternetConnection implements DialogInterface{
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.context);
         alertDialogBuilder.setTitle(R.string.no_internet_connection);
         alertDialogBuilder
-                .setMessage(R.string.no_internet_connection_text)
+                .setMessage(R.string.txt_connect_to_internet_please)
                 .setCancelable(true)
                 .setPositiveButton(R.string.btd_ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

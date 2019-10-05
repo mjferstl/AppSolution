@@ -10,6 +10,9 @@
         android:id="@+id/pb_weather_overview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateBehavior="cycle"
+        android:max="100"
         android:visibility="gone"/>
 
     <ListView

@@ -55,4 +55,10 @@
     <dimen name="weight_bundesliga_matches_date">2</dimen>
     <dimen name="weight_bundesliga_matches_match">6</dimen>
     <dimen name="weight_bundesliga_matches_result">3</dimen>
+
+    <dimen name="weight_bundesliga_table_rank">2</dimen>
+    <dimen name="weight_bundesliga_table_team">14</dimen>
+    <dimen name="weight_bundesliga_table_matches">2</dimen>
+    <dimen name="weight_bundesliga_table_goals">4</dimen>
+    <dimen name="weight_bundesliga_table_points">2</dimen>
 </resources>

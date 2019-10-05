@@ -39,14 +39,11 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
     private EditText etFMIN;
     private EditText etFMAX;
 
-    private Button btn_calc;
-
     private XYPlot xyPlot;
 
     private String INPUTERROR = "";
     private String ADJUSTRANGE = "";
-    private String appname = "";
-    private String LogTag = "";
+    private final String LOG_TAG = "TabRheoModelsKelvinVoig";
 
     private ImageView imgKV = null;
     private TextView tvValues = null;
@@ -64,8 +61,6 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
 
         INPUTERROR = getString(R.string.toast_rheological_models_input_error);
         ADJUSTRANGE = getString(R.string.toast_rheological_models_adjust_range);
-        appname = getString(R.string.app_name);
-        LogTag = appname + "/Kelvin-Voigt-Element";
 
         displayKelvinVoigtElement();
 
@@ -80,7 +75,7 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         etFMIN = view.findViewById(R.id.et_rheolocical_model_KV_fmin);
         etFMAX = view.findViewById(R.id.et_rheolocical_model_KV_fmax);
 
-        btn_calc = view.findViewById(R.id.btn_rheological_models_KV_calculate);
+        Button btn_calc = view.findViewById(R.id.btn_rheological_models_KV_calculate);
 
         lv = view.findViewById(R.id.lv_rheological_models_KV_values);
 
@@ -90,7 +85,6 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         //xyPlot.setRangeBoundaries(0,1000,BoundaryMode.FIXED);
         xyPlot.setRangeStepValue(5+1);
         xyPlot.getGraph().setMarginLeft(80);
-        Log.i(LogTag,"boundaries");
 
         btn_calc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,9 +169,7 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
 
             plotDynamicStiffness(freq, dynStiffness);
             showValues(freq,dynStiffness);
-
         }
-
     }
 
     private double calculateDynamicStiffness(double c, double d, double f) {
@@ -210,13 +202,11 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
 
         double maxStiffness = dynStiff[0];
         double minStiffness = dynStiff[0];
-        for (int i=0;i<cdyn.length;i++) {
-            if (cdyn[i]/1000 > maxStiffness) {
-                maxStiffness = cdyn[i]/1000;
-            }
-            if (cdyn[i]/1000 < minStiffness) {
-                minStiffness = cdyn[i]/1000;
-            }
+        for (double c: cdyn) {
+            if (c/1000 > maxStiffness)
+                maxStiffness = c/1000;
+            if (c/1000 < minStiffness)
+                minStiffness = c/1000;
         }
 
         double range =  maxStiffness - minStiffness;
@@ -241,7 +231,6 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         xyPlot.redraw();
 
         displayPlot();
-
     }
 
     private void displayKelvinVoigtElement() {
@@ -251,7 +240,6 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         btnImgKV.setVisibility(View.GONE);
         tvValues.setVisibility(View.GONE);
         lv.setVisibility(View.GONE);
-
     }
 
     private void displayPlot() {
@@ -261,7 +249,6 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         btnImgKV.setVisibility(View.VISIBLE);
         tvValues.setVisibility(View.VISIBLE);
         lv.setVisibility(View.VISIBLE);
-
     }
 
     private void showValues(double[] f, double[] c) {
@@ -270,16 +257,20 @@ public class TabRheoModelsKelvinVoigt extends android.support.v4.app.Fragment {
         for (int i=0;i<f.length;i++) {
             listText[i] = "f = " + String.format(Locale.getDefault(),"%.1f",f[i]) + " Hz, c_dyn = " + String.format(Locale.getDefault(),"%.3f",c[i]/1000) + " N/mm";
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,android.R.id.text1,listText);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getContext(),android.R.layout.simple_list_item_1,android.R.id.text1,listText);
         lv.setAdapter(adapter);
-
     }
 
     private void hideKeyboard(View view) {
         // Check if no view has focus:
         if (view != null) {
-            InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            try {
+                InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            } catch (NullPointerException e) {
+                Log.e(LOG_TAG,"hideKeyboard: getSystemService(Context.INPUT_METHOD_SERVICE) or inputManager.hideSoftInputFromWindow produced a NullPointerException");
+                Toast.makeText(this.getContext(),getString(R.string.txt_toast_error_occurred),Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

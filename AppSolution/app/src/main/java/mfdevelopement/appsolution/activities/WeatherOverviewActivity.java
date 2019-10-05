@@ -70,10 +70,11 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // reference to TextView and ProgressBar
         textView = findViewById(R.id.tv_weather_overview_no_city);
         progressBar = findViewById(R.id.pb_weather_overview);
-        initListView();
 
         // load the cities for the current user
         userCityCodes = loadUserCities();
+
+        initListView();
 
         InternetStatus internetStatus = new InternetStatus(this);
         if (internetStatus.isConnected()) {
@@ -212,10 +213,20 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     private void updateWeatherData(List<City> cities) {
+
+        int numCities = cities.size();
+        Log.d(LOG_TAG,"updateWeatherDate for " + numCities + " cities");
+
+        // update weather data for every city in the list
         int progress;
-        for (int i = 0; i < cities.size(); i++) {
-            progress = i / cities.size() * 100;
-            new updateWeatherForCity(this).execute(cities.get(i), progress);
+        progressBar.setVisibility(View.VISIBLE);
+        for (int i = 0; i < numCities; i++) {
+
+            // update progress
+            progress = (int)((double)i / numCities * 100);
+
+            // update weather data
+            new updateWeatherForCity(this).execute(cities.get(i),progress);
         }
     }
 
@@ -253,7 +264,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
      */
     private void saveUserCities() {
 
-        String prefsString = "";
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
         // create a string
@@ -266,14 +276,15 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
             // create a string and remove last comma
             String str = stringBuilder.toString();
-            prefsString = str.substring(0, str.length() - 1);
-            Log.i(LOG_TAG, "saveUserCitites:" + prefsString);
-        } else {
-            Log.d(LOG_TAG, "saveUserCities:no citiy ids to save");
-        }
+            String prefsString = str.substring(0, str.length() - 1);
 
-        // save string using SharedPreferences
-        prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
+            // save string using SharedPreferences
+            prefs.edit().putString(sharedPrefsUserCityCodes, prefsString).apply();
+
+            Log.d(LOG_TAG, "saveUserCitites: " + prefsString);
+        } else {
+            Log.d(LOG_TAG, "saveUserCities: no citiy ids to save");
+        }
     }
 
     /**
@@ -282,6 +293,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
      * @return List<Integer> containing the cityIds
      */
     private List<Integer> loadUserCities() {
+
+        Log.d(LOG_TAG,"loadUserCities() from SharedPreferences");
 
         List<Integer> userCityCodes = new ArrayList<>();
 
@@ -302,6 +315,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     public void updateListView(WeatherData weatherData) {
 
+        Log.d(LOG_TAG,"updateListView() called");
+
         // check if the city is already in the listView
         int index = -1;
         for (int i = 0; i < allCitiesWeatherData.size(); i++) {
@@ -321,12 +336,6 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         weatherOverviewListAdapter = new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
         listView.setAdapter(weatherOverviewListAdapter);
-
-        progressBar.setVisibility(View.GONE);
-    }
-
-    public boolean isCityListLoaded() {
-        return isCityListLoaded;
     }
 
     public void setCityListLoaded(boolean cityListLoaded) {
@@ -366,34 +375,34 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         }
 
         protected void onPreExecute() {
-            WeatherOverviewActivity weatherOverviewActivity = activityReference.get();
-            if (weatherOverviewActivity == null || weatherOverviewActivity.isFinishing()) return;
-
-            ProgressBar progressBar = weatherOverviewActivity.findViewById(R.id.pb_weather_overview);
-            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected WeatherData doInBackground(Object... objects) {
 
             City c = (City) objects[0];
-            int progress = (int) objects[1];
+            int progress = (int)objects[1];
 
-            Log.d(LOG_TAG, "updateWeatherData: load weather data for city " + c.getCityName());
+            Log.d(LOG_TAG, "updateWeatherForCity: load weather data for city " + c.getCityName());
 
+            publishProgress(progress);
             WeatherData wd = new WeatherData(c);
             wd.loadWeatherData();
-            publishProgress(progress);
 
             return wd;
         }
 
         protected void onProgressUpdate(Integer... values) {
+            // progess in percent
+            int progress = values[0];
+
             WeatherOverviewActivity weatherOverviewActivity = activityReference.get();
             if (weatherOverviewActivity == null || weatherOverviewActivity.isFinishing()) return;
 
+            // show progress bar and update progess
             ProgressBar progressBar = weatherOverviewActivity.findViewById(R.id.pb_weather_overview);
-            progressBar.setProgress(values[0]);
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setProgress(progress);
         }
 
         @Override
@@ -406,6 +415,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             if (activity == null || activity.isFinishing()) return;
 
             activity.updateListView(weatherData);
+
+            ProgressBar progressBar = activity.findViewById(R.id.pb_weather_overview);
+            progressBar.setVisibility(View.GONE);
         }
     }
 

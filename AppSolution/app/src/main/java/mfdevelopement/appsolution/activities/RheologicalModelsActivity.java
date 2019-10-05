@@ -1,6 +1,5 @@
 package mfdevelopement.appsolution.activities;
 
-
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -59,7 +58,11 @@ public class RheologicalModelsActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        this.getSupportActionBar().setElevation(0);
+        try {
+            this.getSupportActionBar().setElevation(0);
+        } catch (NullPointerException e) {
+            Log.e(LOG_TAG,"getSupportActionBar().setElevation(0) produced a NullPointerException");
+        }
 
         Log.i(LOG_TAG, "activity startet successfully");
     }
@@ -85,8 +88,6 @@ public class RheologicalModelsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    // deleted PlaceholderFragment
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -120,6 +121,4 @@ public class RheologicalModelsActivity extends AppCompatActivity {
             return 2;
         }
     }
-
 }
-

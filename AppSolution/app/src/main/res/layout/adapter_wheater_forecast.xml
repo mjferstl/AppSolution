@@ -14,12 +14,15 @@
         android:paddingLeft="@dimen/activity_single_space"
         android:paddingRight="@dimen/activity_single_space"
         android:paddingStart="@dimen/activity_single_space"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space"
         android:layout_marginLeft="@dimen/activity_single_space"
         android:layout_marginStart="@dimen/activity_single_space"
         android:layout_marginRight="@dimen/activity_single_space"
         android:layout_marginEnd="@dimen/activity_single_space"
         android:text="sep"
-        android:background="@color/LightGrey"
+        android:textStyle="bold"
+        android:background="@color/WhiteSmoke"
         android:textColor="@color/colorTextPrimary"
         android:textSize="@dimen/material_text_body1"/>
 

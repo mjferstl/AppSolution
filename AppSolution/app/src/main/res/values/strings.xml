@@ -488,11 +488,12 @@
     <string name="btn_dismiss">Schließen</string>
 
     <!-- dialog, no internet connection -->
-    <string name="no_internet_connection_text">Bitte stellen Sie Verbindung zum Internet her.</string>
+    <string name="txt_connect_to_internet_please">Bitte stellen Sie Verbindung zum Internet her.</string>
     <string name="no_internet_connection">Keine Internetverbindung</string>
 
     <!-- dialog, weather overview -> longItemClick -->
-    <string name="btn_remove_city">Stadt entfernen</string>
+    <string name="txt_dia_remove_city_title">Aktion wählen</string>
+    <string name="txt_btn_remove_city">Stadt entfernen</string>
 
     <!-- Bundesliga -->
     <string name="title_activity_bundesliga" translatable="false">Bundesliga</string>
@@ -510,6 +511,7 @@
 
     <!-- Allgemein -->
     <string name="txt_toast_setElevation_error">Activity kann nicht richtig dargestellt werden</string>
+    <string name="txt_toast_error_occurred">Es ist ein Fehler im Hintergund aufgetreten</string>
 
 </resources>
 
