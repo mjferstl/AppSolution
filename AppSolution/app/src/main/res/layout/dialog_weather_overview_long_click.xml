@@ -5,25 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:paddingLeft="@dimen/activity_single_space"
-    android:paddingStart="@dimen/activity_single_space"
+    android:paddingLeft="@dimen/activity_double_space"
+    android:paddingStart="@dimen/activity_double_space"
     android:paddingRight="@dimen/activity_single_space"
     android:paddingEnd="@dimen/activity_single_space"
     android:paddingTop="@dimen/activity_single_space"
     android:paddingBottom="@dimen/activity_single_space">
 
+    <TextView
+        android:id="@+id/btn_dia_weather_overview_long_click_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_dia_remove_city_title"
+        android:textSize="@dimen/material_text_body1"
+        android:textColor="@color/colorTextPrimary"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space">
+    </TextView>
+
     <Button
         android:id="@+id/btn_dia_weather_overview_remove_city"
-        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:background="@color/ap_transparent"
         android:gravity="start"
-        android:text="@string/btn_remove_city"
+        android:text="@string/txt_btn_remove_city"
         android:textAllCaps="false"
-        android:textColor="@color/Black"
+        android:textColor="@color/colorAccent"
         android:textSize="@dimen/material_text_button"
         android:textStyle="normal"
-        android:typeface="normal" />
+        android:typeface="normal"
+        android:paddingTop="@dimen/activity_double_space"
+        android:paddingBottom="@dimen/activity_double_space"
+        android:layout_below="@+id/btn_dia_weather_overview_long_click_title">
+    </Button>
+
 </RelativeLayout>
