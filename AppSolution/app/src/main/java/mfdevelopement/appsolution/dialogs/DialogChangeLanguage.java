@@ -2,6 +2,7 @@ package mfdevelopement.appsolution.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -15,9 +16,10 @@ import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.helper.ChangeLanguage;
 
-public class DialogChangeLanguage {
+public class DialogChangeLanguage implements DialogInterface {
 
     private Context context;
+    private Dialog dialog;
     private final String LOG_TAG = "DialogChangeLanguage";
 
     private final String GERMAN = "de";
@@ -25,12 +27,12 @@ public class DialogChangeLanguage {
 
     public DialogChangeLanguage(Context context) {
         this.context = context;
+        this.dialog = new Dialog(this.context);
     }
 
     public void show() {
 
         // creeate a new dialog
-        final Dialog dialog = new Dialog(this.context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_select_language);
 
@@ -72,10 +74,9 @@ public class DialogChangeLanguage {
                 rbLangDE.setChecked(true);
                 break;
             case ENGLISH:
-                rbLangEN.setChecked(true);
-                break;
             case "en_US":
                 rbLangEN.setChecked(true);
+                break;
         }
 
         // change the dialog width to 80% of the screen width
@@ -88,5 +89,17 @@ public class DialogChangeLanguage {
         // show the dialog
         dialog.show();
         Log.d(LOG_TAG, "show:show the dialog");
+    }
+
+    @Override
+    public void cancel() {
+        if (dialog != null)
+            dialog.cancel();
+    }
+
+    @Override
+    public void dismiss() {
+        if (dialog != null)
+            dialog.dismiss();
     }
 }

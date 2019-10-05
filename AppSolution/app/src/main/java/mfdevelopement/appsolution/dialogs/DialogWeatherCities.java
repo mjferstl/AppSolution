@@ -2,6 +2,7 @@ package mfdevelopement.appsolution.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,7 +23,7 @@ import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.activities.WeatherOverviewActivity;
 import mfdevelopement.appsolution.device.general.DisplayData;
 
-public class DialogWeatherCities {
+public class DialogWeatherCities implements DialogInterface {
 
     private final String LOG_TAG = "DialogWeatherCities";
 
@@ -44,7 +45,8 @@ public class DialogWeatherCities {
 
         // no dialog title
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        // content
+
+        // load content
         dialog.setContentView(R.layout.dialog_weather_add_city);
 
         Log.d(LOG_TAG,"DialogWeatherCities: adding city names to listView");

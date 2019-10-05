@@ -1,6 +1,7 @@
 package mfdevelopement.appsolution.dialogs;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
@@ -18,7 +19,7 @@ import mfdevelopement.appsolution.activities.AboutIconsActivity;
 import mfdevelopement.appsolution.device.general.DisplayData;
 import mfdevelopement.appsolution.models.IconCredit;
 
-public class DialogAboutIconCreditsLinks {
+public class DialogAboutIconCreditsLinks implements DialogInterface {
 
     private AboutIconsActivity context;
     private IconCredit iconCredit;
@@ -149,8 +150,15 @@ public class DialogAboutIconCreditsLinks {
         };
     }
 
-    private void cancel() {
+    @Override
+    public void cancel() {
         if (dialog != null)
             dialog.cancel();
+    }
+
+    @Override
+    public void dismiss() {
+        if (dialog != null)
+            dialog.dismiss();
     }
 }

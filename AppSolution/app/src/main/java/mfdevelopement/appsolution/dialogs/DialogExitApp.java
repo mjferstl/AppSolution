@@ -7,22 +7,22 @@ import android.util.Log;
 
 import mfdevelopement.appsolution.R;
 
-public class DialogExitApp {
+public class DialogExitApp implements DialogInterface{
 
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog alertDialog;
     private final Context context;
     private final String LOG_TAG = "DialogExitApp";
 
     public DialogExitApp(Context context) {
         this.context = context;
+        this.alertDialogBuilder = new AlertDialog.Builder(this.context);
     }
 
     /**
      * create and show the dialog
      */
     public void show() {
-
-        // new AlertDialogBuilder object
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this.context);
 
         // title of alert
         alertDialogBuilder.setTitle(R.string.alert_exit_title);
@@ -45,10 +45,22 @@ public class DialogExitApp {
                 });
 
         // new AlertDialog object
-        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog = alertDialogBuilder.create();
 
         // show the dialog
         Log.d(LOG_TAG,"show:show the dialog");
         alertDialog.show();
+    }
+
+    @Override
+    public void cancel() {
+        if (alertDialog != null)
+            alertDialog.cancel();
+    }
+
+    @Override
+    public void dismiss() {
+        if (alertDialog != null)
+            alertDialog.dismiss();
     }
 }

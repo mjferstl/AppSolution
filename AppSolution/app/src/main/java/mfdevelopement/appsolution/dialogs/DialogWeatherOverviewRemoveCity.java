@@ -1,6 +1,7 @@
 package mfdevelopement.appsolution.dialogs;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -11,7 +12,7 @@ import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.activities.WeatherOverviewActivity;
 import mfdevelopement.appsolution.device.general.DisplayData;
 
-public class DialogWeatherOverviewRemoveCity {
+public class DialogWeatherOverviewRemoveCity  implements DialogInterface {
 
     private WeatherOverviewActivity context;
     private int itemPosition;
@@ -55,7 +56,15 @@ public class DialogWeatherOverviewRemoveCity {
         dialog.show();
     }
 
+    @Override
     public void cancel() {
-        if (dialog != null) {dialog.cancel();}
+        if (dialog != null)
+            dialog.cancel();
+    }
+
+    @Override
+    public void dismiss() {
+        if (dialog != null)
+            dialog.dismiss();
     }
 }

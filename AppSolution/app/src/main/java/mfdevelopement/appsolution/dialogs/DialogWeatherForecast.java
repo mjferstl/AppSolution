@@ -2,6 +2,7 @@ package mfdevelopement.appsolution.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import mfdevelopement.appsolution.models.WeatherData;
 import mfdevelopement.appsolution.models.WeatherForecastSort;
 import mfdevelopement.appsolution.models.WeatherItem;
 
-public class DialogWeatherForecast {
+public class DialogWeatherForecast implements DialogInterface {
 
     private Context context;
     private WeatherData weatherData;
@@ -122,7 +123,15 @@ public class DialogWeatherForecast {
         dialog.show();
     }
 
-    private void cancel() {
-        if (dialog != null) {dialog.cancel();}
+    @Override
+    public void cancel() {
+        if (dialog != null)
+            dialog.cancel();
+    }
+
+    @Override
+    public void dismiss() {
+        if (dialog != null)
+            dialog.dismiss();
     }
 }
