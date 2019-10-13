@@ -291,4 +291,5 @@
     <string name="txt_cancel">Beenden</string>
     <string name="txt_dia_remove_city_title">Aktion wählen</string>
     <string name="txt_toast_error_occurred">Es ist ein Fehler im Hintergund aufgetreten</string>
+    <string name="txt_bundesliga_tab_goal_getters">Torjäger</string>
 </resources>

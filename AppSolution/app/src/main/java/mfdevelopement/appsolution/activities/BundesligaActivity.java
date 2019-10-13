@@ -27,6 +27,7 @@ import mfdevelopement.appsolution.device.status.InternetStatus;
 import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
 import mfdevelopement.appsolution.listview_adapters.BundesligaMatchesListAdapter;
 import mfdevelopement.appsolution.listview_adapters.BundesligaTableListAdapter;
+import mfdevelopement.appsolution.tabs.TabBundesligaGoalGetters;
 import mfdevelopement.appsolution.tabs.TabBundesligaMatches;
 import mfdevelopement.appsolution.tabs.TabBundesligaTable;
 import mfdevelopement.bundesliga.Bundesliga;
@@ -39,14 +40,13 @@ public class BundesligaActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "BundesligaActivity";
 
-    private ListView lv_bundesliga_table, lv_bundesliga_matches;
+    private ListView lv_bundesliga_table, lv_bundesliga_matches, lv_bundesliga_goal_getters;
     private Bundesliga bundesliga;
     private ProgressBar progressBar;
     private SharedPreferences sharedPrefsBundesliga;
-    private final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
+    public static final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
     private final String SHARED_PREF_STRING_TABLE = "jsonResponseTable";
     private final String SHARED_PREF_STRING_MATCHES = "jsonResponseMatches";
-    private final String SHARED_PREF_STRING_GOAL_GETTERS = "jsonResponseGoalGetters";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +91,7 @@ public class BundesligaActivity extends AppCompatActivity {
         // get reference to listViews and progress bar
         lv_bundesliga_table = findViewById(R.id.lv_bundesliga_table);
         lv_bundesliga_matches = findViewById(R.id.lv_bundesliga_matches);
+        lv_bundesliga_goal_getters = findViewById(R.id.lv_bundesliga_goal_getters);
         progressBar = findViewById(R.id.progBar_bundesliga);
 
         // Log start of current Activity
@@ -338,6 +339,8 @@ public class BundesligaActivity extends AppCompatActivity {
                     return new TabBundesligaTable();
                 case 1:
                     return new TabBundesligaMatches();
+                case 2:
+                    return new TabBundesligaGoalGetters();
                 default:
                     return null;
             }
@@ -345,8 +348,8 @@ public class BundesligaActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            // Show 3 total pages.
+            return 3;
         }
     }
 }

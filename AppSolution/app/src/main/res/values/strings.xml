@@ -500,6 +500,7 @@
     <string name="txt_title_bundesliga_table">Bundesliga - Tabelle</string>
     <string name="txt_bundesliga_tab_table">Tabelle</string>
     <string name="txt_bundesliga_tab_games">Spiele</string>
+    <string name="txt_bundesliga_tab_goal_getters">Torjäger</string>
     <string name="txt_bundesliga_table_rank_short">P</string>
     <string name="txt_bundesliga_table_team">Mannschaft</string>
     <string name="txt_bundesliga_table_games_short">S</string>
