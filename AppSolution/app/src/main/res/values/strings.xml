@@ -509,6 +509,9 @@
     <string name="txt_bundesliga_matches_date">Anpfiff</string>
     <string name="txt_bundesliga_matches_match">Spiel</string>
     <string name="txt_bundesliga_matches_result">Ergebnis</string>
+    <string name="txt_bundesliga_goal_getter_rank">Platz</string>
+    <string name="txt_bundesliga_goal_getter_name">Spieler</string>
+    <string name="txt_bundesliga_goal_getter_goals">Tore</string>
 
     <!-- Allgemein -->
     <string name="txt_toast_setElevation_error">Activity kann nicht richtig dargestellt werden</string>

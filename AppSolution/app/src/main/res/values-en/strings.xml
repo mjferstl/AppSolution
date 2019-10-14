@@ -292,4 +292,7 @@
     <string name="txt_dia_remove_city_title">Choose action</string>
     <string name="txt_toast_error_occurred">An error occurred in the background</string>
     <string name="txt_bundesliga_tab_goal_getters">goal getters</string>
+    <string name="txt_bundesliga_goal_getter_goals">Goals</string>
+    <string name="txt_bundesliga_goal_getter_name">Player</string>
+    <string name="txt_bundesliga_goal_getter_rank">Rank</string>
 </resources>

@@ -10,15 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.activities.BundesligaActivity;
+import mfdevelopement.appsolution.listview_adapters.BundesligaGoalGetterListAdapter;
 import mfdevelopement.bundesliga.Bundesliga;
 import mfdevelopement.bundesliga.GoalGetter;
 
@@ -26,6 +26,7 @@ public class TabBundesligaGoalGetters extends Fragment {
 
     private static final String LOG_TAG = "TabBundesligaGoalGetter";
     private ListView lv_bundesliga_goal_getters;
+    private LinearLayout linearLayoutHeader;
     private WeakReference<LoadBundesligaGoalGetters> asyncTaskWeakRef;
     private SharedPreferences sharedPrefsBundesliga;
     private final String SHARED_PREF_STRING_BUNDESLIGA = BundesligaActivity.SHARED_PREF_STRING_BUNDESLIGA;
@@ -39,6 +40,8 @@ public class TabBundesligaGoalGetters extends Fragment {
         View rootView = inflater.inflate(R.layout.tab_bundesliga_goal_getters, container, false);
 
         lv_bundesliga_goal_getters = rootView.findViewById(R.id.lv_bundesliga_goal_getters);
+        linearLayoutHeader = rootView.findViewById(R.id.lin_lay_bundesliga_goal_getters_headers);
+        linearLayoutHeader.setVisibility(View.GONE);
 
         setRetainInstance(true);
         updateBundesligaGoalGetters(false);
@@ -75,13 +78,10 @@ public class TabBundesligaGoalGetters extends Fragment {
     }
 
     private void updateGoalGetterListView(List<GoalGetter> goalGetterList) {
-        List<String> goalGetterNames = new ArrayList<>();
-        for (int i=0; i<goalGetterList.size(); i++) {
-            goalGetterNames.add(goalGetterList.get(i).getName());
-        }
         if (getActivity() != null) {
-            ArrayAdapter<String> goalGetterArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, goalGetterNames);
-            lv_bundesliga_goal_getters.setAdapter(goalGetterArrayAdapter);
+            BundesligaGoalGetterListAdapter bundesligaGoalGetterListAdapter = new BundesligaGoalGetterListAdapter(getActivity(), goalGetterList);
+            linearLayoutHeader.setVisibility(View.VISIBLE);
+            lv_bundesliga_goal_getters.setAdapter(bundesligaGoalGetterListAdapter);
         }
     }
 

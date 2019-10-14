@@ -61,4 +61,8 @@
     <dimen name="weight_bundesliga_table_matches">2</dimen>
     <dimen name="weight_bundesliga_table_goals">4</dimen>
     <dimen name="weight_bundesliga_table_points">2</dimen>
+
+    <dimen name="weight_bundesliga_goal_getter_rank">2</dimen>
+    <dimen name="weight_bundesliga_goal_getter_name">10</dimen>
+    <dimen name="weight_bundesliga_goal_getter_goals">2</dimen>
 </resources>

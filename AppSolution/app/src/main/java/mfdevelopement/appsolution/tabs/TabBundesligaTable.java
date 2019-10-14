@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.lang.ref.WeakReference;
@@ -24,6 +25,7 @@ import mfdevelopement.bundesliga.FootballTeam;
 public class TabBundesligaTable extends Fragment {
 
     private ListView lv_bundesliga_table;
+    private LinearLayout linearLayoutHeaders;
     private WeakReference<LoadBundesligaTable> asyncTaskWeakRef;
     private SharedPreferences sharedPrefsBundesliga;
     private String jsonReponoseBundesligaTable;
@@ -43,6 +45,8 @@ public class TabBundesligaTable extends Fragment {
         View rootView = inflater.inflate(R.layout.tab_bundesliga_table, container, false);
 
         lv_bundesliga_table = rootView.findViewById(R.id.lv_bundesliga_table);
+        linearLayoutHeaders = rootView.findViewById(R.id.lin_lay_bundesliga_table_headers);
+        linearLayoutHeaders.setVisibility(View.GONE);
         loadBundesligaTable();
 
         return rootView;
@@ -101,6 +105,7 @@ public class TabBundesligaTable extends Fragment {
         if (getActivity() != null) {
             // create ListAdapter object and set it as adapter for the Bundesliga table ListView
             BundesligaTableListAdapter bundesligaTableListAdapter = new BundesligaTableListAdapter(getActivity(), bundesligaTable);
+            linearLayoutHeaders.setVisibility(View.VISIBLE);
             lv_bundesliga_table.setAdapter(bundesligaTableListAdapter);
         }
     }

@@ -10,8 +10,8 @@
     android:paddingRight="@dimen/activity_single_space"
     android:paddingEnd="@dimen/activity_single_space">
 
-<!--  <LinearLayout
-        android:id="@+id/lin_lay_bundesliga_table_headers"
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_goal_getters_headers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/lv_bundesliga_table">
+        app:layout_constraintBottom_toTopOf="@+id/lv_bundesliga_goal_getters">
 
         <TextView
             android:id="@+id/txtv_bundesliga_table_position"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="@dimen/weight_bundesliga_table_rank"
-            android:text="@string/txt_bundesliga_table_rank_short"
+            android:layout_weight="@dimen/weight_bundesliga_goal_getter_rank"
+            android:text="@string/txt_bundesliga_goal_getter_rank"
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/material_text_body1"
             android:textColor="@color/colorTextPrimaryLight">
@@ -37,10 +37,10 @@
             android:id="@+id/txtv_bundesliga_table_teamname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="@dimen/weight_bundesliga_table_team"
+            android:layout_weight="@dimen/weight_bundesliga_goal_getter_name"
             android:textSize="@dimen/material_text_body1"
             android:textColor="@color/colorTextPrimaryLight"
-            android:text="@string/txt_bundesliga_table_team"
+            android:text="@string/txt_bundesliga_goal_getter_name"
             android:paddingLeft="@dimen/activity_single_space"
             android:paddingStart="@dimen/activity_single_space"
             android:paddingRight="@dimen/activity_single_space"
@@ -51,36 +51,14 @@
             android:id="@+id/txtv_bundesliga_table_matches"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="@dimen/weight_bundesliga_table_matches"
+            android:layout_weight="@dimen/weight_bundesliga_goal_getter_goals"
             android:textSize="@dimen/material_text_body1"
             android:textColor="@color/colorTextPrimaryLight"
             android:layout_gravity="center_horizontal"
-            android:text="@string/txt_bundesliga_table_games_short">
+            android:text="@string/txt_bundesliga_goal_getter_goals">
         </TextView>
 
-        <TextView
-            android:id="@+id/txtv_bundesliga_table_goals"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@dimen/weight_bundesliga_table_goals"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/txt_bundesliga_table_goals">
-        </TextView>
-
-        <TextView
-            android:id="@+id/txtv_bundesliga_table_points"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="@dimen/weight_bundesliga_table_points"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimaryLight"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/txt_bundesliga_table_points_short">
-        </TextView>
-
-    </LinearLayout>-->
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_bundesliga_goal_getters"
@@ -90,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/lin_lay_bundesliga_goal_getters_headers">
     </ListView>
 
 </android.support.constraint.ConstraintLayout>

@@ -34,7 +34,7 @@ public class BundesligaActivity extends AppCompatActivity {
     private final String SHARED_PREF_STRING_TABLE = "jsonResponseTable";
     private final String SHARED_PREF_STRING_MATCHES = "jsonResponseMatches";
 
-    public static final long RELOAD_INTERVALL_SEC = 20;
+    public static final long RELOAD_INTERVALL_SEC = 90;
     public static final String SHARED_PREFS_ENTRY_NAME_TIMESTAMP = "timestamp";
 
     @Override
