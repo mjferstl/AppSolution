@@ -3,9 +3,7 @@ package mfdevelopement.appsolution.activities;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,26 +11,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.device.status.InternetStatus;
-import mfdevelopement.appsolution.dialogs.DialogNoInternetConnection;
-import mfdevelopement.appsolution.listview_adapters.BundesligaMatchesListAdapter;
-import mfdevelopement.appsolution.listview_adapters.BundesligaTableListAdapter;
 import mfdevelopement.appsolution.tabs.TabBundesligaGoalGetters;
 import mfdevelopement.appsolution.tabs.TabBundesligaMatches;
 import mfdevelopement.appsolution.tabs.TabBundesligaTable;
 import mfdevelopement.bundesliga.Bundesliga;
-import mfdevelopement.bundesliga.FootballTeam;
-import mfdevelopement.bundesliga.Match;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 
@@ -47,6 +33,9 @@ public class BundesligaActivity extends AppCompatActivity {
     public static final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
     private final String SHARED_PREF_STRING_TABLE = "jsonResponseTable";
     private final String SHARED_PREF_STRING_MATCHES = "jsonResponseMatches";
+
+    public static final long RELOAD_INTERVALL_SEC = 20;
+    public static final String SHARED_PREFS_ENTRY_NAME_TIMESTAMP = "timestamp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,20 +52,13 @@ public class BundesligaActivity extends AppCompatActivity {
 
         // set up the action bar
         final ActionBar actionBar = getActionBar();
-        try {
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            Log.i(LOG_TAG, "error when setting up options for action bar");
-        }
 
-        // remove shadow on top of the tabs
-        try {
-            this.getSupportActionBar().setElevation(0);
-        } catch (NullPointerException e) {
-            Log.e(LOG_TAG, "getSupportActionBar().setElevation(0) produced a NullPointerException");
-            Toast.makeText(this, getString(R.string.txt_toast_setElevation_error), Toast.LENGTH_SHORT).show();
+        if (actionBar != null)
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setElevation(0);
         }
 
         // Set up the ViewPager with the sections adapter.
@@ -98,10 +80,10 @@ public class BundesligaActivity extends AppCompatActivity {
         Log.i(LOG_TAG, LOG_TAG + " startet successfully");
 
         // update Bundesliga data
-        updateBundesligaData();
+        //updateBundesligaData();
     }
 
-    private void updateBundesligaData() {
+/*    private void updateBundesligaData() {
         // check, if device is connected to the internet
         // if true, then load Bundesliga data
         // else show a diaog
@@ -109,14 +91,15 @@ public class BundesligaActivity extends AppCompatActivity {
         if (internetStatus.isConnected()) {
             // start async task to load bundesliga data
             Log.d(LOG_TAG, "start to load bundesliga data");
-            new LoadBundesligaData(this).execute();
+            //new LoadBundesligaData(this).execute();
         } else {
             Log.i(LOG_TAG, "Device has no internet connection! Bundesliga data cannot be loaded.");
             DialogNoInternetConnection dia = new DialogNoInternetConnection(this);
             dia.show();
         }
-    }
+    }*/
 
+/*
     private void saveBundesligaJsonResponse(String jsonResponseString, String SharedPrefEntryName) {
 
         // log function call
@@ -146,12 +129,13 @@ public class BundesligaActivity extends AppCompatActivity {
 
         return jsonResponse;
     }
+*/
 
-    /**
+    /*    *//**
      * set bundesliga data in current actvity and update listView
      *
      * @param bundesliga: object of class Bundesliga
-     */
+     *//*
     public void setBundesliga(Bundesliga bundesliga) {
 
         // log function call
@@ -160,7 +144,7 @@ public class BundesligaActivity extends AppCompatActivity {
         this.bundesliga = bundesliga;
 
         // update bundesliga table listView with current data
-        updateBundesligaTableList(bundesliga.getTable());
+        //updateBundesligaTableList(bundesliga.getTable());
 
         // update bundesliga matches list
         updateBundesligaMatchesList(bundesliga.getMatches());
@@ -170,14 +154,14 @@ public class BundesligaActivity extends AppCompatActivity {
         saveBundesligaJsonResponse(bundesliga.getOpenLigaDbParser().getJsonResponseMatches(), SHARED_PREF_STRING_MATCHES);
     }
 
-    /**
+    *//**
      * update Bundesliga Table listView
      *
      * @param bundesligaTable: List<FootballTeam>
-     */
+     *//*
     private void updateBundesligaTableList(List<FootballTeam> bundesligaTable) {
 
-        // log function call
+*//*        // log function call
         Log.d(LOG_TAG, "updateBundesligaTableList");
 
         // show progress bar and set progress to 0%
@@ -194,14 +178,15 @@ public class BundesligaActivity extends AppCompatActivity {
 
         // set progress to 100% and hide progress bar
         progressBar.setProgress(100);
-        progressBar.setVisibility(View.GONE);
-    }
+        progressBar.setVisibility(View.GONE);*//*
+    }*/
+
+    /*    */
 
     /**
      * update Bundesliga matches listView
      *
-     * @param matches: List<Match>
-     */
+     *//*
     private void updateBundesligaMatchesList(List<Match> matches) {
 
         // log function call
@@ -242,8 +227,7 @@ public class BundesligaActivity extends AppCompatActivity {
         // set progress to 100% and hide progress bar
         progressBar.setProgress(100);
         progressBar.setVisibility(View.GONE);
-    }
-
+    }*/
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
@@ -251,74 +235,74 @@ public class BundesligaActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /**
-     * Asnyc task for loading Bundesliga data from https://www.openligadb.de
-     */
-    private static class LoadBundesligaData extends AsyncTask<Void, Integer, Bundesliga> {
-
-        private WeakReference<BundesligaActivity> activityReference;
-
-        // only retain a weak reference to the activity
-        LoadBundesligaData(BundesligaActivity context) {
-            activityReference = new WeakReference<>(context);
-        }
-
-        protected void onPreExecute() {
-            Log.d(LOG_TAG, "Async Task LoadBundesligaData startet");
-
-            // get reference to progress bar and set visible
-            BundesligaActivity bundesligaActivity = activityReference.get();
-            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
-
-            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
-            progressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Bundesliga doInBackground(Void... params) {
-
-            Bundesliga bundesliga = new Bundesliga();
-
-            Log.d(LOG_TAG, "loading bundesliga table");
-            bundesliga.updateTable();
-            publishProgress(50);
-
-            Log.d(LOG_TAG, "loading bundesliga matches");
-            bundesliga.updateMatches();
-            return bundesliga;
-        }
-
-        protected void onProgressUpdate(Integer... values) {
-
-            BundesligaActivity bundesligaActivity = activityReference.get();
-            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
-
-            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
-            progressBar.setProgress(values[0]);
-        }
-
-        @Override
-        protected void onPostExecute(Bundesliga bundesliga) {
-
-            Log.i(LOG_TAG, "Bundesliga data loaded successfully");
-
-            // return, if parent activity is not running anymore
-            BundesligaActivity bundesligaActivity = activityReference.get();
-            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
-
-            // change margin of bundesliga table title
-            ConstraintLayout.LayoutParams llp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-            llp.setMargins(0, 40, 0, 0); // (left, top, right, bottom)
-
-            bundesligaActivity.setBundesliga(bundesliga);
-
-            // get reference to ProgressBar and hide it
-            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
-            progressBar.setVisibility(View.GONE);
-
-            // TODO: save jsonResponse in SharedPreferences to restore it, if no updates are available on https://www.openligadb.de
-        }
-    }
+//    /**
+//     * Asnyc task for loading Bundesliga data from https://www.openligadb.de
+//     */
+//    private static class LoadBundesligaData extends AsyncTask<Void, Integer, Bundesliga> {
+//
+//        private WeakReference<BundesligaActivity> activityReference;
+//
+//        // only retain a weak reference to the activity
+//        LoadBundesligaData(BundesligaActivity context) {
+//            activityReference = new WeakReference<>(context);
+//        }
+//
+//        protected void onPreExecute() {
+//            Log.d(LOG_TAG, "Async Task LoadBundesligaData startet");
+//
+//            // get reference to progress bar and set visible
+//            BundesligaActivity bundesligaActivity = activityReference.get();
+//            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
+//
+//            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
+//            progressBar.setVisibility(View.VISIBLE);
+//        }
+//
+//        @Override
+//        protected Bundesliga doInBackground(Void... params) {
+//
+//            Bundesliga bundesliga = new Bundesliga();
+//
+//            Log.d(LOG_TAG, "loading bundesliga table");
+//            //bundesliga.updateTable();
+//            publishProgress(50);
+//
+//            Log.d(LOG_TAG, "loading bundesliga matches");
+//            bundesliga.updateMatches();
+//            return bundesliga;
+//        }
+//
+//        protected void onProgressUpdate(Integer... values) {
+//
+//            BundesligaActivity bundesligaActivity = activityReference.get();
+//            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
+//
+//            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
+//            progressBar.setProgress(values[0]);
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Bundesliga bundesliga) {
+//
+//            Log.i(LOG_TAG, "Bundesliga data loaded successfully");
+//
+//            // return, if parent activity is not running anymore
+//            BundesligaActivity bundesligaActivity = activityReference.get();
+//            if (bundesligaActivity == null || bundesligaActivity.isFinishing()) return;
+//
+//            // change margin of bundesliga table title
+//            ConstraintLayout.LayoutParams llp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+//            llp.setMargins(0, 40, 0, 0); // (left, top, right, bottom)
+//
+//            bundesligaActivity.setBundesliga(bundesliga);
+//
+//            // get reference to ProgressBar and hide it
+//            ProgressBar progressBar = bundesligaActivity.findViewById(R.id.progBar_bundesliga);
+//            progressBar.setVisibility(View.GONE);
+//
+//            // TODO: save jsonResponse in SharedPreferences to restore it, if no updates are available on https://www.openligadb.de
+//        }
+//    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

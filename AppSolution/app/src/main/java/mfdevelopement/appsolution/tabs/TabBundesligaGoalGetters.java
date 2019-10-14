@@ -1,9 +1,11 @@
 package mfdevelopement.appsolution.tabs;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +31,7 @@ public class TabBundesligaGoalGetters extends Fragment {
     private final String SHARED_PREF_STRING_BUNDESLIGA = BundesligaActivity.SHARED_PREF_STRING_BUNDESLIGA;
     private final String SHARED_PREF_STRING_GOAL_GETTERS = "jsonResponseGoalGetters";
     private final String TIMESTAMP = "timestamp";
-    private final int RELOAD_INTERVALL_SEC = 90;
+    private final long RELOAD_INTERVALL_SEC = BundesligaActivity.RELOAD_INTERVALL_SEC;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,7 +55,7 @@ public class TabBundesligaGoalGetters extends Fragment {
         long currentTimestamp = System.currentTimeMillis()/1000;
         long lastUpdateTimestamp = getLastUpdateTimestamp();
 
-        // if last update was less than 90 seconds before, don't update the list
+        // if last update was less than a defined amount of time before, don't update the list
         if (!forceUpdate && currentTimestamp - lastUpdateTimestamp < RELOAD_INTERVALL_SEC) {
             String jsonReponse = getJsonResponse();
             if (jsonReponse.equals("")) {
@@ -91,7 +93,7 @@ public class TabBundesligaGoalGetters extends Fragment {
 
         // save jsonReponse using SharedPreferences
         if (getActivity() != null) {
-            sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, 0);
+            sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPrefsBundesliga.edit();
             editor.clear();
             editor.putString(SHARED_PREF_STRING_GOAL_GETTERS, jsonResponseString);
@@ -106,7 +108,7 @@ public class TabBundesligaGoalGetters extends Fragment {
         Log.d(LOG_TAG,"calling getJsonResponse()");
 
         if (getActivity() != null) {
-            sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, 0);
+            sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, Context.MODE_PRIVATE);
             jsonResponse = sharedPrefsBundesliga.getString(SHARED_PREF_STRING_GOAL_GETTERS, "");
 
             // log the returned string
@@ -121,21 +123,19 @@ public class TabBundesligaGoalGetters extends Fragment {
     }
 
     private long getLastUpdateTimestamp() {
-        long timestamp;
+        long timestamp = 0;
 
-        try {
-            timestamp = sharedPrefsBundesliga.getLong(TIMESTAMP,0);
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-            Log.e(LOG_TAG,"getLastUpdateTimestamp() produced a NullPointerException");
-            timestamp = 0;
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity != null) {
+            sharedPrefsBundesliga = fragmentActivity.getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, Context.MODE_PRIVATE);
+            timestamp = sharedPrefsBundesliga.getLong(TIMESTAMP, 0);
         }
         return timestamp;
     }
 
 
     /**
-     * Asnyc task for loading Bundesliga goal getters from https://www.openligadb.de
+     * Asnyc task for loading Bundesliga goal getters from the internet
      */
     private static class LoadBundesligaGoalGetters extends AsyncTask<Void, Integer, Bundesliga> {
 
