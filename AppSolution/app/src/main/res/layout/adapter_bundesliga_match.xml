@@ -78,6 +78,23 @@
             android:gravity="end">
         </TextView>
 
+        <ImageView
+            android:id="@+id/imgv_bundesliga_match_in_progress"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/material_text_body1"
+            android:layout_weight="@dimen/weight_bundesliga_matches_image"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/black"
+            android:src="@drawable/ic_football"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_single_space"
+            android:paddingStart="@dimen/activity_single_space"
+            android:paddingRight="@dimen/activity_single_space"
+            android:paddingEnd="@dimen/activity_single_space"
+            android:contentDescription="gameInProgress"
+            android:gravity="end">
+        </ImageView>
+
     </LinearLayout>
 
 </LinearLayout>

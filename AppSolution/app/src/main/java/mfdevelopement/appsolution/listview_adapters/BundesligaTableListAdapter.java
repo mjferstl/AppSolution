@@ -3,7 +3,6 @@ package mfdevelopement.appsolution.listview_adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +29,6 @@ public class BundesligaTableListAdapter extends ArrayAdapter<FootballTeam> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         FootballTeam currentTeam = getItem(position);
-
-        Log.d(LOG_TAG,"adding team " + (position+1) + " to bundesliga table");
 
         View view = convertView;
 

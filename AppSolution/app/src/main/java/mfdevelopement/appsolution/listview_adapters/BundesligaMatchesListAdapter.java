@@ -3,11 +3,11 @@ package mfdevelopement.appsolution.listview_adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +28,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
     private TextView tv_match_time, tv_match_date, tv_match_result, tv_match_match;
     private LinearLayout lin_lay_separator, lin_lay_match;
+    private ImageView imgv_match_inProgress;
 
     private float activity_single_space;
 
@@ -43,8 +44,6 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
         Match currentMatch = getItem(position);
 
-        Log.d(LOG_TAG, "adding match " + (position + 1) + " to bundesliga matches list");
-
         View view = convertView;
 
         if (view == null) {
@@ -53,16 +52,26 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
         // get references to textViews
         lin_lay_match = view.findViewById(R.id.lin_lay_bundesliga_matches_adapter_content);
+        lin_lay_match.setClickable(true);
         lin_lay_separator = view.findViewById(R.id.lin_lay_bundesliga_matches_adapter_separator);
         tv_match_time = view.findViewById(R.id.txtv_bundesliga_match_adapter_time);
         tv_match_date = view.findViewById(R.id.txtv_bundesliga_match_adapter_date);
         tv_match_match = view.findViewById(R.id.txtv_bundesliga_match_adapter_match);
         tv_match_result = view.findViewById(R.id.txtv_bundesliga_match_adapter_result);
+        imgv_match_inProgress = view.findViewById(R.id.imgv_bundesliga_match_in_progress);
+        imgv_match_inProgress.setVisibility(View.GONE);
+
+        // add action when clicking on the match
+        lin_lay_match.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getContext(),"xxxx",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // get date from calendar object and format it
         String matchDateString;
         matchDateString = getMatchDate(currentMatch.getMatchTime());
-        Log.d(LOG_TAG,"date and time of current match: " + matchDateString);
 
         // set match date
         if (position > 0) {
@@ -71,14 +80,13 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
             // if current item has another date than the last one --> only separator
             if (lastMatchDate.equals(matchDateString)) {
-                setItemAsMatch();
+                hideSeparator();
             } else {
-                setItemAsSeparator();
+                addSeparator();
                 view.setClickable(false);
             }
         } else {
-            setItemAsSeparator();
-
+            addSeparator();
         }
 
         // set match date
@@ -105,6 +113,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
         } else {
             if (matchDate != null && matchDate.before(Calendar.getInstance())) {
                 resultFinal = String.valueOf(currentMatch.getGoalsHomeTeamFinal()) + ':' + String.valueOf(currentMatch.getGoalsAwayTeamFinal());
+                imgv_match_inProgress.setVisibility(View.VISIBLE);
             } else {
                 resultFinal = "";
             }
@@ -117,7 +126,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
         return view;
     }
 
-    public static String getMatchDate(Calendar calendar) {
+    private static String getMatchDate(Calendar calendar) {
 
         if (calendar == null)
             return "";
@@ -133,19 +142,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
         return timeFormat.format(calendar.getTime());
     }
 
-    private void setItemAsSeparator() {
-        tv_match_date.setVisibility(View.VISIBLE);
-        lin_lay_separator.setVisibility(View.VISIBLE);
-        tv_match_time.setVisibility(View.GONE);
-        tv_match_match.setVisibility(View.GONE);
-        tv_match_result.setVisibility(View.GONE);
-
-        // adjust paddings
-        lin_lay_separator.setPadding(0,(int)activity_single_space,0,(int)activity_single_space);
-        lin_lay_match.setPadding(0,0,0,0);
-    }
-
-    private void setItemAsMatch() {
+    private void hideSeparator() {
         tv_match_date.setVisibility(View.GONE);
         lin_lay_separator.setVisibility(View.GONE);
         tv_match_time.setVisibility(View.VISIBLE);
@@ -154,5 +151,15 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
         lin_lay_match.setPadding(0,(int)activity_single_space,0,(int)activity_single_space);
         lin_lay_separator.setPadding(0,0,0,0);
+    }
+
+    private void addSeparator() {
+        tv_match_date.setVisibility(View.VISIBLE);
+        lin_lay_separator.setVisibility(View.VISIBLE);
+        tv_match_time.setVisibility(View.VISIBLE);
+        tv_match_match.setVisibility(View.VISIBLE);
+        tv_match_result.setVisibility(View.VISIBLE);
+
+        lin_lay_separator.setPadding(0,(int)activity_single_space,0,(int)activity_single_space);
     }
 }

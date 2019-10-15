@@ -18,6 +18,7 @@ import java.util.List;
 
 import mfdevelopement.appsolution.R;
 import mfdevelopement.appsolution.activities.BundesligaActivity;
+import mfdevelopement.appsolution.helper.InternalStorageFileManager;
 import mfdevelopement.appsolution.listview_adapters.BundesligaGoalGetterListAdapter;
 import mfdevelopement.bundesliga.Bundesliga;
 import mfdevelopement.bundesliga.GoalGetter;
@@ -32,6 +33,7 @@ public class TabBundesligaGoalGetters extends Fragment {
     private final String SHARED_PREF_STRING_BUNDESLIGA = BundesligaActivity.SHARED_PREF_STRING_BUNDESLIGA;
     private final String SHARED_PREF_STRING_GOAL_GETTERS = "jsonResponseGoalGetters";
     private final String TIMESTAMP = "timestamp";
+    private final String FILENAME = "Bundesliga_goal_getters_response.txt";
     private final long RELOAD_INTERVALL_SEC = BundesligaActivity.RELOAD_INTERVALL_SEC;
 
     @Override
@@ -64,13 +66,14 @@ public class TabBundesligaGoalGetters extends Fragment {
             if (jsonReponse.equals("")) {
                 reloadBundesligaGoalGetters();
             } else {
-                Log.i(LOG_TAG,"loading bundesliga goal getters from SharedPrefs");
+                Log.i(LOG_TAG,"loaded bundesliga goal getters");
                 Bundesliga bundesliga = new Bundesliga();
                 List<GoalGetter> goalGetterList = bundesliga.getOpenLigaDbParser().getGoalGettersFromJsonResponse(jsonReponse);
+                Log.d(LOG_TAG,"created goal getter objects from loaded json response");
                 updateGoalGetterListView(goalGetterList);
             }
         } else {
-            Log.i(LOG_TAG,"loading bundesliga goal getters from www.openliagdb.de");
+            Log.i(LOG_TAG,"loading bundesliga goal getters from the internet");
             LoadBundesligaGoalGetters loadBundesligaGoalGettersAsyncTask = new LoadBundesligaGoalGetters(this);
             asyncTaskWeakRef = new WeakReference<>(loadBundesligaGoalGettersAsyncTask);
             loadBundesligaGoalGettersAsyncTask.execute();
@@ -91,8 +94,11 @@ public class TabBundesligaGoalGetters extends Fragment {
         Log.d(LOG_TAG, "saveBundesligaJsonResponse()" +
                 "\njsonResponse: " + jsonResponseString);
 
+        InternalStorageFileManager fileManager = new InternalStorageFileManager(getActivity());
+        fileManager.writeContentToFile(FILENAME,jsonResponseString);
         // save jsonReponse using SharedPreferences
         if (getActivity() != null) {
+
             sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPrefsBundesliga.edit();
             editor.clear();
@@ -107,7 +113,19 @@ public class TabBundesligaGoalGetters extends Fragment {
         String jsonResponse;
         Log.d(LOG_TAG,"calling getJsonResponse()");
 
-        if (getActivity() != null) {
+        FragmentActivity fragmentActivity = getActivity();
+        if (fragmentActivity != null) {
+//            InternalStorageFileManager fileManager = new InternalStorageFileManager(fragmentActivity);
+//            jsonResponse = fileManager.readFile(FILENAME);
+//
+//            try {
+//                Bundesliga bundesliga = new Bundesliga();
+//                bundesliga.getOpenLigaDbParser().getGoalGettersFromJsonResponse(jsonResponse);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                Log.e(LOG_TAG,"Fehler beim Konvertieren des json reponses in eine Liste..");
+//            }
+
             sharedPrefsBundesliga = getActivity().getSharedPreferences(SHARED_PREF_STRING_BUNDESLIGA, Context.MODE_PRIVATE);
             jsonResponse = sharedPrefsBundesliga.getString(SHARED_PREF_STRING_GOAL_GETTERS, "");
 
