@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/White"
+    android:paddingStart="@dimen/activity_single_space"
+    android:paddingLeft="@dimen/activity_single_space"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingRight="@dimen/activity_single_space">
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_minute"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="@dimen/weight_bundesliga_match_goal_minute"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_player_name_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="@dimen/weight_bundesliga_match_goal_player_name_1"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_standing"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="@dimen/weight_bundesliga_match_goal_standing"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_player_name_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="@dimen/weight_bundesliga_match_goal_player_name_2"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1">
+    </TextView>
+
+</LinearLayout>

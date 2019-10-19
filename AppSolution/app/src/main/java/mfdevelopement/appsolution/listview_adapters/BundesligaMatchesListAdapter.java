@@ -17,11 +17,13 @@ import java.util.List;
 import java.util.Locale;
 
 import mfdevelopement.appsolution.R;
+import mfdevelopement.appsolution.dialogs.DialogBundesligaMatch;
 import mfdevelopement.bundesliga.Match;
 
 public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
     private final String LOG_TAG = "BundesligaMatchesListAd";
+    private Context context;
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("E dd.MM",Locale.getDefault());
     private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm",Locale.getDefault());
@@ -34,6 +36,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
 
     public BundesligaMatchesListAdapter(@NonNull Context context, @NonNull List<Match> objects) {
         super(context, 0, objects);
+        this.context = context;
 
         activity_single_space = context.getResources().getDimension(R.dimen.activity_single_space);
     }
@@ -42,7 +45,7 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Match currentMatch = getItem(position);
+        final Match currentMatch = getItem(position);
 
         View view = convertView;
 
@@ -65,6 +68,8 @@ public class BundesligaMatchesListAdapter extends ArrayAdapter<Match> {
         lin_lay_match.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DialogBundesligaMatch dia = new DialogBundesligaMatch(context, currentMatch);
+                dia.show();
                 //Toast.makeText(getContext(),"xxxx",Toast.LENGTH_SHORT).show();
             }
         });

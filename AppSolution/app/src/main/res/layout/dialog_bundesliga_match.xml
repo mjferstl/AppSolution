@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_language_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="5pt"
+    android:paddingLeft="10pt"
+    android:paddingStart="10pt"
+    android:paddingRight="10pt"
+    android:paddingEnd="10pt"
+    android:paddingBottom="5pt">
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_teams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="@dimen/material_text_title"
+        android:text="Team A - Team B"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorTextPrimary"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_double_space">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="@dimen/material_text_body1"
+        android:text="So. 01.01.19"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorTextPrimary"
+        android:paddingBottom="@dimen/activity_single_space"
+        android:layout_below="@+id/txtv_bundesliga_match_teams">
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/lin_lay_bundesliga_match_goals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/txtv_bundesliga_match_start_time"
+        android:layout_marginBottom="@dimen/activity_single_space">
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_goals_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_bundesliga_table_goals"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/material_text_body1"
+            android:layout_marginBottom="@dimen/activity_single_space"
+            android:layout_marginTop="@dimen/activity_single_space">
+        </TextView>
+
+        <TextView
+            android:id="@+id/txtv_bundesliga_match_no_goals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/material_text_body1"
+            android:textColor="@color/colorTextPrimary"
+            android:gravity="center_horizontal"
+            android:text="@string/txt_bundesliga_match_dialog_no_goals">
+        </TextView>
+
+        <ListView
+            android:id="@+id/lv_bundesliga_match_goals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_bundesliga_match_dialog_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btd_ok"
+        android:layout_below="@+id/lin_lay_bundesliga_match_goals"
+        android:textSize="@dimen/material_text_button"
+        style="@style/AppTheme.FlatButton"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true">
+    </Button>
+
+</RelativeLayout>

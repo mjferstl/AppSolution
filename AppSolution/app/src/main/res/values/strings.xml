@@ -512,6 +512,7 @@
     <string name="txt_bundesliga_goal_getter_rank">Platz</string>
     <string name="txt_bundesliga_goal_getter_name">Spieler</string>
     <string name="txt_bundesliga_goal_getter_goals">Tore</string>
+    <string name="txt_bundesliga_match_dialog_no_goals">Es sind noch keine Tore gefallen</string>
 
     <!-- Allgemein -->
     <string name="txt_toast_setElevation_error">Activity kann nicht richtig dargestellt werden</string>

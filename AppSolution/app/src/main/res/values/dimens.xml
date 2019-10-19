@@ -66,4 +66,9 @@
     <dimen name="weight_bundesliga_goal_getter_rank">2</dimen>
     <dimen name="weight_bundesliga_goal_getter_name">10</dimen>
     <dimen name="weight_bundesliga_goal_getter_goals">2</dimen>
+
+    <dimen name="weight_bundesliga_match_goal_minute">2</dimen>
+    <dimen name="weight_bundesliga_match_goal_player_name_1">6</dimen>
+    <dimen name="weight_bundesliga_match_goal_standing">2</dimen>
+    <dimen name="weight_bundesliga_match_goal_player_name_2">6</dimen>
 </resources>

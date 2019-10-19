@@ -41,7 +41,8 @@
         android:layout_marginStart="@dimen/activity_single_space"
         android:layout_marginEnd="@dimen/activity_single_space"
         android:paddingTop="@dimen/activity_single_space"
-        android:paddingBottom="@dimen/activity_single_space">
+        android:paddingBottom="@dimen/activity_single_space"
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/txtv_bundesliga_match_adapter_time"
