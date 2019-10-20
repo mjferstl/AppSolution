@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/margin_bundesliga_match_goal"
+    android:layout_marginLeft="@dimen/margin_bundesliga_match_goal"
+    android:paddingTop="@dimen/activity_single_space"
+    android:paddingBottom="@dimen/activity_single_space"
+    android:paddingStart="@dimen/activity_single_space"
+    android:paddingLeft="@dimen/activity_single_space"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingRight="@dimen/activity_single_space">
+
+    <ImageView
+        android:id="@+id/img_bundesliga_match_goal_football_icon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_bundesliga_match_goal_icon"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_football"
+        android:paddingStart="0dp"
+        android:paddingLeft="0dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="@dimen/activity_single_space"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtv_bundesliga_match_goal_minute"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_goal_minute">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_score"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_single_space"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:gravity="end"
+        android:text="0:1"
+        android:layout_marginRight="@dimen/activity_double_space"
+        android:layout_marginEnd="@dimen/activity_double_space"
+        app:layout_constraintEnd_toStartOf="@+id/img_bundesliga_match_goal_football_icon"
+        app:layout_constraintTop_toTopOf="@+id/img_bundesliga_match_goal_football_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/img_bundesliga_match_goal_football_icon">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_single_space"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        android:gravity="end"
+        android:text="88'"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtv_bundesliga_match_goal_scorer_name"
+        app:layout_constraintTop_toBottomOf="@+id/img_bundesliga_match_goal_football_icon">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goal_scorer_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="@dimen/weight_bundesliga_match_goal_player_name_2"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:gravity="end"
+        android:paddingRight="@dimen/activity_single_space"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingStart="0dp"
+        android:paddingLeft="0dp"
+        android:layout_marginRight="@dimen/activity_double_space"
+        android:layout_marginEnd="@dimen/activity_double_space"
+        android:text="Spielervorname Spielernachname"
+        app:layout_constraintTop_toTopOf="@+id/txtv_bundesliga_match_goal_minute"
+        app:layout_constraintEnd_toStartOf="@id/txtv_bundesliga_match_goal_minute"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/txtv_bundesliga_match_goal_minute">
+    </TextView>
+
+
+
+</android.support.constraint.ConstraintLayout>

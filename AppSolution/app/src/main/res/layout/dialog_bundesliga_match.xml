@@ -1,91 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/select_language_layout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:paddingTop="5pt"
-    android:paddingLeft="10pt"
-    android:paddingStart="10pt"
-    android:paddingRight="10pt"
-    android:paddingEnd="10pt"
-    android:paddingBottom="5pt">
+    android:paddingStart="@dimen/activity_double_space"
+    android:paddingLeft="@dimen/activity_single_space"
+    android:paddingTop="@dimen/activity_single_space"
+    android:paddingEnd="@dimen/activity_single_space"
+    android:paddingRight="@dimen/activity_single_space"
+    android:paddingBottom="@dimen/activity_single_space">
+
+    <ImageButton
+        android:id="@+id/btn_bundesliga_match_dialog_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close_black_24dp"
+        android:background="@color/ap_transparent"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space"
+        android:paddingStart="@dimen/activity_single_space"
+        android:paddingLeft="@dimen/activity_single_space"
+        android:paddingEnd="@dimen/activity_single_space"
+        android:paddingRight="@dimen/activity_single_space"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_teams"
+        app:layout_constraintStart_toStartOf="parent">
+    </ImageButton>
 
     <TextView
         android:id="@+id/txtv_bundesliga_match_teams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="@dimen/material_text_title"
-        android:text="Team A - Team B"
         android:gravity="center_horizontal"
-        android:textColor="@color/colorTextPrimary"
         android:paddingTop="@dimen/activity_single_space"
-        android:paddingBottom="@dimen/activity_double_space">
+        android:paddingBottom="@dimen/activity_single_space"
+        android:text="Team A - Team B"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_final_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bundesliga_match_dialog_close">
     </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_final_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_double_space"
+        android:text="0 - 0"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/progBar_bundesliga_match_dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_match_teams">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_final_result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_double_space"
+        android:text=""
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_title"
+        android:textStyle="normal"
+        app:layout_constraintTop_toTopOf="@+id/txtv_bundesliga_match_final_result"
+        app:layout_constraintEnd_toEndOf="@+id/txtv_bundesliga_match_final_result"
+        app:layout_constraintStart_toStartOf="@+id/txtv_bundesliga_match_final_result"
+        app:layout_constraintBottom_toBottomOf="@+id/txtv_bundesliga_match_final_result">
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/progBar_bundesliga_match_dialog"
+        android:layout_width="100dp"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
+        android:layout_height="20dp"
+        android:indeterminateBehavior="repeat"
+        android:indeterminate="true"
+        android:indeterminateOnly="true"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_match_final_result"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_start_time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+    </ProgressBar>
 
     <TextView
         android:id="@+id/txtv_bundesliga_match_start_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="@dimen/material_text_body1"
-        android:text="So. 01.01.19"
-        android:gravity="center_horizontal"
-        android:textColor="@color/colorTextPrimary"
+        android:layout_below="@+id/txtv_bundesliga_match_teams"
+        android:gravity="start"
         android:paddingBottom="@dimen/activity_single_space"
-        android:layout_below="@+id/txtv_bundesliga_match_teams">
+        android:text="So. 01.01.19"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_goals_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progBar_bundesliga_match_dialog">
     </TextView>
 
-    <LinearLayout
-        android:id="@+id/lin_lay_bundesliga_match_goals"
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_goals_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@+id/txtv_bundesliga_match_start_time"
-        android:layout_marginBottom="@dimen/activity_single_space">
+        android:layout_marginTop="@dimen/activity_single_space"
+        android:layout_marginBottom="@dimen/activity_single_space"
+        android:text="@string/txt_bundesliga_table_goals"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        android:paddingTop="@dimen/activity_single_space"
+        android:paddingBottom="@dimen/activity_single_space"
+        app:layout_constraintBottom_toTopOf="@+id/txtv_bundesliga_match_no_goals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_match_start_time">
+    </TextView>
 
-        <TextView
-            android:id="@+id/txtv_bundesliga_match_goals_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_bundesliga_table_goals"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="@dimen/material_text_body1"
-            android:layout_marginBottom="@dimen/activity_single_space"
-            android:layout_marginTop="@dimen/activity_single_space">
-        </TextView>
-
-        <TextView
-            android:id="@+id/txtv_bundesliga_match_no_goals"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/material_text_body1"
-            android:textColor="@color/colorTextPrimary"
-            android:gravity="center_horizontal"
-            android:text="@string/txt_bundesliga_match_dialog_no_goals">
-        </TextView>
-
-        <ListView
-            android:id="@+id/lv_bundesliga_match_goals"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ListView>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_bundesliga_match_dialog_ok"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/txtv_bundesliga_match_no_goals"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btd_ok"
-        android:layout_below="@+id/lin_lay_bundesliga_match_goals"
-        android:textSize="@dimen/material_text_button"
-        style="@style/AppTheme.FlatButton"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true">
-    </Button>
+        android:gravity="center_horizontal"
+        android:text="@string/txt_bundesliga_match_dialog_no_goals"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/material_text_body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_match_start_time">
+    </TextView>
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/lv_bundesliga_match_goals"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtv_bundesliga_match_goals_text">
+    </ListView>
+
+</android.support.constraint.ConstraintLayout>

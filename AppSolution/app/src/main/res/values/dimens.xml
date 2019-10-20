@@ -71,4 +71,7 @@
     <dimen name="weight_bundesliga_match_goal_player_name_1">6</dimen>
     <dimen name="weight_bundesliga_match_goal_standing">2</dimen>
     <dimen name="weight_bundesliga_match_goal_player_name_2">6</dimen>
+
+    <dimen name="margin_bundesliga_match_goal">40dp</dimen>
+    <dimen name="height_bundesliga_match_goal_icon">30dp</dimen>
 </resources>

@@ -296,4 +296,8 @@
     <string name="txt_bundesliga_goal_getter_name">Player</string>
     <string name="txt_bundesliga_goal_getter_rank">Rank</string>
     <string name="txt_bundesliga_match_dialog_no_goals">No goals have been scored yet</string>
+    <string name="txt_bundesliga_match_final_score">Final score</string>
+    <string name="txt_bundesliga_match_kick_off">Kick-off</string>
+    <string name="txt_bundesliga_match_goal_own_goal_short_name">OG</string>
+    <string name="txt_bundesliga_match_goal_penalty">PE</string>
 </resources>

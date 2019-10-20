@@ -6,8 +6,9 @@ import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class DialogBundesligaMatch implements DialogInterface {
 
         Log.d(LOG_TAG,"DialogBundesligaMatch.show() called. Creating Dialog now ...");
 
-        dialog = new Dialog(this.context);
+        dialog = new Dialog(this.context, android.R.style.Theme_DeviceDefault_Light_DarkActionBar);
 
         // no dialog title
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -55,22 +56,39 @@ public class DialogBundesligaMatch implements DialogInterface {
         txtv_goals_text = dialog.findViewById(R.id.txtv_bundesliga_match_goals_text);
         TextView txtv_match_start_time = dialog.findViewById(R.id.txtv_bundesliga_match_start_time);
         lv_goals = dialog.findViewById(R.id.lv_bundesliga_match_goals);
-        Button btn_ok = dialog.findViewById(R.id.btn_bundesliga_match_dialog_ok);
+        ImageButton btn_close = dialog.findViewById(R.id.btn_bundesliga_match_dialog_close);
+        TextView txtv_final_result = dialog.findViewById(R.id.txtv_bundesliga_match_final_result);
+        TextView txtv_final_result_string = dialog.findViewById(R.id.txtv_bundesliga_match_final_result_text);
+        ProgressBar progressBar = dialog.findViewById(R.id.progBar_bundesliga_match_dialog);
 
         String dialogTitle = this.bundesligaMatch.getHomeTeam().getShortName()+ " - " + this.bundesligaMatch.getAwayTeam().getShortName();
         txtv_teams.setText(dialogTitle);
 
-        String startTime = getMatchTime(this.bundesligaMatch.getMatchTime());
+        String startTime = this.context.getString(R.string.txt_bundesliga_match_kick_off) + ": " + getMatchTime(this.bundesligaMatch.getMatchTime());
         txtv_match_start_time.setText(startTime);
+
+        // Default: progress bar is not visible
+        progressBar.setVisibility(View.GONE);
+
+        // Default: final result string is not visible
+        txtv_final_result_string.setVisibility(View.GONE);
 
         int goalsHomeTeamHalf = this.bundesligaMatch.getGoalsHomeTeamHalf();
         int goalsAwayTeamHalf = this.bundesligaMatch.getGoalsAwayTeamHalf();
         int goalsHomeTeamFinal = this.bundesligaMatch.getGoalsHomeTeamFinal();
         int goalsAwayTeamFinal = this.bundesligaMatch.getGoalsAwayTeamFinal();
 
+        // show the current result: goalsHomeTeam - goalsAwayTeam
+        String currentResult = goalsHomeTeamFinal + " - " + goalsAwayTeamFinal;
+        txtv_final_result.setText(currentResult);
+        txtv_final_result.setVisibility(View.VISIBLE);
+
         // if the game has not been startet yet
         if (this.bundesligaMatch.getMatchTime().after(Calendar.getInstance())) {
             txtv_no_goals.setVisibility(View.GONE);
+
+            // hide result and goal list
+            txtv_final_result.setVisibility(View.GONE);
             hideGoalList();
         }
         // if the start time of the match is in the past and the game is not finished yet
@@ -84,14 +102,21 @@ public class DialogBundesligaMatch implements DialogInterface {
             } else {
                 showGoalList(this.bundesligaMatch);
             }
+            // set progress bar visibility to visible as the game is in progress
+            progressBar.setVisibility(View.VISIBLE);
         }
         // if the game has taken place in the past
         else if (this.bundesligaMatch.isFinished()) {
             showGoalList(this.bundesligaMatch);
+            txtv_final_result.setText(currentResult);
+
+            txtv_final_result_string.setVisibility(View.VISIBLE);
+            String finalScoreString = this.context.getString(R.string.txt_bundesliga_match_final_score) + ": ";
+            txtv_final_result_string.setText(finalScoreString);
         }
 
-        // if button is clicked, the dialog gets dismissed
-        btn_ok.setOnClickListener(new View.OnClickListener() {
+        // if the close button is clicked, the dialog is dismissed
+        btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();

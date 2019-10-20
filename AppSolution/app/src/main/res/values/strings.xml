@@ -513,6 +513,10 @@
     <string name="txt_bundesliga_goal_getter_name">Spieler</string>
     <string name="txt_bundesliga_goal_getter_goals">Tore</string>
     <string name="txt_bundesliga_match_dialog_no_goals">Es sind noch keine Tore gefallen</string>
+    <string name="txt_bundesliga_match_final_score">Endstand</string>
+    <string name="txt_bundesliga_match_kick_off">Anpfiff</string>
+    <string name="txt_bundesliga_match_goal_own_goal_short_name">ET</string>
+    <string name="txt_bundesliga_match_goal_penalty">FE</string>
 
     <!-- Allgemein -->
     <string name="txt_toast_setElevation_error">Activity kann nicht richtig dargestellt werden</string>
