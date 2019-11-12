@@ -21,7 +21,7 @@ public class BundesligaActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "BundesligaActivity";
     public static final String SHARED_PREF_STRING_BUNDESLIGA = "bundesliga";
-    public static final long RELOAD_INTERVALL_SEC = 90;
+    public static final long RELOAD_INTERVALL_SEC = 60;
     public static final String SHARED_PREFS_ENTRY_NAME_TIMESTAMP = "timestamp";
 
     @Override

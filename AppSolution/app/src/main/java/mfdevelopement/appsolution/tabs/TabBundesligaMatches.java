@@ -23,7 +23,6 @@ import mfdevelopement.bundesliga.Match;
 public class TabBundesligaMatches extends Fragment {
 
     private ListView lv_bundesliga_matches;
-    private WeakReference<LoadBundesligaMatches> asyncTaskWeakRef;
     private SharedPreferences sharedPrefsBundesliga;
 
     private final String SHARED_PREF_STRING_BUNDESLIGA = BundesligaActivity.SHARED_PREF_STRING_BUNDESLIGA;
@@ -85,7 +84,6 @@ public class TabBundesligaMatches extends Fragment {
         } else {
             Log.i(LOG_TAG, "loading bundesliga matches from the internet");
             LoadBundesligaMatches loadBundesligaMatchesAsyncTask = new LoadBundesligaMatches(this);
-            asyncTaskWeakRef = new WeakReference<>(loadBundesligaMatchesAsyncTask);
             loadBundesligaMatchesAsyncTask.execute();
         }
     }
