@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import mfdevelopement.appsolution.R;
-import mfdevelopement.appsolution.tabs.TabBundesligaGoalGetters;
 import mfdevelopement.appsolution.tabs.TabBundesligaMatches;
 import mfdevelopement.appsolution.tabs.TabBundesligaTable;
 
@@ -87,8 +86,8 @@ public class BundesligaActivity extends AppCompatActivity {
                     return new TabBundesligaTable();
                 case 1:
                     return new TabBundesligaMatches();
-                case 2:
-                    return new TabBundesligaGoalGetters();
+//                case 2:
+//                    return new TabBundesligaGoalGetters();
                 default:
                     return null;
             }
@@ -97,7 +96,7 @@ public class BundesligaActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
     }
 }
