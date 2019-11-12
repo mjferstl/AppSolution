@@ -30,9 +30,20 @@ public class DarkSkyParser {
 
     private City city;
 
+    public DarkSkyParser() {}
+
     public DarkSkyParser(City city){
         this.city = city;
         this.jsonResponse = fetchJsonWeather();
+    }
+
+    public String getJsonResponse(){
+        return this.jsonResponse;
+    }
+
+    public void setJsonResponse(String jsonResponse){
+        this.jsonResponse = jsonResponse;
+
     }
 
     private String fetchJsonWeather() {

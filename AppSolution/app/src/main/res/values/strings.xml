@@ -480,6 +480,8 @@
     <!-- weather overview -->
     <string name="title_activity_weather_overview">Wetter - Übersicht</string>
     <string name="txt_no_city_selected">"Noch keine Daten geladen.\nFügen Sie eine Stadt zur Liste hinzu."</string>
+    <string name="snackbar_error_loading_data">Es ist ein Fehler beim Laden der Daten aufgetreten.</string>
+    <string name="snackbar_stored_data_loaded">Bereits gespeicherte Daten wurden geladen.</string>
 
     <!-- weather forecast -->
     <string name="forecast">Vorhersage</string>

@@ -1,12 +1,14 @@
 package mfdevelopement.appsolution.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -48,6 +50,11 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     private List<WeatherData> allCitiesWeatherData = new ArrayList<>();
 
     private String sharedPrefsUserCityCodes = "userCityCodesString";
+    private final String SHARED_PREF_STRING_WEATHER = "weatherData";
+    private final String SHARED_PREF_STRING_BASE = "weatherDatForCity";
+    private final String SHARED_PREF_TIMESTAMP = "timestampCity";
+
+    private final int RELOAD_INTERVALL_S = 30 * 60;
 
     private WeatherOverviewListAdapter weatherOverviewListAdapter;
 
@@ -56,6 +63,8 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     private boolean isCityListLoaded = false;
 
     private ProgressBar progressBar;
+
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +82,9 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         // load the cities for the current user
         userCityCodes = loadUserCities();
+
+        // init shared prefs
+        sharedPreferences = getSharedPreferences(SHARED_PREF_STRING_WEATHER, Context.MODE_PRIVATE);
 
         initListView();
 
@@ -145,7 +157,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     public void addUserCityCode(int code) {
         userCityCodes.add(code);
         updateTextViewEmptyList();
-        updateWeatherData(new City(userCityCodes.get(userCityCodes.size() - 1), this));
+        updateWeatherData(new City(userCityCodes.get(userCityCodes.size() - 1), this), true);
         saveUserCities();
     }
 
@@ -197,25 +209,31 @@ public class WeatherOverviewActivity extends AppCompatActivity {
     }
 
     public void updateWeatherData() {
+        updateWeatherData(false);
+    }
+
+    private void updateWeatherData(boolean forceUpdate) {
         if (userCityCodes.size() != 0) {
             List<City> cities = new ArrayList<>(userCityCodes.size());
             for (int i = 0; i < userCityCodes.size(); i++) {
                 cities.add(new City(userCityCodes.get(i), this));
             }
-            updateWeatherData(cities);
+            updateWeatherData(cities, forceUpdate);
         }
     }
 
-    private void updateWeatherData(City city) {
+    private void updateWeatherData(City city, boolean forceUpdate) {
         List<City> cities = new ArrayList<>(1);
         cities.add(city);
-        updateWeatherData(cities);
+        updateWeatherData(cities, forceUpdate);
     }
 
-    private void updateWeatherData(List<City> cities) {
+    private void updateWeatherData(List<City> cities, boolean forceUpdate) {
+
+        Log.d(LOG_TAG, "updateWeatherData::forceUpdate = " + forceUpdate);
 
         int numCities = cities.size();
-        Log.d(LOG_TAG,"updateWeatherDate for " + numCities + " cities");
+        Log.d(LOG_TAG, "updateWeatherDate for " + numCities + " cities");
 
         // update weather data for every city in the list
         int progress;
@@ -223,10 +241,27 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         for (int i = 0; i < numCities; i++) {
 
             // update progress
-            progress = (int)((double)i / numCities * 100);
+            progress = (int) ((double) i / numCities * 100);
 
+            City city = cities.get(i);
             // update weather data
-            new updateWeatherForCity(this).execute(cities.get(i),progress);
+            long lastTimestamp = loadTimestampSavedData(city);
+
+            // if timestamp of stored data for the current city is older than the specified reload intervall,
+            // then the data is loaded from the internet
+            if (forceUpdate || (lastTimestamp + RELOAD_INTERVALL_S < createTimestamp())) {
+                Log.d(LOG_TAG, "updateWeatherData::loading weather data in async task from the internet for city " + city.getCityName());
+                new updateWeatherForCity(this).execute(city, progress);
+            }
+            // load stored data from the phone, if possible
+            // else load it from the internet
+            else {
+                // check if the city is in the data for the list view
+                Log.d(LOG_TAG, "updateWeatherData::loading weather data stored on the phone");
+
+                new loadStoredWeatherData(this).execute(city);
+                Snackbar.make(findViewById(R.id.container_weather_overview), getString(R.string.snackbar_stored_data_loaded), Snackbar.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -245,7 +280,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_update:
-                updateWeatherData();
+                updateWeatherData(true);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -294,7 +329,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
      */
     private List<Integer> loadUserCities() {
 
-        Log.d(LOG_TAG,"loadUserCities() from SharedPreferences");
+        Log.d(LOG_TAG, "loadUserCities() from SharedPreferences");
 
         List<Integer> userCityCodes = new ArrayList<>();
 
@@ -315,16 +350,10 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
     public void updateListView(WeatherData weatherData) {
 
-        Log.d(LOG_TAG,"updateListView() called");
+        Log.d(LOG_TAG, "updateListView() called");
 
         // check if the city is already in the listView
-        int index = -1;
-        for (int i = 0; i < allCitiesWeatherData.size(); i++) {
-            if (allCitiesWeatherData.get(i).getCity().getId() == weatherData.getCity().getId()) {
-                index = i;
-                break;
-            }
-        }
+        int index = getIndexAllCitiesWeatherData(weatherData.getCity());
 
         // update data fro city, if it's in the listView. Otherwise add it to the listView
         if (index >= 0) {
@@ -336,6 +365,17 @@ public class WeatherOverviewActivity extends AppCompatActivity {
 
         weatherOverviewListAdapter = new WeatherOverviewListAdapter(WeatherOverviewActivity.this, allCitiesWeatherData);
         listView.setAdapter(weatherOverviewListAdapter);
+    }
+
+    private int getIndexAllCitiesWeatherData(City city) {
+        int index = -1;
+        for (int i = 0; i < allCitiesWeatherData.size(); i++) {
+            if (allCitiesWeatherData.get(i).getCity().getId() == city.getId()) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public void setCityListLoaded(boolean cityListLoaded) {
@@ -362,6 +402,30 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         saveUserCities();
     }
 
+    private void saveWeatherData(WeatherData weatherData) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.putString(createSharedPrefKey(SHARED_PREF_STRING_BASE, weatherData.getCity()), weatherData.getJsonReponse());
+        editor.putLong(createSharedPrefKey(SHARED_PREF_TIMESTAMP, weatherData.getCity()), createTimestamp());
+        editor.apply();
+    }
+
+    private long loadTimestampSavedData(City city) {
+        return sharedPreferences.getLong(createSharedPrefKey(SHARED_PREF_TIMESTAMP, city), 0);
+    }
+
+    private String getStoredJsonResponse(City city) {
+        return sharedPreferences.getString(createSharedPrefKey(SHARED_PREF_STRING_BASE, city), "");
+    }
+
+    private String createSharedPrefKey(String baseString, City city) {
+        return baseString + city.getId();
+    }
+
+    private long createTimestamp() {
+        return System.currentTimeMillis() / 1000;
+    }
+
     /**
      * load the weather data in the background
      */
@@ -381,7 +445,7 @@ public class WeatherOverviewActivity extends AppCompatActivity {
         protected WeatherData doInBackground(Object... objects) {
 
             City c = (City) objects[0];
-            int progress = (int)objects[1];
+            int progress = (int) objects[1];
 
             Log.d(LOG_TAG, "updateWeatherForCity: load weather data for city " + c.getCityName());
 
@@ -415,6 +479,60 @@ public class WeatherOverviewActivity extends AppCompatActivity {
             if (activity == null || activity.isFinishing()) return;
 
             activity.updateListView(weatherData);
+            activity.saveWeatherData(weatherData);
+
+            ProgressBar progressBar = activity.findViewById(R.id.pb_weather_overview);
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * parse the loaded jsonReponse String in the background
+     */
+    private static class loadStoredWeatherData extends AsyncTask<Object, Integer, WeatherData> {
+
+        private WeakReference<WeatherOverviewActivity> activityReference;
+        private final String LOG_TAG = "loadStoredWeatherData";
+
+        loadStoredWeatherData(WeatherOverviewActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected WeatherData doInBackground(Object... objects) {
+
+            City city = (City) objects[0];
+
+            // load jsonReponse from Shared Prefs
+            WeatherOverviewActivity activity = activityReference.get();
+            if (activity == null || activity.isFinishing())
+                return new WeatherData(city);
+
+            String loadedJsonResponse = activity.getStoredJsonResponse(city);
+            Log.d(LOG_TAG, "updateWeatherData::stored JSON reponse loaded: " + loadedJsonResponse);
+
+            WeatherData wd = new WeatherData(city);
+            wd.setJsonReponse(loadedJsonResponse);
+
+            return wd;
+        }
+
+        @Override
+        protected void onPostExecute(WeatherData weatherData) {
+
+            Log.i(LOG_TAG, "weather data loaded successfully");
+
+            // return, if parent activity is not running anymore
+            WeatherOverviewActivity activity = activityReference.get();
+            if (activity == null || activity.isFinishing()) return;
+
+            if (!weatherData.isForecastLoaded()) return;
+
+            activity.updateListView(weatherData);
+            activity.saveWeatherData(weatherData);
 
             ProgressBar progressBar = activity.findViewById(R.id.pb_weather_overview);
             progressBar.setVisibility(View.GONE);

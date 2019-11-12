@@ -300,4 +300,6 @@
     <string name="txt_bundesliga_match_kick_off">Anpfiff</string>
     <string name="txt_bundesliga_match_goal_own_goal_short_name">ET</string>
     <string name="txt_bundesliga_match_goal_penalty">FE</string>
+    <string name="snackbar_error_loading_data">Es ist ein Fehler beim Laden der Daten aufgetreten.</string>
+    <string name="snackbar_stored_data_loaded">Bereits gespeicherte Daten wurden geladen.</string>
 </resources>

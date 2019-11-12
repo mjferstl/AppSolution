@@ -1,5 +1,7 @@
 package mfdevelopement.appsolution.models;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,16 +13,12 @@ public class WeatherData {
     private City city;
     private String description;
     private int imageID;
-    private WeatherItem weatherCurrently;
+    private WeatherItem weatherCurrent;
     private List<WeatherItem> weatherHourly, weatherDaily;
-
+    private String jsonReponse;
 
     public boolean forecastLoaded;
     private List<WeatherForecast> weatherForecast = new ArrayList<>();
-
-    public WeatherData() {
-
-    }
 
     public WeatherData(City city) {
         this.city = city;
@@ -66,12 +64,12 @@ public class WeatherData {
         this.imageID = imageID;
     }
 
-    public WeatherItem getWeatherCurrently() {
-        return weatherCurrently;
+    public WeatherItem getWeatherCurrent() {
+        return weatherCurrent;
     }
 
-    public void setWeatherCurrently(WeatherItem weatherCurrently) {
-        this.weatherCurrently = weatherCurrently;
+    public void setWeatherCurrent(WeatherItem weatherCurrent) {
+        this.weatherCurrent = weatherCurrent;
     }
 
     public List<WeatherItem> getWeatherHourly() {
@@ -90,14 +88,36 @@ public class WeatherData {
         this.weatherDaily = weatherDaily;
     }
 
+    public String getJsonReponse() {
+        return this.jsonReponse;
+    }
+
+    public void setJsonReponse(String jsonReponse) {
+        this.jsonReponse = jsonReponse;
+        DarkSkyParser darkSkyParser;
+        if (this.city != null)
+            darkSkyParser = new DarkSkyParser(this.city);
+        else
+            darkSkyParser = new DarkSkyParser();
+
+        darkSkyParser.setJsonResponse(this.jsonReponse);
+        loadWeatherData(darkSkyParser);
+    }
+
     public void loadWeatherData() {
-        DarkSkyParser darkSkyParser = new DarkSkyParser(this.city);
-        this.weatherCurrently = darkSkyParser.getCurrentWeather();
+        loadWeatherData(new DarkSkyParser(this.city));
+    }
+
+    private void loadWeatherData(DarkSkyParser darkSkyParser) {
+        Log.d("WeatherData","starting to get weather data from DarkSkyParser");
+        this.weatherCurrent = darkSkyParser.getCurrentWeather();
         this.weatherHourly = darkSkyParser.getHourlyForecast();
         this.weatherDaily = darkSkyParser.getDailyForecast();
+        this.jsonReponse = darkSkyParser.getJsonResponse();
 
         setDescription(createDescription());
-        setImageID(weatherCurrently.getImageID());
+        setImageID(weatherCurrent.getImageID());
+        this.forecastLoaded = true;
     }
 
     public List<WeatherForecast> getWeatherForecast() {
@@ -107,9 +127,13 @@ public class WeatherData {
     private String createDescription() {
 
         Locale loc = Locale.getDefault();
-        String d = String.format(loc, "%.1f", weatherCurrently.getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE +
-                " | " + weatherCurrently.getPrecipProbabilityPercent() + "%" +
-                " | " + String.format(loc, "%.1f", weatherCurrently.getWindSpeed()) + DarkSkyParser.UNIT_WIND_SPEED;
+        String d = String.format(loc, "%.1f", weatherCurrent.getTemperature()) + DarkSkyParser.UNIT_TEMPERATURE +
+                " | " + weatherCurrent.getPrecipProbabilityPercent() + "%" +
+                " | " + String.format(loc, "%.1f", weatherCurrent.getWindSpeed()) + DarkSkyParser.UNIT_WIND_SPEED;
         return d;
+    }
+
+    public boolean isForecastLoaded() {
+        return this.forecastLoaded;
     }
 }

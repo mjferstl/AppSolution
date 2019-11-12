@@ -300,4 +300,6 @@
     <string name="txt_bundesliga_match_kick_off">Kick-off</string>
     <string name="txt_bundesliga_match_goal_own_goal_short_name">OG</string>
     <string name="txt_bundesliga_match_goal_penalty">PE</string>
+    <string name="snackbar_error_loading_data">An error occurred while loading weather data.</string>
+    <string name="snackbar_stored_data_loaded">Stored data loaded.</string>
 </resources>
